@@ -3,7 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/activity_bg_color"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--不可滑动的viewpager-->
+        <www.yuntdev.com.library.referview.NoTouchViewPager
+            android:id="@+id/vp_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="56.3dp" >
+        </www.yuntdev.com.library.referview.NoTouchViewPager>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56.3dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+            <!--分割线-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="#ddd" />
+            <!--底部导航-->
+            <www.yuntdev.com.library.referview.PageBottomTabLayout
+                android:id="@+id/tab_main"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/white"
+                android:elevation="8dp">
+            </www.yuntdev.com.library.referview.PageBottomTabLayout>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

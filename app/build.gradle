@@ -17,10 +17,20 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0-alpha3'
+    implementation 'com.android.support:recyclerview-v7:28.0.0-alpha3'
     implementation 'org.apache.commons:commons-lang3:3.6'
     implementation 'com.j256.ormlite:ormlite-android:5.0'
     implementation 'com.yuntdev:rxeasyhttp:1.0.0'
     implementation 'com.leo618:MPermission:0.0.2'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation 'jp.wasabeef:glide-transformations:3.3.0'
+    implementation files('libs/AMap3DMap_6.2.0_AMapNavi_6.1.0_AMapSearch_6.1.0_AMapLocation_4.0.1_20180427.jar')
+    implementation 'com.yuntdev:bottomnavigation:1.0.0'
+    implementation 'com.yuntdev:pickerview:1.0.0'
+    implementation 'com.yuntdev:refreshlayout:1.0.0'
+    implementation 'com.yuntdev:baseadapter:1.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
 }

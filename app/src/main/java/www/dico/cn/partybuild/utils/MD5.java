@@ -3,11 +3,11 @@ package www.dico.cn.partybuild.utils;
 import android.text.TextUtils;
 import android.util.Base64;
 
-import com.zhouyou.http.utils.HttpLog;
-
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import www.yuntdev.com.library.utils.HttpLog;
 
 
 /**

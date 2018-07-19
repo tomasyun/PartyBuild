@@ -1,14 +1,19 @@
 package www.dico.cn.partybuild.mvp.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+
+import java.io.Serializable;
 
 import www.dico.cn.partybuild.mvp.factory.PresenterMvpFactoryImpl;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.mvp.proxy.BaseMvpProxy;
 import www.dico.cn.partybuild.mvp.proxy.PresenterProxyInterface;
+import www.dico.cn.partybuild.persistance.Form;
+import www.dico.cn.partybuild.widget.CustomToast;
 
 /**
  * @Class: AbstractMvpActivity
@@ -74,5 +79,72 @@ public class AbstractMvpActivity<V extends BaseMvpView, P extends BaseMvpPresent
     public P getMvpPresenter() {
         Log.e("perfect-mvp","V getMvpPresenter");
         return mProxy.getMvpPresenter();
+    }
+
+    public void showToast(String msg) {
+//        showToast(msg,-1,-1);
+        CustomToast.Instance().showToast(this, msg);
+    }
+
+    protected void showToast(String msg, int bgColor, int txtColor) {
+//        CustomToast.Instance().showToastCustom(this, msg, R.layout.toast_msg, R.id.txt_toast_message, Gravity.CENTER, bgColor, txtColor);
+    }
+
+    /*
+     * 实现画面的跳转
+     * @next 跳转目的地
+     * @param 参数Form
+     */
+    public void goTo(Class<? extends Activity> next, Form param) {
+        goTo(next, param, -1);
+    }
+
+    public void goToForResult(Class<? extends Activity> next, Form param) {
+        goTo(next, param, -1, true);
+    }
+
+    public void goTo(Class<? extends Activity> next, Form param, int intentFlag) {
+        goTo(next, param, intentFlag, false);
+    }
+
+    public void goTo(Class<? extends Activity> next, Form param, int intentFlag, boolean result) {
+        Intent intent = new Intent();
+        if (param != null) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("param", param);
+            intent.putExtras(bundle);
+        }
+        if (intentFlag > -1) {
+            intent.setFlags(intentFlag);
+        }
+        intent.setClass(this, next);
+        if (result)
+            startActivityForResult(intent, 0);
+        else
+            startActivity(intent);
+    }
+
+    /*
+     * @Title: getParam
+     * @Description: TODO(获取activity间传递的参数)
+     * @param @return    设定文件
+     * @return T    返回类型
+     * @throws
+     */
+    public <T> T getParam() {
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        T temp = null;
+        if (bundle != null) {
+            Serializable obj = bundle.getSerializable("param");
+            if (obj != null) {
+                try {
+                    temp = (T) obj;
+                } catch (Exception e) {
+
+                }
+            }
+        }
+        return temp;
     }
 }

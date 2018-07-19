@@ -31,7 +31,7 @@ public class SplashActivity extends AppCompatActivity implements MPermission.Per
                         startActivity(new Intent().setClass(SplashActivity.this, MainActivity.class));
                         finish();
                     } else {
-//                        startActivity(new Intent().setClass(SplashActivity.this, LoginActivity.class));
+                        startActivity(new Intent().setClass(SplashActivity.this, LoginActivity.class));
                         finish();
                     }
                     break;

@@ -4,20 +4,6 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.zhouyou.http.EasyHttp;
-import com.zhouyou.http.callback.SimpleCallBack;
-import com.zhouyou.http.demo.constant.AppConstant;
-import com.zhouyou.http.demo.constant.ComParamContact;
-import com.zhouyou.http.demo.model.AuthModel;
-import com.zhouyou.http.demo.model.LoginCache;
-import com.zhouyou.http.demo.model.LoginInfo;
-import com.zhouyou.http.demo.token.TokenManager;
-import com.zhouyou.http.demo.utils.DateTimeUtils;
-import com.zhouyou.http.demo.utils.MD5;
-import com.zhouyou.http.exception.ApiException;
-import com.zhouyou.http.interceptor.BaseExpiredInterceptor;
-import com.zhouyou.http.model.ApiResult;
-import com.zhouyou.http.utils.HttpLog;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -31,6 +17,18 @@ import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
+import www.dico.cn.partybuild.TokenManager;
+import www.dico.cn.partybuild.constant.AppConstant;
+import www.dico.cn.partybuild.constant.ComParamContact;
+import www.dico.cn.partybuild.persistance.AuthModel;
+import www.dico.cn.partybuild.utils.DateTimeUtils;
+import www.dico.cn.partybuild.utils.MD5;
+import www.yuntdev.com.library.EasyHttp;
+import www.yuntdev.com.library.callback.SimpleCallBack;
+import www.yuntdev.com.library.exception.ApiException;
+import www.yuntdev.com.library.interceptor.BaseExpiredInterceptor;
+import www.yuntdev.com.library.model.ApiResult;
+import www.yuntdev.com.library.utils.HttpLog;
 
 /**
  * <p>描述：处理het token、签名等异常</p>
@@ -71,7 +69,7 @@ public class TokenInterceptor extends BaseExpiredInterceptor {
                     break;
 //                    case ComParamContact.Code.NO_ACCESS_TOKEN://缺少授权信息,没有accessToken,应该是没有登录
                 case ComParamContact.Code.REFRESH_TOKEN_EXPIRED://RefreshToken错误或已过期
-                    reLogin();
+//                    reLogin();
                     if (authModel != null) {
                         return processRefreshTokenError(chain, chain.request());
                     }
@@ -294,35 +292,35 @@ public class TokenInterceptor extends BaseExpiredInterceptor {
      * @return
      * @throws IOException
      */
-    private void reLogin() throws IOException {
-        //从ACache缓存中去出用户名和密码
-        LoginInfo loginInfo = LoginCache.getInstance().get();
-        if (loginInfo == null) {
-            authModel = null;
-            return;
-        }
-        EasyHttp.post(ComParamContact.Login.PATH)
-                .params(ComParamContact.Login.ACCOUNT, loginInfo.getUsername())
-                .params(ComParamContact.Login.PASSWORD, loginInfo.getPassword())
-                .sign(true)
-                .timeStamp(true)
-                .syncRequest(true)
-                .execute(new SimpleCallBack<AuthModel>() {
-                    @Override
-                    public void onError(ApiException e) {
-                        //如果刷新都失败了,那只能通知上层退出登陆了
-                        notifyLoginExit(e.getMessage());
-                    }
-
-                    @Override
-                    public void onSuccess(AuthModel response) {
-                        if (response != null) {
-                            TokenManager.getInstance().setAuthModel(response);
-                            authModel = response;
-                        }
-                    }
-                });
-    }
+//    private void reLogin() throws IOException {
+//        //从ACache缓存中去出用户名和密码
+//        LoginInfo loginInfo = LoginCache.getInstance().get();
+//        if (loginInfo == null) {
+//            authModel = null;
+//            return;
+//        }
+//        EasyHttp.post(ComParamContact.Login.PATH)
+//                .params(ComParamContact.Login.ACCOUNT, loginInfo.getUsername())
+//                .params(ComParamContact.Login.PASSWORD, loginInfo.getPassword())
+//                .sign(true)
+//                .timeStamp(true)
+//                .syncRequest(true)
+//                .execute(new SimpleCallBack<AuthModel>() {
+//                    @Override
+//                    public void onError(ApiException e) {
+//                        //如果刷新都失败了,那只能通知上层退出登陆了
+//                        notifyLoginExit(e.getMessage());
+//                    }
+//
+//                    @Override
+//                    public void onSuccess(AuthModel response) {
+//                        if (response != null) {
+//                            TokenManager.getInstance().setAuthModel(response);
+//                            authModel = response;
+//                        }
+//                    }
+//                });
+//    }
 
     /**
      * 处理时间戳过期错误

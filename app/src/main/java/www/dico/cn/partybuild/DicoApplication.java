@@ -20,13 +20,13 @@ public class DicoApplication extends Application {
         AppConfig.init(this.getApplicationContext());
         EasyHttp.init(this);
         //这里涉及到安全我把url去掉了，demo都是调试通的
-        String Url = "http://www.xxx.com";
+        String Url = "http://47.104.72.111/dico-cms/";
         //设置请求头
         HttpHeaders headers = new HttpHeaders();
-        headers.put("User-Agent", SystemInfoUtils.getUserAgent(this, ""));
+//        headers.put("User-Agent", SystemInfoUtils.getUserAgent(this, ""));
         //设置请求参数
         HttpParams params = new HttpParams();
-        params.put("appId", "");
+//        params.put("appId", "");
         EasyHttp.getInstance()
                 .debug("RxEasyHttp", true)
                 .setReadTimeOut(60 * 1000)
