@@ -39,7 +39,13 @@
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".activity.SettingActivity" />
-        <activity android:name=".activity.PwdupdateActivity"/>
+        <activity android:name=".activity.PwdupdateActivity" />
+        <activity android:name=".activity.CreditInfoActivity" />
+        <activity android:name=".activity.CreditRankActivity" />
+        <activity android:name=".activity.BaseInfoActivity" />
+        <activity android:name=".activity.CollectActivity" />
+        <activity android:name=".activity.FeedbackActivity"/>
+        <activity android:name=".activity.ExamRuleActivity"/>
 
         <!--使用高德api所申请的key-->
         <meta-data

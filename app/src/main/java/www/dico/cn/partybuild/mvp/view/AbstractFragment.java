@@ -1,13 +1,18 @@
 package www.dico.cn.partybuild.mvp.view;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+
+import java.io.Serializable;
 
 import www.dico.cn.partybuild.mvp.factory.PresenterMvpFactoryImpl;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.mvp.proxy.BaseMvpProxy;
 import www.dico.cn.partybuild.mvp.proxy.PresenterProxyInterface;
+import www.dico.cn.partybuild.persistance.Form;
 
 /**
  * @Class: AbstractFragment
@@ -80,5 +85,63 @@ public class AbstractFragment<V extends BaseMvpView, P extends BaseMvpPresenter<
     @Override
     public P getMvpPresenter() {
         return mProxy.getMvpPresenter();
+    }
+
+    /*
+     * 实现画面的跳转
+     * @next 跳转目的地
+     * @param 参数Form
+     */
+    public void goTo(Class<? extends Activity> next, Form param) {
+        goTo(next, param, -1);
+    }
+
+    public void goToForResult(Class<? extends Activity> next, Form param) {
+        goTo(next, param, -1, true);
+    }
+
+    public void goTo(Class<? extends Activity> next, Form param, int intentFlag) {
+        goTo(next, param, intentFlag, false);
+    }
+
+    public void goTo(Class<? extends Activity> next, Form param, int intentFlag, boolean result) {
+        Intent intent = new Intent();
+        if (param != null) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("param", param);
+            intent.putExtras(bundle);
+        }
+        if (intentFlag > -1) {
+            intent.setFlags(intentFlag);
+        }
+        intent.setClass(getActivity(), next);
+        if (result)
+            startActivityForResult(intent, 0);
+        else
+            startActivity(intent);
+    }
+
+    /*
+     * @Title: getParam
+     * @Description: TODO(获取activity间传递的参数)
+     * @param @return    设定文件
+     * @return T    返回类型
+     * @throws
+     */
+    public <T> T getParam() {
+        Intent intent = getActivity().getIntent();
+        Bundle bundle = intent.getExtras();
+        T temp = null;
+        if (bundle != null) {
+            Serializable obj = bundle.getSerializable("param");
+            if (obj != null) {
+                try {
+                    temp = (T) obj;
+                } catch (Exception e) {
+
+                }
+            }
+        }
+        return temp;
     }
 }

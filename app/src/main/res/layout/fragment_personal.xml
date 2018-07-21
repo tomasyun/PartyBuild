@@ -45,7 +45,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="陕西缔科"
+                android:text="席沛锋"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -70,6 +70,8 @@
         android:orientation="horizontal">
         <!--积分-->
         <LinearLayout
+            android:id="@+id/lin_credit_personal"
+            android:clickable="true"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -102,6 +104,7 @@
 
         <!--排名-->
         <LinearLayout
+            android:id="@+id/lin_rank_personal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -128,6 +131,7 @@
 
     <!--基本信息-->
     <RelativeLayout
+        android:id="@+id/rel_baseinfo_personal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -167,6 +171,7 @@
 
     <!--收藏-->
     <RelativeLayout
+        android:id="@+id/rel_collect_personal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -211,6 +216,7 @@
 
     <!--意见反馈-->
     <RelativeLayout
+        android:id="@+id/rel_feedback_personal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
