@@ -7,12 +7,19 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
 }
 
@@ -28,9 +35,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     implementation 'jp.wasabeef:glide-transformations:3.3.0'
     implementation files('libs/AMap3DMap_6.2.0_AMapNavi_6.1.0_AMapSearch_6.1.0_AMapLocation_4.0.1_20180427.jar')
-    implementation 'com.yuntdev:bottomnavigation:1.0.0'
-    implementation 'com.yuntdev:pickerview:1.0.0'
-    implementation 'com.yuntdev:refreshlayout:1.0.0'
-    implementation 'com.yuntdev:baseadapter:1.0.0'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.yuntdev:bottomnavigation:1.0.0'
+    implementation 'com.yuntdev:refreshlayout:1.0.0'
+    implementation 'com.xhb:xbanner:1.3.9'
 }

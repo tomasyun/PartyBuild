@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import java.io.Serializable;
 
+import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.mvp.factory.PresenterMvpFactoryImpl;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.mvp.proxy.BaseMvpProxy;
@@ -23,7 +25,8 @@ import www.dico.cn.partybuild.widget.CustomToast;
  * @Date: 2018\1\29 0029 11:30
  */
 
-public class AbstractMvpActivity<V extends BaseMvpView, P extends BaseMvpPresenter<V>> extends Activity implements PresenterProxyInterface<V,P> {
+public class AbstractMvpActivity<V extends BaseMvpView, P extends BaseMvpPresenter<V>> extends FragmentActivity implements PresenterProxyInterface<V,P> {
+    private AppManager appManager;
     private static final String PRESENTER_SAVE_KEY = "presenter_save_key";
     /**
      * 创建被代理对象,传入默认Presenter的工厂
@@ -36,7 +39,8 @@ public class AbstractMvpActivity<V extends BaseMvpView, P extends BaseMvpPresent
         Log.e("perfect-mvp","V onCreate");
         Log.e("perfect-mvp","V onCreate mProxy = " + mProxy);
         Log.e("perfect-mvp","V onCreate this = " + this.hashCode());
-
+        appManager=AppManager.getAppManager();
+        appManager.addActivity(this);
         if(savedInstanceState != null){
             mProxy.onRestoreInstanceState(savedInstanceState.getBundle(PRESENTER_SAVE_KEY));
         }
@@ -54,6 +58,7 @@ public class AbstractMvpActivity<V extends BaseMvpView, P extends BaseMvpPresent
         super.onDestroy();
         Log.e("perfect-mvp","V onDestroy = " );
         mProxy.onDestroy();
+        appManager.finishActivity();
     }
 
     @Override

@@ -28,7 +28,6 @@ public class UpdateManager {
         if (mVersion_code < nVersion_code) {
             // 显示提示对话
 
-
             WindowManager.LayoutParams lp = mContext.getWindow().getAttributes();
             lp.alpha = 0.5f;
             mContext.getWindow().setAttributes(lp);

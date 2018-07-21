@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <www.dico.cn.partybuild.widget.MyScrollView
+        android:id="@+id/id_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/id_zong"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--轮播图-->
+            <com.stx.xhb.xbanner.XBanner
+                android:id="@+id/xbanner"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                app:AutoPlayTime="3000"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="true"
+                app:pageChangeDuration="800"
+                app:pointSelect="@drawable/arp_dot_bg"
+                app:pointTopBottomPadding="10dp"
+                app:pointsContainerBackground="#60000000"
+                app:pointsPosition="RIGHT"
+                app:tipTextSize="14sp" />
+            <!--通知-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    />
+                <!--系统公告-->
+                <TextView
+                    android:id="@+id/tv_notice_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <!--分割线-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#ddd" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <!--三会一课-->
+                <LinearLayout
+                    android:id="@+id/lin_conference_home"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@null"
+                        android:scaleType="fitXY" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="三会一课"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <!--两学一做-->
+                <LinearLayout
+                    android:id="@+id/lin_studies_home"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@null"
+                        android:scaleType="fitXY" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="两学一做"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <!--品牌建设-->
+                <LinearLayout
+                    android:id="@+id/lin_brand_home"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@null"
+                        android:scaleType="fitXY" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="品牌建设"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <!--组织建设-->
+                <LinearLayout
+                    android:id="@+id/lin_organization_home"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@null"
+                        android:scaleType="fitXY"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="组织建设"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/rg_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <!--党建要闻-->
+                <RadioButton
+                    android:id="@+id/rbt_news"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rbt_selector_bg"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:text="党建要闻"
+                    android:textColor="@color/rbt_txt_color_bg" />
+                <!--学习任务-->
+                <RadioButton
+                    android:id="@+id/rbt_task"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rbt_selector_bg"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:text="学习任务"
+                    android:textColor="@color/rbt_txt_color_bg" />
+                <!--突击奉献-->
+                <RadioButton
+                    android:id="@+id/rbt_devotion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rbt_selector_bg"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:text="突击奉献"
+                    android:textColor="@color/rbt_txt_color_bg" />
+                <!--党员活动-->
+                <RadioButton
+                    android:id="@+id/rbt_active"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rbt_selector_bg"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
+                    android:text="党员活动"
+                    android:textColor="@color/rbt_txt_color_bg" />
+            </RadioGroup>
+            <!--分割线-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="#ddd" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants">
+
+                <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout
+                    android:id="@+id/srl_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:descendantFocusability="blocksDescendants"
+                    android:visibility="visible"
+                    app:srlAccentColor="@android:color/white"
+                    app:srlEnablePreviewInEditMode="true">
+
+                    <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.header.ClassicsHeader
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="none">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                    <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.footer.ClassicsFooter
+                        android:id="@+id/cf_news_footer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </www.dico.cn.partybuild.widget.MyScrollView>
+
+    <RelativeLayout
+        android:id="@+id/id_xianshi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <include
+            layout="@layout/sticky_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </include>
+    </RelativeLayout>
+</RelativeLayout>
