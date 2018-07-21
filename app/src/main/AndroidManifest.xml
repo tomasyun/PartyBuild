@@ -44,8 +44,10 @@
         <activity android:name=".activity.CreditRankActivity" />
         <activity android:name=".activity.BaseInfoActivity" />
         <activity android:name=".activity.CollectActivity" />
-        <activity android:name=".activity.FeedbackActivity"/>
-        <activity android:name=".activity.ExamRuleActivity"/>
+        <activity android:name=".activity.FeedbackActivity" />
+        <activity android:name=".activity.ExamRuleActivity" />
+        <activity android:name=".activity.OnlineExamActivity" />
+        <activity android:name=".activity.NoticeActivity" />
 
         <!--使用高德api所申请的key-->
         <meta-data
