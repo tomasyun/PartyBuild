@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import io.reactivex.disposables.Disposable;
 import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 
 /**
@@ -14,6 +15,7 @@ import www.dico.cn.partybuild.mvp.view.BaseMvpView;
  */
 
 public class BaseMvpPresenter<V extends BaseMvpView> {
+    public Disposable disposable;
     /**
      * V层view
      */
@@ -62,11 +64,12 @@ public class BaseMvpPresenter<V extends BaseMvpView> {
     public void onSaveInstanceState(Bundle outState) {
         Log.e("perfect-mvp", "P onSaveInstanceState = ");
     }
+
     /**
      * Presenter被销毁时调用
      */
     public void onDestroyPresenter() {
-        Log.e("perfect-mvp","P onDestroy = ");
+        Log.e("perfect-mvp", "P onDestroy = ");
     }
 
 }
