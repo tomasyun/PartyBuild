@@ -45,7 +45,7 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
     @Override
     public void onDestroyPresenter() {
         super.onDestroyPresenter();
-        if (!disposable.isDisposed())
+        if (null!=disposable&&disposable.isDisposed())
             disposable.dispose();
     }
 }

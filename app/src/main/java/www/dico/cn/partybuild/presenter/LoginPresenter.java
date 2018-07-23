@@ -46,7 +46,7 @@ public class LoginPresenter extends BaseMvpPresenter<LoginView> {
     @Override
     public void onDestroyPresenter() {
         super.onDestroyPresenter();
-        if (!disposable.isDisposed())
+        if (null!=disposable&&disposable.isDisposed())
             disposable.dispose();
     }
 }

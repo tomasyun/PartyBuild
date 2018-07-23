@@ -44,7 +44,7 @@ public class InformationPresenter extends BaseMvpPresenter<InformationView> {
     @Override
     public void onDestroyPresenter() {
         super.onDestroyPresenter();
-        if (!disposable.isDisposed())
+        if (null!=disposable&&disposable.isDisposed())
             disposable.dispose();
     }
 }
