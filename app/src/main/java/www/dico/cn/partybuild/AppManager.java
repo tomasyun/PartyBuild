@@ -16,7 +16,7 @@ public class AppManager {
     /**
      * 单实例 , UI无需考虑多线程同步问题
      */
-    public static AppManager getAppManager() {
+    public static AppManager getManager() {
         if (instance == null) {
             instance = new AppManager();
         }
@@ -36,7 +36,7 @@ public class AppManager {
     /**
      * 获取当前Activity（栈顶Activity）
      */
-    public Activity currentActivity() {
+    public Activity curActivity() {
         if (activityStack == null || activityStack.isEmpty()) {
             return null;
         }

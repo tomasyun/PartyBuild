@@ -39,7 +39,7 @@ public class AbstractMvpActivity<V extends BaseMvpView, P extends BaseMvpPresent
         Log.e("perfect-mvp","V onCreate");
         Log.e("perfect-mvp","V onCreate mProxy = " + mProxy);
         Log.e("perfect-mvp","V onCreate this = " + this.hashCode());
-        appManager=AppManager.getAppManager();
+        appManager=AppManager.getManager();
         appManager.addActivity(this);
         if(savedInstanceState != null){
             mProxy.onRestoreInstanceState(savedInstanceState.getBundle(PRESENTER_SAVE_KEY));

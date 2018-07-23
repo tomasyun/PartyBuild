@@ -8,6 +8,7 @@ import www.dico.cn.partybuild.modleview.PwdupdateView;
 import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
+import www.dico.cn.partybuild.persistance.PwdupdateBean;
 import www.dico.cn.partybuild.presenter.PwdupdatePresenter;
 
 @CreatePresenter(PwdupdatePresenter.class)
@@ -17,5 +18,15 @@ public class PwdupdateActivity extends AbstractMvpActivity<PwdupdateView, Pwdupd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pwdupdate);
         ViewFind.bind(this);
+    }
+
+    @Override
+    public void resultSuccess(PwdupdateBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+
     }
 }

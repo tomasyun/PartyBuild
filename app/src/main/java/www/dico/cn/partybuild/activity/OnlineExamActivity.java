@@ -8,6 +8,7 @@ import www.dico.cn.partybuild.modleview.OnlineExamView;
 import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
+import www.dico.cn.partybuild.persistance.OnlineExamBean;
 import www.dico.cn.partybuild.presenter.OnlineExamPresenter;
 
 @CreatePresenter(OnlineExamPresenter.class)
@@ -17,5 +18,15 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onlineexam);
         ViewFind.bind(this);
+    }
+
+    @Override
+    public void resultSuccess(OnlineExamBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+
     }
 }

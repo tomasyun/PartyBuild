@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.persistance.CreditInfoBean;
 import www.dico.cn.partybuild.presenter.CreditInfoPresenter;
 import www.dico.cn.partybuild.modleview.CreditInfoView;
 import www.dico.cn.partybuild.mvp.ViewFind;
@@ -17,5 +18,15 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creditinfo);
         ViewFind.bind(this);
+    }
+
+    @Override
+    public void resultSuccess(CreditInfoBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+
     }
 }

@@ -17,6 +17,7 @@ import www.dico.cn.partybuild.modleview.HomeView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
 import www.dico.cn.partybuild.persistance.AdvertiseImgM;
+import www.dico.cn.partybuild.persistance.HomeBean;
 import www.dico.cn.partybuild.presenter.HomePresenter;
 import www.dico.cn.partybuild.utils.GlideUtils;
 
@@ -52,5 +53,15 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         });
 
         return view;
+    }
+
+    @Override
+    public void resultSuccess(HomeBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+
     }
 }
