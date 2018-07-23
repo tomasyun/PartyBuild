@@ -10,7 +10,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.persistance.CreditRankBean;
 import www.dico.cn.partybuild.presenter.CreditRankPresenter;
-
+//积分排名
 @CreatePresenter(CreditRankPresenter.class)
 public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, CreditRankPresenter> implements CreditRankView {
     @Override

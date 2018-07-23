@@ -10,7 +10,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.persistance.OnlineExamBean;
 import www.dico.cn.partybuild.presenter.OnlineExamPresenter;
-
+//在线考试
 @CreatePresenter(OnlineExamPresenter.class)
 public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, OnlineExamPresenter> implements OnlineExamView {
     @Override

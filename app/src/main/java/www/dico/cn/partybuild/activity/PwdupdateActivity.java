@@ -10,7 +10,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.persistance.PwdupdateBean;
 import www.dico.cn.partybuild.presenter.PwdupdatePresenter;
-
+//密码更新
 @CreatePresenter(PwdupdatePresenter.class)
 public class PwdupdateActivity extends AbstractMvpActivity<PwdupdateView, PwdupdatePresenter> implements PwdupdateView {
     @Override

@@ -10,6 +10,7 @@ import www.dico.cn.partybuild.modleview.PayDuesView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
 import www.dico.cn.partybuild.presenter.PayDuesPresenter;
+//党费缴纳
 @CreatePresenter(PayDuesPresenter.class)
 public class PayDuesFragment extends AbstractFragment<PayDuesView,PayDuesPresenter> implements PayDuesView {
     @Override

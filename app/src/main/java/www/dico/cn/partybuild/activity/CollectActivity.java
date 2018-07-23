@@ -10,7 +10,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.persistance.CollectsBean;
 import www.dico.cn.partybuild.presenter.CollectPresenter;
-
+//收藏
 @CreatePresenter(CollectPresenter.class)
 public class CollectActivity extends AbstractMvpActivity<CollectView, CollectPresenter> implements CollectView {
     @Override

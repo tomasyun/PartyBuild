@@ -9,7 +9,7 @@ import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.SettingPresenter;
-
+//设置
 @CreatePresenter(SettingPresenter.class)
 public class SettingActivity extends AbstractMvpActivity<SettingView, SettingPresenter> implements SettingView {
     @Override

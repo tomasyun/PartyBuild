@@ -19,7 +19,7 @@ import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
 import www.dico.cn.partybuild.presenter.PersonalPresenter;
-
+//个人中心
 @CreatePresenter(PersonalPresenter.class)
 public class PersonalFragment extends AbstractFragment<PersonalView, PersonalPresenter> implements PersonalView {
     private LinearLayout lin_credit_personal;

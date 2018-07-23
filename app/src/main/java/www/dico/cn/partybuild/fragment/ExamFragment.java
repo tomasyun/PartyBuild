@@ -11,6 +11,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
 import www.dico.cn.partybuild.persistance.ExamsBean;
 import www.dico.cn.partybuild.presenter.ExamPresenter;
+//考试列表
 @CreatePresenter(ExamPresenter.class)
 public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> implements ExamView {
     @Override

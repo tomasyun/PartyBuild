@@ -10,7 +10,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.persistance.NoticeBean;
 import www.dico.cn.partybuild.presenter.NoticePresenter;
-
+//通知
 @CreatePresenter(NoticePresenter.class)
 public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresenter> implements NoticeView {
     @Override

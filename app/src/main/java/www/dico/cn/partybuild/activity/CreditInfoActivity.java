@@ -10,7 +10,7 @@ import www.dico.cn.partybuild.modleview.CreditInfoView;
 import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
-
+//积分详情
 @CreatePresenter(CreditInfoPresenter.class)
 public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, CreditInfoPresenter> implements CreditInfoView {
     @Override

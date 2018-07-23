@@ -10,7 +10,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.persistance.BaseInfoBean;
 import www.dico.cn.partybuild.presenter.BaseInfoPresenter;
-
+//党员个人基本信息
 @CreatePresenter(BaseInfoPresenter.class)
 public class BaseInfoActivity extends AbstractMvpActivity<BaseInfoView, BaseInfoPresenter> implements BaseInfoView {
     @Override

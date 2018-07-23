@@ -18,7 +18,7 @@ import java.util.List;
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
-
+//启动页
 public class SplashActivity extends AppCompatActivity implements MPermission.PermissionCallbacks {
     private static final int PERMISSION = 123;
     Handler mHandler = new Handler() {

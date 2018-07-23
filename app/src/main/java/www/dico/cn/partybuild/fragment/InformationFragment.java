@@ -12,7 +12,7 @@ import www.dico.cn.partybuild.modleview.InformationView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
 import www.dico.cn.partybuild.presenter.InformationPresenter;
-
+//资讯
 @CreatePresenter(InformationPresenter.class)
 public class InformationFragment extends AbstractFragment<InformationView, InformationPresenter> {
     @Nullable

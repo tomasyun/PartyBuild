@@ -20,7 +20,7 @@ import www.dico.cn.partybuild.persistance.AdvertiseImgM;
 import www.dico.cn.partybuild.persistance.HomeBean;
 import www.dico.cn.partybuild.presenter.HomePresenter;
 import www.dico.cn.partybuild.utils.GlideUtils;
-
+//首页
 @CreatePresenter(HomePresenter.class)
 public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> implements HomeView {
     private XBanner xbanner;

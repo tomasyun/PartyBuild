@@ -10,6 +10,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.persistance.ExamRuleBean;
 import www.dico.cn.partybuild.presenter.ExamRulePresenter;
+//考试规则
 @CreatePresenter(ExamRulePresenter.class)
 public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView,ExamRulePresenter> implements ExamRuleView {
     @Override

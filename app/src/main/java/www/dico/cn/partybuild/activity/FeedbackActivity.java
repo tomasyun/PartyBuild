@@ -10,7 +10,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.persistance.FeedBackBean;
 import www.dico.cn.partybuild.presenter.FeedbackPresenter;
-
+//意见反馈
 @CreatePresenter(FeedbackPresenter.class)
 public class FeedbackActivity extends AbstractMvpActivity<FeedbackView, FeedbackPresenter> implements FeedbackView {
     @Override

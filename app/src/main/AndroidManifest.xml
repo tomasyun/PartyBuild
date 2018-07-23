@@ -48,6 +48,7 @@
         <activity android:name=".activity.ExamRuleActivity" />
         <activity android:name=".activity.OnlineExamActivity" />
         <activity android:name=".activity.NoticeActivity" />
+        <activity android:name=".activity.InfodetailsActivity"/>
 
         <!--使用高德api所申请的key-->
         <meta-data

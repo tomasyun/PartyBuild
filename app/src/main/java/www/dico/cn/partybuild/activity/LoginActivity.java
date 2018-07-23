@@ -16,7 +16,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.persistance.LoginBean;
 import www.dico.cn.partybuild.presenter.LoginPresenter;
-
+//登录
 @CreatePresenter(LoginPresenter.class)
 public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter> implements LoginView {
     @FieldView(R.id.et_name_login)
