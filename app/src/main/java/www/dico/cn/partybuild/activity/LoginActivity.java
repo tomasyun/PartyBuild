@@ -3,10 +3,13 @@ package www.dico.cn.partybuild.activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.autonavi.rtbt.IFrameForRTBT;
 
 import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
@@ -36,16 +39,14 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
     }
 
     public void login(View view) {
-        switch (view.getId()) {
-            case R.id.tv_login_ok:
-                if (et_name_login.getText().toString().trim().equals("")) {
-                    Toast.makeText(LoginActivity.this, "用户名不能为空", Toast.LENGTH_SHORT).show();
-                } else if (et_password_login.getText().toString().trim().equals("")) {
-                    Toast.makeText(LoginActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
-                } else {
-                    getMvpPresenter().clickRequest(et_name_login.getText().toString().trim(), et_password_login.getText().toString().trim());
-                }
-                break;
+        String login_name = et_name_login.getText().toString().trim();
+        String password = et_password_login.getText().toString().trim();
+        if (TextUtils.isEmpty(login_name)) {
+            showToast("用户名不能为空");
+        } else if (TextUtils.isEmpty(password)) {
+            showToast("密码不能为空");
+        } else {
+            getMvpPresenter().clickRequest(et_name_login.getText().toString().trim(), et_password_login.getText().toString().trim());
         }
     }
 

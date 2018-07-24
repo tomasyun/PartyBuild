@@ -59,7 +59,7 @@
             <TextView
                 android:id="@+id/tv_exam_start"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="30dp"
                 android:layout_marginLeft="15dp"
@@ -67,8 +67,6 @@
                 android:layout_marginTop="50dp"
                 android:background="@drawable/button_corner20_red_bg"
                 android:gravity="center"
-                android:paddingBottom="15dp"
-                android:paddingTop="15dp"
                 android:text="开始答题"
                 android:textColor="@color/white"
                 android:translationZ="5dp" />

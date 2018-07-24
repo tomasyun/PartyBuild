@@ -20,7 +20,6 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tv_pay_rule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -64,7 +63,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_amount_dues"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="00.00"
@@ -88,18 +86,17 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_pay_dues"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_marginBottom="30dp"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginRight="22dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
                     android:layout_marginTop="30dp"
+                    android:background="@drawable/button_corner20_red_bg"
                     android:gravity="center"
-                    android:paddingBottom="18dp"
-                    android:paddingTop="18dp"
                     android:text="立即缴费"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:translationZ="5dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -113,6 +110,8 @@
                 <View
                     android:layout_width="5dp"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="3dp"
                     android:background="@color/theme_color" />
 
                 <TextView
@@ -120,81 +119,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="历史缴费记录"
-                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <RelativeLayout
-                android:id="@+id/rel_latest_year_dues"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp">
-
-                <TextView
-                    android:id="@+id/tv_current_year_dues"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="2018年"
-                    android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/iv_latest_dues"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@mipmap/img_arrow_right" />
-            </RelativeLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.3dp"
                 android:background="#ddd" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_latest_dues"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none"
-                android:visibility="gone">
-
-            </android.support.v7.widget.RecyclerView>
-
-            <RelativeLayout
-                android:id="@+id/rel_last_year_dues"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp">
-
-                <TextView
-                    android:id="@+id/tv_last_year_dues"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="2017年"
-                    android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/iv_last_dues"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@mipmap/img_arrow_right" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.3dp"
-                android:background="#ddd" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_last_dues"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"

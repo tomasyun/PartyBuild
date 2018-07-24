@@ -22,6 +22,7 @@ public class BaseInfoActivity extends AbstractMvpActivity<BaseInfoView, BaseInfo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baseinfo);
         ViewFind.bind(this);
+       // getMvpPresenter().getBaseInfoRequest("");
     }
 
     public void goback(View view) {

@@ -20,6 +20,7 @@ public class CollectActivity extends AbstractMvpActivity<CollectView, CollectPre
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collect);
         ViewFind.bind(this);
+        //getMvpPresenter().collectsRequest("");
     }
 
     public void goback(View view) {

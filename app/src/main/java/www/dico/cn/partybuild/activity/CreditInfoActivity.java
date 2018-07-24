@@ -20,6 +20,7 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creditinfo);
         ViewFind.bind(this);
+        //getMvpPresenter().creditInfoRequest("");
     }
 
     public void goback(View view) {

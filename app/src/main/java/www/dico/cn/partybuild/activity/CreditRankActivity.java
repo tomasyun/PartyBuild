@@ -20,6 +20,7 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creditrank);
         ViewFind.bind(this);
+        //getMvpPresenter().creditRankRequest("");
     }
 
     public void goback(View view) {
