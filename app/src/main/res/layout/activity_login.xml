@@ -51,7 +51,6 @@
         android:textSize="14sp" />
 
     <TextView
-        android:id="@+id/tv_login_ok"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="30dp"

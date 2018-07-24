@@ -1,5 +1,6 @@
 package www.dico.cn.partybuild.activity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -16,6 +17,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.persistance.LoginBean;
 import www.dico.cn.partybuild.presenter.LoginPresenter;
+
 //登录
 @CreatePresenter(LoginPresenter.class)
 public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter> implements LoginView {
@@ -29,6 +31,8 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ViewFind.bind(this);
+//        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/fangzheng.ttf");
+//        tv_login_ok.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
     }
 
     public void login(View view) {

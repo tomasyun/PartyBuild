@@ -2,6 +2,7 @@ package www.dico.cn.partybuild.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.modleview.OnlineExamView;
@@ -10,6 +11,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.persistance.OnlineExamBean;
 import www.dico.cn.partybuild.presenter.OnlineExamPresenter;
+
 //在线考试
 @CreatePresenter(OnlineExamPresenter.class)
 public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, OnlineExamPresenter> implements OnlineExamView {
@@ -20,6 +22,10 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
         ViewFind.bind(this);
     }
 
+    public void goback(View view) {
+        this.finish();
+    }
+
     @Override
     public void resultSuccess(OnlineExamBean result) {
 
@@ -27,6 +33,6 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
 
     @Override
     public void resultFailure(String result) {
-
+        showToast(result);
     }
 }

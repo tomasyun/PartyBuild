@@ -9,6 +9,7 @@ import www.dico.cn.partybuild.persistance.FeedBackBean;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
+import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class FeedbackPresenter extends BaseMvpPresenter<FeedbackView> {
@@ -31,7 +32,13 @@ public class FeedbackPresenter extends BaseMvpPresenter<FeedbackView> {
                 .execute(new ProgressDialogCallBack<FeedBackBean>(dialog, true, true) {
                     @Override
                     public void onSuccess(FeedBackBean feedBackBean) {
+                        getMvpView().resultSuccess(feedBackBean);
+                    }
 
+                    @Override
+                    public void onError(ApiException e) {
+                        super.onError(e);
+                        getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }
@@ -39,7 +46,7 @@ public class FeedbackPresenter extends BaseMvpPresenter<FeedbackView> {
     @Override
     public void onDestroyPresenter() {
         super.onDestroyPresenter();
-        if (null!=disposable&&disposable.isDisposed())
+        if (null != disposable && disposable.isDisposed())
             disposable.dispose();
     }
 }

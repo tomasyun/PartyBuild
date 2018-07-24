@@ -14,7 +14,7 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class PwdupdatePresenter extends BaseMvpPresenter<PwdupdateView> {
 
-    public void pwdupdateRequest(String oldPassword, String newPassword, String againPassword) {
+    public void pwdupdateRequest(String id, String oldPassword, String newPassword) {
         IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
@@ -27,18 +27,19 @@ public class PwdupdatePresenter extends BaseMvpPresenter<PwdupdateView> {
             }
         };
         disposable = EasyHttp.post("")
+                .params("id", id)
                 .params("oldPassword", oldPassword)
                 .params("newPassword", newPassword)
-                .params("againPassword", againPassword)
                 .execute(new ProgressDialogCallBack<PwdupdateBean>(dialog, true, true) {
                     @Override
                     public void onSuccess(PwdupdateBean pwdupdateBean) {
-
+                        getMvpView().resultSuccess(pwdupdateBean);
                     }
 
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
+                        getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }
@@ -46,7 +47,7 @@ public class PwdupdatePresenter extends BaseMvpPresenter<PwdupdateView> {
     @Override
     public void onDestroyPresenter() {
         super.onDestroyPresenter();
-        if (null!=disposable&&disposable.isDisposed())
+        if (null != disposable && disposable.isDisposed())
             disposable.dispose();
 
     }

@@ -1,10 +1,12 @@
 package www.dico.cn.partybuild.fragment;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.stx.xhb.xbanner.XBanner;
 
@@ -20,15 +22,29 @@ import www.dico.cn.partybuild.persistance.AdvertiseImgM;
 import www.dico.cn.partybuild.persistance.HomeBean;
 import www.dico.cn.partybuild.presenter.HomePresenter;
 import www.dico.cn.partybuild.utils.GlideUtils;
+import www.dico.cn.partybuild.widget.CustomTextView;
+
 //首页
 @CreatePresenter(HomePresenter.class)
 public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> implements HomeView {
-    private XBanner xbanner;
+    private XBanner xbanner;//轮播
+    private TextView tv_gongshi_home;
+    private TextView tv_gonggao_home;
+    private CustomTextView tv_notice_home;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, null);
         xbanner = view.findViewById(R.id.xbanner);
+        tv_gongshi_home = view.findViewById(R.id.tv_gongshi_home);
+        tv_gonggao_home = view.findViewById(R.id.tv_gonggao_home);
+        tv_gongshi_home.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));//斜体
+        tv_gonggao_home.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
+        tv_notice_home = view.findViewById(R.id.tv_notice_home);
+        tv_notice_home.setText("陕西缔科网络科技有限公司");
+        tv_notice_home.init(getActivity().getWindowManager());
+        tv_notice_home.startScroll();
+        tv_notice_home.setEnabled(false);
         List<AdvertiseImgM> urls = new ArrayList<>();
         AdvertiseImgM advertise = new AdvertiseImgM();
         advertise.setPoster("http://pic.5tu.cn/uploads/allimg/1606/pic_5tu_big_201606272309319893.jpg");
@@ -39,16 +55,16 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         AdvertiseImgM advertise3 = new AdvertiseImgM();
         advertise3.setPoster("http://pic.5tu.cn/uploads/allimg/1607/pic_5tu_big_201607091531527229.jpg");
         urls.add(advertise3);
-        List<String> titles=new ArrayList<>();
+        List<String> titles = new ArrayList<>();
         titles.add("飞屋环游记");
         titles.add("蓝色科技");
         titles.add("运动会");
         xbanner.setAutoPlayAble(urls.size() > 1);
-        xbanner.setData(urls,titles);
+        xbanner.setData(urls, titles);
         xbanner.loadImage(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
-                GlideUtils.loadImage(getActivity(),((AdvertiseImgM)model).getPoster(), (ImageView) view);
+                GlideUtils.loadImage(getActivity(), ((AdvertiseImgM) model).getPoster(), (ImageView) view);
             }
         });
 
@@ -62,6 +78,6 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
 
     @Override
     public void resultFailure(String result) {
-
+        showToast(result);
     }
 }

@@ -8,11 +8,13 @@ import android.support.v4.app.Fragment;
 
 import java.io.Serializable;
 
+import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.mvp.factory.PresenterMvpFactoryImpl;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.mvp.proxy.BaseMvpProxy;
 import www.dico.cn.partybuild.mvp.proxy.PresenterProxyInterface;
 import www.dico.cn.partybuild.persistance.Form;
+import www.dico.cn.partybuild.widget.CustomToast;
 
 /**
  * @Class: AbstractFragment
@@ -34,7 +36,7 @@ public class AbstractFragment<V extends BaseMvpView, P extends BaseMvpPresenter<
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             mProxy.onRestoreInstanceState(savedInstanceState);
         }
     }
@@ -54,7 +56,7 @@ public class AbstractFragment<V extends BaseMvpView, P extends BaseMvpPresenter<
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBundle(PRESENTER_SAVE_KEY,mProxy.onSaveInstanceState());
+        outState.putBundle(PRESENTER_SAVE_KEY, mProxy.onSaveInstanceState());
     }
 
     /**
@@ -80,11 +82,21 @@ public class AbstractFragment<V extends BaseMvpView, P extends BaseMvpPresenter<
 
     /**
      * 获取Presenter
+     *
      * @return P
      */
     @Override
     public P getMvpPresenter() {
         return mProxy.getMvpPresenter();
+    }
+
+    public void showToast(String msg) {
+//        showToast(msg,-1,-1);
+        CustomToast.Instance().showToast(AppManager.getManager().curActivity(), msg);
+    }
+
+    protected void showToast(String msg, int bgColor, int txtColor) {
+//        CustomToast.Instance().showToastCustom(getActivity(), msg, R.layout.toast_msg, R.id.txt_toast_message, Gravity.CENTER, bgColor, txtColor);
     }
 
     /*

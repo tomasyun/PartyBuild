@@ -11,12 +11,13 @@
         android:background="@color/theme_color">
 
         <ImageView
-            android:id="@+id/iv_back_pwd_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
+            android:clickable="true"
             android:contentDescription="@null"
+            android:onClick="goback"
             android:padding="5dp"
             android:scaleType="fitXY"
             android:src="@mipmap/img_back" />
@@ -132,14 +133,15 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_pwd_update_ok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="45dp"
         android:background="@drawable/button_corner20_red_bg"
+        android:clickable="true"
         android:gravity="center"
+        android:onClick="updatePasswod"
         android:paddingBottom="15dp"
         android:paddingTop="15dp"
         android:text="确认"

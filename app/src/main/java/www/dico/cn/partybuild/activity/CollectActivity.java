@@ -2,6 +2,7 @@ package www.dico.cn.partybuild.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.modleview.CollectView;
@@ -10,6 +11,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.persistance.CollectsBean;
 import www.dico.cn.partybuild.presenter.CollectPresenter;
+
 //收藏
 @CreatePresenter(CollectPresenter.class)
 public class CollectActivity extends AbstractMvpActivity<CollectView, CollectPresenter> implements CollectView {
@@ -20,6 +22,10 @@ public class CollectActivity extends AbstractMvpActivity<CollectView, CollectPre
         ViewFind.bind(this);
     }
 
+    public void goback(View view) {
+        this.finish();
+    }
+
     @Override
     public void resultSuccess(CollectsBean result) {
 
@@ -27,6 +33,6 @@ public class CollectActivity extends AbstractMvpActivity<CollectView, CollectPre
 
     @Override
     public void resultFailure(String result) {
-
+        showToast(result);
     }
 }

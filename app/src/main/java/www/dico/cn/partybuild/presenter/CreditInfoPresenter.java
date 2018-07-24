@@ -31,12 +31,13 @@ public class CreditInfoPresenter extends BaseMvpPresenter<CreditInfoView> {
                 .execute(new ProgressDialogCallBack<CreditInfoBean>(dialog, true, true) {
                     @Override
                     public void onSuccess(CreditInfoBean creditInfoBean) {
-
+                        getMvpView().resultSuccess(creditInfoBean);
                     }
 
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
+                        getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }
@@ -44,7 +45,7 @@ public class CreditInfoPresenter extends BaseMvpPresenter<CreditInfoView> {
     @Override
     public void onDestroyPresenter() {
         super.onDestroyPresenter();
-        if (null!=disposable&&disposable.isDisposed())
+        if (null != disposable && disposable.isDisposed())
             disposable.dispose();
     }
 }

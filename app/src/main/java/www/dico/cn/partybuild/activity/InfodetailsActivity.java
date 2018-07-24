@@ -3,6 +3,7 @@ package www.dico.cn.partybuild.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 
 import www.dico.cn.partybuild.R;
@@ -15,22 +16,28 @@ import www.dico.cn.partybuild.presenter.InfodetailsPresenter;
 
 //资讯详情
 @CreatePresenter(InfodetailsPresenter.class)
-public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView,InfodetailsPresenter>{
+public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, InfodetailsPresenter> {
     @FieldView(R.id.tv_info_title)
     TextView tv_info_title;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_infodetails);
         ViewFind.bind(this);
         tv_info_title.post(new Runnable() {
             @Override
             public void run() {
-                if (tv_info_title.getLineCount()==1){
+                if (tv_info_title.getLineCount() == 1) {
                     tv_info_title.setGravity(Gravity.CENTER);
-                }else {
+                } else {
                     tv_info_title.setGravity(Gravity.LEFT);
                 }
             }
         });
+    }
+
+    public void goback(View view) {
+        this.finish();
     }
 }

@@ -33,12 +33,13 @@ public class BaseInfoPresenter extends BaseMvpPresenter<BaseInfoView> {
                 .execute(new ProgressDialogCallBack<BaseInfoBean>(dialog, true, true) {
                     @Override
                     public void onSuccess(BaseInfoBean baseInfoBean) {
-
+                        getMvpView().resultSuccess(baseInfoBean);
                     }
 
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
+                        getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }
@@ -46,7 +47,7 @@ public class BaseInfoPresenter extends BaseMvpPresenter<BaseInfoView> {
     @Override
     public void onDestroyPresenter() {
         super.onDestroyPresenter();
-        if (null!=disposable&&disposable.isDisposed())
+        if (null != disposable && disposable.isDisposed())
             disposable.dispose();
     }
 }

@@ -31,12 +31,13 @@ public class CollectPresenter extends BaseMvpPresenter<CollectView> {
                 .execute(new ProgressDialogCallBack<CollectsBean>(dialog, true, true) {
                     @Override
                     public void onSuccess(CollectsBean collectsBean) {
-
+                        getMvpView().resultSuccess(collectsBean);
                     }
 
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
+                        getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }
@@ -44,7 +45,7 @@ public class CollectPresenter extends BaseMvpPresenter<CollectView> {
     @Override
     public void onDestroyPresenter() {
         super.onDestroyPresenter();
-        if (null!=disposable&&disposable.isDisposed())
+        if (null != disposable && disposable.isDisposed())
             disposable.dispose();
     }
 }

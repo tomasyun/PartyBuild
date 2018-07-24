@@ -32,12 +32,13 @@ public class ExamRulePresenter extends BaseMvpPresenter<ExamRuleView> {
                 .execute(new ProgressDialogCallBack<ExamRuleBean>(dialog, true, true) {
                     @Override
                     public void onSuccess(ExamRuleBean examRuleBean) {
-
+                        getMvpView().resultSuccess(examRuleBean);
                     }
 
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
+                        getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }
@@ -45,7 +46,7 @@ public class ExamRulePresenter extends BaseMvpPresenter<ExamRuleView> {
     @Override
     public void onDestroyPresenter() {
         super.onDestroyPresenter();
-        if (null!=disposable&&disposable.isDisposed())
+        if (null != disposable && disposable.isDisposed())
             disposable.dispose();
     }
 }

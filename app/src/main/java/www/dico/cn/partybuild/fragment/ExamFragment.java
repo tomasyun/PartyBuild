@@ -27,6 +27,6 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
 
     @Override
     public void resultFailure(String result) {
-
+        showToast(result);
     }
 }
