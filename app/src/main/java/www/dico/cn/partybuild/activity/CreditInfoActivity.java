@@ -3,8 +3,11 @@ package www.dico.cn.partybuild.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.mvp.FieldView;
 import www.dico.cn.partybuild.persistance.CreditInfoBean;
 import www.dico.cn.partybuild.presenter.CreditInfoPresenter;
 import www.dico.cn.partybuild.modleview.CreditInfoView;
@@ -15,12 +18,33 @@ import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 //积分详情
 @CreatePresenter(CreditInfoPresenter.class)
 public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, CreditInfoPresenter> implements CreditInfoView {
+    @FieldView(R.id.tv_credit_info_score)
+    TextView tv_credit_info_score;
+    @FieldView(R.id.rg_credit_info)
+    RadioGroup rg_credit_info;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creditinfo);
         ViewFind.bind(this);
         //getMvpPresenter().creditInfoRequest("");
+        rg_credit_info.check(R.id.rbt_credit_info_all);
+        rg_credit_info.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                switch (checkedId) {
+                    case R.id.rbt_credit_info_all:
+                        break;
+                    case R.id.rbt_credit_info_month:
+                        break;
+                    case R.id.rbt_credit_info_week:
+                        break;
+                    case R.id.rbt_credit_info_day:
+                        break;
+                }
+            }
+        });
     }
 
     public void goback(View view) {

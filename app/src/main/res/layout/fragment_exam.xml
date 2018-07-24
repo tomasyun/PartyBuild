@@ -38,7 +38,7 @@
             android:paddingBottom="15dp"
             android:paddingTop="15dp"
             android:text="待考"
-            android:textColor="@color/rbt_txt_color_bg"
+            android:textColor="@color/rbt_txt_color_bg01"
             android:textSize="14sp" />
 
         <View
@@ -59,7 +59,7 @@
             android:paddingBottom="15dp"
             android:paddingTop="15dp"
             android:text="已考"
-            android:textColor="@color/rbt_txt_color_bg"
+            android:textColor="@color/rbt_txt_color_bg01"
             android:textSize="14sp" />
     </RadioGroup>
 

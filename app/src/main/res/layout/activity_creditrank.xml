@@ -11,7 +11,6 @@
         android:background="@color/theme_color">
 
         <ImageView
-            android:id="@+id/iv_back_rank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -121,13 +120,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/button_corner20_red_bg"
+                android:background="@drawable/rbt_selector_red_bg"
                 android:button="@null"
                 android:gravity="center"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:text="全部"
-                android:textColor="@color/white"
+                android:textColor="@color/rbt_txt_color_bg02"
                 android:textSize="14sp" />
 
             <RadioButton
@@ -135,33 +134,39 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/rbt_selector_red_bg"
                 android:button="@null"
                 android:gravity="center"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="党总支" />
+                android:text="党总支"
+                android:textColor="@color/rbt_txt_color_bg02" />
 
             <RadioButton
                 android:id="@+id/rbt_rank_branch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/rbt_selector_red_bg"
                 android:button="@null"
                 android:gravity="center"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="党支部" />
+                android:text="党支部"
+                android:textColor="@color/rbt_txt_color_bg02" />
 
             <RadioButton
                 android:id="@+id/rbt_rank_group"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/rbt_selector_red_bg"
                 android:button="@null"
                 android:gravity="center"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="本小组" />
+                android:text="本小组"
+                android:textColor="@color/rbt_txt_color_bg02" />
         </RadioGroup>
 
     </LinearLayout>

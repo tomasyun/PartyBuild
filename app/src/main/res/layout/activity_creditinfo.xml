@@ -57,7 +57,7 @@
             android:orientation="horizontal">
             <!--不同条件下的总积分-->
             <TextView
-                android:id="@+id/tv_credit_total"
+                android:id="@+id/tv_credit_info_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -75,7 +75,6 @@
         </LinearLayout>
         <!--积分时间段-->
         <TextView
-            android:id="@+id/tv_credit_condition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -97,53 +96,59 @@
 
         <RadioGroup
             android:background="@drawable/rgp_corner20_gray_bg"
-            android:id="@+id/rg_credit"
+            android:id="@+id/rg_credit_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/rbt_credit_all"
+                android:id="@+id/rbt_credit_info_all"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
                 android:paddingBottom="10dp"
-                android:background="@drawable/button_corner20_red_bg"
-                android:textColor="@color/white"
+                android:background="@drawable/rbt_selector_red_bg"
+                android:textColor="@color/rbt_txt_color_bg02"
                 android:paddingTop="10dp"
                 android:text="全部"
                 android:textSize="14sp" />
 
             <RadioButton
-                android:id="@+id/rbt_credit_month"
+                android:id="@+id/rbt_credit_info_month"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
+                android:background="@drawable/rbt_selector_red_bg"
+                android:textColor="@color/rbt_txt_color_bg02"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:text="本月" />
 
             <RadioButton
-                android:id="@+id/rbt_credit_week"
+                android:id="@+id/rbt_credit_info_week"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
+                android:background="@drawable/rbt_selector_red_bg"
+                android:textColor="@color/rbt_txt_color_bg02"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:text="本周" />
 
             <RadioButton
-                android:id="@+id/rbt_credit_day"
+                android:id="@+id/rbt_credit_info_day"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:button="@null"
+                android:background="@drawable/rbt_selector_red_bg"
+                android:textColor="@color/rbt_txt_color_bg02"
                 android:gravity="center"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
@@ -152,7 +157,7 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_credit"
+        android:id="@+id/rv_credit_info"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">

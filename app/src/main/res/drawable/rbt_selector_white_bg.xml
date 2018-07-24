@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true">
         <layer-list>
-            <item android:left="30dp" android:right="30dp">
+            <item android:left="50dp" android:right="50dp">
                 <color android:color="@color/theme_color"/>
             </item>
             <item android:bottom="3dp" android:drawable="@color/white"/>

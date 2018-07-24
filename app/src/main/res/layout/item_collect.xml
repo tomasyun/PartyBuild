@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="15dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:text="飞天连雪射白鹿,笑书神侠倚碧鸳---金庸+碧血剑。。。。。。。。。。。。。。。。。。。。。。。。。。"
+        android:ellipsize="end"
+        android:textSize="14sp"/>
+</LinearLayout>
