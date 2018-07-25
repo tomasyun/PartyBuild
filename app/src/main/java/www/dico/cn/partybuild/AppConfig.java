@@ -1,6 +1,9 @@
 package www.dico.cn.partybuild;
 
 import android.content.Context;
+import android.content.Intent;
+
+import www.dico.cn.partybuild.service.RefreshNoticeService;
 import www.dico.cn.partybuild.utils.SPUtils;
 
 public class AppConfig {
@@ -21,6 +24,10 @@ public class AppConfig {
         AppConfig.context = context;
         spUtils = new SPUtils("dico", context);
         spUtils.put("isLoginOk", 0);//1.登录成功  0登录失败
+
+        //启动通知消息服务
+//        Intent intent = new Intent(context,RefreshNoticeService.class);
+//        context.startService(intent);
     }
 
     /**
