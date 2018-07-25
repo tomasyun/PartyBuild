@@ -43,17 +43,7 @@
                     android:id="@+id/tv_gongshi_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="公示"
-                    android:textColor="@android:color/holo_blue_light"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_gonggao_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="公告"
-                    android:textColor="@android:color/holo_red_light"
+                    android:text="公示公告"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 

@@ -1,7 +1,12 @@
 package www.dico.cn.partybuild.fragment;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,22 +34,29 @@ import www.dico.cn.partybuild.widget.CustomTextView;
 public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> implements HomeView {
     private XBanner xbanner;//轮播
     private TextView tv_gongshi_home;
-    private TextView tv_gonggao_home;
     private CustomTextView tv_notice_home;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, null);
         xbanner = view.findViewById(R.id.xbanner);
+
         tv_gongshi_home = view.findViewById(R.id.tv_gongshi_home);
-        tv_gonggao_home = view.findViewById(R.id.tv_gonggao_home);
-        tv_gongshi_home.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));//斜体
-        tv_gonggao_home.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
+        SpannableString content=new SpannableString("公示公告");
+        ForegroundColorSpan blue = new ForegroundColorSpan(Color.parseColor("#0099EE"));
+        ForegroundColorSpan red = new ForegroundColorSpan(Color.RED);
+        content.setSpan(blue, 0, content.length()-2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        content.setSpan(red, 2, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        StyleSpan style = new StyleSpan(Typeface.ITALIC);
+        content.setSpan(style,0,content.length(),Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        tv_gongshi_home.setText(content);
+
         tv_notice_home = view.findViewById(R.id.tv_notice_home);
         tv_notice_home.setText("陕西缔科网络科技有限公司");
         tv_notice_home.init(getActivity().getWindowManager());
         tv_notice_home.startScroll();
         tv_notice_home.setEnabled(false);
+
         List<AdvertiseImgM> urls = new ArrayList<>();
         AdvertiseImgM advertise = new AdvertiseImgM();
         advertise.setPoster("http://pic.5tu.cn/uploads/allimg/1606/pic_5tu_big_201606272309319893.jpg");
