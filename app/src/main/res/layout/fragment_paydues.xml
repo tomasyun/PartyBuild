@@ -63,19 +63,11 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tv_amount_pay_dues"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="00.00"
-                        android:textColor="@color/white"
-                        android:textSize="25sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="元"
-                        android:textColor="#fd9494"
-                        android:textSize="14sp" />
+                        android:text=""
+                        android:textColor="@color/white" />
                 </LinearLayout>
             </LinearLayout>
 
