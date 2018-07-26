@@ -1,16 +1,14 @@
 package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
-import android.content.Context;
 
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.BaseInfoView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.persistance.BaseInfoBean;
+import www.dico.cn.partybuild.bean.BaseInfoBean;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
-import www.yuntdev.com.library.callback.SimpleCallBack;
 import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 

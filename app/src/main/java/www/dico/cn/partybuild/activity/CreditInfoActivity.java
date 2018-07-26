@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.mvp.FieldView;
-import www.dico.cn.partybuild.persistance.CreditInfoBean;
+import www.dico.cn.partybuild.bean.CreditInfoBean;
 import www.dico.cn.partybuild.presenter.CreditInfoPresenter;
 import www.dico.cn.partybuild.modleview.CreditInfoView;
 import www.dico.cn.partybuild.mvp.ViewFind;

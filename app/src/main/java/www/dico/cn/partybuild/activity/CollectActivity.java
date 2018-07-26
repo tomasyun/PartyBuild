@@ -9,7 +9,7 @@ import www.dico.cn.partybuild.modleview.CollectView;
 import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
-import www.dico.cn.partybuild.persistance.CollectsBean;
+import www.dico.cn.partybuild.bean.CollectsBean;
 import www.dico.cn.partybuild.presenter.CollectPresenter;
 
 //收藏

@@ -5,17 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.Gravity;
 
 import java.io.Serializable;
 
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.mvp.factory.PresenterMvpFactoryImpl;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.mvp.proxy.BaseMvpProxy;
 import www.dico.cn.partybuild.mvp.proxy.PresenterProxyInterface;
-import www.dico.cn.partybuild.persistance.Form;
+import www.dico.cn.partybuild.bean.Form;
 import www.dico.cn.partybuild.widget.CustomToast;
 
 /**

@@ -10,7 +10,7 @@ import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.modleview.ExamView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
-import www.dico.cn.partybuild.persistance.ExamsBean;
+import www.dico.cn.partybuild.bean.ExamsBean;
 import www.dico.cn.partybuild.presenter.ExamPresenter;
 
 //考试列表

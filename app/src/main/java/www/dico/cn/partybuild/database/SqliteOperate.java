@@ -7,7 +7,7 @@ import com.j256.ormlite.dao.Dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import www.dico.cn.partybuild.persistance.HistoryTagBean;
+import www.dico.cn.partybuild.bean.HistoryTagBean;
 
 public class SqliteOperate {
     private Context context;

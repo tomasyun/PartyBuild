@@ -20,7 +20,7 @@ import okhttp3.Response;
 import www.dico.cn.partybuild.TokenManager;
 import www.dico.cn.partybuild.constant.AppConstant;
 import www.dico.cn.partybuild.constant.ComParamContact;
-import www.dico.cn.partybuild.persistance.AuthModel;
+import www.dico.cn.partybuild.bean.AuthModel;
 import www.dico.cn.partybuild.utils.DateTimeUtils;
 import www.dico.cn.partybuild.utils.MD5;
 import www.yuntdev.com.library.EasyHttp;

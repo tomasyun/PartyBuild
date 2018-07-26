@@ -3,7 +3,7 @@ package www.dico.cn.partybuild;
 import android.text.TextUtils;
 
 import www.dico.cn.partybuild.constant.ComParamContact;
-import www.dico.cn.partybuild.persistance.AuthModel;
+import www.dico.cn.partybuild.bean.AuthModel;
 import www.dico.cn.partybuild.utils.ACache;
 
 /**

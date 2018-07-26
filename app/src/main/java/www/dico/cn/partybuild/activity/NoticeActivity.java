@@ -9,7 +9,7 @@ import www.dico.cn.partybuild.modleview.NoticeView;
 import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
-import www.dico.cn.partybuild.persistance.NoticeBean;
+import www.dico.cn.partybuild.bean.NoticeBean;
 import www.dico.cn.partybuild.presenter.NoticePresenter;
 
 //通知

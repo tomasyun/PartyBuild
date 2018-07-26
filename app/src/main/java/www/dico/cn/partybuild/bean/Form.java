@@ -1,4 +1,4 @@
-package www.dico.cn.partybuild.persistance;
+package www.dico.cn.partybuild.bean;
 
 import java.io.Serializable;
 

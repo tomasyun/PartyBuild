@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.stx.xhb.xbanner.XBanner;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +24,8 @@ import www.dico.cn.partybuild.activity.PayDuesActivity;
 import www.dico.cn.partybuild.modleview.HomeView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
-import www.dico.cn.partybuild.persistance.AdvertiseImgM;
-import www.dico.cn.partybuild.persistance.HomeBean;
+import www.dico.cn.partybuild.bean.AdvertiseImgM;
+import www.dico.cn.partybuild.bean.HomeBean;
 import www.dico.cn.partybuild.presenter.HomePresenter;
 import www.dico.cn.partybuild.utils.GlideUtils;
 import www.dico.cn.partybuild.widget.CustomTextView;

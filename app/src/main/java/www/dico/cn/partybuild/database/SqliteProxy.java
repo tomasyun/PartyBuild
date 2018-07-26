@@ -10,7 +10,7 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
-import www.dico.cn.partybuild.persistance.HistoryTagBean;
+import www.dico.cn.partybuild.bean.HistoryTagBean;
 
 public class SqliteProxy extends OrmLiteSqliteOpenHelper {
     private static final String NAME = "orderlang.db";

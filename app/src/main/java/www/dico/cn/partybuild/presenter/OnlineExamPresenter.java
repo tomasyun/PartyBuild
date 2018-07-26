@@ -5,7 +5,7 @@ import android.app.Dialog;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.OnlineExamView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.persistance.OnlineExamBean;
+import www.dico.cn.partybuild.bean.OnlineExamBean;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
