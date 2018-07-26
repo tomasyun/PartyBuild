@@ -37,7 +37,7 @@ public class PwdupdateActivity extends AbstractMvpActivity<PwdupdateView, Pwdupd
     }
 
     //更新操作
-    public void updatePasswod(View view) {
+    public void updatePassword(View view) {
         String old_password = et_pwd_old.getText().toString().trim();
         String new_password = et_pwd_new.getText().toString().trim();
         String confirm_password = et_pwd_new_confirm.getText().toString().trim();

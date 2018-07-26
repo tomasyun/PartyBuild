@@ -2,7 +2,6 @@ package www.dico.cn.partybuild.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
@@ -25,7 +24,7 @@ public class PayDuesFragment extends AbstractFragment<PayDuesView, PayDuesPresen
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_paydues, null);
+        View view = inflater.inflate(R.layout.activity_paydues, null);
         tv_amount_pay_dues = view.findViewById(R.id.tv_amount_pay_dues);
         SpannableString content=new SpannableString("20.00元");
         content.setSpan(new AbsoluteSizeSpan(40), 0, content.length()-1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

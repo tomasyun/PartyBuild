@@ -49,6 +49,7 @@
         <activity android:name=".activity.OnlineExamActivity" />
         <activity android:name=".activity.NoticeActivity" />
         <activity android:name=".activity.InfodetailsActivity" />
+        <activity android:name=".activity.PayDuesActivity" />
 
         <!--使用高德api所申请的key-->
         <meta-data

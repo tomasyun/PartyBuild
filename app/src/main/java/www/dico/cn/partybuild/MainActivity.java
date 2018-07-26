@@ -14,7 +14,7 @@ import java.util.List;
 
 import www.dico.cn.partybuild.fragment.ExamFragment;
 import www.dico.cn.partybuild.fragment.HomeFragment;
-import www.dico.cn.partybuild.fragment.PayDuesFragment;
+import www.dico.cn.partybuild.fragment.InfoFragment;
 import www.dico.cn.partybuild.fragment.PersonalFragment;
 import www.dico.cn.partybuild.fragment.SignInFragment;
 import www.dico.cn.partybuild.modleview.MainView;
@@ -56,9 +56,10 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
         controller = tab_main
                 .custom()
                 .addItem(tabItem(R.mipmap.img_home_on, R.mipmap.img_home_ok, "首页"))
+                .addItem(tabItem(R.mipmap.img_info_on, R.mipmap.img_info_ok, "资讯"))
                 .addItem(tabItem(R.mipmap.img_signin_on, R.mipmap.img_signin_ok, "签到"))
                 .addItem(tabItem(R.mipmap.img_exam_on, R.mipmap.img_exam_ok, "考试"))
-                .addItem(tabItem(R.mipmap.img_dues_on, R.mipmap.img_dues_ok, "党费缴纳"))
+//                .addItem(tabItem(R.mipmap.img_dues_on, R.mipmap.img_dues_ok, "党费缴纳"))
                 .addItem(tabItem(R.mipmap.img_mine_on, R.mipmap.img_mine_ok, "我的"))
                 .build();
         setUp();
@@ -72,23 +73,23 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
         for (int i = 0; i < controller.getItemCount(); i++) {
             int position = i;
             switch (position) {
-                case 0:
+                case 0://首页
                     HomeFragment hFragment = new HomeFragment();
                     fragments.add(hFragment);
                     break;
-                case 1:
+                case 1://资讯
+                    InfoFragment iFragment = new InfoFragment();
+                    fragments.add(iFragment);
+                    break;
+                case 2://签到
                     SignInFragment sFragment = new SignInFragment();
                     fragments.add(sFragment);
                     break;
-                case 2:
+                case 3://考试
                     ExamFragment eFragment = new ExamFragment();
                     fragments.add(eFragment);
                     break;
-                case 3:
-                    PayDuesFragment dFragment = new PayDuesFragment();
-                    fragments.add(dFragment);
-                    break;
-                case 4:
+                case 4://我的
                     PersonalFragment pFragment = new PersonalFragment();
                     fragments.add(pFragment);
                     break;
