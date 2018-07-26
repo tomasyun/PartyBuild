@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:padding="15dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="15dp">
 
-    <TextView
+    <www.dico.cn.partybuild.widget.SlideDeleteLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="2"
-        android:text="飞天连雪射白鹿,笑书神侠倚碧鸳---金庸+碧血剑。。。。。。。。。。。。。。。。。。。。。。。。。。"
-        android:ellipsize="end"
-        android:textSize="14sp"/>
+        app:iosStyle="true"
+        app:leftSlide="true"
+        app:slideEnable="true">
+
+        <TextView
+            android:id="@+id/tv_collect_title"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="飞天连雪射白鹿,笑书神侠倚碧鸳---金庸+碧血剑。。。。。。。。。。。。。。。。。。。。。。。。。。"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_collect_cancel"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@color/theme_color"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/white" />
+    </www.dico.cn.partybuild.widget.SlideDeleteLayout>
+
 </LinearLayout>

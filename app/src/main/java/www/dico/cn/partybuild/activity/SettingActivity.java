@@ -46,4 +46,14 @@ public class SettingActivity extends AbstractMvpActivity<SettingView, SettingPre
             }
         }).show();
     }
+
+    //版本更新
+    public void checkUpdate(View view) {
+
+    }
+
+    //密码更新
+    public void passwordUpdate(View view) {
+        goTo(PwdupdateActivity.class, null);
+    }
 }

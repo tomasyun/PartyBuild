@@ -8,7 +8,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/theme_color">
+        android:background="@color/theme_color"
+        android:paddingRight="15dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -17,6 +18,29 @@
             android:text="我的"
             android:textColor="@color/white"
             android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_setting_personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_setting" />
+
+        <ImageView
+            android:id="@+id/iv_notice_personal"
+            android:layout_toLeftOf="@id/iv_setting_personal"
+            android:src="@mipmap/img_notice"
+            android:padding="5dp"
+            android:layout_marginRight="20dp"
+            android:contentDescription="@null"
+            android:scaleType="fitXY"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
     <!--内容-->
     <LinearLayout
@@ -63,18 +87,18 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:background="@color/white"
         android:orientation="horizontal">
         <!--积分-->
         <LinearLayout
             android:id="@+id/lin_credit_personal"
-            android:clickable="true"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:clickable="true"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:paddingBottom="15dp"
