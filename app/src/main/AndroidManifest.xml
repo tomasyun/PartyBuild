@@ -50,6 +50,7 @@
         <activity android:name=".activity.NoticeActivity" />
         <activity android:name=".activity.InfodetailsActivity" />
         <activity android:name=".activity.PayDuesActivity" />
+        <activity android:name=".activity.CreditRuleActivity" />
 
         <!--使用高德api所申请的key-->
         <meta-data

@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 
 import java.io.Serializable;
 
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.mvp.factory.PresenterMvpFactoryImpl;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.mvp.proxy.BaseMvpProxy;
@@ -93,6 +95,7 @@ public class AbstractFragment<V extends BaseMvpView, P extends BaseMvpPresenter<
     public void showToast(String msg) {
 //        showToast(msg,-1,-1);
         CustomToast.Instance().showToast(AppManager.getManager().curActivity(), msg);
+//        showToast(msg,R.color.theme_color,R.color.white);
     }
 
     protected void showToast(String msg, int bgColor, int txtColor) {

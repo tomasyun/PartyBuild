@@ -93,6 +93,7 @@
                     android:orientation="vertical">
                     <!--三会一课-->
                     <LinearLayout
+                        android:id="@+id/lin_meeting_home"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -119,6 +120,7 @@
                     </LinearLayout>
                     <!--学习任务-->
                     <LinearLayout
+                        android:id="@+id/lin_studies_home"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_marginTop="15dp"
@@ -154,6 +156,7 @@
                     android:orientation="vertical">
                     <!--活动管理-->
                     <LinearLayout
+                        android:id="@+id/lin_activity_home"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -180,6 +183,7 @@
                     </LinearLayout>
                     <!--党费缴纳-->
                     <LinearLayout
+                        android:id="@+id/lin_dues_home"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_marginTop="15dp"
@@ -207,6 +211,7 @@
                     </LinearLayout>
                     <!--领导信箱-->
                     <LinearLayout
+                        android:id="@+id/lin_mailbox_home"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_marginTop="15dp"

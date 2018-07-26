@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.stx.xhb.xbanner.XBanner;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.activity.PayDuesActivity;
 import www.dico.cn.partybuild.modleview.HomeView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
@@ -31,10 +33,15 @@ import www.dico.cn.partybuild.widget.CustomTextView;
 
 //首页
 @CreatePresenter(HomePresenter.class)
-public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> implements HomeView {
+public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> implements HomeView, View.OnClickListener {
     private XBanner xbanner;//轮播
     private TextView tv_gongshi_home;
     private CustomTextView tv_notice_home;
+    private LinearLayout lin_meeting_home;
+    private LinearLayout lin_studies_home;
+    private LinearLayout lin_activity_home;
+    private LinearLayout lin_dues_home;
+    private LinearLayout lin_mailbox_home;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,13 +49,13 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         xbanner = view.findViewById(R.id.xbanner);
 
         tv_gongshi_home = view.findViewById(R.id.tv_gongshi_home);
-        SpannableString content=new SpannableString("公示公告");
+        SpannableString content = new SpannableString("公示公告");
         ForegroundColorSpan blue = new ForegroundColorSpan(Color.parseColor("#0099EE"));
         ForegroundColorSpan red = new ForegroundColorSpan(Color.RED);
-        content.setSpan(blue, 0, content.length()-2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        content.setSpan(blue, 0, content.length() - 2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         content.setSpan(red, 2, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         StyleSpan style = new StyleSpan(Typeface.ITALIC);
-        content.setSpan(style,0,content.length(),Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        content.setSpan(style, 0, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         tv_gongshi_home.setText(content);
 
         tv_notice_home = view.findViewById(R.id.tv_notice_home);
@@ -56,6 +63,17 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         tv_notice_home.init(getActivity().getWindowManager());
         tv_notice_home.startScroll();
         tv_notice_home.setEnabled(false);
+
+        lin_meeting_home = view.findViewById(R.id.lin_meeting_home);
+        lin_studies_home = view.findViewById(R.id.lin_studies_home);
+        lin_activity_home = view.findViewById(R.id.lin_activity_home);
+        lin_dues_home = view.findViewById(R.id.lin_dues_home);
+        lin_mailbox_home = view.findViewById(R.id.lin_mailbox_home);
+        lin_meeting_home.setOnClickListener(this);
+        lin_studies_home.setOnClickListener(this);
+        lin_activity_home.setOnClickListener(this);
+        lin_dues_home.setOnClickListener(this);
+        lin_mailbox_home.setOnClickListener(this);
 
         List<AdvertiseImgM> urls = new ArrayList<>();
         AdvertiseImgM advertise = new AdvertiseImgM();
@@ -91,5 +109,26 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.lin_meeting_home://三会一课
+                showToast("暂未开通");
+                break;
+            case R.id.lin_studies_home://学习任务
+                showToast("暂未开通");
+                break;
+            case R.id.lin_activity_home://活动管理
+                showToast("暂未开通");
+                break;
+            case R.id.lin_dues_home://党费缴纳
+                goTo(PayDuesActivity.class, null);
+                break;
+            case R.id.lin_mailbox_home://领导信箱
+                showToast("暂未开通");
+                break;
+        }
     }
 }

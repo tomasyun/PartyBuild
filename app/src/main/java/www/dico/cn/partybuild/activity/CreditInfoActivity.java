@@ -2,6 +2,8 @@ package www.dico.cn.partybuild.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.SpannableString;
+import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -28,6 +30,10 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creditinfo);
         ViewFind.bind(this);
+        SpannableString scoreContent = new SpannableString("0分");
+        scoreContent.setSpan(new AbsoluteSizeSpan(40), 0, scoreContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+        scoreContent.setSpan(new AbsoluteSizeSpan(28), scoreContent.length() - 1, scoreContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tv_credit_info_score.setText(scoreContent);
         //getMvpPresenter().creditInfoRequest("");
         rg_credit_info.check(R.id.rbt_credit_info_all);
         rg_credit_info.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -49,6 +55,10 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
 
     public void goback(View view) {
         this.finish();
+    }
+
+    public void creditRule(View view) {
+        goTo(CreditRuleActivity.class, null);
     }
 
     @Override
