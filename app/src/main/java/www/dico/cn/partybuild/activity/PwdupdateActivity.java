@@ -42,7 +42,7 @@ public class PwdupdateActivity extends AbstractMvpActivity<PwdupdateView, Pwdupd
         String new_password = et_pwd_new.getText().toString().trim();
         String confirm_password = et_pwd_new_confirm.getText().toString().trim();
         if (TextUtils.isEmpty(old_password)) {
-            showToast("旧密码不能为空");
+            showToast("原密码不能为空");
         } else if (TextUtils.isEmpty(new_password)) {
             showToast("新密码不能为空");
         } else if (TextUtils.isEmpty(confirm_password)) {

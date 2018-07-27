@@ -4,13 +4,16 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:paddingTop="15dp">
 
     <TextView
+        android:id="@+id/tv_title_info_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="2"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:text="攀上一座高山后，你会发现，还有更多的高山等着你去攀登"
         android:textSize="14sp" />
 
@@ -18,19 +21,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <TextView
+            android:id="@+id/tv_date_info_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2018-07-26 10:30"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/tv_comment_info_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="20评论"
             android:textSize="14sp" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="15dp"
+        android:background="#ddd" />
 </LinearLayout>

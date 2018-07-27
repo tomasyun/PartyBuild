@@ -1,42 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:padding="15dp">
+    android:orientation="vertical"
+    android:paddingTop="15dp">
 
-    <TextView
-        android:id="@+id/tv_credit_rank_num_item"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:text="25"
-        android:textSize="14sp" />
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
-    <ImageView
-        android:id="@+id/iv_credit_rank_avatar_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp"
-        android:layout_toRightOf="@+id/tv_credit_rank_num_item"
-        android:background="@mipmap/img_default_avatar"
-        android:contentDescription="@null"
-        android:scaleType="fitXY" />
+        <TextView
+            android:id="@+id/tv_credit_rank_num_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="25"
+            android:textSize="14sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@id/iv_credit_rank_avatar_item"
-        android:text="席沛锋" />
+        <ImageView
+            android:id="@+id/iv_credit_rank_avatar_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/tv_credit_rank_num_item"
+            android:background="@mipmap/img_default_avatar"
+            android:contentDescription="@null"
+            android:scaleType="fitXY" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text="260分"
-        android:textSize="14sp" />
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/iv_credit_rank_avatar_item"
+            android:text="席沛锋" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="260分"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="15dp"
+        android:background="#ddd" />
+</LinearLayout>

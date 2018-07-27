@@ -4,12 +4,15 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:paddingTop="15dp">
 
     <TextView
+        android:id="@+id/tv_title_exam_on_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:singleLine="true"
         android:text="陕西缔科网络科技有限公司"
         android:textSize="14sp"
@@ -19,9 +22,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <TextView
+            android:id="@+id/tv_date_exam_on_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2018-7-24 10:00"
@@ -34,4 +40,10 @@
             android:text="截止时间"
             android:textSize="14sp" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="15dp"
+        android:background="#ddd" />
 </LinearLayout>
