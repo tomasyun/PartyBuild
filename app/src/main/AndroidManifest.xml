@@ -51,6 +51,9 @@
         <activity android:name=".activity.InfodetailsActivity" />
         <activity android:name=".activity.PayDuesActivity" />
         <activity android:name=".activity.CreditRuleActivity" />
+        <activity android:name=".activity.MeetingActivity" />
+        <activity android:name=".activity.MeetingBriefActivity" />
+        <activity android:name=".activity.MailboxActivity" />
 
         <!--使用高德api所申请的key-->
         <meta-data

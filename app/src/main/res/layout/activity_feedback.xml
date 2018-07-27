@@ -40,7 +40,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/edittext_corner10_gray_bg"
         android:gravity="left|top"
-        android:hint="感谢您使用智慧党建APP,使用过程中有任何意见请反馈给我们。"
+        android:hint="感谢您使用智慧党建云平台,使用过程中有任何意见请反馈给我们。"
         android:inputType="textMultiLine"
         android:letterSpacing="0.1"
         android:maxLength="50"

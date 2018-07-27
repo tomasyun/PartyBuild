@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.activity.MailboxActivity;
+import www.dico.cn.partybuild.activity.MeetingActivity;
 import www.dico.cn.partybuild.activity.PayDuesActivity;
 import www.dico.cn.partybuild.modleview.HomeView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
@@ -114,7 +116,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.lin_meeting_home://三会一课
-                showToast("暂未开通");
+                goTo(MeetingActivity.class, null);
                 break;
             case R.id.lin_studies_home://学习任务
                 showToast("暂未开通");
@@ -126,7 +128,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 goTo(PayDuesActivity.class, null);
                 break;
             case R.id.lin_mailbox_home://领导信箱
-                showToast("暂未开通");
+                goTo(MailboxActivity.class, null);
                 break;
         }
     }
