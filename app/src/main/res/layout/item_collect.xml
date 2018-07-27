@@ -14,16 +14,19 @@
         app:slideEnable="true">
 
         <TextView
-            android:id="@+id/tv_collect_title"
+            android:id="@+id/tv_title_collect_item"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:ellipsize="end"
+            android:gravity="center_vertical"
             android:maxLines="2"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:text="飞天连雪射白鹿,笑书神侠倚碧鸳---金庸+碧血剑。。。。。。。。。。。。。。。。。。。。。。。。。。"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_collect_cancel"
+            android:id="@+id/tv_cancel_collect_item"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@color/theme_color"

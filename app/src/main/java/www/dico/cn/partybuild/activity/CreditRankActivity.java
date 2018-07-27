@@ -2,6 +2,8 @@ package www.dico.cn.partybuild.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
@@ -9,7 +11,11 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.adapter.CreditRankAdapter;
 import www.dico.cn.partybuild.modleview.CreditRankView;
 import www.dico.cn.partybuild.mvp.FieldView;
 import www.dico.cn.partybuild.mvp.ViewFind;
@@ -29,6 +35,9 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
     TextView tv_user_rank_score;//积分
     @FieldView(R.id.rg_rank)
     RadioGroup rg_rank;
+    @FieldView(R.id.rv_rank)
+    RecyclerView rv_rank;
+    private CreditRankAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,7 +49,7 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
         numContent.setSpan(new AbsoluteSizeSpan(40), 0, numContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         numContent.setSpan(new AbsoluteSizeSpan(28), numContent.length() - 1, numContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         tv_user_rank_num.setText(numContent);
-        SpannableString  scoreContent= new SpannableString("520分");
+        SpannableString scoreContent = new SpannableString("520分");
         scoreContent.setSpan(new AbsoluteSizeSpan(40), 0, scoreContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         scoreContent.setSpan(new AbsoluteSizeSpan(28), scoreContent.length() - 1, scoreContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         tv_user_rank_score.setText(scoreContent);
@@ -62,6 +71,9 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
                 }
             }
         });
+        rv_rank.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new CreditRankAdapter(this, R.layout.item_credit_rank, ranks());
+        rv_rank.setAdapter(adapter);
     }
 
     public void goback(View view) {
@@ -76,5 +88,16 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    public List<CreditRankBean> ranks() {
+        List<CreditRankBean> list = new ArrayList<>();
+        CreditRankBean bean = new CreditRankBean();
+        bean.setRank("25");
+        bean.setAvatar("");
+        bean.setName("席沛锋");
+        bean.setScore("250分");
+        list.add(bean);
+        return list;
     }
 }

@@ -13,7 +13,7 @@
         android:paddingRight="15dp">
 
         <ImageView
-            android:id="@+id/iv_avatar"
+            android:id="@+id/iv_avatar_notice_item"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
@@ -22,14 +22,16 @@
             android:src="@mipmap/img_default_avatar" />
 
         <TextView
+            android:id="@+id/tv_name_notice_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/iv_avatar"
+            android:layout_toRightOf="@+id/iv_avatar_notice_item"
             android:text="席沛锋" />
 
         <TextView
+            android:id="@+id/tv_date_notice_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -38,14 +40,15 @@
             android:textSize="13sp" />
     </RelativeLayout>
 
-    <TextView
+    <www.dico.cn.partybuild.widget.ExpandLongTextView
+        android:id="@+id/tv_content_notice_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
+        android:letterSpacing="0.08"
+        android:lineSpacingExtra="8dp"
         android:ellipsize="end"
-        android:lineSpacingExtra="0.05dp"
-        android:maxLines="2"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:text="为使我公司各部门工作顺利的开展，并且保证各部门之间能够衍接顺畅，有效地提高工作效率。经公司领导研究决定将定期召开公司员工例会。"

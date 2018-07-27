@@ -45,7 +45,7 @@ public class ExpandLongTextView extends TextView {
                 setMaxLines(Integer.MAX_VALUE);
                 setText(originText);
             }
-        }, R.color.text_color);
+        }, R.color.cornflowerBlue);
         ELLIPSIS.setSpan(span, 0, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
     }
 

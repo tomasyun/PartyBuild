@@ -2,13 +2,19 @@ package www.dico.cn.partybuild.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.adapter.CreditInfoAdapter;
 import www.dico.cn.partybuild.mvp.FieldView;
 import www.dico.cn.partybuild.bean.CreditInfoBean;
 import www.dico.cn.partybuild.presenter.CreditInfoPresenter;
@@ -24,6 +30,9 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
     TextView tv_credit_info_score;
     @FieldView(R.id.rg_credit_info)
     RadioGroup rg_credit_info;
+    private CreditInfoAdapter adapter;
+    @FieldView(R.id.rv_credit_info)
+    RecyclerView rv_credit_info;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +60,10 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
                 }
             }
         });
+
+        rv_credit_info.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new CreditInfoAdapter(this, R.layout.item_credit_info, creditInfos());
+        rv_credit_info.setAdapter(adapter);
     }
 
     public void goback(View view) {
@@ -69,5 +82,15 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    public List<CreditInfoBean> creditInfos() {
+        List<CreditInfoBean> list = new ArrayList<>();
+        CreditInfoBean bean = new CreditInfoBean();
+        bean.setTitle("党内送温暖");
+        bean.setDate("2018-7-27 12:30");
+        bean.setScore("+5");
+        list.add(bean);
+        return list;
     }
 }
