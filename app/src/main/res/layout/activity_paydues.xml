@@ -11,6 +11,18 @@
         android:background="@color/theme_color"
         android:paddingRight="15dp">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:clickable="true"
+            android:contentDescription="@null"
+            android:onClick="goback"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_back" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,6 +32,8 @@
             android:textSize="16sp" />
 
         <TextView
+            android:clickable="true"
+            android:onClick="gotoPayrule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -87,6 +101,8 @@
                     android:background="@drawable/button_corner20_red_bg"
                     android:gravity="center"
                     android:text="立即缴费"
+                    android:onClick="payment"
+                    android:clickable="true"
                     android:textColor="@color/white"
                     android:translationZ="5dp" />
             </LinearLayout>

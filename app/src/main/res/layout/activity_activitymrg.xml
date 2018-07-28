@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg_color"
+    android:orientation="vertical">
+    <!--标题-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/theme_color">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:clickable="true"
+            android:contentDescription="@null"
+            android:onClick="goback"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="活动管理"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+            <!--组织活动-->
+            <RelativeLayout
+                android:id="@+id/rel_org_act_org_mrg"
+                android:layout_width="match_parent"
+                android:clickable="true"
+                android:onClick="gotoOrgAct"
+                android:layout_height="wrap_content"
+                android:background="@drawable/corner10_org_act_bg"
+                android:paddingBottom="25dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="25dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <www.dico.cn.partybuild.widget.GradientTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="组"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        app:endColor="#369bf2"
+                        app:startColor="@color/white" />
+
+                    <www.dico.cn.partybuild.widget.GradientTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="织"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        app:endColor="#369bf2"
+                        app:startColor="@color/white" />
+
+                    <www.dico.cn.partybuild.widget.GradientTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="活"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        app:endColor="#369bf2"
+                        app:startColor="@color/white" />
+
+                    <www.dico.cn.partybuild.widget.GradientTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="动"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        app:endColor="#369bf2"
+                        app:startColor="@color/white" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_org_act" />
+            </RelativeLayout>
+
+            <!--投票管理-->
+            <RelativeLayout
+                android:clickable="true"
+                android:onClick="gotoVoteMrg"
+                android:id="@+id/rel_vote_mrg_org_mrg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/corner10_vote_mrg_bg"
+                android:paddingBottom="25dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="25dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <www.dico.cn.partybuild.widget.GradientTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="投"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        app:endColor="#feaa00"
+                        app:startColor="@color/white" />
+
+                    <www.dico.cn.partybuild.widget.GradientTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="票"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        app:endColor="#feaa00"
+                        app:startColor="@color/white" />
+
+                    <www.dico.cn.partybuild.widget.GradientTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="管"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        app:endColor="#feaa00"
+                        app:startColor="@color/white" />
+
+                    <www.dico.cn.partybuild.widget.GradientTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="理"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        app:endColor="#feaa00"
+                        app:startColor="@color/white" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_vote_mrg" />
+            </RelativeLayout>
+
+            <!--问卷调查-->
+            <RelativeLayout
+                android:clickable="true"
+                android:onClick="gotoQuestionSur"
+                android:id="@+id/rel_question_sur_org_mrg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/corner10_question_sur_bg"
+                android:paddingBottom="25dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="25dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <www.dico.cn.partybuild.widget.GradientTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="问"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        app:endColor="#fa4e0f"
+                        app:startColor="@color/white" />
+
+                    <www.dico.cn.partybuild.widget.GradientTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="卷"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        app:endColor="#fa4e0f"
+                        app:startColor="@color/white" />
+
+                    <www.dico.cn.partybuild.widget.GradientTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="调"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        app:endColor="#fa4e0f"
+                        app:startColor="@color/white" />
+
+                    <www.dico.cn.partybuild.widget.GradientTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="查"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        app:endColor="#fa4e0f"
+                        app:startColor="@color/white" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_question_sur" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

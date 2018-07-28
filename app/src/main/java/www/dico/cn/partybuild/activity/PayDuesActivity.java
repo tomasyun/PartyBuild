@@ -7,6 +7,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
 import android.widget.TextView;
 
 import www.dico.cn.partybuild.R;
@@ -32,5 +33,19 @@ public class PayDuesActivity extends AbstractMvpActivity<PayDuesView, PayDuesPre
         content.setSpan(new AbsoluteSizeSpan(25), 5, content.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         content.setSpan(new ForegroundColorSpan(Color.parseColor("#fd9494")), 5, content.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         tv_amount_pay_dues.setText(content);
+    }
+
+    public void goback(View view) {
+        this.finish();
+    }
+
+    //立即缴纳
+    public void payment(View view) {
+        showToast("暂未开通");
+    }
+
+    //缴费规则
+    public void gotoPayrule(View view) {
+
     }
 }

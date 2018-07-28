@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.activity.ActivityMrgActivity;
 import www.dico.cn.partybuild.activity.MailboxActivity;
 import www.dico.cn.partybuild.activity.MeetingActivity;
 import www.dico.cn.partybuild.activity.PayDuesActivity;
@@ -122,7 +123,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 showToast("暂未开通");
                 break;
             case R.id.lin_activity_home://活动管理
-                showToast("暂未开通");
+                goTo(ActivityMrgActivity.class,null);
                 break;
             case R.id.lin_dues_home://党费缴纳
                 goTo(PayDuesActivity.class, null);
