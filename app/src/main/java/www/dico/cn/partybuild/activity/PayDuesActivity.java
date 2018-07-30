@@ -46,6 +46,6 @@ public class PayDuesActivity extends AbstractMvpActivity<PayDuesView, PayDuesPre
 
     //缴费规则
     public void gotoPayrule(View view) {
-
+        goTo(PaymentRuleActivity.class, null);
     }
 }

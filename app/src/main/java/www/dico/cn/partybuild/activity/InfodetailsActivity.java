@@ -16,7 +16,7 @@ import www.dico.cn.partybuild.presenter.InfodetailsPresenter;
 
 //资讯详情
 @CreatePresenter(InfodetailsPresenter.class)
-public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, InfodetailsPresenter> {
+public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, InfodetailsPresenter> implements InfodetailsView {
     @FieldView(R.id.tv_info_title)
     TextView tv_info_title;
 

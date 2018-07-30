@@ -59,6 +59,7 @@
         <activity android:name=".activity.VoteManagerActivity" />
         <activity android:name=".activity.QuestionSurveyActivity" />
         <activity android:name=".activity.PaymentRuleActivity" />
+        <activity android:name=".activity.OrgActBriefActivity" />
 
         <!--使用高德api所申请的key-->
         <meta-data
