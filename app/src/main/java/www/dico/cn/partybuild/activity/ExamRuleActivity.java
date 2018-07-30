@@ -24,12 +24,12 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
 
     //返回
     public void goback(View view) {
-        this.finish();
+       this.finish();
     }
 
     //开始答题
     public void startExam(View view) {
-        showToast("暂未开通");
+        goTo(OnlineExamActivity.class, null);
     }
 
     @Override

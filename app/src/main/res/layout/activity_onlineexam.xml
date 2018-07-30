@@ -11,7 +11,6 @@
         android:background="@color/theme_color">
 
         <ImageView
-            android:id="@+id/iv_back_questions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -51,7 +50,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_residue_time"
+            android:id="@+id/tv_residue_time_online_exam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -62,17 +61,17 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_current_item"
+            android:id="@+id/tv_current_item_online_exam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/tv_question_num"
+            android:layout_toLeftOf="@+id/tv_question_total_online_exam"
             android:text="1"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tv_question_num"
+            android:id="@+id/tv_question_total_online_exam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -86,7 +85,7 @@
         android:layout_height="match_parent">
 
         <www.yuntdev.com.bottomnavigationlibrary.referview.NoTouchViewPager
-            android:id="@+id/vp_questions"
+            android:id="@+id/vp_online_exam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

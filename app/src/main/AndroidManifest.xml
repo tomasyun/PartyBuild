@@ -62,6 +62,8 @@
         <activity android:name=".activity.OrgActBriefActivity" />
         <activity android:name=".activity.StudyTaskActivity" />
         <activity android:name=".activity.NoticeInfoActivity" />
+        <activity android:name=".activity.ExamResultActivity" />
+        <activity android:name=".activity.PreviewQuestionResultActivity"/>
 
         <!--使用高德api所申请的key-->
         <meta-data

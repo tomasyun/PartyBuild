@@ -44,7 +44,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:background="@color/white"
                 android:paddingBottom="20dp"
                 android:paddingLeft="15dp"
@@ -53,10 +52,11 @@
                 android:visibility="visible">
 
                 <TextView
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="个人头像"
+                    android:text="头像"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -83,6 +83,7 @@
                 android:visibility="visible">
 
                 <TextView
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -112,6 +113,7 @@
                 android:visibility="visible">
 
                 <TextView
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -141,6 +143,7 @@
                 android:visibility="visible">
 
                 <TextView
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -170,6 +173,7 @@
                 android:visibility="visible">
 
                 <TextView
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -199,6 +203,7 @@
                 android:visibility="visible">
 
                 <TextView
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -224,6 +229,7 @@
                 android:padding="15dp">
 
                 <TextView
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -252,6 +258,7 @@
                 android:padding="15dp">
 
                 <TextView
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -280,6 +287,7 @@
                 android:padding="15dp">
 
                 <TextView
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -301,13 +309,15 @@
                 android:layout_height="0.3dp"
                 android:background="#ddd" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:orientation="vertical"
                 android:padding="15dp">
 
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/tv_brief"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -315,20 +325,19 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:layout_marginTop="15dp"
                     android:id="@+id/tv_user_brief"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/tv_brief"
-                    android:text=""
+                    android:letterSpacing="0.08"
+                    android:text="7月19日至28日，习近平主席对阿联酋、塞内加尔、卢旺达和南非进行国事访问，出席在南非约翰内斯堡举行的金砖国家领导人第十次会晤，过境毛里求斯并进行友好访问。习近平接连在出访国发表署名文章，讲述国与国之间相知相交的故事。今天的《习近平时间》，让我们一起聆听。"
                     android:textSize="14sp" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="100dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
