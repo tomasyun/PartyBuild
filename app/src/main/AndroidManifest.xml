@@ -60,6 +60,7 @@
         <activity android:name=".activity.QuestionSurveyActivity" />
         <activity android:name=".activity.PaymentRuleActivity" />
         <activity android:name=".activity.OrgActBriefActivity" />
+        <activity android:name=".activity.StudyTaskActivity" />
 
         <!--使用高德api所申请的key-->
         <meta-data
