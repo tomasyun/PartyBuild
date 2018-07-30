@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.BaseInfoActivity;
@@ -26,6 +27,10 @@ import www.dico.cn.partybuild.presenter.PersonalPresenter;
 //个人中心
 @CreatePresenter(PersonalPresenter.class)
 public class PersonalFragment extends AbstractFragment<PersonalView, PersonalPresenter> implements PersonalView {
+    private ImageView iv_user_avatar_personal;
+    private TextView tv_name_personal;
+    private TextView tv_position_personal;
+
     private LinearLayout lin_credit_personal;
     private LinearLayout lin_rank_personal;
     private RelativeLayout rel_baseinfo_personal;
@@ -37,6 +42,9 @@ public class PersonalFragment extends AbstractFragment<PersonalView, PersonalPre
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_personal, null);
+        iv_user_avatar_personal=view.findViewById(R.id.iv_user_avatar_personal);
+        tv_name_personal=view.findViewById(R.id.tv_name_personal);
+        tv_position_personal=view.findViewById(R.id.tv_position_personal);
         lin_credit_personal = view.findViewById(R.id.lin_credit_personal);
         lin_rank_personal = view.findViewById(R.id.lin_rank_personal);
         rel_baseinfo_personal = view.findViewById(R.id.rel_baseinfo_personal);

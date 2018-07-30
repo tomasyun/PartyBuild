@@ -67,7 +67,7 @@
         android:paddingRight="15dp">
 
         <ImageView
-            android:id="@+id/iv_sign_in_time"
+            android:id="@+id/iv_sign_in_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/iv_sign_in_time"
+            android:layout_toRightOf="@+id/iv_sign_in_date"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="2018年8月1日 13:00"
@@ -100,7 +100,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_sign_in_now"
+            android:id="@+id/tv_sign_in_enable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -129,7 +129,7 @@
         android:paddingRight="15dp">
 
         <ImageView
-            android:id="@+id/iv_sign_in_able"
+            android:id="@+id/iv_sign_in_enable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/iv_sign_in_able"
+            android:layout_toRightOf="@+id/iv_sign_in_enable"
             android:letterSpacing="0.2"
             android:text=""
             android:textSize="14sp" />
