@@ -41,6 +41,7 @@
     </RelativeLayout>
 
     <www.dico.cn.partybuild.widget.ExpandLongTextView
+        android:textStyle="bold"
         android:id="@+id/tv_content_notice_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -24,6 +24,7 @@ import www.dico.cn.partybuild.activity.ActivityMrgActivity;
 import www.dico.cn.partybuild.activity.MailboxActivity;
 import www.dico.cn.partybuild.activity.MeetingActivity;
 import www.dico.cn.partybuild.activity.PayDuesActivity;
+import www.dico.cn.partybuild.activity.StudyTaskActivity;
 import www.dico.cn.partybuild.modleview.HomeView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
@@ -120,10 +121,10 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 goTo(MeetingActivity.class, null);
                 break;
             case R.id.lin_studies_home://学习任务
-                showToast("暂未开通");
+                goTo(StudyTaskActivity.class, null);
                 break;
             case R.id.lin_activity_home://活动管理
-                goTo(ActivityMrgActivity.class,null);
+                goTo(ActivityMrgActivity.class, null);
                 break;
             case R.id.lin_dues_home://党费缴纳
                 goTo(PayDuesActivity.class, null);

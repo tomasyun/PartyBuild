@@ -18,6 +18,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.bean.NoticeBean;
 import www.dico.cn.partybuild.presenter.NoticePresenter;
+import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 
 //通知
 @CreatePresenter(NoticePresenter.class)
@@ -34,6 +35,12 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
         rv_notice.setLayoutManager(new LinearLayoutManager(this));
         adapter = new NoticeAdapter(this, R.layout.item_notice, notices());
         rv_notice.setAdapter(adapter);
+        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                goTo(NoticeInfoActivity.class, null);
+            }
+        });
     }
 
     public void goback(View view) {

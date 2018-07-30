@@ -1,8 +1,10 @@
 package www.dico.cn.partybuild.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.util.List;
@@ -30,7 +32,7 @@ public class NoticeAdapter extends CommonAdapter<NoticeBean> {
         holder.setText(R.id.tv_date_notice_item,noticeBean.getDate());
 
         ExpandLongTextView tv_content_notice_item=holder.getView(R.id.tv_content_notice_item);
-        tv_content_notice_item.initWidth(ScreenUtils.getScreenWidth(AppManager.getManager().curActivity()) - SizeUtils.dp2px(AppManager.getManager().curActivity(), 80));
+        tv_content_notice_item.initWidth(ScreenUtils.getScreenWidth(AppManager.getManager().curActivity()) - SizeUtils.dp2px(AppManager.getManager().curActivity(), 60));
         tv_content_notice_item.setMaxLines(2);
         tv_content_notice_item.setExpandText(noticeBean.getContent());
     }

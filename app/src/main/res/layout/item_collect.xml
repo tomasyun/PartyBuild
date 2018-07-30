@@ -21,6 +21,7 @@
             android:gravity="center_vertical"
             android:maxLines="2"
             android:paddingLeft="15dp"
+            android:textStyle="bold"
             android:paddingRight="15dp"
             android:text="飞天连雪射白鹿,笑书神侠倚碧鸳---金庸+碧血剑。。。。。。。。。。。。。。。。。。。。。。。。。。"
             android:textSize="14sp" />

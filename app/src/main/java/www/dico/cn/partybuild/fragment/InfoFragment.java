@@ -97,7 +97,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
         InfoBean bean = new InfoBean();
         bean.setTitle("党建要闻");
         bean.setDate("2018-7-26 18:00");
-        bean.setComment("75评论");
+        bean.setComment("75");
         list.add(bean);
         return list;
     }
