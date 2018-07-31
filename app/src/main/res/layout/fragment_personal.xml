@@ -32,15 +32,15 @@
 
         <ImageView
             android:id="@+id/iv_notice_personal"
-            android:layout_toLeftOf="@id/iv_setting_personal"
-            android:src="@mipmap/img_notice"
-            android:padding="5dp"
-            android:layout_marginRight="20dp"
-            android:contentDescription="@null"
-            android:scaleType="fitXY"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/iv_setting_personal"
+            android:contentDescription="@null"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_notice" />
     </RelativeLayout>
     <!--内容-->
     <LinearLayout
@@ -119,6 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="积分"
+                android:textColor="@color/text_color"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -152,6 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="排名"
+                android:textColor="@color/text_color"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
@@ -183,6 +185,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_base_info"
             android:text="基本信息"
+            android:textColor="@color/text_color"
             android:textSize="14sp" />
 
         <ImageView
@@ -223,6 +226,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_collect"
             android:text="收藏"
+            android:textColor="@color/text_color"
             android:textSize="14sp" />
 
         <ImageView
@@ -267,6 +271,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/iv_suggest"
             android:text="意见反馈"
+            android:textColor="@color/text_color"
             android:textSize="14sp" />
 
         <ImageView

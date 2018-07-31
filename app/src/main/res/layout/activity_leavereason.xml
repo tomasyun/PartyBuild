@@ -48,9 +48,12 @@
             android:gravity="left|top"
             android:hint="因出差未归,不能按时参加"
             android:inputType="textMultiLine"
-            android:letterSpacing="0.1"
+            android:letterSpacing="0.08"
+            android:lineSpacingExtra="8dp"
             android:maxLength="50"
+            android:textColor="@color/text_color"
             android:padding="17dp"
+            android:translationZ="5dp"
             android:textSize="14sp" />
 
         <TextView

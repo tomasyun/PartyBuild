@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:text="25"
+            android:textColor="@color/text_color"
             android:textStyle="bold"
             android:textSize="14sp" />
 
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
+            android:textColor="@color/text_color"
             android:layout_toRightOf="@id/iv_credit_rank_avatar_item"
             android:text="席沛锋" />
 
@@ -48,6 +50,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:text="260分"
+            android:textColor="@color/text_color"
             android:textStyle="bold"
             android:textSize="14sp" />
     </RelativeLayout>

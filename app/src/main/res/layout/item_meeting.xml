@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:ellipsize="end"
+            android:textColor="@color/text_color"
             android:singleLine="true"
             android:text="新形势下党内政治生活讨论会"
             android:textSize="14sp"

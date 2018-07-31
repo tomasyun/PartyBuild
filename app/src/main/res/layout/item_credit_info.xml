@@ -24,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="党内送温暖"
+                android:textColor="@color/text_color"
                 android:textSize="14sp" />
 
             <TextView
@@ -32,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="2018-7-24 12:30"
+                android:textColor="@color/text_color"
                 android:textSize="14sp" />
         </LinearLayout>
 

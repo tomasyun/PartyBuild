@@ -53,10 +53,8 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
 
         tv_gongshi_home = view.findViewById(R.id.tv_gongshi_home);
         SpannableString content = new SpannableString("公示公告");
-        ForegroundColorSpan blue = new ForegroundColorSpan(Color.parseColor("#0099EE"));
-        ForegroundColorSpan red = new ForegroundColorSpan(Color.RED);
-        content.setSpan(blue, 0, content.length() - 2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        content.setSpan(red, 2, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        content.setSpan(new ForegroundColorSpan(Color.parseColor("#0099EE")), 0, content.length() - 2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        content.setSpan(new ForegroundColorSpan(Color.RED), 2, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         StyleSpan style = new StyleSpan(Typeface.ITALIC);
         content.setSpan(style, 0, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         tv_gongshi_home.setText(content);

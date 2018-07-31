@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:singleLine="true"
+                android:textColor="@color/text_color"
                 android:text="陕西缔科网络科技有限公司"
                 android:textSize="14sp"
                 android:textStyle="bold" />

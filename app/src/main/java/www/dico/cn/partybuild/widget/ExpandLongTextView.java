@@ -23,6 +23,7 @@ public class ExpandLongTextView extends TextView {
     private String originText;
     private int initWidth = 0;
     private int mMaxLines = 6;
+    private boolean isExpand = true;
 
     public ExpandLongTextView(Context context) {
         super(context);
@@ -37,6 +38,10 @@ public class ExpandLongTextView extends TextView {
         init();
     }
 
+    public void setExpand(boolean expand) {
+        isExpand = expand;
+    }
+
     private SpannableString ELLIPSIS = null;
 
     private void init() {
@@ -45,10 +50,10 @@ public class ExpandLongTextView extends TextView {
         ButtonSpan span = new ButtonSpan(getContext(), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                setMaxLines(Integer.MAX_VALUE);
-//                setText(originText);
-                Intent intent=new Intent(AppManager.getManager().curActivity(), NoticeInfoActivity.class);
-                AppManager.getManager().curActivity().startActivity(intent);
+                if (isExpand) {
+                    setMaxLines(Integer.MAX_VALUE);
+                    setText(originText);
+                }
             }
         }, R.color.cornflowerBlue);
         ELLIPSIS.setSpan(span, 0, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);

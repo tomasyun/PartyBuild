@@ -51,12 +51,14 @@
             android:layout_marginTop="50dp"
             android:text="恭喜您! 报名成功"
             android:textSize="18sp"
+            android:textColor="@color/text_color"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:textColor="@color/text_color"
             android:text="注意开会时间和地点,千万不要迟到哦~~"
             android:textSize="14sp" />
 

@@ -30,6 +30,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:singleLine="true"
+        android:textColor="@color/text_color"
         android:textSize="14sp"
         android:translationZ="5dp" />
 
@@ -47,6 +48,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:singleLine="true"
+        android:textColor="@color/text_color"
         android:textSize="14sp"
         android:translationZ="5dp" />
 

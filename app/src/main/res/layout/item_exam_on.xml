@@ -15,6 +15,7 @@
         android:paddingRight="15dp"
         android:singleLine="true"
         android:text="陕西缔科网络科技有限公司"
+        android:textColor="@color/text_color"
         android:textSize="14sp"
         android:textStyle="bold" />
 

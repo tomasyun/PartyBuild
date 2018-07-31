@@ -57,6 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="头像"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -88,6 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="用户名"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
 
                 <TextView
@@ -96,7 +98,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="yuntdev"
+                    android:text="席沛锋"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
 
@@ -118,6 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="姓名"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
 
                 <TextView
@@ -126,7 +130,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="贠拓"
+                    android:text="席沛锋"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
 
@@ -148,6 +153,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="党员编号"
+
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
 
                 <TextView
@@ -157,6 +164,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="9567"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
 
@@ -178,6 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="出生日期"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
 
                 <TextView
@@ -187,6 +196,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="1990-02-28"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
 
@@ -208,6 +218,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="联系电话"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
 
                 <TextView
@@ -217,6 +228,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="13096962939"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
 
@@ -234,6 +246,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="民族"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
 
                 <TextView
@@ -243,6 +256,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="汉"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
 
@@ -263,6 +277,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="籍贯"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
 
                 <TextView
@@ -272,6 +287,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="陕西省"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
 
@@ -287,6 +303,7 @@
                 android:padding="15dp">
 
                 <TextView
+                    android:textColor="@color/text_color"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -301,6 +318,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="本科"
+                    android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
 
@@ -317,6 +335,7 @@
                 android:padding="15dp">
 
                 <TextView
+                    android:textColor="@color/text_color"
                     android:textStyle="bold"
                     android:id="@+id/tv_brief"
                     android:layout_width="wrap_content"
@@ -330,7 +349,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:letterSpacing="0.08"
+                    android:letterSpacing="0.1"
+                    android:textColor="@color/text_color"
                     android:text="7月19日至28日，习近平主席对阿联酋、塞内加尔、卢旺达和南非进行国事访问，出席在南非约翰内斯堡举行的金砖国家领导人第十次会晤，过境毛里求斯并进行友好访问。习近平接连在出访国发表署名文章，讲述国与国之间相知相交的故事。今天的《习近平时间》，让我们一起聆听。"
                     android:textSize="14sp" />
             </LinearLayout>

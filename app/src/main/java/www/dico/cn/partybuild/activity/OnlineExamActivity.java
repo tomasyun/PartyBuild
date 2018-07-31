@@ -117,7 +117,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
     public List<QuestionBean> questions() {
         List<QuestionBean> list = new ArrayList<>();
         QuestionBean bean = new QuestionBean();
-        bean.setTitle("李小璐和Pgone的关系?");
+        bean.setTitle("中国共产党成立日期___");
         list.add(bean);
         return list;
     }

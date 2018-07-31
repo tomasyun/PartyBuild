@@ -56,6 +56,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:text="密码修改"
+            android:textColor="@color/text_color"
             android:textSize="14sp" />
 
         <ImageView
@@ -97,6 +98,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:text="版本更新"
+            android:textColor="@color/text_color"
             android:textSize="14sp" />
 
         <ImageView
@@ -120,8 +122,8 @@
         android:paddingBottom="15dp"
         android:paddingTop="15dp"
         android:text="退出登录"
+        android:textColor="@color/text_color"
         android:onClick="logout"
-        android:textColor="#a2a2a2"
         android:textSize="15sp"
         android:translationZ="5dp" />
 </LinearLayout>

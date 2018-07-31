@@ -41,7 +41,8 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingBottom="20dp"
-        android:paddingTop="20dp">
+        android:paddingTop="20dp"
+        android:translationZ="5dp">
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -106,7 +107,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:text="25分钟" />
+                android:text="25分钟"
+                android:textColor="@color/text_color" />
         </LinearLayout>
 
         <LinearLayout
@@ -130,7 +132,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:text="60分" />
+                android:text="60分"
+                android:textColor="@color/text_color" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

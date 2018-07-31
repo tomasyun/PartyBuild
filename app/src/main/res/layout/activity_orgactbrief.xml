@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_bg_color"
@@ -75,6 +76,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:text="主题"
+                            android:textColor="@color/text_color"
                             android:textSize="14sp" />
 
                         <TextView
@@ -83,6 +85,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_weight="8"
                             android:text="聚焦两会，关注民生"
+                            android:textColor="@color/text_color"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -104,6 +107,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:text="时间"
+                            android:textColor="@color/text_color"
                             android:textSize="14sp" />
 
                         <TextView
@@ -112,6 +116,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_weight="8"
                             android:text="2018-7-28 12:00"
+                            android:textColor="@color/text_color"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -133,6 +138,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:text="地点"
+                            android:textColor="@color/text_color"
                             android:textSize="14sp" />
 
                         <TextView
@@ -141,8 +147,11 @@
                             android:layout_marginLeft="20dp"
                             android:layout_weight="8"
                             android:ellipsize="end"
+                            android:letterSpacing="0.08"
+                            android:lineSpacingExtra="8dp"
                             android:maxLines="2"
                             android:text="陕西缔科网络科技有限公司丈八一路 汇鑫IBC 1501室"
+                            android:textColor="@color/text_color"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -164,6 +173,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:text="主讲人"
+                            android:textColor="@color/text_color"
                             android:textSize="14sp" />
 
                         <TextView
@@ -193,6 +203,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:text="类别"
+                            android:textColor="@color/text_color"
                             android:textSize="14sp" />
 
                         <TextView
@@ -201,6 +212,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_weight="8"
                             android:text="党小组会议"
+                            android:textColor="@color/text_color"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -222,18 +234,22 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:text="简介"
+                        android:textColor="@color/text_color"
                         android:textSize="14sp" />
 
-                    <TextView
+                    <cn.carbs.android.expandabletextview.library.ExpandableTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_weight="8"
-                        android:ellipsize="end"
-                        android:maxLines="2"
+                        android:letterSpacing="0.08"
+                        android:lineSpacingExtra="8dp"
                         android:text="这次会晤的主题是“金砖国家在非洲：在第四次工业革命中共谋包容增长和共同繁荣”，很有现实意义。从18世纪第一次工业革命的机械化，到19世纪第二次工业革命的电气化，再到20世纪第三次工业革命的信息化，一次次颠覆性的科技革新，带来社会生产力的大解放和生活水平的大跃升，从根本上改变了人类历史的发展轨迹。"
+                        android:textColor="@color/text_color"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:etv_MaxLinesOnShrink="2"
+                        app:etv_ToExpandHintColor="@color/theme_color" />
                 </LinearLayout>
 
                 <RelativeLayout
@@ -258,6 +274,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:text="参会人"
+                            android:textColor="@color/text_color"
                             android:textSize="14sp" />
 
                         <TextView
@@ -266,6 +283,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_weight="8"
                             android:text="12人"
+                            android:textColor="@color/text_color"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -282,7 +300,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="200dp" />
+                    android:layout_height="100dp" />
             </LinearLayout>
 
         </ScrollView>

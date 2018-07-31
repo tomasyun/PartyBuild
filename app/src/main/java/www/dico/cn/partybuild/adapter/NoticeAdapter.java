@@ -11,6 +11,7 @@ import java.util.List;
 
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.activity.NoticeInfoActivity;
 import www.dico.cn.partybuild.bean.NoticeBean;
 import www.dico.cn.partybuild.utils.GlideUtils;
 import www.dico.cn.partybuild.utils.ScreenUtils;
@@ -32,8 +33,16 @@ public class NoticeAdapter extends CommonAdapter<NoticeBean> {
         holder.setText(R.id.tv_date_notice_item,noticeBean.getDate());
 
         ExpandLongTextView tv_content_notice_item=holder.getView(R.id.tv_content_notice_item);
+        tv_content_notice_item.setExpand(false);
         tv_content_notice_item.initWidth(ScreenUtils.getScreenWidth(AppManager.getManager().curActivity()) - SizeUtils.dp2px(AppManager.getManager().curActivity(), 60));
         tv_content_notice_item.setMaxLines(2);
         tv_content_notice_item.setExpandText(noticeBean.getContent());
+        tv_content_notice_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(AppManager.getManager().curActivity(), NoticeInfoActivity.class);
+                AppManager.getManager().curActivity().startActivity(intent);
+            }
+        });
     }
 }

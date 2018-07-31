@@ -43,10 +43,12 @@
         android:gravity="left|top"
         android:hint="感谢您使用智慧党建云平台,使用过程中有任何意见请反馈给我们。"
         android:inputType="textMultiLine"
-        android:letterSpacing="0.1"
+        android:letterSpacing="0.08"
+        android:lineSpacingExtra="8dp"
         android:maxLength="50"
         android:padding="15dp"
         android:text=""
+        android:textColor="@color/text_color"
         android:textColorHint="#989898"
         android:textSize="14sp" />
 

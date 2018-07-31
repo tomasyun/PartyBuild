@@ -9,6 +9,7 @@
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
     android:paddingTop="3dp"
+    android:textColor="@color/text_color"
     android:paddingBottom="3dp"
     android:layout_margin="5dp"
     android:textSize="13sp" />

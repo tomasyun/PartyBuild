@@ -61,6 +61,7 @@
                 android:editable="false"
                 android:gravity="center_vertical"
                 android:hint="请选择对象"
+                android:textColor="@color/text_color"
                 android:paddingLeft="15dp"
                 android:singleLine="true"
                 android:textSize="14sp" />
@@ -75,6 +76,7 @@
         </RelativeLayout>
 
         <EditText
+            android:textColor="@color/text_color"
             android:id="@+id/et_content_mail_box"
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -83,7 +85,8 @@
             android:gravity="left|top"
             android:hint="请在此输入您要反馈的内容,感谢您使用智慧党建云平台"
             android:inputType="textMultiLine"
-            android:letterSpacing="0.1"
+            android:letterSpacing="0.08"
+            android:lineSpacingExtra="8dp"
             android:maxLength="50"
             android:padding="17dp"
             android:translationZ="5dp"

@@ -66,6 +66,7 @@
         <activity android:name=".activity.PreviewQuestionResultActivity" />
         <activity android:name=".activity.LeaveReasonActivity" />
         <activity android:name=".activity.SignUpSuccessActivity" />
+        <activity android:name=".activity.TaskBriefActivity" />
 
         <!--使用高德api所申请的key-->
         <meta-data
