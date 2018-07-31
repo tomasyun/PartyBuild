@@ -23,7 +23,7 @@ public class ParticipantAdapter extends TagAdapter<ParticipantBean> {
 
     @Override
     public View getView(FlowLayout parent, int position, ParticipantBean bean) {
-        TextView tv = (TextView) mInflater.inflate(R.layout.item_tag, parent, false);
+        TextView tv = (TextView) mInflater.inflate(R.layout.item_name_tag, parent, false);
         return tv;
     }
 }

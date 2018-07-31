@@ -31,4 +31,11 @@
             android:textSize="16sp" />
     </RelativeLayout>
 
+    <android.support.v7.widget.RecyclerView
+        android:scrollbars="none"
+        android:id="@+id/rv_vote"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
