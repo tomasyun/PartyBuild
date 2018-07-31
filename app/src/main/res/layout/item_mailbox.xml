@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingTop="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <ImageView
+            android:id="@+id/iv_avatar_mailbox_item"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_default_avatar" />
+
+        <TextView
+            android:id="@+id/tv_name_mailbox_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/iv_avatar_mailbox_item"
+            android:text="席沛锋"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/tv_date_mailbox_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="6小时前"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <cn.carbs.android.expandabletextview.library.ExpandableTextView
+        android:id="@+id/tv_content_mailbox_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:letterSpacing="0.08"
+        android:lineSpacingExtra="8dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="为使我公司各部门工作顺利的开展，并且保证各部门之间能够衍接顺畅，有效地提高工作效率。经公司领导研究决定将定期召开公司员工例会。"
+        android:textColor="@color/text_color"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:etv_MaxLinesOnShrink="2"
+        app:etv_ToExpandHintColor="@color/theme_color" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="15dp"
+        android:background="#ddd" />
+</LinearLayout>

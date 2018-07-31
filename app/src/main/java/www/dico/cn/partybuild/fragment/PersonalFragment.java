@@ -15,6 +15,7 @@ import www.dico.cn.partybuild.activity.CollectActivity;
 import www.dico.cn.partybuild.activity.CreditInfoActivity;
 import www.dico.cn.partybuild.activity.CreditRankActivity;
 import www.dico.cn.partybuild.activity.FeedbackActivity;
+import www.dico.cn.partybuild.activity.MailboxListActivity;
 import www.dico.cn.partybuild.activity.NoticeActivity;
 import www.dico.cn.partybuild.activity.SettingActivity;
 import www.dico.cn.partybuild.modleview.PersonalView;
@@ -38,18 +39,20 @@ public class PersonalFragment extends AbstractFragment<PersonalView, PersonalPre
     private RelativeLayout rel_feedback_personal;
     private ImageView iv_setting_personal;
     private ImageView iv_notice_personal;
+    private RelativeLayout rel_mailbox_personal;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_personal, null);
-        iv_user_avatar_personal=view.findViewById(R.id.iv_user_avatar_personal);
-        tv_name_personal=view.findViewById(R.id.tv_name_personal);
-        tv_position_personal=view.findViewById(R.id.tv_position_personal);
+        iv_user_avatar_personal = view.findViewById(R.id.iv_user_avatar_personal);
+        tv_name_personal = view.findViewById(R.id.tv_name_personal);
+        tv_position_personal = view.findViewById(R.id.tv_position_personal);
         lin_credit_personal = view.findViewById(R.id.lin_credit_personal);
         lin_rank_personal = view.findViewById(R.id.lin_rank_personal);
         rel_baseinfo_personal = view.findViewById(R.id.rel_baseinfo_personal);
         rel_collect_personal = view.findViewById(R.id.rel_collect_personal);
         rel_feedback_personal = view.findViewById(R.id.rel_feedback_personal);
+        rel_mailbox_personal = view.findViewById(R.id.rel_mailbox_personal);
         iv_setting_personal = view.findViewById(R.id.iv_setting_personal);
         iv_notice_personal = view.findViewById(R.id.iv_notice_personal);
         lin_credit_personal.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +102,12 @@ public class PersonalFragment extends AbstractFragment<PersonalView, PersonalPre
             @Override
             public void onClick(View view) {
                 goTo(NoticeActivity.class, null);
+            }
+        });
+        rel_mailbox_personal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goTo(MailboxListActivity.class, null);
             }
         });
         return view;
