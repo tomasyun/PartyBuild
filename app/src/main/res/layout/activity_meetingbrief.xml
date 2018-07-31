@@ -53,7 +53,7 @@
                     android:background="@mipmap/img_dico"
                     android:contentDescription="@null"
                     android:scaleType="fitXY"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -229,26 +229,24 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@color/white"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:paddingBottom="15dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:paddingTop="15dp">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
                         android:text="简介"
                         android:textColor="@color/text_color"
                         android:textSize="14sp" />
 
                     <cn.carbs.android.expandabletextview.library.ExpandableTextView
                         android:id="@+id/tv_brief_meeting_brief"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_weight="8"
+                        android:layout_marginTop="20dp"
                         android:letterSpacing="0.08"
                         android:lineSpacingExtra="8dp"
                         android:text="这次会晤的主题是“金砖国家在非洲：在第四次工业革命中共谋包容增长和共同繁荣”，很有现实意义。从18世纪第一次工业革命的机械化，到19世纪第二次工业革命的电气化，再到20世纪第三次工业革命的信息化，一次次颠覆性的科技革新，带来社会生产力的大解放和生活水平的大跃升，从根本上改变了人类历史的发展轨迹。"
@@ -315,7 +313,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="100dp" />
+                    android:layout_height="150dp" />
             </LinearLayout>
 
         </ScrollView>
