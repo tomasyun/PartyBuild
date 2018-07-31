@@ -46,14 +46,16 @@
             <RelativeLayout
                 android:id="@+id/rel_org_act_org_mrg"
                 android:layout_width="match_parent"
-                android:clickable="true"
-                android:onClick="gotoOrgAct"
                 android:layout_height="wrap_content"
                 android:background="@drawable/corner10_org_act_bg"
+                android:clickable="true"
+                android:onClick="gotoOrgAct"
                 android:paddingBottom="25dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:paddingTop="25dp">
+                android:layout_marginBottom="15dp"
+                android:paddingTop="25dp"
+                android:translationZ="5dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -109,17 +111,18 @@
 
             <!--投票管理-->
             <RelativeLayout
-                android:clickable="true"
-                android:onClick="gotoVoteMrg"
                 android:id="@+id/rel_vote_mrg_org_mrg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:background="@drawable/corner10_vote_mrg_bg"
+                android:clickable="true"
+                android:layout_marginBottom="15dp"
+                android:onClick="gotoVoteMrg"
                 android:paddingBottom="25dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:paddingTop="25dp">
+                android:paddingTop="25dp"
+                android:translationZ="5dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -175,17 +178,18 @@
 
             <!--问卷调查-->
             <RelativeLayout
-                android:clickable="true"
-                android:onClick="gotoQuestionSur"
                 android:id="@+id/rel_question_sur_org_mrg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:background="@drawable/corner10_question_sur_bg"
+                android:clickable="true"
+                android:onClick="gotoQuestionSur"
                 android:paddingBottom="25dp"
+                android:layout_marginBottom="15dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:paddingTop="25dp">
+                android:paddingTop="25dp"
+                android:translationZ="5dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"

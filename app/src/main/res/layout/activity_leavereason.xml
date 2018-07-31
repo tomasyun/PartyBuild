@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
     <!--标题-->
     <RelativeLayout
@@ -25,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="领导信箱"
+            android:text="请假事由"
             android:textColor="@color/white"
             android:textSize="16sp" />
     </RelativeLayout>
@@ -33,74 +34,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:orientation="vertical"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingTop="15dp">
 
-
-        <RelativeLayout
-            android:translationZ="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edittext_corner5_gray_stroke_white_bg"
-            android:clickable="true"
-            android:onClick="selectLeader">
-
-            <EditText
-                android:id="@+id/et_name_mail_box"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_centerVertical="true"
-                android:layout_marginBottom="2dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
-                android:layout_marginTop="2dp"
-                android:background="@drawable/edittext_white_bg"
-                android:editable="false"
-                android:gravity="center_vertical"
-                android:hint="请选择对象"
-                android:paddingLeft="15dp"
-                android:singleLine="true"
-                android:textSize="14sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:paddingRight="15dp"
-                android:src="@mipmap/img_spinner_arrow" />
-        </RelativeLayout>
-
         <EditText
-            android:id="@+id/et_content_mail_box"
+            android:id="@+id/et_content_leave_reason"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/edittext_corner5_gray_stroke_white_bg"
             android:gravity="left|top"
-            android:hint="请在此输入您要反馈的内容,感谢您使用智慧党建云平台"
+            android:hint="因出差未归,不能按时参加"
             android:inputType="textMultiLine"
             android:letterSpacing="0.1"
             android:maxLength="50"
             android:padding="17dp"
-            android:translationZ="5dp"
             android:textSize="14sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="50dp"
             android:background="@drawable/button_corner20_red_bg"
             android:clickable="true"
             android:gravity="center"
-            android:onClick="submitSuggest"
-            android:text="提交反馈"
+            android:onClick="submit"
+            android:text="提交"
             android:textColor="@color/white"
             android:translationZ="5dp" />
     </LinearLayout>
-
-
 </LinearLayout>

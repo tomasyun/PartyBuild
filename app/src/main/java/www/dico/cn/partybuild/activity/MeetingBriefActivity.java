@@ -36,6 +36,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
     TextView tv_participants_meeting_brief;
     @FieldView(R.id.tfl_participants_meeting_brief)
     FlowLayout tfl_participants_meeting_brief;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,16 +44,17 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
         ViewFind.bind(this);
     }
 
-    public void goback(View view){
+    public void goback(View view) {
         this.finish();
     }
 
     //请假
-    public void askForLeave(View view){
-
+    public void askForLeave(View view) {
+        goTo(LeaveReasonActivity.class, null);
     }
-    //报名
-    public void signUp(View view){
 
+    //报名
+    public void signUp(View view) {
+        goTo(SignUpSuccessActivity.class, null);
     }
 }
