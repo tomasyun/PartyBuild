@@ -18,6 +18,7 @@ import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.VoteManagerPresenter;
+import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 
 @CreatePresenter(VoteManagerPresenter.class)
 public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, VoteManagerPresenter> implements VoteManagerView {
@@ -33,6 +34,12 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
         rv_vote.setLayoutManager(new LinearLayoutManager(this));
         adapter = new VoteListAdapter(this, R.layout.item_vote, votes());
         rv_vote.setAdapter(adapter);
+        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                goTo(VoteDetailActivity.class, null);
+            }
+        });
     }
 
     public void goback(View view) {
