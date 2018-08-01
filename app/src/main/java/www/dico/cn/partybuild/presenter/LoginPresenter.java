@@ -11,6 +11,7 @@ import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
 import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
+import www.yuntdev.com.library.utils.HttpLog;
 
 public class LoginPresenter extends BaseMvpPresenter<LoginView> {
     IProgressDialog dialog = new IProgressDialog() {
@@ -38,7 +39,7 @@ public class LoginPresenter extends BaseMvpPresenter<LoginView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().resultFailure(e.getMessage());
+                            getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }
