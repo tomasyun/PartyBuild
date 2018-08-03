@@ -61,6 +61,6 @@
         </ScrollView>
 
       <include
-          layout="@layout/reply_comment"/>
+          layout="@layout/include_reply_comment"/>
     </FrameLayout>
 </LinearLayout>

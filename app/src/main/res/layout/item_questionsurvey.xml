@@ -11,10 +11,10 @@
     android:padding="15dp">
 
     <TextView
-        android:id="@+id/tv_title_vote_item"
+        android:id="@+id/tv_title_question_survey_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="党委书记初选投票"
+        android:text="问卷调查1"
         android:textColor="@color/text_color"
         android:textSize="14sp"
         android:textStyle="bold" />
@@ -25,7 +25,7 @@
         android:layout_marginTop="10dp">
 
         <TextView
-            android:id="@+id/tv_date_vote_item"
+            android:id="@+id/tv_date_question_survey_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2018-7-31 18:30"
@@ -36,21 +36,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/tv_date_vote_item"
-            android:text="投票日期"
+            android:layout_toRightOf="@+id/tv_date_question_survey_item"
+            android:text="调查日期"
             android:textColor="@android:color/darker_gray"
             android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/tv_population_vote_item"
+            android:layout_toLeftOf="@+id/tv_population_question_survey_item"
             android:text="参与人数:"
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray" />
 
         <TextView
-            android:id="@+id/tv_population_vote_item"
+            android:id="@+id/tv_population_question_survey_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

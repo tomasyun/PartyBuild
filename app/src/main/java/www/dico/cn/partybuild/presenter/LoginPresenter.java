@@ -39,7 +39,7 @@ public class LoginPresenter extends BaseMvpPresenter<LoginView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                            getMvpView().resultFailure(e.getMessage());
+                        getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }
@@ -47,7 +47,7 @@ public class LoginPresenter extends BaseMvpPresenter<LoginView> {
     @Override
     public void onDestroyPresenter() {
         super.onDestroyPresenter();
-        if (null!=disposable&&disposable.isDisposed())
+        if (null != disposable && disposable.isDisposed())
             disposable.dispose();
     }
 }

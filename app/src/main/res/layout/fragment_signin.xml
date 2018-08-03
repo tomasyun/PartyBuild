@@ -90,14 +90,14 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rel_sign_in_ok"
+        android:id="@+id/rel_sign_in_start"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         android:background="@drawable/circle_red_bg"
-        android:translationZ="5dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:translationZ="5dp">
 
         <TextView
             android:id="@+id/tv_sign_in_enable"
