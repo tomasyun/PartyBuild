@@ -3,7 +3,7 @@ package www.dico.cn.partybuild.presenter;
 import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.bean.LeaveBean;
+import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.modleview.LeaveReasonView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -28,10 +28,10 @@ public class LeaveReasonPresenter extends BaseMvpPresenter<LeaveReasonView> {
         };
         disposable = EasyHttp.post("")
                 .params("content", content)
-                .execute(new ProgressDialogCallBack<LeaveBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<BaseProtocol>(dialog, true, true) {
                     @Override
-                    public void onSuccess(LeaveBean leaveBean) {
-                        getMvpView().resultSuccess(leaveBean);
+                    public void onSuccess(BaseProtocol protocol) {
+                        getMvpView().resultSuccess(protocol);
                     }
 
                     @Override

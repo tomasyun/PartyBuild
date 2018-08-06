@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import www.dico.cn.partybuild.R;
-import www.dico.cn.partybuild.bean.LeaveBean;
+import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.modleview.LeaveReasonView;
 import www.dico.cn.partybuild.mvp.FieldView;
 import www.dico.cn.partybuild.mvp.ViewFind;
@@ -56,7 +56,7 @@ public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, Le
     }
 
     @Override
-    public void resultSuccess(LeaveBean result) {
+    public void resultSuccess(BaseProtocol result) {
 
     }
 

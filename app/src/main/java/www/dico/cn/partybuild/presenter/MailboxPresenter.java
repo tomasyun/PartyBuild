@@ -3,7 +3,7 @@ package www.dico.cn.partybuild.presenter;
 import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.bean.MailboxBean;
+import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.modleview.MailboxView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -29,10 +29,10 @@ public class MailboxPresenter extends BaseMvpPresenter<MailboxView> {
         disposable = EasyHttp.post("")
                 .params("id", id)
                 .params("content", content)
-                .execute(new ProgressDialogCallBack<MailboxBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<BaseProtocol>(dialog, true, true) {
                     @Override
-                    public void onSuccess(MailboxBean mailboxBean) {
-                        getMvpView().resultSuccess(mailboxBean);
+                    public void onSuccess(BaseProtocol protocol) {
+                        getMvpView().resultSuccess(protocol);
                     }
 
                     @Override

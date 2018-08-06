@@ -3,9 +3,9 @@ package www.dico.cn.partybuild.presenter;
 import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.modleview.FeedbackView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.bean.FeedBackBean;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
@@ -29,10 +29,10 @@ public class FeedbackPresenter extends BaseMvpPresenter<FeedbackView> {
         disposable = EasyHttp.post("")
                 .params("id", id)
                 .params("content", content)
-                .execute(new ProgressDialogCallBack<FeedBackBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<BaseProtocol>(dialog, true, true) {
                     @Override
-                    public void onSuccess(FeedBackBean feedBackBean) {
-                        getMvpView().resultSuccess(feedBackBean);
+                    public void onSuccess(BaseProtocol protocol) {
+                        getMvpView().resultSuccess(protocol);
                     }
 
                     @Override

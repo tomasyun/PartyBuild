@@ -7,12 +7,12 @@ import android.view.View;
 import android.widget.EditText;
 
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.modleview.FeedbackView;
 import www.dico.cn.partybuild.mvp.FieldView;
 import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
-import www.dico.cn.partybuild.bean.FeedBackBean;
 import www.dico.cn.partybuild.presenter.FeedbackPresenter;
 
 //意见反馈
@@ -43,7 +43,7 @@ public class FeedbackActivity extends AbstractMvpActivity<FeedbackView, Feedback
     }
 
     @Override
-    public void resultSuccess(FeedBackBean result) {
+    public void resultSuccess(BaseProtocol result) {
 
     }
 
