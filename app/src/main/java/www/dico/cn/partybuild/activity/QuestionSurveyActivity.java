@@ -53,4 +53,14 @@ public class QuestionSurveyActivity extends AbstractMvpActivity<QuestionSurveyVi
         list.add(bean);
         return list;
     }
+
+    @Override
+    public void resultSuccess(QuestionSurveyBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+        showToast(result);
+    }
 }

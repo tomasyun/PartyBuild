@@ -55,4 +55,14 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
         list.add(bean);
         return list;
     }
+
+    @Override
+    public void resultSuccess(OrgActBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+        showToast(result);
+    }
 }

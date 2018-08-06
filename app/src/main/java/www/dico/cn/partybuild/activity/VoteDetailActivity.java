@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.VoteDetailBean;
 import www.dico.cn.partybuild.modleview.VoteDetailView;
 import www.dico.cn.partybuild.mvp.FieldView;
 import www.dico.cn.partybuild.mvp.ViewFind;
@@ -21,7 +22,7 @@ import www.dico.cn.partybuild.presenter.VoteDetailPresenter;
 import www.dico.cn.partybuild.presenter.VoteManagerPresenter;
 import www.dico.cn.partybuild.utils.SizeUtils;
 
-@CreatePresenter(VoteManagerPresenter.class)
+@CreatePresenter(VoteDetailPresenter.class)
 public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, VoteDetailPresenter> implements VoteDetailView {
     @FieldView(R.id.lin_options_vote)
     LinearLayout lin_options_vote;
@@ -100,5 +101,15 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                 }
             });
         }
+    }
+
+    @Override
+    public void resultSuccess(VoteDetailBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+        showToast(result);
     }
 }

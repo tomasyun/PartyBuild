@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class ExamOnBean {
+public class ExamOnBean extends BaseProtocol{
     private String title;
     private String date;
 

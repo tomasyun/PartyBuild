@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.MailboxBean;
 import www.dico.cn.partybuild.modleview.MailboxView;
 import www.dico.cn.partybuild.mvp.FieldView;
 import www.dico.cn.partybuild.mvp.ViewFind;
@@ -48,5 +49,15 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
         } else {
 
         }
+    }
+
+    @Override
+    public void resultSuccess(MailboxBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+        showToast(result);
     }
 }

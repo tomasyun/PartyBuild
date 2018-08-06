@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class CreditRankBean {
+public class CreditRankBean extends BaseProtocol{
     private String rank;
     private String avatar;
     private String name;

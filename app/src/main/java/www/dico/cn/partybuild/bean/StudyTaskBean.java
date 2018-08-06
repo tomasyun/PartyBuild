@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class StudyTaskBean {
+public class StudyTaskBean extends BaseProtocol{
     private String title;
 
     public String getTitle() {

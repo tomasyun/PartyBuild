@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class MailboxListBean  {
+public class MailboxListBean  extends BaseProtocol{
     private String name;
 
     public String getName() {

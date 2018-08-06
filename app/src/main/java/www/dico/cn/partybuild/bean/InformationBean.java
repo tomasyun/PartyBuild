@@ -1,4 +1,4 @@
 package www.dico.cn.partybuild.bean;
 
-public class InformationBean {
+public class InformationBean extends BaseProtocol{
 }

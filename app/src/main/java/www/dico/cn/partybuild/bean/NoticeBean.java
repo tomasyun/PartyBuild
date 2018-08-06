@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class NoticeBean {
+public class NoticeBean extends BaseProtocol{
     private String avatar;
     private String name;
 

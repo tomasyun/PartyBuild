@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class MeetingBean {
+public class MeetingBean extends BaseProtocol{
     private String state;
     private String title;
     private String date;

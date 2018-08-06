@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.InfodetailBean;
 import www.dico.cn.partybuild.modleview.InfodetailsView;
 import www.dico.cn.partybuild.mvp.FieldView;
 import www.dico.cn.partybuild.mvp.ViewFind;
@@ -39,5 +40,15 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
 
     public void goback(View view) {
         this.finish();
+    }
+
+    @Override
+    public void resultSuccess(InfodetailBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+        showToast(result);
     }
 }

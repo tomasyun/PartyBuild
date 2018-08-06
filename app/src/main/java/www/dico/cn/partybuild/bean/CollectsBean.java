@@ -1,4 +1,4 @@
 package www.dico.cn.partybuild.bean;
 
-public class CollectsBean {
+public class CollectsBean extends BaseProtocol{
 }

@@ -46,4 +46,14 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
         list.add(bean);
         return list;
     }
+
+    @Override
+    public void resultSuccess(MailboxListBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+        showToast(result);
+    }
 }

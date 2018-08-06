@@ -1,4 +1,4 @@
 package www.dico.cn.partybuild.bean;
 
-public class HomeBean {
+public class HomeBean extends BaseProtocol{
 }

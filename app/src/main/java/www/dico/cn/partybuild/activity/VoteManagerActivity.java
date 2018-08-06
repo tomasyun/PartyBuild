@@ -53,4 +53,14 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
         list.add(bean);
         return list;
     }
+
+    @Override
+    public void resultSuccess(VoteListBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+        showToast(result);
+    }
 }

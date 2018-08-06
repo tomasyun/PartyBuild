@@ -55,4 +55,14 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
         list.add(bean);
         return list;
     }
+
+    @Override
+    public void resultSuccess(MeetingBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+        showToast(result);
+    }
 }

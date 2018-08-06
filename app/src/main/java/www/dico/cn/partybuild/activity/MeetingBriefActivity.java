@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.zhy.view.flowlayout.FlowLayout;
 
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.MeetBriefBean;
 import www.dico.cn.partybuild.modleview.MeetingBriefView;
 import www.dico.cn.partybuild.mvp.FieldView;
 import www.dico.cn.partybuild.mvp.ViewFind;
@@ -56,5 +57,15 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
     //报名
     public void signUp(View view) {
         goTo(SignUpSuccessActivity.class, null);
+    }
+
+    @Override
+    public void resultSuccess(MeetBriefBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+        showToast(result);
     }
 }

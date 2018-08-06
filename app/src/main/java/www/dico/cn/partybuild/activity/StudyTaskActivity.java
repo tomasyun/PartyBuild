@@ -54,4 +54,14 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
         list.add(bean);
         return list;
     }
+
+    @Override
+    public void resultSuccess(StudyTaskBean result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+        showToast(result);
+    }
 }

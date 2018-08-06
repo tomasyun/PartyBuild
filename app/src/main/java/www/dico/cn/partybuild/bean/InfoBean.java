@@ -1,7 +1,7 @@
 package www.dico.cn.partybuild.bean;
 
 //资讯实体类
-public class InfoBean {
+public class InfoBean extends BaseProtocol{
     private String title;
     private String date;
     private String comment;

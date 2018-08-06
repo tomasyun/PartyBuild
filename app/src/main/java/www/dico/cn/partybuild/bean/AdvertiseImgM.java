@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class AdvertiseImgM {
+public class AdvertiseImgM extends BaseProtocol{
     
     public AdvertiseImgM() {
     }

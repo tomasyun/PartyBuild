@@ -1,4 +1,4 @@
 package www.dico.cn.partybuild.bean;
 
-public class ExamRuleBean {
+public class ExamRuleBean extends BaseProtocol{
 }

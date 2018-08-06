@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class VoteListBean {
+public class VoteListBean extends BaseProtocol {
     private String title;
 
     public String getTitle() {
