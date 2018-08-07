@@ -1,5 +1,106 @@
 package www.dico.cn.partybuild.bean;
 
-public class LoginBean extends BaseProtocol{
+import java.io.Serializable;
 
+public class LoginBean implements Serializable{
+
+    /**
+     * code : 0000
+     * msg : 登录成功
+     * data : {"partyBranchPost":null,"isManager":true,"position":null,"avatar":"/img/headIcon/c1d134b117d14957bb3f6f4009b27de3.jpg","userId":"1","token":"eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJjbXMiLCJzdWIiOiJhZG1pbiIsImF1ZCI6IndlYiIsImlhdCI6MTUzMzU1MTE5OCwiZXhwIjoxNTMzNTU4Mzk4fQ.PcsA6Wil2AGlMpZfl3O0ix-bZirzxcTv4vave6yvsZjiKwDNGim7B9bvmzgnVAAX9bD96q8CAgwH_Xm0DnQG4A"}
+     */
+
+    private String code;
+    private String msg;
+    private DataBean data;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
+    }
+
+    public static class DataBean implements Serializable{
+        /**
+         * partyBranchPost : null
+         * isManager : true
+         * position : null
+         * avatar : /img/headIcon/c1d134b117d14957bb3f6f4009b27de3.jpg
+         * userId : 1
+         * token : eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJjbXMiLCJzdWIiOiJhZG1pbiIsImF1ZCI6IndlYiIsImlhdCI6MTUzMzU1MTE5OCwiZXhwIjoxNTMzNTU4Mzk4fQ.PcsA6Wil2AGlMpZfl3O0ix-bZirzxcTv4vave6yvsZjiKwDNGim7B9bvmzgnVAAX9bD96q8CAgwH_Xm0DnQG4A
+         */
+
+        private String partyBranchPost;
+        private boolean isManager;
+        private String position;
+        private String avatar;
+        private String userId;
+        private String token;
+
+        public String getPartyBranchPost() {
+            return partyBranchPost;
+        }
+
+        public void setPartyBranchPost(String partyBranchPost) {
+            this.partyBranchPost = partyBranchPost;
+        }
+
+        public boolean isManager() {
+            return isManager;
+        }
+
+        public void setManager(boolean manager) {
+            isManager = manager;
+        }
+
+        public String getPosition() {
+            return position;
+        }
+
+        public void setPosition(String position) {
+            this.position = position;
+        }
+
+        public String getAvatar() {
+            return avatar;
+        }
+
+        public void setAvatar(String avatar) {
+            this.avatar = avatar;
+        }
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+    }
 }

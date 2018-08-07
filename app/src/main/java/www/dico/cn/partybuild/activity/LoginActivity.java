@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.modleview.LoginView;
@@ -47,8 +48,26 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
 
     @Override
     public void resultSuccess(LoginBean result) {
-        goTo(MainActivity.class, null);
-        finish();
+        if (result.getCode().equals("0000")) {
+            String partyPosition = result.getData().getPartyBranchPost();//党内职务
+            String position = result.getData().getPosition();//行政职务
+            String token = result.getData().getToken();
+            String userId = result.getData().getUserId();//用户id
+            String avatar = result.getData().getAvatar();//头像
+            boolean isManager = result.getData().isManager();//是否为管理员
+            partyPosition = (null == partyPosition) ? "" : partyPosition;
+            AppConfig.getSpUtils().put("partyBranchPost", partyPosition);
+            position = (null == position) ? "" : position;
+            AppConfig.getSpUtils().put("position", position);
+            AppConfig.getSpUtils().put("token", token);
+            AppConfig.getSpUtils().put("userId", userId);
+            AppConfig.getSpUtils().put("avatar", avatar);
+            AppConfig.getSpUtils().put("isManager", isManager);
+            goTo(MainActivity.class, null);
+            finish();
+        }else {
+            showToast(result.getMsg());
+        }
     }
 
     @Override

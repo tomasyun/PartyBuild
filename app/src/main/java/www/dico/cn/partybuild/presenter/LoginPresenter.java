@@ -2,6 +2,11 @@ package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
 
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.LoginView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
@@ -27,9 +32,12 @@ public class LoginPresenter extends BaseMvpPresenter<LoginView> {
     };
 
     public void clickRequest(String name, String password) {
-        disposable = EasyHttp.post("mobile/loginInterface/login")
-                .params("username", name)
-                .params("password", password)
+        Map<String, String> map = new HashMap<>();
+        map.put("username", name);
+        map.put("password", password);
+        String params = new Gson().toJson(map);
+        disposable = EasyHttp.post("auth/mobileLogin")
+                .upJson(params)
                 .execute(new ProgressDialogCallBack<LoginBean>(dialog, true, true) {
                     @Override
                     public void onSuccess(LoginBean loginBean) {
