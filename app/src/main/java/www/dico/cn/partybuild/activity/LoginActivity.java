@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
@@ -47,14 +49,15 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
     }
 
     @Override
-    public void resultSuccess(LoginBean result) {
-        if (result.getCode().equals("0000")) {
-            String partyPosition = result.getData().getPartyBranchPost();//党内职务
-            String position = result.getData().getPosition();//行政职务
-            String token = result.getData().getToken();
-            String userId = result.getData().getUserId();//用户id
-            String avatar = result.getData().getAvatar();//头像
-            boolean isManager = result.getData().isManager();//是否为管理员
+    public void resultSuccess(String result) {
+        LoginBean bean=new Gson().fromJson(result,LoginBean.class);
+        if (bean.getCode().equals("0000")) {
+            String partyPosition = bean.getData().getPartyBranchPost();//党内职务
+            String position = bean.getData().getPosition();//行政职务
+            String token = bean.getData().getToken();
+            String userId = bean.getData().getUserId();//用户id
+            String avatar = bean.getData().getAvatar();//头像
+            boolean isManager = bean.getData().isManager();//是否为管理员
             partyPosition = (null == partyPosition) ? "" : partyPosition;
             AppConfig.getSpUtils().put("partyBranchPost", partyPosition);
             position = (null == position) ? "" : position;
@@ -66,7 +69,7 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
             goTo(MainActivity.class, null);
             finish();
         }else {
-            showToast(result.getMsg());
+            showToast(bean.getMsg());
         }
     }
 

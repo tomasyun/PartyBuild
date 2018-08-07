@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 
+import retrofit2.converter.gson.GsonConverterFactory;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.LoginView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
@@ -38,10 +39,10 @@ public class LoginPresenter extends BaseMvpPresenter<LoginView> {
         String params = new Gson().toJson(map);
         disposable = EasyHttp.post("auth/mobileLogin")
                 .upJson(params)
-                .execute(new ProgressDialogCallBack<LoginBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(LoginBean loginBean) {
-                        getMvpView().resultSuccess(loginBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

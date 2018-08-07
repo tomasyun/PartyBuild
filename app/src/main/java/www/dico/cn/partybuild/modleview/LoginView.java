@@ -4,6 +4,6 @@ import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 import www.dico.cn.partybuild.bean.LoginBean;
 
 public interface LoginView extends BaseMvpView {
-    void resultSuccess(LoginBean result);
+    void resultSuccess(String result);
     void resultFailure(String result);
 }

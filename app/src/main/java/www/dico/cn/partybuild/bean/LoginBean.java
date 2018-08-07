@@ -1,14 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-import java.io.Serializable;
-
-public class LoginBean implements Serializable{
-
-    /**
-     * code : 0000
-     * msg : 登录成功
-     * data : {"partyBranchPost":null,"isManager":true,"position":null,"avatar":"/img/headIcon/c1d134b117d14957bb3f6f4009b27de3.jpg","userId":"1","token":"eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJjbXMiLCJzdWIiOiJhZG1pbiIsImF1ZCI6IndlYiIsImlhdCI6MTUzMzU1MTE5OCwiZXhwIjoxNTMzNTU4Mzk4fQ.PcsA6Wil2AGlMpZfl3O0ix-bZirzxcTv4vave6yvsZjiKwDNGim7B9bvmzgnVAAX9bD96q8CAgwH_Xm0DnQG4A"}
-     */
+public class LoginBean{
 
     private String code;
     private String msg;
@@ -38,15 +30,7 @@ public class LoginBean implements Serializable{
         this.data = data;
     }
 
-    public static class DataBean implements Serializable{
-        /**
-         * partyBranchPost : null
-         * isManager : true
-         * position : null
-         * avatar : /img/headIcon/c1d134b117d14957bb3f6f4009b27de3.jpg
-         * userId : 1
-         * token : eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJjbXMiLCJzdWIiOiJhZG1pbiIsImF1ZCI6IndlYiIsImlhdCI6MTUzMzU1MTE5OCwiZXhwIjoxNTMzNTU4Mzk4fQ.PcsA6Wil2AGlMpZfl3O0ix-bZirzxcTv4vave6yvsZjiKwDNGim7B9bvmzgnVAAX9bD96q8CAgwH_Xm0DnQG4A
-         */
+    public static class DataBean{
 
         private String partyBranchPost;
         private boolean isManager;
@@ -102,5 +86,14 @@ public class LoginBean implements Serializable{
         public void setToken(String token) {
             this.token = token;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "LoginBean{" +
+                "code='" + code + '\'' +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                '}';
     }
 }
