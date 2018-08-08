@@ -62,7 +62,7 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
             AppConfig.getSpUtils().put("partyBranchPost", partyPosition);
             position = (null == position) ? "" : position;
             AppConfig.getSpUtils().put("position", position);
-            AppConfig.getSpUtils().put("token", token);
+            AppConfig.getSpUtils().put("token", "Bearer "+token);
             AppConfig.getSpUtils().put("userId", userId);
             AppConfig.getSpUtils().put("avatar", avatar);
             AppConfig.getSpUtils().put("isManager", isManager);

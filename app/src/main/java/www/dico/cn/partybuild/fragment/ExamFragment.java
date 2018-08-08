@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,8 @@ import www.dico.cn.partybuild.adapter.ExamOkAdapter;
 import www.dico.cn.partybuild.adapter.ExamOnAdapter;
 import www.dico.cn.partybuild.bean.ExamOkBean;
 import www.dico.cn.partybuild.bean.ExamOnBean;
+import www.dico.cn.partybuild.bean.ExamRuleBean;
+import www.dico.cn.partybuild.bean.ExamRuleForm;
 import www.dico.cn.partybuild.modleview.ExamView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
@@ -43,42 +47,67 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                 switch (checkedId) {
                     case R.id.rbt_exam_on:
                         //待考
-                        rv_exam.setAdapter(onAdapter);
+                        getMvpPresenter().examsOnRequest("0");
                         break;
                     case R.id.rbt_exam_ok:
                         //已考
-                        rv_exam.setAdapter(okAdapter);
+                        getMvpPresenter().examsOkRequest("1");
                         break;
                 }
             }
         });
         rv_exam = view.findViewById(R.id.rv_exam);
         rv_exam.setLayoutManager(new LinearLayoutManager(getActivity()));
-        onAdapter = new ExamOnAdapter(getActivity(), R.layout.item_exam_on, initExamOn());
-        rv_exam.setAdapter(onAdapter);
-        okAdapter = new ExamOkAdapter(getActivity(), R.layout.item_exam_ok, initExamOk());
-        onAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                goTo(ExamRuleActivity.class, null);
-            }
-        });
-        okAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                goTo(ExamRuleActivity.class, null);
-            }
-        });
         return view;
     }
 
     @Override
-    public void resultSuccess(ExamsBean result) {
+    public void examOnResultSuccess(String result) {
+        final ExamsBean bean = new Gson().fromJson(result, ExamsBean.class);
+        if (bean.code.equals("0000")) {
+            if (!bean.getData().isEmpty()) {
+                onAdapter = new ExamOnAdapter(getActivity(), R.layout.item_exam_on, bean.getData());
+                rv_exam.setAdapter(onAdapter);
+                onAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                        ExamRuleForm form = new ExamRuleForm();
+                        form.examId = bean.getData().get(position).getId();
+                        goTo(ExamRuleActivity.class, form);
+                    }
+                });
+            }
+        } else {
 
+        }
     }
 
     @Override
-    public void resultFailure(String result) {
+    public void examOnResultFailure(String result) {
+        showToast(result);
+    }
+
+    @Override
+    public void examOkResultSuccess(String result) {
+        ExamsBean bean = new Gson().fromJson(result, ExamsBean.class);
+        if (bean.code.equals("0000")) {
+            if (!bean.getData().isEmpty()) {
+                okAdapter = new ExamOkAdapter(getActivity(), R.layout.item_exam_ok, bean.getData());
+                rv_exam.setAdapter(okAdapter);
+                okAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                        goTo(ExamRuleActivity.class, null);
+                    }
+                });
+            }
+        } else {
+
+        }
+    }
+
+    @Override
+    public void examOkResultFailure(String result) {
         showToast(result);
     }
 
@@ -99,5 +128,11 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
         bean.setDate("2018-7-26 15:25");
         list.add(bean);
         return list;
+    }
+
+    @Override
+    public void preventPreLoad() {
+        super.preventPreLoad();
+        getMvpPresenter().examsOnRequest("0");
     }
 }

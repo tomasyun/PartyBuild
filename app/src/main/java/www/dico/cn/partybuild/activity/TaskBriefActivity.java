@@ -35,6 +35,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
         ViewFind.bind(this);
         tv_content_task.setText("\u3000\u3000" + "中央外事工作会议刚刚结束不久，习近平主席开启今年首次出访，这是中央着眼国际局势出现的新机遇、新挑战作出的重大外交部署。当今世界面临百年未遇之大变局，新兴市场和发展中国家集体崛起势不可挡，团结协作、联合自强的意愿日益高涨。习近平主席此次亚非之行携手有关国家领导人，共商友好合作大计，共绘发展振兴蓝图，共创互利共赢前景。引领中国特色大国外交开辟了新境界，打开了中外关系和南南合作的新局面，拓宽了国内发展和战略运筹的新空间，推进了构建人类命运共同体的新实践。");
         addCourseChildView();
+        getMvpPresenter().doTaskBriefRequest();
     }
 
     public void goback(View view) {
@@ -60,7 +61,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
     }
 
     @Override
-    public void resultSuccess(TaskBriefBean result) {
+    public void resultSuccess(String result) {
 
     }
 

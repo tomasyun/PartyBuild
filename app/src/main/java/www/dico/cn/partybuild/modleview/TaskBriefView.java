@@ -4,7 +4,7 @@ import www.dico.cn.partybuild.bean.TaskBriefBean;
 import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 
 public interface TaskBriefView extends BaseMvpView {
-    void resultSuccess(TaskBriefBean result);
+    void resultSuccess(String result);
 
     void resultFailure(String result);
 }

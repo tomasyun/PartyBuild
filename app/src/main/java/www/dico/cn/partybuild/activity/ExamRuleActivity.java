@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.google.gson.Gson;
+
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.ExamRuleForm;
 import www.dico.cn.partybuild.modleview.ExamRuleView;
 import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
@@ -15,16 +18,19 @@ import www.dico.cn.partybuild.presenter.ExamRulePresenter;
 //考试规则
 @CreatePresenter(ExamRulePresenter.class)
 public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRulePresenter> implements ExamRuleView {
+    private ExamRuleForm form;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_examrule);
         ViewFind.bind(this);
+        form=getParam();
+        getMvpPresenter().examRuleRequest(form.examId);
     }
 
     //返回
     public void goback(View view) {
-       this.finish();
+        this.finish();
     }
 
     //开始答题
@@ -33,8 +39,8 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
     }
 
     @Override
-    public void resultSuccess(ExamRuleBean result) {
-
+    public void resultSuccess(String result) {
+        ExamRuleBean bean = new Gson().fromJson(result, ExamRuleBean.class);
     }
 
     @Override

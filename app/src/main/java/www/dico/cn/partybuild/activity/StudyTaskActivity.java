@@ -40,6 +40,7 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
                 goTo(TaskBriefActivity.class, null);
             }
         });
+        getMvpPresenter().doStudyTaskRequest();
     }
 
     public void goback(View view) {
@@ -56,7 +57,7 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
     }
 
     @Override
-    public void resultSuccess(StudyTaskBean result) {
+    public void resultSuccess(String result) {
 
     }
 

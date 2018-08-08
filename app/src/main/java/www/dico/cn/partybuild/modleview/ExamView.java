@@ -4,7 +4,10 @@ import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 import www.dico.cn.partybuild.bean.ExamsBean;
 
 public interface ExamView extends BaseMvpView{
-    void resultSuccess(ExamsBean result);
+    void examOnResultSuccess(String result);
 
-    void resultFailure(String result);
+    void examOnResultFailure(String result);
+    void examOkResultSuccess(String result);
+
+    void examOkResultFailure(String result);
 }

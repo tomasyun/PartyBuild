@@ -2,8 +2,8 @@ package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.bean.StudyTaskBean;
 import www.dico.cn.partybuild.modleview.StudyTaskView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -26,11 +26,12 @@ public class StudyTaskPresenter extends BaseMvpPresenter<StudyTaskView> {
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("")
-                .execute(new ProgressDialogCallBack<StudyTaskBean>(dialog, true, true) {
+        disposable = EasyHttp.post("studyTaskList")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(StudyTaskBean studyTaskBean) {
-                        getMvpView().resultSuccess(studyTaskBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

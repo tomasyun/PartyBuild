@@ -2,6 +2,7 @@ package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.bean.TaskBriefBean;
 import www.dico.cn.partybuild.modleview.TaskBriefView;
@@ -26,12 +27,13 @@ public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("")
+        disposable = EasyHttp.post("studyTaskInfo")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<TaskBriefBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(TaskBriefBean taskBriefBean) {
-                        getMvpView().resultSuccess(taskBriefBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

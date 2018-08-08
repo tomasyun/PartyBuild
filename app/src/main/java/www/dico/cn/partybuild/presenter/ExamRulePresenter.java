@@ -2,6 +2,7 @@ package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.ExamRuleView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
@@ -26,12 +27,13 @@ public class ExamRulePresenter extends BaseMvpPresenter<ExamRuleView> {
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("")
-                .params("examId", examId)
-                .execute(new ProgressDialogCallBack<ExamRuleBean>(dialog, true, true) {
+        disposable = EasyHttp.post("examRule")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
+                .params("id", examId)
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(ExamRuleBean examRuleBean) {
-                        getMvpView().resultSuccess(examRuleBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

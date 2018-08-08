@@ -157,4 +157,21 @@ public class AbstractFragment<V extends BaseMvpView, P extends BaseMvpPresenter<
         }
         return temp;
     }
+    /**
+     * @Class: preventPreLoad
+     * @Description:解决fragment+viewpager出现预加载问题
+     * @author: yun tuo
+     * @Date: 2018\1\8 0008 11:31
+     */
+    public void preventPreLoad() {
+
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isVisible()) {
+            preventPreLoad();
+        }
+    }
 }
