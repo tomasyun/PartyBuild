@@ -24,7 +24,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
     }
 
     @Override
-    public void resultSuccess(NoticeInfoBean result) {
+    public void resultSuccess(String result) {
 
     }
 

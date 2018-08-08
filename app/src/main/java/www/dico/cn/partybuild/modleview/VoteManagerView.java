@@ -4,7 +4,7 @@ import www.dico.cn.partybuild.bean.VoteListBean;
 import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 
 public interface VoteManagerView extends BaseMvpView {
-    void resultSuccess(VoteListBean result);
+    void resultSuccess(String result);
 
     void resultFailure(String result);
 }

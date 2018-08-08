@@ -4,7 +4,7 @@ import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 import www.dico.cn.partybuild.bean.OnlineExamBean;
 
 public interface OnlineExamView extends BaseMvpView {
-    void resultSuccess(OnlineExamBean result);
+    void resultSuccess(String result);
 
     void resultFailure(String result);
 }

@@ -4,7 +4,7 @@ import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 
 public interface FeedbackView extends BaseMvpView{
-    void resultSuccess(BaseProtocol result);
+    void resultSuccess(String result);
 
     void resultFailure(String result);
 }

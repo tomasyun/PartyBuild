@@ -6,12 +6,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.StudyTaskAdapter;
 import www.dico.cn.partybuild.bean.StudyTaskBean;
+import www.dico.cn.partybuild.bean.StudyTaskForm;
 import www.dico.cn.partybuild.modleview.StudyTaskView;
 import www.dico.cn.partybuild.mvp.FieldView;
 import www.dico.cn.partybuild.mvp.ViewFind;
@@ -32,14 +35,6 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
         setContentView(R.layout.activity_studytask);
         ViewFind.bind(this);
         rv_study_task.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new StudyTaskAdapter(this, R.layout.item_study_task, tasks());
-        rv_study_task.setAdapter(adapter);
-        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                goTo(TaskBriefActivity.class, null);
-            }
-        });
         getMvpPresenter().doStudyTaskRequest();
     }
 
@@ -47,18 +42,24 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
         finish();
     }
 
-
-    public List<StudyTaskBean> tasks() {
-        List<StudyTaskBean> list = new ArrayList<>();
-        StudyTaskBean bean = new StudyTaskBean();
-        bean.setTitle("新形势下党内政治生活");
-        list.add(bean);
-        return list;
-    }
-
     @Override
     public void resultSuccess(String result) {
-
+        StudyTaskBean bean = new Gson().fromJson(result, StudyTaskBean.class);
+        if (bean.code.equals("0000")) {
+            final List<StudyTaskBean.DataBean.Bean> beans = bean.getData().getStudyTaskList();
+            if (!beans.isEmpty()) {
+                adapter = new StudyTaskAdapter(this, R.layout.item_study_task, beans);
+                rv_study_task.setAdapter(adapter);
+                adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                        StudyTaskForm form = new StudyTaskForm();
+                        form.taskId = beans.get(position).getId();
+                        goTo(TaskBriefActivity.class, form);
+                    }
+                });
+            }
+        }
     }
 
     @Override

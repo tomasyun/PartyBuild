@@ -84,7 +84,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
     }
 
     @Override
-    public void resultSuccess(OnlineExamBean result) {
+    public void resultSuccess(String result) {
 
     }
 

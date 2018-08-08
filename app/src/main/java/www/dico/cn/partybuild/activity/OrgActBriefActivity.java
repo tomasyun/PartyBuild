@@ -24,7 +24,7 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
     }
 
     @Override
-    public void resultSuccess(OrgActBriefBean result) {
+    public void resultSuccess(String result) {
 
     }
 

@@ -60,7 +60,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
     }
 
     @Override
-    public void resultSuccess(MeetBriefBean result) {
+    public void resultSuccess(String result) {
 
     }
 

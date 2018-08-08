@@ -52,7 +52,7 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
     }
 
     @Override
-    public void resultSuccess(BaseProtocol result) {
+    public void resultSuccess(String result) {
 
     }
 

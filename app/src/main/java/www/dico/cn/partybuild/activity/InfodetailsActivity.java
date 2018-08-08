@@ -43,7 +43,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     }
 
     @Override
-    public void resultSuccess(InfodetailBean result) {
+    public void resultSuccess(String result) {
 
     }
 

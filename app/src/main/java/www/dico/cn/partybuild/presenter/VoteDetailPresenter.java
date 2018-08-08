@@ -28,10 +28,10 @@ public class VoteDetailPresenter extends BaseMvpPresenter<VoteDetailView> {
         };
         disposable = EasyHttp.post("")
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<VoteDetailBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(VoteDetailBean voteDetailBean) {
-                        getMvpView().resultSuccess(voteDetailBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

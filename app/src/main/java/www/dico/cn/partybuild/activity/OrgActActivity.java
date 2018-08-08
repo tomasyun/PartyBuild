@@ -57,7 +57,7 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
     }
 
     @Override
-    public void resultSuccess(OrgActBean result) {
+    public void resultSuccess(String result) {
 
     }
 

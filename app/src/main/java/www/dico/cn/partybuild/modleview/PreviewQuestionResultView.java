@@ -4,7 +4,7 @@ import www.dico.cn.partybuild.bean.PreviewQuestionBean;
 import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 
 public interface PreviewQuestionResultView extends BaseMvpView {
-    void resultSuccess(PreviewQuestionBean result);
+    void resultSuccess(String result);
 
     void resultFailure(String result);
 }

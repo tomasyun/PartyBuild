@@ -4,7 +4,7 @@ import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 import www.dico.cn.partybuild.bean.CreditInfoBean;
 
 public interface CreditInfoView extends BaseMvpView {
-    void resultSuccess(CreditInfoBean result);
+    void resultSuccess(String result);
 
     void resultFailure(String result);
 }

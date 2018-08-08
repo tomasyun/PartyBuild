@@ -4,7 +4,7 @@ import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 import www.dico.cn.partybuild.bean.BaseInfoBean;
 
 public interface BaseInfoView extends BaseMvpView {
-    void resultSuccess(BaseInfoBean result);
+    void resultSuccess(String result);
 
     void resultFailure(String result);
 }

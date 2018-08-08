@@ -50,7 +50,7 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
 
     @Override
     public void resultSuccess(String result) {
-        LoginBean bean=new Gson().fromJson(result,LoginBean.class);
+        LoginBean bean = new Gson().fromJson(result, LoginBean.class);
         if (bean.getCode().equals("0000")) {
             String partyPosition = bean.getData().getPartyBranchPost();//党内职务
             String position = bean.getData().getPosition();//行政职务
@@ -62,13 +62,13 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
             AppConfig.getSpUtils().put("partyBranchPost", partyPosition);
             position = (null == position) ? "" : position;
             AppConfig.getSpUtils().put("position", position);
-            AppConfig.getSpUtils().put("token", "Bearer "+token);
+            AppConfig.getSpUtils().put("token", "Bearer " + token);
             AppConfig.getSpUtils().put("userId", userId);
             AppConfig.getSpUtils().put("avatar", avatar);
             AppConfig.getSpUtils().put("isManager", isManager);
             goTo(MainActivity.class, null);
             finish();
-        }else {
+        } else {
             showToast(bean.getMsg());
         }
     }

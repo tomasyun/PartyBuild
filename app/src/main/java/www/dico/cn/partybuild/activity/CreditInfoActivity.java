@@ -75,7 +75,7 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
     }
 
     @Override
-    public void resultSuccess(CreditInfoBean result) {
+    public void resultSuccess(String result) {
 
     }
 

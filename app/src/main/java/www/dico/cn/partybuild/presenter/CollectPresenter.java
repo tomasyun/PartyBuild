@@ -28,10 +28,10 @@ public class CollectPresenter extends BaseMvpPresenter<CollectView> {
         };
         disposable = EasyHttp.post("")
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<CollectsBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(CollectsBean collectsBean) {
-                        getMvpView().resultSuccess(collectsBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

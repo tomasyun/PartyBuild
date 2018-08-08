@@ -48,7 +48,7 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
     }
 
     @Override
-    public void resultSuccess(MailboxListBean result) {
+    public void resultSuccess(String result) {
 
     }
 

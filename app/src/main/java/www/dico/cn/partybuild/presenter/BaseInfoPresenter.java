@@ -28,10 +28,10 @@ public class BaseInfoPresenter extends BaseMvpPresenter<BaseInfoView> {
     public void getBaseInfoRequest(String id) {
         disposable = EasyHttp.post("")
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<BaseInfoBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(BaseInfoBean baseInfoBean) {
-                        getMvpView().resultSuccess(baseInfoBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

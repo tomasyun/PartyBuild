@@ -43,7 +43,7 @@ public class CollectActivity extends AbstractMvpActivity<CollectView, CollectPre
     }
 
     @Override
-    public void resultSuccess(CollectsBean result) {
+    public void resultSuccess(String result) {
 
     }
 

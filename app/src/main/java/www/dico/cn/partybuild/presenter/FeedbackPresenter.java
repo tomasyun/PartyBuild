@@ -29,10 +29,10 @@ public class FeedbackPresenter extends BaseMvpPresenter<FeedbackView> {
         disposable = EasyHttp.post("")
                 .params("id", id)
                 .params("content", content)
-                .execute(new ProgressDialogCallBack<BaseProtocol>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(BaseProtocol protocol) {
-                        getMvpView().resultSuccess(protocol);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

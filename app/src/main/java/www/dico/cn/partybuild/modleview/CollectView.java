@@ -4,7 +4,7 @@ import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 import www.dico.cn.partybuild.bean.CollectsBean;
 
 public interface CollectView extends BaseMvpView {
-    void resultSuccess(CollectsBean result);
+    void resultSuccess(String result);
 
     void resultFailure(String result);
 }

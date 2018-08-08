@@ -55,7 +55,7 @@ public class QuestionSurveyActivity extends AbstractMvpActivity<QuestionSurveyVi
     }
 
     @Override
-    public void resultSuccess(QuestionSurveyBean result) {
+    public void resultSuccess(String result) {
 
     }
 

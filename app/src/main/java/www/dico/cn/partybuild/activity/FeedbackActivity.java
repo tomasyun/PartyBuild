@@ -43,7 +43,7 @@ public class FeedbackActivity extends AbstractMvpActivity<FeedbackView, Feedback
     }
 
     @Override
-    public void resultSuccess(BaseProtocol result) {
+    public void resultSuccess(String result) {
 
     }
 

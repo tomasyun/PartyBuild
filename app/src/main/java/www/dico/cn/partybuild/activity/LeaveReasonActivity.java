@@ -56,7 +56,7 @@ public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, Le
     }
 
     @Override
-    public void resultSuccess(BaseProtocol result) {
+    public void resultSuccess(String result) {
 
     }
 

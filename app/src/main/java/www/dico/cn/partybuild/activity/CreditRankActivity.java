@@ -81,7 +81,7 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
     }
 
     @Override
-    public void resultSuccess(CreditRankBean result) {
+    public void resultSuccess(String result) {
 
     }
 

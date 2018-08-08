@@ -30,10 +30,10 @@ public class PwdupdatePresenter extends BaseMvpPresenter<PwdupdateView> {
                 .params("id", id)
                 .params("oldPassword", oldPassword)
                 .params("newPassword", newPassword)
-                .execute(new ProgressDialogCallBack<PwdupdateBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(PwdupdateBean pwdupdateBean) {
-                        getMvpView().resultSuccess(pwdupdateBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

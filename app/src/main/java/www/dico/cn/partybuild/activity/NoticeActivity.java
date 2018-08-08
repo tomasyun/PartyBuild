@@ -48,7 +48,7 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
     }
 
     @Override
-    public void resultSuccess(NoticeBean result) {
+    public void resultSuccess(String result) {
 
     }
 

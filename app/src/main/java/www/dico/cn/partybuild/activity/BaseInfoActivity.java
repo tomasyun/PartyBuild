@@ -28,7 +28,7 @@ public class BaseInfoActivity extends AbstractMvpActivity<BaseInfoView, BaseInfo
     }
 
     @Override
-    public void resultSuccess(BaseInfoBean result) {
+    public void resultSuccess(String result) {
 
     }
 

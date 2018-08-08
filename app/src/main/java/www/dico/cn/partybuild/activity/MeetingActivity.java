@@ -57,7 +57,7 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
     }
 
     @Override
-    public void resultSuccess(MeetingBean result) {
+    public void resultSuccess(String result) {
 
     }
 

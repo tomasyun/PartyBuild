@@ -55,7 +55,7 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
     }
 
     @Override
-    public void resultSuccess(VoteListBean result) {
+    public void resultSuccess(String result) {
 
     }
 

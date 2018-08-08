@@ -28,10 +28,10 @@ public class CreditInfoPresenter extends BaseMvpPresenter<CreditInfoView> {
         };
         disposable = EasyHttp.post("")
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<CreditInfoBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(CreditInfoBean creditInfoBean) {
-                        getMvpView().resultSuccess(creditInfoBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

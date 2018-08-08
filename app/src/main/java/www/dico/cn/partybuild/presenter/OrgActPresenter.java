@@ -27,10 +27,10 @@ public class OrgActPresenter extends BaseMvpPresenter<OrgActView> {
             }
         };
         disposable = EasyHttp.post("")
-                .execute(new ProgressDialogCallBack<OrgActBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(OrgActBean orgActBean) {
-                        getMvpView().resultSuccess(orgActBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

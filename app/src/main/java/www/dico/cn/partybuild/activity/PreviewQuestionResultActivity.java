@@ -25,7 +25,7 @@ public class PreviewQuestionResultActivity extends AbstractMvpActivity<PreviewQu
 
 
     @Override
-    public void resultSuccess(PreviewQuestionBean result) {
+    public void resultSuccess(String result) {
 
     }
 

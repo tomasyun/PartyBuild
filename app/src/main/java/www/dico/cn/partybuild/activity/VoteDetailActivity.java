@@ -104,7 +104,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
     }
 
     @Override
-    public void resultSuccess(VoteDetailBean result) {
+    public void resultSuccess(String result) {
 
     }
 

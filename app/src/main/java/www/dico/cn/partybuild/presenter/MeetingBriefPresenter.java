@@ -28,10 +28,10 @@ public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
         };
         disposable = EasyHttp.post("")
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<MeetBriefBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(MeetBriefBean meetBriefBean) {
-                        getMvpView().resultSuccess(meetBriefBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

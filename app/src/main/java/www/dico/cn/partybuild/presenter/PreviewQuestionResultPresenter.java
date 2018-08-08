@@ -28,10 +28,10 @@ public class PreviewQuestionResultPresenter extends BaseMvpPresenter<PreviewQues
         };
         disposable = EasyHttp.post("")
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<PreviewQuestionBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(PreviewQuestionBean previewQuestionBean) {
-                        getMvpView().resultSuccess(previewQuestionBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

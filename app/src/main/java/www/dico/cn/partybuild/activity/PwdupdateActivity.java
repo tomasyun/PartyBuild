@@ -55,7 +55,7 @@ public class PwdupdateActivity extends AbstractMvpActivity<PwdupdateView, Pwdupd
     }
 
     @Override
-    public void resultSuccess(PwdupdateBean result) {
+    public void resultSuccess(String result) {
 
     }
 

@@ -27,10 +27,10 @@ public class MailboxListPresenter extends BaseMvpPresenter<MailboxListView> {
             }
         };
         disposable = EasyHttp.post("")
-                .execute(new ProgressDialogCallBack<MailboxListBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(MailboxListBean mailboxListBean) {
-                        getMvpView().resultSuccess(mailboxListBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

@@ -28,11 +28,11 @@ public class OnlineExamPresenter extends BaseMvpPresenter<OnlineExamView> {
         };
         disposable = EasyHttp.post("")
                 .params("examId", examId)
-                .execute(new ProgressDialogCallBack<OnlineExamBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
 
                     @Override
-                    public void onSuccess(OnlineExamBean onlineExamBean) {
-                        getMvpView().resultSuccess(onlineExamBean);
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

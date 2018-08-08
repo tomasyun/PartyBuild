@@ -4,7 +4,7 @@ import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 import www.dico.cn.partybuild.bean.NoticeBean;
 
 public interface NoticeView extends BaseMvpView {
-    void resultSuccess(NoticeBean result);
+    void resultSuccess(String result);
 
     void resultFailure(String result);
 }
