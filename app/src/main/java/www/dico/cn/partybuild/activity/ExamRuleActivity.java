@@ -10,19 +10,16 @@ import com.google.gson.Gson;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.ExamRuleBean;
 import www.dico.cn.partybuild.bean.ExamRuleForm;
 import www.dico.cn.partybuild.modleview.ExamRuleView;
-import www.dico.cn.partybuild.mvp.FieldView;
-import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
-import www.dico.cn.partybuild.bean.ExamRuleBean;
 import www.dico.cn.partybuild.presenter.ExamRulePresenter;
 
 //考试规则
 @CreatePresenter(ExamRulePresenter.class)
 public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRulePresenter> implements ExamRuleView {
-    private ExamRuleForm form;
     @BindView(R.id.tv_total_score)
     TextView tv_total_score;//总分数
     @BindView(R.id.tv_standard_score)
@@ -35,6 +32,7 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
     TextView tv_exam_start_date;//考试开始时间
     @BindView(R.id.tv_exam_end_date)
     TextView tv_exam_end_date;//考试结束时间
+    private ExamRuleForm form;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +40,8 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
         setContentView(R.layout.activity_examrule);
         ButterKnife.bind(this);
         form = getParam();
-        getMvpPresenter().examRuleRequest(form.examId);
+        if (form != null)
+            getMvpPresenter().examRuleRequest(form.examId);
     }
 
     //返回

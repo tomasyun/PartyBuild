@@ -18,28 +18,28 @@ import www.dico.cn.partybuild.bean.QuestionBean;
  * @Date: 2018\5\24 0024 11:10
  */
 public class QuestionsAdapter extends ViewPagerCommonAdapter<QuestionBean> {
+    String radioAnswer = "";
     private List<QuestionBean> datas;
     private CallBackInterface callBackInterface;
-    String radioAnswer = "";
 //    String tqId="";
-
-    public void setCallBackInterface(CallBackInterface callBackInterface) {
-        this.callBackInterface = callBackInterface;
-    }
 
     public QuestionsAdapter(Context context, List<QuestionBean> datas, int itemViewId) {
         super(context, datas, itemViewId);
         this.datas = datas;
     }
 
+    public void setCallBackInterface(CallBackInterface callBackInterface) {
+        this.callBackInterface = callBackInterface;
+    }
+
     @Override
     protected void convert(final ViewPagerCommonViewHolder holder, QuestionBean item, final int position) {
 
-        holder.setText(R.id.tv_title_question,item.getTitle());
+        holder.setText(R.id.tv_title_question, item.getTitle());
         holder.setOnClickListener(R.id.tv_next_question, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(AppManager.getManager().curActivity(), ExamResultActivity.class);
+                Intent intent = new Intent(AppManager.getManager().curActivity(), ExamResultActivity.class);
                 AppManager.getManager().curActivity().startActivity(intent);
             }
         });

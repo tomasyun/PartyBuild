@@ -1,9 +1,9 @@
 package www.dico.cn.partybuild;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -12,33 +12,33 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.fragment.ExamFragment;
 import www.dico.cn.partybuild.fragment.HomeFragment;
 import www.dico.cn.partybuild.fragment.InfoFragment;
 import www.dico.cn.partybuild.fragment.PersonalFragment;
 import www.dico.cn.partybuild.fragment.SignInFragment;
 import www.dico.cn.partybuild.modleview.MainView;
-import www.dico.cn.partybuild.mvp.FieldView;
-import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.MainPresenter;
+import www.dico.cn.partybuild.widget.NoScrollViewPager;
 import www.yuntdev.com.bottomnavigationlibrary.adapter.MyViewPagerAdapter;
 import www.yuntdev.com.bottomnavigationlibrary.controller.NavigationController;
 import www.yuntdev.com.bottomnavigationlibrary.item.BaseTabItem;
 import www.yuntdev.com.bottomnavigationlibrary.item.NormalItemView;
-import www.yuntdev.com.bottomnavigationlibrary.referview.NoTouchViewPager;
 import www.yuntdev.com.bottomnavigationlibrary.referview.PageBottomTabLayout;
 
 
 @CreatePresenter(MainPresenter.class)
 public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> implements MainView {
-    @FieldView(R.id.vp_main)
-    NoTouchViewPager vp_main;
-    @FieldView(R.id.tab_main)
+    private static boolean isExit = false;
+    @BindView(R.id.vp_main)
+    NoScrollViewPager vp_main;
+    @BindView(R.id.tab_main)
     PageBottomTabLayout tab_main;
     private NavigationController controller;
-    private static boolean isExit = false;
     private List<Fragment> fragments;
     private Handler mHandler = new Handler() {
         @Override
@@ -52,7 +52,7 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
         controller = tab_main
                 .custom()
                 .addItem(tabItem(R.mipmap.img_home_on, R.mipmap.img_home_ok, "首页"))
@@ -63,6 +63,7 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
                 .addItem(tabItem(R.mipmap.img_mine_on, R.mipmap.img_mine_ok, "我的"))
                 .build();
         setUp();
+        vp_main.setNoScroll(true);
         vp_main.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager(), controller.getItemCount(), fragments));
         vp_main.setCurrentItem(0);
         controller.setupWithViewPager(vp_main);

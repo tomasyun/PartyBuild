@@ -3,9 +3,9 @@ package www.dico.cn.partybuild.presenter;
 import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.bean.HomeBean;
 import www.dico.cn.partybuild.modleview.HomeView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.bean.HomeBean;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
@@ -26,7 +26,7 @@ public class HomePresenter extends BaseMvpPresenter<HomeView> {
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("")
+        EasyHttp.post("")
                 .execute(new ProgressDialogCallBack<HomeBean>(dialog, true, true) {
 
                     @Override
@@ -39,19 +39,6 @@ public class HomePresenter extends BaseMvpPresenter<HomeView> {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
-    }
-
-    @Override
-    public void onDestroyPresenter() {
-        super.onDestroyPresenter();
-        if (null != disposable && disposable.isDisposed())
-            disposable.dispose();
     }
 }

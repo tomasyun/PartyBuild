@@ -14,14 +14,10 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
-import www.dico.cn.partybuild.bean.VoteDetailBean;
 import www.dico.cn.partybuild.modleview.VoteDetailView;
-import www.dico.cn.partybuild.mvp.FieldView;
-import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.VoteDetailPresenter;
-import www.dico.cn.partybuild.presenter.VoteManagerPresenter;
 import www.dico.cn.partybuild.utils.SizeUtils;
 
 @CreatePresenter(VoteDetailPresenter.class)

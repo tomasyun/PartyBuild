@@ -27,7 +27,7 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("examList")
+      EasyHttp.post("examList")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("type", type)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
@@ -40,11 +40,6 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().examOnResultFailure(e.getMessage());
-                    }
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
                     }
                 });
     }
@@ -63,7 +58,7 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("examList")
+        EasyHttp.post("examList")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("type", type)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
@@ -78,12 +73,5 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
                         getMvpView().examOkResultFailure(e.getMessage());
                     }
                 });
-    }
-
-    @Override
-    public void onDestroyPresenter() {
-        super.onDestroyPresenter();
-        if (null != disposable && disposable.isDisposed())
-            disposable.dispose();
     }
 }

@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class QuestionSurveyBean extends BaseProtocol{
+public class QuestionSurveyBean extends BaseProtocol {
     private String title;
 
     public String getTitle() {

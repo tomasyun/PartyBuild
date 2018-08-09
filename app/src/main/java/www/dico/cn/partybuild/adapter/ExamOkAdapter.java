@@ -6,7 +6,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import www.dico.cn.partybuild.R;
-import www.dico.cn.partybuild.bean.ExamOkBean;
 import www.dico.cn.partybuild.bean.ExamsBean;
 import www.yuntdev.com.baseadapterlibrary.base.CommonAdapter;
 import www.yuntdev.com.baseadapterlibrary.base.ViewHolder;

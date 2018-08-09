@@ -11,9 +11,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.modleview.PayDuesView;
-import www.dico.cn.partybuild.mvp.FieldView;
 import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -28,7 +28,7 @@ public class PayDuesActivity extends AbstractMvpActivity<PayDuesView, PayDuesPre
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paydues);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
         SpannableString content = new SpannableString("20.00元");
         content.setSpan(new AbsoluteSizeSpan(40), 0, content.length() - 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         content.setSpan(new AbsoluteSizeSpan(25), 5, content.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

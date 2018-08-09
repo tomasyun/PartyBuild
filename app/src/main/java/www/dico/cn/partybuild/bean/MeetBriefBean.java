@@ -1,4 +1,4 @@
 package www.dico.cn.partybuild.bean;
 
-public class MeetBriefBean extends BaseProtocol{
+public class MeetBriefBean extends BaseProtocol {
 }

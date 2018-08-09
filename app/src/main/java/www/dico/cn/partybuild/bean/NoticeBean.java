@@ -1,8 +1,10 @@
 package www.dico.cn.partybuild.bean;
 
-public class NoticeBean extends BaseProtocol{
+public class NoticeBean extends BaseProtocol {
     private String avatar;
     private String name;
+    private String date;
+    private String content;
 
     public String getAvatar() {
         return avatar;
@@ -35,7 +37,4 @@ public class NoticeBean extends BaseProtocol{
     public void setContent(String content) {
         this.content = content;
     }
-
-    private String date;
-    private String content;
 }

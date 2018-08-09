@@ -2,7 +2,7 @@ package www.dico.cn.partybuild.bean;
 
 import java.util.List;
 
-public class ExamsBean extends BaseProtocol{
+public class ExamsBean extends BaseProtocol {
 
     private List<DataBean> data;
 

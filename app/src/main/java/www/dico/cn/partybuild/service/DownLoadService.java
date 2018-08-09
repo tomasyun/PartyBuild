@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import java.io.File;
 
-import retrofit2.Retrofit;
 import www.dico.cn.partybuild.utils.FileUtils;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.DownloadProgressCallBack;

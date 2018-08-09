@@ -24,10 +24,6 @@ public class DensityUtils {
     public static int dip2px(Context context, float dpVal) {
         return dp2px(context, dpVal);
     }
-    
-    public DisplayMetrics getDisplayMetrics(Context context){
-        return context.getResources().getDisplayMetrics();
-    }
 
     /**
      * dp转px
@@ -93,6 +89,10 @@ public class DensityUtils {
         int screenHeight = dm.heightPixels; // 屏幕高（像素，如：800px）
 
         return screenWidth + "*" + screenHeight;
+    }
+
+    public DisplayMetrics getDisplayMetrics(Context context) {
+        return context.getResources().getDisplayMetrics();
     }
 
 }

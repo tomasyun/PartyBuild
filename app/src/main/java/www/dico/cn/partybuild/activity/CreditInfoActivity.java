@@ -19,13 +19,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.CreditInfoAdapter;
-import www.dico.cn.partybuild.mvp.FieldView;
 import www.dico.cn.partybuild.bean.CreditInfoBean;
-import www.dico.cn.partybuild.presenter.CreditInfoPresenter;
 import www.dico.cn.partybuild.modleview.CreditInfoView;
-import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
+import www.dico.cn.partybuild.presenter.CreditInfoPresenter;
 
 //积分详情
 @CreatePresenter(CreditInfoPresenter.class)
@@ -34,9 +32,9 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
     TextView tv_credit_info_score;
     @BindView(R.id.rg_credit_info)
     RadioGroup rg_credit_info;
-    private CreditInfoAdapter adapter;
     @BindView(R.id.rv_credit_info)
     RecyclerView rv_credit_info;
+    private CreditInfoAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

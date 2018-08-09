@@ -3,7 +3,6 @@ package www.dico.cn.partybuild.presenter;
 import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.bean.QuestionSurveyBean;
 import www.dico.cn.partybuild.modleview.QuestionSurveyView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -26,7 +25,7 @@ public class QuestionSurveyPresenter extends BaseMvpPresenter<QuestionSurveyView
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("")
+        EasyHttp.post("")
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
@@ -38,19 +37,6 @@ public class QuestionSurveyPresenter extends BaseMvpPresenter<QuestionSurveyView
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
-    }
-
-    @Override
-    public void onDestroyPresenter() {
-        super.onDestroyPresenter();
-        if (!disposable.isDisposed())
-            disposable.dispose();
     }
 }

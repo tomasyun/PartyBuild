@@ -25,7 +25,7 @@ public class RefreshNoticeService extends Service {
 
             }
         }).start();
-        AlarmManager manager=(AlarmManager) getSystemService(ALARM_SERVICE);
+        AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent i = new Intent(this, AlarmReceiver.class);
         PendingIntent pi = PendingIntent.getBroadcast(this, 0, i, 0);
         manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, 0, pi);

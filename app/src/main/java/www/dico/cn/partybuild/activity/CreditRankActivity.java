@@ -20,12 +20,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.CreditRankAdapter;
+import www.dico.cn.partybuild.bean.CreditRankBean;
 import www.dico.cn.partybuild.modleview.CreditRankView;
-import www.dico.cn.partybuild.mvp.FieldView;
-import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
-import www.dico.cn.partybuild.bean.CreditRankBean;
 import www.dico.cn.partybuild.presenter.CreditRankPresenter;
 
 //积分排名

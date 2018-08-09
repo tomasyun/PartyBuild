@@ -17,25 +17,25 @@ public class PresenterMvpFactoryImpl<V extends BaseMvpView, P extends BaseMvpPre
     private final Class<P> mPresenterClass;
 
 
+    private PresenterMvpFactoryImpl(Class<P> presenterClass) {
+        this.mPresenterClass = presenterClass;
+    }
+
     /**
      * 根据注解创建Presenter的工厂实现类
+     *
      * @param viewClazz 需要创建Presenter的V层实现类
-     * @param <V> 当前View实现的接口类型
-     * @param <P> 当前要创建的Presenter类型
+     * @param <V>       当前View实现的接口类型
+     * @param <P>       当前要创建的Presenter类型
      * @return 工厂类
      */
-    public static <V extends BaseMvpView, P extends BaseMvpPresenter<V>> PresenterMvpFactoryImpl<V,P> createFactory(Class<?> viewClazz){
+    public static <V extends BaseMvpView, P extends BaseMvpPresenter<V>> PresenterMvpFactoryImpl<V, P> createFactory(Class<?> viewClazz) {
         CreatePresenter annotation = viewClazz.getAnnotation(CreatePresenter.class);
         Class<P> aClass = null;
-        if(annotation != null){
+        if (annotation != null) {
             aClass = (Class<P>) annotation.value();
         }
         return aClass == null ? null : new PresenterMvpFactoryImpl<V, P>(aClass);
-    }
-
-
-    private PresenterMvpFactoryImpl(Class<P> presenterClass) {
-        this.mPresenterClass = presenterClass;
     }
 
     @Override

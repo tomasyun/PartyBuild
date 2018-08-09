@@ -8,11 +8,10 @@ import com.google.gson.Gson;
 
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.BaseInfoBean;
 import www.dico.cn.partybuild.modleview.BaseInfoView;
-import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
-import www.dico.cn.partybuild.bean.BaseInfoBean;
 import www.dico.cn.partybuild.presenter.BaseInfoPresenter;
 
 //党员个人基本信息

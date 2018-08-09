@@ -365,8 +365,8 @@ public class DateTimeUtils {
                 try {
                     String utcTime = loginInfo[1];
                     beiJingTime = DateTimeUtils.getUserZoneString(utcTime, "HH:mm", null);
-                    String repaceTimeStr = "#"+utcTime+"#";
-                    beiJingTime = message.replace(repaceTimeStr,beiJingTime);
+                    String repaceTimeStr = "#" + utcTime + "#";
+                    beiJingTime = message.replace(repaceTimeStr, beiJingTime);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

@@ -18,9 +18,9 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 import www.dico.cn.partybuild.TokenManager;
+import www.dico.cn.partybuild.bean.AuthModel;
 import www.dico.cn.partybuild.constant.AppConstant;
 import www.dico.cn.partybuild.constant.ComParamContact;
-import www.dico.cn.partybuild.bean.AuthModel;
 import www.dico.cn.partybuild.utils.DateTimeUtils;
 import www.dico.cn.partybuild.utils.MD5;
 import www.yuntdev.com.library.EasyHttp;
@@ -37,6 +37,7 @@ import www.yuntdev.com.library.utils.HttpLog;
  * 版本： v1.0<br>
  */
 public class TokenInterceptor extends BaseExpiredInterceptor {
+    AuthModel authModel = null;
     private ApiResult apiResult;
 
     @Override
@@ -98,8 +99,6 @@ public class TokenInterceptor extends BaseExpiredInterceptor {
         }
         return null;
     }
-
-    AuthModel authModel = null;
 
     //同步请求refreshToken
     public void refreshToken() throws IOException {

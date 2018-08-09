@@ -2,15 +2,10 @@ package www.dico.cn.partybuild;
 
 import android.app.Application;
 
-import com.google.gson.Gson;
-
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import www.dico.cn.partybuild.interceptor.CustomSignInterceptor;
-import www.dico.cn.partybuild.utils.SystemInfoUtils;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.cache.converter.SerializableDiskConverter;
 import www.yuntdev.com.library.model.HttpHeaders;

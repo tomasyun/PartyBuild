@@ -26,7 +26,7 @@ public class StudyTaskPresenter extends BaseMvpPresenter<StudyTaskView> {
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("studyTaskList")
+        EasyHttp.post("studyTaskList")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
@@ -39,19 +39,6 @@ public class StudyTaskPresenter extends BaseMvpPresenter<StudyTaskView> {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
-    }
-
-    @Override
-    public void onDestroyPresenter() {
-        super.onDestroyPresenter();
-        if (!disposable.isDisposed())
-            disposable.dispose();
     }
 }

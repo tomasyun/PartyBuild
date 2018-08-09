@@ -15,14 +15,28 @@ import www.dico.cn.partybuild.bean.HistoryTagBean;
 public class SqliteProxy extends OrmLiteSqliteOpenHelper {
     private static final String NAME = "orderlang.db";
     private static final int VERSION = 1;
+    private static SqliteProxy instance;
     /**
      * dao，每张表对应一个
      */
     private Dao<HistoryTagBean, Integer> dao;
-    private static SqliteProxy instance;
 
     public SqliteProxy(Context context) {
         super(context, NAME, null, VERSION);
+    }
+
+    /**
+     * 单例获取该Helper
+     */
+    public static synchronized SqliteProxy getHelper(Context context) {
+        if (instance == null) {
+            synchronized (SqliteProxy.class) {
+                if (instance == null) {
+                    instance = new SqliteProxy(context);
+                }
+            }
+        }
+        return instance;
     }
 
     @Override
@@ -44,20 +58,6 @@ public class SqliteProxy extends OrmLiteSqliteOpenHelper {
             e.printStackTrace();
         }
         onCreate(sqLiteDatabase, getConnectionSource());
-    }
-
-    /**
-     * 单例获取该Helper
-     */
-    public static synchronized SqliteProxy getHelper(Context context) {
-        if (instance == null) {
-            synchronized (SqliteProxy.class) {
-                if (instance == null) {
-                    instance = new SqliteProxy(context);
-                }
-            }
-        }
-        return instance;
     }
 
     /**

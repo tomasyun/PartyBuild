@@ -34,7 +34,7 @@ public class LoginPresenter extends BaseMvpPresenter<LoginView> {
         map.put("username", name);
         map.put("password", password);
         String params = new Gson().toJson(map);
-        disposable = EasyHttp.post("auth/mobileLogin")
+        EasyHttp.post("auth/mobileLogin")
                 .upJson(params)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
@@ -47,19 +47,6 @@ public class LoginPresenter extends BaseMvpPresenter<LoginView> {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
-    }
-
-    @Override
-    public void onDestroyPresenter() {
-        super.onDestroyPresenter();
-        if (null != disposable && disposable.isDisposed())
-            disposable.dispose();
     }
 }

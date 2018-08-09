@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class CollectListBean extends BaseProtocol{
+public class CollectListBean extends BaseProtocol {
     private String content;
 
     public String getContent() {

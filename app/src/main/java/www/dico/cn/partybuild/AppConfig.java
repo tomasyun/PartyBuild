@@ -1,20 +1,19 @@
 package www.dico.cn.partybuild;
 
 import android.content.Context;
-import android.content.Intent;
 
-import www.dico.cn.partybuild.service.RefreshNoticeService;
 import www.dico.cn.partybuild.utils.SPUtils;
 
 public class AppConfig {
     public static final boolean DEBUG = Boolean.parseBoolean("true");
+    public static final String ACTION = "cn.diconet.www.action";
     private static Context context = null;
     private static SPUtils spUtils;
-    public static final String ACTION = "cn.diconet.www.action";
 
     public static SPUtils getSpUtils() {
         return spUtils;
     }
+
     /**
      * 初始化工具类
      *

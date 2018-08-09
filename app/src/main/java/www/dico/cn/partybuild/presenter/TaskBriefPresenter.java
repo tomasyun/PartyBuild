@@ -4,7 +4,6 @@ import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.bean.TaskBriefBean;
 import www.dico.cn.partybuild.modleview.TaskBriefView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -27,7 +26,7 @@ public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("studyTaskInfo")
+        EasyHttp.post("studyTaskInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
@@ -40,12 +39,6 @@ public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
-                    }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
                     }
                 });
     }
@@ -63,7 +56,7 @@ public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("isCompleteTask")
+       EasyHttp.post("isCompleteTask")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
@@ -77,19 +70,6 @@ public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
                         super.onError(e);
                         getMvpView().verifyFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
-    }
-
-    @Override
-    public void onDestroyPresenter() {
-        super.onDestroyPresenter();
-        if (!disposable.isDisposed())
-            disposable.dispose();
     }
 }

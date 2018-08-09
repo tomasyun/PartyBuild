@@ -10,23 +10,17 @@ import android.widget.RadioGroup;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.ExamRuleActivity;
 import www.dico.cn.partybuild.adapter.ExamOkAdapter;
 import www.dico.cn.partybuild.adapter.ExamOnAdapter;
-import www.dico.cn.partybuild.bean.ExamOkBean;
-import www.dico.cn.partybuild.bean.ExamOnBean;
-import www.dico.cn.partybuild.bean.ExamRuleBean;
 import www.dico.cn.partybuild.bean.ExamRuleForm;
+import www.dico.cn.partybuild.bean.ExamsBean;
 import www.dico.cn.partybuild.modleview.ExamView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
-import www.dico.cn.partybuild.bean.ExamsBean;
 import www.dico.cn.partybuild.presenter.ExamPresenter;
 import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 
@@ -44,7 +38,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exam, null);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         rg_exam.check(R.id.rbt_exam_on);
         rg_exam.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

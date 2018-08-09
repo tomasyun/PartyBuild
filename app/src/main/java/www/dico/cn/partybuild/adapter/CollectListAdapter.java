@@ -18,8 +18,8 @@ public class CollectListAdapter extends CommonAdapter<CollectListBean> {
 
     @Override
     protected void convert(ViewHolder holder, CollectListBean collectListBean, int position) {
-        holder.setText(R.id.tv_title_collect_item,collectListBean.getContent());
-        TextView tv_cancel_collect_item=holder.getView(R.id.tv_cancel_collect_item);
-        tv_cancel_collect_item.setText(Html.fromHtml("取消"+"<br>"+"收藏"));
+        holder.setText(R.id.tv_title_collect_item, collectListBean.getContent());
+        TextView tv_cancel_collect_item = holder.getView(R.id.tv_cancel_collect_item);
+        tv_cancel_collect_item.setText(Html.fromHtml("取消" + "<br>" + "收藏"));
     }
 }

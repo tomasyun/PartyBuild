@@ -9,11 +9,11 @@ import android.support.v4.app.Fragment;
 import java.io.Serializable;
 
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.bean.Form;
 import www.dico.cn.partybuild.mvp.factory.PresenterMvpFactoryImpl;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.mvp.proxy.BaseMvpProxy;
 import www.dico.cn.partybuild.mvp.proxy.PresenterProxyInterface;
-import www.dico.cn.partybuild.bean.Form;
 import www.dico.cn.partybuild.widget.CustomToast;
 
 /**
@@ -157,6 +157,7 @@ public class AbstractFragment<V extends BaseMvpView, P extends BaseMvpPresenter<
         }
         return temp;
     }
+
     /**
      * @Class: preventPreLoad
      * @Description:解决fragment+viewpager出现预加载问题

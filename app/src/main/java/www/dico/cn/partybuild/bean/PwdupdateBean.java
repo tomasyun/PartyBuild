@@ -1,4 +1,4 @@
 package www.dico.cn.partybuild.bean;
 
-public class PwdupdateBean extends BaseProtocol{
+public class PwdupdateBean extends BaseProtocol {
 }

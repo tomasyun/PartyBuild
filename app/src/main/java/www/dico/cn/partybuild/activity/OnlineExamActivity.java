@@ -17,11 +17,8 @@ import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.QuestionsAdapter;
 import www.dico.cn.partybuild.bean.QuestionBean;
 import www.dico.cn.partybuild.modleview.OnlineExamView;
-import www.dico.cn.partybuild.mvp.FieldView;
-import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
-import www.dico.cn.partybuild.bean.OnlineExamBean;
 import www.dico.cn.partybuild.presenter.OnlineExamPresenter;
 import www.dico.cn.partybuild.widget.CountDownButtonHelper;
 import www.yuntdev.com.bottomnavigationlibrary.referview.NoTouchViewPager;
@@ -30,13 +27,13 @@ import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;
 //在线考试
 @CreatePresenter(OnlineExamPresenter.class)
 public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, OnlineExamPresenter> implements OnlineExamView {
-    private CountDownButtonHelper helper;
     @BindView(R.id.tv_residue_time_online_exam)
     TextView tv_residue_time_online_exam;
-    private String during = "1";
-    private QuestionsAdapter adapter;
     @BindView(R.id.vp_online_exam)
     NoTouchViewPager vp_online_exam;
+    private CountDownButtonHelper helper;
+    private String during = "1";
+    private QuestionsAdapter adapter;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -64,7 +61,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
         setContentView(R.layout.activity_onlineexam);
         ButterKnife.bind(this);
         mHandler.sendEmptyMessage(0);
-        adapter = new QuestionsAdapter(this,questions() , R.layout.item_question);
+        adapter = new QuestionsAdapter(this, questions(), R.layout.item_question);
         vp_online_exam.setAdapter(adapter);
     }
 

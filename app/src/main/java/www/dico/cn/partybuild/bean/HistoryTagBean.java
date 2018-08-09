@@ -6,13 +6,12 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "tb_history_tag")
 public class HistoryTagBean {
 
-    public HistoryTagBean() {
-    }
-
     @DatabaseField(generatedId = true)
     private int id;
     @DatabaseField(columnName = "name")
     private String name;//标签名
+    public HistoryTagBean() {
+    }
 
     public int getId() {
         return id;

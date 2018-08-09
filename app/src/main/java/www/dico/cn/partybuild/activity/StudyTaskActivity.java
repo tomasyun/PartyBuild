@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -18,8 +17,6 @@ import www.dico.cn.partybuild.adapter.StudyTaskAdapter;
 import www.dico.cn.partybuild.bean.StudyTaskBean;
 import www.dico.cn.partybuild.bean.StudyTaskForm;
 import www.dico.cn.partybuild.modleview.StudyTaskView;
-import www.dico.cn.partybuild.mvp.FieldView;
-import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.StudyTaskPresenter;

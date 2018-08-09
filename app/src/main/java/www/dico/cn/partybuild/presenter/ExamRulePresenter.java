@@ -6,7 +6,6 @@ import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.ExamRuleView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.bean.ExamRuleBean;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
@@ -27,7 +26,7 @@ public class ExamRulePresenter extends BaseMvpPresenter<ExamRuleView> {
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("examRule")
+        EasyHttp.post("examRule")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", examId)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
@@ -41,19 +40,6 @@ public class ExamRulePresenter extends BaseMvpPresenter<ExamRuleView> {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
-    }
-
-    @Override
-    public void onDestroyPresenter() {
-        super.onDestroyPresenter();
-        if (null != disposable && disposable.isDisposed())
-            disposable.dispose();
     }
 }

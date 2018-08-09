@@ -3,7 +3,6 @@ package www.dico.cn.partybuild.presenter;
 import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.bean.VoteDetailBean;
 import www.dico.cn.partybuild.modleview.VoteDetailView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -39,19 +38,6 @@ public class VoteDetailPresenter extends BaseMvpPresenter<VoteDetailView> {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
-    }
-
-    @Override
-    public void onDestroyPresenter() {
-        super.onDestroyPresenter();
-        if (!disposable.isDisposed())
-            disposable.dispose();
     }
 }

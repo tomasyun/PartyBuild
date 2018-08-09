@@ -22,7 +22,6 @@ import www.dico.cn.partybuild.activity.FeedbackActivity;
 import www.dico.cn.partybuild.activity.MailboxListActivity;
 import www.dico.cn.partybuild.activity.NoticeActivity;
 import www.dico.cn.partybuild.activity.SettingActivity;
-import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 
 //个人中心
 public class PersonalFragment extends Fragment {

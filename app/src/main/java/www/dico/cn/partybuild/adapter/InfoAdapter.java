@@ -1,7 +1,6 @@
 package www.dico.cn.partybuild.adapter;
 
 import android.content.Context;
-import android.text.SpannableString;
 
 import java.util.List;
 

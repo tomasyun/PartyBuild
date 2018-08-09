@@ -3,6 +3,7 @@ package www.dico.cn.partybuild.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,8 +15,6 @@ import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.bean.CourseForm;
 import www.dico.cn.partybuild.bean.InfodetailBean;
 import www.dico.cn.partybuild.modleview.InfodetailsView;
-import www.dico.cn.partybuild.mvp.FieldView;
-import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.InfodetailsPresenter;
@@ -33,7 +32,8 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
         setContentView(R.layout.activity_infodetails);
         ButterKnife.bind(this);
         form = getParam();
-        getMvpPresenter().infoDetailsRequest(form.courseId, form.taskId, "0");
+        if (form != null)
+            getMvpPresenter().infoDetailsRequest(form.courseId, form.taskId, "0");
         tv_info_title.post(new Runnable() {
             @Override
             public void run() {
@@ -47,7 +47,8 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     }
 
     public void goBackInfodetail(View view) {
-        getMvpPresenter().infoDetailsRequest(form.courseId, form.taskId, "1");
+        if (form != null)
+            getMvpPresenter().infoDetailsRequest(form.courseId, form.taskId, "1");
         this.finish();
     }
 
@@ -59,5 +60,16 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (form != null) {
+                getMvpPresenter().infoDetailsRequest(form.courseId, form.taskId, "1");
+                return true;
+            }
+        }
+        return false;
     }
 }

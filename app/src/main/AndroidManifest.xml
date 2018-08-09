@@ -38,37 +38,69 @@
         </activity>
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".MainActivity" />
+        <!--设置-->
         <activity android:name=".activity.SettingActivity" />
+        <!--密码修改-->
         <activity android:name=".activity.PwdupdateActivity" />
+        <!--积分明细-->
         <activity android:name=".activity.CreditInfoActivity" />
+        <!--积分排名-->
         <activity android:name=".activity.CreditRankActivity" />
+        <!--基本信息-->
         <activity android:name=".activity.BaseInfoActivity" />
+        <!--收藏-->
         <activity android:name=".activity.CollectActivity" />
+        <!--意见反馈-->
         <activity android:name=".activity.FeedbackActivity" />
+        <!--考试规则-->
         <activity android:name=".activity.ExamRuleActivity" />
+        <!--在线考试-->
         <activity android:name=".activity.OnlineExamActivity" />
+        <!--通知-->
         <activity android:name=".activity.NoticeActivity" />
+        <!--资讯详情-->
         <activity android:name=".activity.InfodetailsActivity" />
+        <!--党费缴纳-->
         <activity android:name=".activity.PayDuesActivity" />
+        <!--积分规则-->
         <activity android:name=".activity.CreditRuleActivity" />
+        <!--三会一课-->
         <activity android:name=".activity.MeetingActivity" />
+        <!--会议摘要-->
         <activity android:name=".activity.MeetingBriefActivity" />
+        <!--领导信箱-->
         <activity android:name=".activity.MailboxActivity" />
+        <!--活动管理-->
         <activity android:name=".activity.ActivityMrgActivity" />
+        <!--组织活动-->
         <activity android:name=".activity.OrgActActivity" />
+        <!--投票管理-->
         <activity android:name=".activity.VoteManagerActivity" />
+        <!--问卷调查-->
         <activity android:name=".activity.QuestionSurveyActivity" />
+        <!--缴纳规则-->
         <activity android:name=".activity.PaymentRuleActivity" />
+        <!--组织活动摘要-->
         <activity android:name=".activity.OrgActBriefActivity" />
+        <!--学习任务-->
         <activity android:name=".activity.StudyTaskActivity" />
+        <!--通知详情-->
         <activity android:name=".activity.NoticeInfoActivity" />
+        <!--考试结果-->
         <activity android:name=".activity.ExamResultActivity" />
+        <!--查看试题结果-->
         <activity android:name=".activity.PreviewQuestionResultActivity" />
+        <!--请假原因-->
         <activity android:name=".activity.LeaveReasonActivity" />
+        <!--报名成功-->
         <activity android:name=".activity.SignUpSuccessActivity" />
+        <!--任务摘要-->
         <activity android:name=".activity.TaskBriefActivity" />
+        <!--信箱列表-->
         <activity android:name=".activity.MailboxListActivity" />
+        <!--投票详情-->
         <activity android:name=".activity.VoteDetailActivity" />
+        <!--学习成果-->
         <activity android:name=".activity.StudyResultActivity" />
 
         <!--使用高德api所申请的key-->

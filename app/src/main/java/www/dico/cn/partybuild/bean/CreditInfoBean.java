@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class CreditInfoBean extends BaseProtocol{
+public class CreditInfoBean extends BaseProtocol {
     private String title;
     private String date;
     private String score;

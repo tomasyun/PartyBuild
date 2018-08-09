@@ -27,11 +27,11 @@ import www.dico.cn.partybuild.activity.MailboxActivity;
 import www.dico.cn.partybuild.activity.MeetingActivity;
 import www.dico.cn.partybuild.activity.PayDuesActivity;
 import www.dico.cn.partybuild.activity.StudyTaskActivity;
+import www.dico.cn.partybuild.bean.AdvertiseImgM;
+import www.dico.cn.partybuild.bean.HomeBean;
 import www.dico.cn.partybuild.modleview.HomeView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
-import www.dico.cn.partybuild.bean.AdvertiseImgM;
-import www.dico.cn.partybuild.bean.HomeBean;
 import www.dico.cn.partybuild.presenter.HomePresenter;
 import www.dico.cn.partybuild.utils.GlideUtils;
 import www.dico.cn.partybuild.widget.CustomTextView;
@@ -59,7 +59,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, null);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         SpannableString content = new SpannableString("公示公告");
         content.setSpan(new ForegroundColorSpan(Color.parseColor("#0099EE")), 0, content.length() - 2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);

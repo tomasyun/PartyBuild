@@ -64,16 +64,16 @@ public class NumImageView extends ImageView {
             //设置填充样式为充满
             paint.setStyle(Paint.Style.FILL);
             //画圆
-            canvas.drawCircle(getWidth() - radius - paddingRight/2, radius + paddingTop/2, radius, paint);
+            canvas.drawCircle(getWidth() - radius - paddingRight / 2, radius + paddingTop / 2, radius, paint);
             //设置颜色为白色
             paint.setColor(0xffffffff);
             //设置字体大小
             paint.setTextSize(textSize);
             //画数字
             canvas.drawText("" + (num < 99 ? num : 99),
-                    num < 10 ? getWidth() - radius - textSize / 4 - paddingRight/2
-                            : getWidth() - radius - textSize / 2 - paddingRight/2,
-                    radius + textSize / 3 + paddingTop/2, paint);
+                    num < 10 ? getWidth() - radius - textSize / 4 - paddingRight / 2
+                            : getWidth() - radius - textSize / 2 - paddingRight / 2,
+                    radius + textSize / 3 + paddingTop / 2, paint);
         }
     }
 }

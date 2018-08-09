@@ -10,7 +10,7 @@ import www.dico.cn.partybuild.mvp.view.BaseMvpView;
  * @Date: 2018\1\29 0029 10:47
  */
 
-public interface PresenterProxyInterface<V extends BaseMvpView,P extends BaseMvpPresenter<V>> {
+public interface PresenterProxyInterface<V extends BaseMvpView, P extends BaseMvpPresenter<V>> {
     /**
      * 设置创建Presenter的工厂
      * @param presenterFactory PresenterFactory类型
@@ -26,6 +26,7 @@ public interface PresenterProxyInterface<V extends BaseMvpView,P extends BaseMvp
 
     /**
      * 获取创建的Presenter
+     *
      * @return 指定类型的Presenter
      */
     P getMvpPresenter();

@@ -23,8 +23,8 @@ public final class SizeUtils {
      * @param dpValue dp值
      * @return px值
      */
-    public static int dp2px(Context context,float dpValue) {
-        final float scale =context.getResources().getDisplayMetrics().density;
+    public static int dp2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 
@@ -34,7 +34,7 @@ public final class SizeUtils {
      * @param pxValue px值
      * @return dp值
      */
-    public static int px2dp(Context context,float pxValue) {
+    public static int px2dp(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
@@ -45,8 +45,8 @@ public final class SizeUtils {
      * @param spValue sp值
      * @return px值
      */
-    public static int sp2px(Context context,float spValue) {
-        final float fontScale =context.getResources().getDisplayMetrics().scaledDensity;
+    public static int sp2px(Context context, float spValue) {
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
 
@@ -56,7 +56,7 @@ public final class SizeUtils {
      * @param pxValue px值
      * @return sp值
      */
-    public static int px2sp(Context context,float pxValue) {
+    public static int px2sp(Context context, float pxValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
@@ -116,13 +116,6 @@ public final class SizeUtils {
     }
 
     /**
-     * 获取到View尺寸的监听
-     */
-    public interface onGetSizeListener {
-        void onGetSize(View view);
-    }
-
-    /**
      * 测量视图尺寸
      *
      * @param view 视图
@@ -166,5 +159,12 @@ public final class SizeUtils {
      */
     public static int getMeasuredHeight(View view) {
         return measureView(view)[1];
+    }
+
+    /**
+     * 获取到View尺寸的监听
+     */
+    public interface onGetSizeListener {
+        void onGetSize(View view);
     }
 }

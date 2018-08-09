@@ -325,6 +325,7 @@ public class Validator {
         hashtable.put("91", "国外");
         return hashtable;
     }
+
     /**
      * 获取自定义属性的资源ID
      *
@@ -373,12 +374,13 @@ public class Validator {
 //        return Pattern.matches(regex, str);
 //    }
 
-    public static String delHtmlTag(String str){
+    public static String delHtmlTag(String str) {
         String newstr = "";
-        newstr = str.replaceAll("<[.[^>]]*>","");
+        newstr = str.replaceAll("<[.[^>]]*>", "");
         newstr = newstr.replaceAll(" ", "");
         return newstr;
     }
+
     public static String encode(String id) {
         String encode_id = "";
         try {

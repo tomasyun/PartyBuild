@@ -16,6 +16,6 @@ public class VoteListAdapter extends CommonAdapter<VoteListBean> {
 
     @Override
     protected void convert(ViewHolder holder, VoteListBean voteListBean, int position) {
-        holder.setText(R.id.tv_title_vote_item,voteListBean.getTitle());
+        holder.setText(R.id.tv_title_vote_item, voteListBean.getTitle());
     }
 }

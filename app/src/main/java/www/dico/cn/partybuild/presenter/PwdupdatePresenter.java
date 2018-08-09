@@ -5,7 +5,6 @@ import android.app.Dialog;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.PwdupdateView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.bean.PwdupdateBean;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
@@ -26,7 +25,7 @@ public class PwdupdatePresenter extends BaseMvpPresenter<PwdupdateView> {
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("")
+        EasyHttp.post("")
                 .params("id", id)
                 .params("oldPassword", oldPassword)
                 .params("newPassword", newPassword)
@@ -41,20 +40,6 @@ public class PwdupdatePresenter extends BaseMvpPresenter<PwdupdateView> {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
-    }
-
-    @Override
-    public void onDestroyPresenter() {
-        super.onDestroyPresenter();
-        if (null != disposable && disposable.isDisposed())
-            disposable.dispose();
-
     }
 }

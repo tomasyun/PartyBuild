@@ -15,6 +15,7 @@
  */
 
 package www.dico.cn.partybuild.interceptor;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Map;
@@ -28,6 +29,7 @@ import www.yuntdev.com.library.interceptor.BaseDynamicInterceptor;
 import www.yuntdev.com.library.utils.HttpLog;
 
 import static www.yuntdev.com.library.utils.HttpUtil.UTF8;
+
 /**
  * <p>描述：对参数进行签名、添加token、时间戳处理的拦截器</p>
  * 主要功能说明：<br>

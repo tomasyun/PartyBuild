@@ -3,7 +3,6 @@ package www.dico.cn.partybuild.fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.services.core.LatLonPoint;
-import com.amap.api.services.geocoder.GeocodeQuery;
 import com.amap.api.services.geocoder.GeocodeResult;
 import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeResult;
@@ -40,6 +38,10 @@ import www.dico.cn.partybuild.widget.LoadingDialog;
 //签到
 @CreatePresenter(SignInPresenter.class)
 public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter> implements SignInView, AMapLocationListener, GeocodeSearch.OnGeocodeSearchListener, DistanceSearch.OnDistanceSearchListener {
+    //声明AMapLocationClient类对象
+    public AMapLocationClient mLocationClient = null;
+    //声明AMapLocationClientOption对象
+    public AMapLocationClientOption mLocationOption = null;
     @BindView(R.id.iv_conference_theme_pic)
     ImageView iv_conference_theme_pic;//主题图片
     @BindView(R.id.tv_sign_in_address)
@@ -57,10 +59,6 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     @BindView(R.id.rel_sign_in_start)
     RelativeLayout rel_sign_in_start;
     private LoadingDialog dialog;
-    //声明AMapLocationClient类对象
-    public AMapLocationClient mLocationClient = null;
-    //声明AMapLocationClientOption对象
-    public AMapLocationClientOption mLocationOption = null;
     private GeocodeSearch geocodeSearch;
     private DistanceSearch distanceSearch;
     private double startLatitude;

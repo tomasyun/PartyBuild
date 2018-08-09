@@ -175,6 +175,11 @@ public class GlideUtils {
         Glide.with(context).load(url).apply(options).into(imageView);
     }
 
+    public static int dip2px(Context context, float dp) {
+        float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5f);
+    }
+
     /**
      * Glide.with(this).asGif()    //强制指定加载动态图片
      * 如果加载的图片不是gif，则asGif()会报错， 当然，asGif()不写也是可以正常加载的。
@@ -204,11 +209,6 @@ public class GlideUtils {
                     }
                 })
                 .into(imageView);
-    }
-
-    public static int dip2px(Context context, float dp) {
-        float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dp * scale + 0.5f);
     }
 
     public void downloadImage(final Context context, final String url) {

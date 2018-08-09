@@ -2,7 +2,7 @@ package www.dico.cn.partybuild.bean;
 
 import java.util.List;
 
-public class TaskBriefBean extends BaseProtocol{
+public class TaskBriefBean extends BaseProtocol {
     private DataBean data;
 
     public DataBean getData() {

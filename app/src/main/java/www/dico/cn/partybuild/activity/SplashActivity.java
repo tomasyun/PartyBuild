@@ -18,6 +18,7 @@ import java.util.List;
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
+
 //启动页
 public class SplashActivity extends AppCompatActivity implements MPermission.PermissionCallbacks {
     private static final int PERMISSION = 123;
@@ -48,11 +49,11 @@ public class SplashActivity extends AppCompatActivity implements MPermission.Per
 
     @AfterPermissionGranted(PERMISSION)
     public void permissionTask() {
-        String[] perms = {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        if (MPermission.hasPermissions(this,perms)) {//检查是否已经授权
+        String[] perms = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (MPermission.hasPermissions(this, perms)) {//检查是否已经授权
             mHandler.sendEmptyMessageDelayed(0, 3000);
         } else {
-            MPermission.requestPermissions(this, "###", PERMISSION,perms);//请求获取权限
+            MPermission.requestPermissions(this, "###", PERMISSION, perms);//请求获取权限
         }
     }
 

@@ -115,6 +115,13 @@ public class CountDownButtonHelper {
         this.listener = listener;
     }
 
+    private String getStringTime(int cnt) {
+        int hour = cnt / 3600;
+        int min = cnt % 3600 / 60;
+        int second = cnt % 60;
+        return String.format(Locale.CHINA, "%02d:%02d:%02d", hour, min, second);
+    }
+
     /**
      * 计时结束的回调接口
      *
@@ -122,12 +129,5 @@ public class CountDownButtonHelper {
      */
     public interface OnFinishListener {
         void finish();
-    }
-
-    private String getStringTime(int cnt) {
-        int hour = cnt / 3600;
-        int min = cnt % 3600 / 60;
-        int second = cnt % 60;
-        return String.format(Locale.CHINA, "%02d:%02d:%02d", hour, min, second);
     }
 }

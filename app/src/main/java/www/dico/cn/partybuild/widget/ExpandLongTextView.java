@@ -2,7 +2,6 @@ package www.dico.cn.partybuild.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.text.Layout;
@@ -14,9 +13,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 
-import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.R;
-import www.dico.cn.partybuild.activity.NoticeInfoActivity;
 
 @SuppressLint("AppCompatCustomView")
 public class ExpandLongTextView extends TextView {
@@ -24,6 +21,7 @@ public class ExpandLongTextView extends TextView {
     private int initWidth = 0;
     private int mMaxLines = 6;
     private boolean isExpand = true;
+    private SpannableString ELLIPSIS = null;
 
     public ExpandLongTextView(Context context) {
         super(context);
@@ -41,8 +39,6 @@ public class ExpandLongTextView extends TextView {
     public void setExpand(boolean expand) {
         isExpand = expand;
     }
-
-    private SpannableString ELLIPSIS = null;
 
     private void init() {
         String content = "全文";

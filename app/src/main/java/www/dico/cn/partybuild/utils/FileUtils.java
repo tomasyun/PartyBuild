@@ -23,11 +23,11 @@ public class FileUtils {
         int filePosi = filePath.lastIndexOf(File.separator);
         return (filePosi == -1) ? filePath : filePath.substring(filePosi + 1);
     }
-    
+
     /*
-    * 获取Asset内的文件夹
-    * @param fileName 必须是完整文件名（文件名+格式）
-    */
+     * 获取Asset内的文件夹
+     * @param fileName 必须是完整文件名（文件名+格式）
+     */
     public static void getFileFromAsset(Context context, String fileName) {
         InputStream fileStream;
         try {
@@ -35,7 +35,7 @@ public class FileUtils {
             fileStream = context.getResources().getAssets().open(fileName);
             //转化为bitmap对象
             Bitmap bitmap = BitmapFactory.decodeStream(fileStream);
-            saveInSdCard(context,fileName, bitmap);
+            saveInSdCard(context, fileName, bitmap);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class FileUtils {
      * @param fileName 必须是完整文件名（文件名+格式）
      * @param bitmap
      */
-    public static  void saveInSdCard(Context context, String filename, Bitmap bitmap) throws IOException {
+    public static void saveInSdCard(Context context, String filename, Bitmap bitmap) throws IOException {
         //检查是否存在sd卡
         String status = Environment.getExternalStorageState();
         if (!status.equals(Environment.MEDIA_MOUNTED)) {

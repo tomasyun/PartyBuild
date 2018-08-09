@@ -13,21 +13,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.NoticeAdapter;
+import www.dico.cn.partybuild.bean.NoticeBean;
 import www.dico.cn.partybuild.modleview.NoticeView;
-import www.dico.cn.partybuild.mvp.FieldView;
-import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
-import www.dico.cn.partybuild.bean.NoticeBean;
 import www.dico.cn.partybuild.presenter.NoticePresenter;
 import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 
 //通知
 @CreatePresenter(NoticePresenter.class)
 public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresenter> implements NoticeView {
-    private NoticeAdapter adapter;
     @BindView(R.id.rv_notice)
     RecyclerView rv_notice;
+    private NoticeAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

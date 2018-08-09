@@ -3,7 +3,6 @@ package www.dico.cn.partybuild.presenter;
 import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.bean.PreviewQuestionBean;
 import www.dico.cn.partybuild.modleview.PreviewQuestionResultView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -26,7 +25,7 @@ public class PreviewQuestionResultPresenter extends BaseMvpPresenter<PreviewQues
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("")
+       EasyHttp.post("")
                 .params("id", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
@@ -39,19 +38,6 @@ public class PreviewQuestionResultPresenter extends BaseMvpPresenter<PreviewQues
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
-    }
-
-    @Override
-    public void onDestroyPresenter() {
-        super.onDestroyPresenter();
-        if (!disposable.isDisposed())
-            disposable.dispose();
     }
 }

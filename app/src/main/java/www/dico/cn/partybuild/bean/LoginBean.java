@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class LoginBean{
+public class LoginBean {
 
     private String code;
     private String msg;
@@ -30,7 +30,16 @@ public class LoginBean{
         this.data = data;
     }
 
-    public static class DataBean{
+    @Override
+    public String toString() {
+        return "LoginBean{" +
+                "code='" + code + '\'' +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                '}';
+    }
+
+    public static class DataBean {
 
         private String partyBranchPost;
         private boolean isManager;
@@ -86,14 +95,5 @@ public class LoginBean{
         public void setToken(String token) {
             this.token = token;
         }
-    }
-
-    @Override
-    public String toString() {
-        return "LoginBean{" +
-                "code='" + code + '\'' +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
-                '}';
     }
 }

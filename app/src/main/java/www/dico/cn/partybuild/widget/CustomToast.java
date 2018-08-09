@@ -18,9 +18,9 @@ import www.dico.cn.partybuild.utils.SizeUtils;
  */
 public class CustomToast {
     private static CustomToast _instance = null;
+    private final int MARGIN_DP = 50;
     private Toast toast = null;
     private int marginVertical = 0;
-    private final int MARGIN_DP = 50;
 
     private CustomToast() {
 
@@ -99,12 +99,12 @@ public class CustomToast {
             toast.setDuration(Toast.LENGTH_SHORT);
             if (gravity == Gravity.TOP) {
                 if (this.marginVertical == 0) {
-                    this.marginVertical = SizeUtils.dp2px(ctx,MARGIN_DP);
+                    this.marginVertical = SizeUtils.dp2px(ctx, MARGIN_DP);
                 }
                 toast.setGravity(gravity, 0, this.marginVertical);
             } else if (gravity == Gravity.BOTTOM) {
                 if (this.marginVertical == 0) {
-                    this.marginVertical = SizeUtils.dp2px(ctx,MARGIN_DP);
+                    this.marginVertical = SizeUtils.dp2px(ctx, MARGIN_DP);
                 }
                 toast.setGravity(gravity, 0, -this.marginVertical);
             } else {

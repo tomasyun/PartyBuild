@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class ExamRuleBean extends BaseProtocol{
+public class ExamRuleBean extends BaseProtocol {
 
     private DataBean data;
 

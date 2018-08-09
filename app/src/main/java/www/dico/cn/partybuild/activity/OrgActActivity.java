@@ -15,8 +15,6 @@ import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.OrgActAdapter;
 import www.dico.cn.partybuild.bean.OrgActBean;
 import www.dico.cn.partybuild.modleview.OrgActView;
-import www.dico.cn.partybuild.mvp.FieldView;
-import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.OrgActPresenter;
@@ -24,9 +22,9 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 
 @CreatePresenter(OrgActPresenter.class)
 public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresenter> implements OrgActView {
-    private OrgActAdapter adapter;
     @BindView(R.id.rv_org_act)
     RecyclerView rv_org_act;
+    private OrgActAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

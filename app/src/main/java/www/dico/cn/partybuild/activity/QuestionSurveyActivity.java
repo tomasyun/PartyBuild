@@ -15,8 +15,6 @@ import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.QuestionSurveyAdapter;
 import www.dico.cn.partybuild.bean.QuestionSurveyBean;
 import www.dico.cn.partybuild.modleview.QuestionSurveyView;
-import www.dico.cn.partybuild.mvp.FieldView;
-import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.QuestionSurveyPresenter;

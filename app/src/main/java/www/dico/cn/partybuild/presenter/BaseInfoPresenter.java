@@ -5,7 +5,6 @@ import android.app.Dialog;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.BaseInfoView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.bean.BaseInfoBean;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
@@ -26,7 +25,7 @@ public class BaseInfoPresenter extends BaseMvpPresenter<BaseInfoView> {
     };
 
     public void getBaseInfoRequest(String id) {
-        disposable = EasyHttp.post("")
+         EasyHttp.post("")
                 .params("id", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
@@ -39,19 +38,6 @@ public class BaseInfoPresenter extends BaseMvpPresenter<BaseInfoView> {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
-    }
-
-    @Override
-    public void onDestroyPresenter() {
-        super.onDestroyPresenter();
-        if (null != disposable && disposable.isDisposed())
-            disposable.dispose();
     }
 }

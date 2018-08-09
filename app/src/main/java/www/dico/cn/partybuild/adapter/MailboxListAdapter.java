@@ -17,6 +17,6 @@ public class MailboxListAdapter extends CommonAdapter<MailboxListBean> {
 
     @Override
     protected void convert(ViewHolder holder, MailboxListBean mailboxListBean, int position) {
-        holder.setText(R.id.tv_name_mailbox_item,mailboxListBean.getName());
+        holder.setText(R.id.tv_name_mailbox_item, mailboxListBean.getName());
     }
 }

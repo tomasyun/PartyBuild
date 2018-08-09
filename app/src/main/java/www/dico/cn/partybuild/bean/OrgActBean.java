@@ -1,6 +1,6 @@
 package www.dico.cn.partybuild.bean;
 
-public class OrgActBean extends BaseProtocol{
+public class OrgActBean extends BaseProtocol {
     private String state;
     private String title;
     private String date;
