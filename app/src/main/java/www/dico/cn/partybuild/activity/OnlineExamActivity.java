@@ -15,6 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.QuestionsAdapter;
+import www.dico.cn.partybuild.bean.ExamRuleForm;
 import www.dico.cn.partybuild.bean.QuestionBean;
 import www.dico.cn.partybuild.modleview.OnlineExamView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
@@ -54,6 +55,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
             }
         }
     };
+    private ExamRuleForm form;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +65,9 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
         mHandler.sendEmptyMessage(0);
         adapter = new QuestionsAdapter(this, questions(), R.layout.item_question);
         vp_online_exam.setAdapter(adapter);
+        form = getParam();
+        if (form != null)
+            getMvpPresenter().onlineExamRequest(form.examId);
     }
 
     public void goBackOnlineExam(View view) {

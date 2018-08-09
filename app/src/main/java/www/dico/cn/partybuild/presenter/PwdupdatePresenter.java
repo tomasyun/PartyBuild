@@ -2,6 +2,7 @@ package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.PwdupdateView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
@@ -26,6 +27,7 @@ public class PwdupdatePresenter extends BaseMvpPresenter<PwdupdateView> {
             }
         };
         EasyHttp.post("")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
                 .params("oldPassword", oldPassword)
                 .params("newPassword", newPassword)
@@ -39,6 +41,12 @@ public class PwdupdatePresenter extends BaseMvpPresenter<PwdupdateView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
                     }
                 });
     }

@@ -2,6 +2,7 @@ package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.OnlineExamView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
@@ -12,7 +13,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class OnlineExamPresenter extends BaseMvpPresenter<OnlineExamView> {
-
+    //获取试卷试题
     public void onlineExamRequest(String examId) {
         final IProgressDialog dialog = new IProgressDialog() {
             @Override
@@ -25,8 +26,9 @@ public class OnlineExamPresenter extends BaseMvpPresenter<OnlineExamView> {
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("")
-                .params("examId", examId)
+        EasyHttp.post("queryExamQuestionList")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
+                .params("id", examId)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
 
                     @Override
@@ -46,12 +48,5 @@ public class OnlineExamPresenter extends BaseMvpPresenter<OnlineExamView> {
                         dialog.getDialog().dismiss();
                     }
                 });
-    }
-
-    @Override
-    public void onDestroyPresenter() {
-        super.onDestroyPresenter();
-        if (null != disposable && disposable.isDisposed())
-            disposable.dispose();
     }
 }

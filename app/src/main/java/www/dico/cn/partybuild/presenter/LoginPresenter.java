@@ -47,6 +47,12 @@ public class LoginPresenter extends BaseMvpPresenter<LoginView> {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
+                    }
                 });
     }
 }

@@ -14,8 +14,8 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class InfodetailsPresenter extends BaseMvpPresenter<InfodetailsView> {
     //获取资讯详情
-    public void infoDetailsRequest(String id, String taskId, String flag) {
-        IProgressDialog dialog = new IProgressDialog() {
+    public void infoDetailsRequest(String id) {
+        final IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
                 LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
@@ -26,11 +26,9 @@ public class InfodetailsPresenter extends BaseMvpPresenter<InfodetailsView> {
                 return builder.create();
             }
         };
-        EasyHttp.post("courseInfo")
+        EasyHttp.post("")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
-                .params("taskId", taskId)
-                .params("flag", flag)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
@@ -41,6 +39,12 @@ public class InfodetailsPresenter extends BaseMvpPresenter<InfodetailsView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
                     }
                 });
     }

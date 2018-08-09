@@ -12,7 +12,6 @@ import com.google.gson.Gson;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
-import www.dico.cn.partybuild.bean.CourseForm;
 import www.dico.cn.partybuild.bean.InfodetailBean;
 import www.dico.cn.partybuild.modleview.InfodetailsView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
@@ -24,16 +23,13 @@ import www.dico.cn.partybuild.presenter.InfodetailsPresenter;
 public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, InfodetailsPresenter> implements InfodetailsView {
     @BindView(R.id.tv_info_title)
     TextView tv_info_title;
-    private CourseForm form;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infodetails);
         ButterKnife.bind(this);
-        form = getParam();
-        if (form != null)
-            getMvpPresenter().infoDetailsRequest(form.courseId, form.taskId, "0");
+
         tv_info_title.post(new Runnable() {
             @Override
             public void run() {
@@ -47,8 +43,6 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     }
 
     public void goBackInfodetail(View view) {
-        if (form != null)
-            getMvpPresenter().infoDetailsRequest(form.courseId, form.taskId, "1");
         this.finish();
     }
 
@@ -60,16 +54,5 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     @Override
     public void resultFailure(String result) {
         showToast(result);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (form != null) {
-                getMvpPresenter().infoDetailsRequest(form.courseId, form.taskId, "1");
-                return true;
-            }
-        }
-        return false;
     }
 }

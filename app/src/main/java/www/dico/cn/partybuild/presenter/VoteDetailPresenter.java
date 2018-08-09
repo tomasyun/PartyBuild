@@ -2,6 +2,7 @@ package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.VoteDetailView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
@@ -26,6 +27,7 @@ public class VoteDetailPresenter extends BaseMvpPresenter<VoteDetailView> {
             }
         };
         disposable = EasyHttp.post("")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
@@ -37,6 +39,12 @@ public class VoteDetailPresenter extends BaseMvpPresenter<VoteDetailView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
                     }
                 });
     }

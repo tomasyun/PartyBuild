@@ -2,6 +2,7 @@ package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.CollectView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
@@ -26,6 +27,7 @@ public class CollectPresenter extends BaseMvpPresenter<CollectView> {
             }
         };
         EasyHttp.post("")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override

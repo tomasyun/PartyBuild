@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -132,5 +134,20 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
         bean.setComment("75");
         list.add(bean);
         return list;
+    }
+
+    @Override
+    public void resultSuccess(String result) {
+        InfoBean bean = new Gson().fromJson(result, InfoBean.class);
+        if (bean.code.equals("0000")) {
+
+        } else {
+
+        }
+    }
+
+    @Override
+    public void resultFailure(String result) {
+        showToast(result);
     }
 }

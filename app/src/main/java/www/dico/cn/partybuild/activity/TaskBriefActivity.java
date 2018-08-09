@@ -33,18 +33,18 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
     ExpandableTextView tv_content_task;
     @BindView(R.id.lin_course_task_brief)
     LinearLayout lin_course_task_brief;
-    private StudyTaskForm taskform;
+    private StudyTaskForm form;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taskbrief);
         ButterKnife.bind(this);
-        taskform = getParam();
+        form = getParam();
 //        tv_content_task.setText("\u3000\u3000" + "中央外事工作会议刚刚结束不久，习近平主席开启今年首次出访，这是中央着眼国际局势出现的新机遇、新挑战作出的重大外交部署。当今世界面临百年未遇之大变局，新兴市场和发展中国家集体崛起势不可挡，团结协作、联合自强的意愿日益高涨。习近平主席此次亚非之行携手有关国家领导人，共商友好合作大计，共绘发展振兴蓝图，共创互利共赢前景。引领中国特色大国外交开辟了新境界，打开了中外关系和南南合作的新局面，拓宽了国内发展和战略运筹的新空间，推进了构建人类命运共同体的新实践。");
 //        addCourseChildView();
-        if (taskform != null)
-            getMvpPresenter().doTaskBriefRequest(taskform.taskId);
+        if (form != null)
+            getMvpPresenter().doTaskBriefRequest(form.taskId);
     }
 
     public void goBackTaskBrief(View view) {
@@ -66,7 +66,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
     }
 
     public void studyResult(View view) {
-        getMvpPresenter().verifyOpenStudyResult(taskform.taskId);
+        getMvpPresenter().verifyOpenStudyResult(form.taskId);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
                         courseView.setSingleLine(true);
                         courseView.setEllipsize(TextUtils.TruncateAt.END);
                         courseView.setTypeface(Typeface.DEFAULT_BOLD);
-                        courseView.setText(beans.get(i).getTitle());
+                        courseView.setText("\u3000"+beans.get(i).getTitle());
                         lin_course_task_brief.addView(courseView);
                         final int position = i;
                         courseView.setOnClickListener(new View.OnClickListener() {
@@ -93,8 +93,8 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
                             public void onClick(View view) {
                                 CourseForm form = new CourseForm();
                                 form.courseId = beans.get(position).getCourseId();
-                                form.taskId = taskform.taskId;
-                                goTo(InfodetailsActivity.class, form);
+                                form.taskId = TaskBriefActivity.this.form.taskId;
+                                goTo(CourseInfoActivity.class, form);
                             }
                         });
                     }

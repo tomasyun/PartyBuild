@@ -2,6 +2,7 @@ package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.MeetingView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
@@ -25,7 +26,8 @@ public class MeetingPresenter extends BaseMvpPresenter<MeetingView> {
                 return builder.create();
             }
         };
-       EasyHttp.post("")
+        EasyHttp.post("")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
@@ -36,6 +38,12 @@ public class MeetingPresenter extends BaseMvpPresenter<MeetingView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
                     }
                 });
     }

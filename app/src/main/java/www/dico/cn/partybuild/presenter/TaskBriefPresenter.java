@@ -40,6 +40,12 @@ public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
+                    }
                 });
     }
 
@@ -69,6 +75,12 @@ public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().verifyFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
                     }
                 });
     }

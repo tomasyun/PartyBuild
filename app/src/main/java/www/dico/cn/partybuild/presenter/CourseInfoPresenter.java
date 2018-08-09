@@ -4,7 +4,7 @@ import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.modleview.ExamView;
+import www.dico.cn.partybuild.modleview.CourseInfoView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
@@ -12,9 +12,9 @@ import www.yuntdev.com.library.callback.ProgressDialogCallBack;
 import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
-public class ExamPresenter extends BaseMvpPresenter<ExamView> {
-    //待考
-    public void examsOnRequest(String type) {
+public class CourseInfoPresenter extends BaseMvpPresenter<CourseInfoView> {
+    //课件详情
+    public void doGetIntoCourseInfoRequest(String id, String taskId, String flag) {
         final IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
@@ -23,23 +23,24 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
                         .setCancelOutside(true)
                         .setMessage("获取中..")
                         .setShowMessage(true);
-
                 return builder.create();
             }
         };
-      EasyHttp.post("examList")
+        EasyHttp.post("courseInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
-                .params("type", type)
+                .params("id", id)
+                .params("taskId", taskId)
+                .params("flag", flag)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
-                        getMvpView().examOnResultSuccess(result);
+                        getMvpView().intoResultSuccess(result);
                     }
 
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().examOnResultFailure(e.getMessage());
+                        getMvpView().intoResultFailure(e.getMessage());
                     }
 
                     @Override
@@ -50,8 +51,7 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
                 });
     }
 
-    //已考
-    public void examsOkRequest(String type) {
+    public void doGetOutCourseInfoRequest(String id, String taskId, String flag) {
         final IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
@@ -60,23 +60,24 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
                         .setCancelOutside(true)
                         .setMessage("获取中..")
                         .setShowMessage(true);
-
                 return builder.create();
             }
         };
-        EasyHttp.post("examList")
+        EasyHttp.post("courseInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
-                .params("type", type)
+                .params("id", id)
+                .params("taskId", taskId)
+                .params("flag", flag)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
-                        getMvpView().examOkResultSuccess(result);
+                        getMvpView().outResultSuccess(result);
                     }
 
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().examOkResultFailure(e.getMessage());
+                        getMvpView().outResultFailure(e.getMessage());
                     }
 
                     @Override

@@ -2,6 +2,7 @@ package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.QuestionSurveyView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
@@ -26,6 +27,7 @@ public class QuestionSurveyPresenter extends BaseMvpPresenter<QuestionSurveyView
             }
         };
         EasyHttp.post("")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
@@ -36,6 +38,12 @@ public class QuestionSurveyPresenter extends BaseMvpPresenter<QuestionSurveyView
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
                     }
                 });
     }

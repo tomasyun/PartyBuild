@@ -51,7 +51,8 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
 
     //开始答题
     public void startExam(View view) {
-        goTo(OnlineExamActivity.class, null);
+        if (form != null)
+            goTo(OnlineExamActivity.class, form);
     }
 
     @Override
@@ -62,8 +63,8 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
                 tv_total_score.setText(bean.getData().getTotalScore());
                 tv_standard_score.setText(bean.getData().getLimitScore());
                 tv_question_total_num.setText(bean.getData().getQuestionNum());
-                tv_exam_during.setText(bean.getData().getExamDuration());
-                tv_exam_start_date.setText(bean.getData().getExamHours());
+                tv_exam_during.setText(bean.getData().getExamHours());
+                tv_exam_start_date.setText(bean.getData().getExamDuration());
             }
         }
     }

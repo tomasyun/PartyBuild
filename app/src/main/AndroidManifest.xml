@@ -102,6 +102,8 @@
         <activity android:name=".activity.VoteDetailActivity" />
         <!--学习成果-->
         <activity android:name=".activity.StudyResultActivity" />
+        <!--课件详情-->
+        <activity android:name=".activity.CourseInfoActivity" />
 
         <!--使用高德api所申请的key-->
         <meta-data

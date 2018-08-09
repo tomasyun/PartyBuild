@@ -2,6 +2,7 @@ package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.bean.HomeBean;
 import www.dico.cn.partybuild.modleview.HomeView;
@@ -27,8 +28,8 @@ public class HomePresenter extends BaseMvpPresenter<HomeView> {
             }
         };
         EasyHttp.post("")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .execute(new ProgressDialogCallBack<HomeBean>(dialog, true, true) {
-
                     @Override
                     public void onSuccess(HomeBean homeBean) {
 
@@ -38,6 +39,12 @@ public class HomePresenter extends BaseMvpPresenter<HomeView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
                     }
                 });
     }
