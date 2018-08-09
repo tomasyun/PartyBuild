@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.modleview.LeaveReasonView;
@@ -18,17 +20,17 @@ import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;
 
 @CreatePresenter(LeaveReasonPresenter.class)
 public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, LeaveReasonPresenter> implements LeaveReasonView {
-    @FieldView(R.id.et_content_leave_reason)
+    @BindView(R.id.et_content_leave_reason)
     EditText et_content_leave_reason;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leavereason);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
     }
 
-    public void goback(View view) {
+    public void goBackLeaveReason(View view) {
         this.finish();
     }
 

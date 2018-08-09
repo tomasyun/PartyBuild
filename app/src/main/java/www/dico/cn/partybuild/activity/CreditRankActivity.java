@@ -11,9 +11,13 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.CreditRankAdapter;
 import www.dico.cn.partybuild.modleview.CreditRankView;
@@ -27,15 +31,15 @@ import www.dico.cn.partybuild.presenter.CreditRankPresenter;
 //积分排名
 @CreatePresenter(CreditRankPresenter.class)
 public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, CreditRankPresenter> implements CreditRankView {
-    @FieldView(R.id.tv_user_rank_num)
+    @BindView(R.id.tv_user_rank_num)
     TextView tv_user_rank_num;//名次
-    @FieldView(R.id.iv_user_icon_rank)
+    @BindView(R.id.iv_user_icon_rank)
     ImageView iv_user_icon_rank;//个人头像
-    @FieldView(R.id.tv_user_rank_score)
+    @BindView(R.id.tv_user_rank_score)
     TextView tv_user_rank_score;//积分
-    @FieldView(R.id.rg_rank)
+    @BindView(R.id.rg_rank)
     RadioGroup rg_rank;
-    @FieldView(R.id.rv_rank)
+    @BindView(R.id.rv_rank)
     RecyclerView rv_rank;
     private CreditRankAdapter adapter;
 
@@ -43,7 +47,7 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creditrank);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
 
         SpannableString numContent = new SpannableString("12名");
         numContent.setSpan(new AbsoluteSizeSpan(40), 0, numContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -76,13 +80,16 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
         rv_rank.setAdapter(adapter);
     }
 
-    public void goback(View view) {
+    public void goBackRank(View view) {
         this.finish();
     }
 
     @Override
     public void resultSuccess(String result) {
+        CreditRankBean bean = new Gson().fromJson(result, CreditRankBean.class);
+        if (bean.code.equals("0000")) {
 
+        }
     }
 
     @Override

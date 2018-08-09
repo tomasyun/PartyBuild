@@ -14,7 +14,7 @@ public class SignUpSuccessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signupsuccess);
     }
 
-    public void goback(View view) {
+    public void goBackSignUpSuccess(View view) {
         this.finish();
     }
 

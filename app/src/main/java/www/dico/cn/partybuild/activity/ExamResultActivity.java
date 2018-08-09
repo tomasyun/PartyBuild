@@ -14,7 +14,7 @@ public class ExamResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_examresult);
     }
 
-    public void goback(View view) {
+    public void goBackExamResult(View view) {
         this.finish();
     }
 }

@@ -9,6 +9,8 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.OrgActAdapter;
 import www.dico.cn.partybuild.bean.OrgActBean;
@@ -23,14 +25,14 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 @CreatePresenter(OrgActPresenter.class)
 public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresenter> implements OrgActView {
     private OrgActAdapter adapter;
-    @FieldView(R.id.rv_org_act)
+    @BindView(R.id.rv_org_act)
     RecyclerView rv_org_act;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orgact);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
         rv_org_act.setLayoutManager(new LinearLayoutManager(this));
         adapter = new OrgActAdapter(this, R.layout.item_meeting, orgActs());
         rv_org_act.setAdapter(adapter);
@@ -42,7 +44,7 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
         });
     }
 
-    public void goback(View view) {
+    public void goBackOrgAct(View view) {
         this.finish();
     }
 

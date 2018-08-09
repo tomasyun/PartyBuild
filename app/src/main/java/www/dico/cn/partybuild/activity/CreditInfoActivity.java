@@ -10,9 +10,13 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.CreditInfoAdapter;
 import www.dico.cn.partybuild.mvp.FieldView;
@@ -26,19 +30,19 @@ import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 //积分详情
 @CreatePresenter(CreditInfoPresenter.class)
 public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, CreditInfoPresenter> implements CreditInfoView {
-    @FieldView(R.id.tv_credit_info_score)
+    @BindView(R.id.tv_credit_info_score)
     TextView tv_credit_info_score;
-    @FieldView(R.id.rg_credit_info)
+    @BindView(R.id.rg_credit_info)
     RadioGroup rg_credit_info;
     private CreditInfoAdapter adapter;
-    @FieldView(R.id.rv_credit_info)
+    @BindView(R.id.rv_credit_info)
     RecyclerView rv_credit_info;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creditinfo);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
         SpannableString scoreContent = new SpannableString("0分");
         scoreContent.setSpan(new AbsoluteSizeSpan(40), 0, scoreContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         scoreContent.setSpan(new AbsoluteSizeSpan(28), scoreContent.length() - 1, scoreContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -66,7 +70,7 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
         rv_credit_info.setAdapter(adapter);
     }
 
-    public void goback(View view) {
+    public void goBackCreditInfo(View view) {
         this.finish();
     }
 
@@ -76,7 +80,10 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
 
     @Override
     public void resultSuccess(String result) {
+        CreditInfoBean bean = new Gson().fromJson(result, CreditInfoBean.class);
+        if (bean.code.equals("0000")) {
 
+        }
     }
 
     @Override

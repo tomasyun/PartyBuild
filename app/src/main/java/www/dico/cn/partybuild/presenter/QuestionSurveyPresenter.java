@@ -15,7 +15,7 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 public class QuestionSurveyPresenter extends BaseMvpPresenter<QuestionSurveyView> {
     //问卷调查
     public void doQuestionSurveyRequest() {
-        IProgressDialog dialog = new IProgressDialog() {
+        final IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
                 LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
@@ -37,6 +37,12 @@ public class QuestionSurveyPresenter extends BaseMvpPresenter<QuestionSurveyView
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
                     }
                 });
     }

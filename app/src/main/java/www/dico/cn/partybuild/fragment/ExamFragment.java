@@ -13,6 +13,8 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.ExamRuleActivity;
 import www.dico.cn.partybuild.adapter.ExamOkAdapter;
@@ -31,15 +33,18 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 //考试列表
 @CreatePresenter(ExamPresenter.class)
 public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> implements ExamView {
-    private RadioGroup rg_exam;
-    private RecyclerView rv_exam;
+    @BindView(R.id.rg_exam)
+    RadioGroup rg_exam;
+    @BindView(R.id.rv_exam)
+    RecyclerView rv_exam;
     private ExamOnAdapter onAdapter;
     private ExamOkAdapter okAdapter;
+    private int position = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exam, null);
-        rg_exam = view.findViewById(R.id.rg_exam);
+        ButterKnife.bind(this,view);
         rg_exam.check(R.id.rbt_exam_on);
         rg_exam.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -47,16 +52,17 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                 switch (checkedId) {
                     case R.id.rbt_exam_on:
                         //待考
+                        position = 0;
                         getMvpPresenter().examsOnRequest("0");
                         break;
                     case R.id.rbt_exam_ok:
                         //已考
+                        position = 1;
                         getMvpPresenter().examsOkRequest("1");
                         break;
                 }
             }
         });
-        rv_exam = view.findViewById(R.id.rv_exam);
         rv_exam.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
     }
@@ -65,7 +71,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     public void examOnResultSuccess(String result) {
         final ExamsBean bean = new Gson().fromJson(result, ExamsBean.class);
         if (bean.code.equals("0000")) {
-            if (!bean.getData().isEmpty()) {
+            if (null != bean.getData() && !bean.getData().isEmpty()) {
                 onAdapter = new ExamOnAdapter(getActivity(), R.layout.item_exam_on, bean.getData());
                 rv_exam.setAdapter(onAdapter);
                 onAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -91,7 +97,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     public void examOkResultSuccess(String result) {
         ExamsBean bean = new Gson().fromJson(result, ExamsBean.class);
         if (bean.code.equals("0000")) {
-            if (!bean.getData().isEmpty()) {
+            if (null != bean.getData() && !bean.getData().isEmpty()) {
                 okAdapter = new ExamOkAdapter(getActivity(), R.layout.item_exam_ok, bean.getData());
                 rv_exam.setAdapter(okAdapter);
                 okAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -111,28 +117,17 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
         showToast(result);
     }
 
-
-    public List<ExamOnBean> initExamOn() {
-        List<ExamOnBean> list = new ArrayList<>();
-        ExamOnBean bean = new ExamOnBean();
-        bean.setTitle("陕西缔科网络科技有限公司年终考核");
-        bean.setDate("2018-7-26 15:25");
-        list.add(bean);
-        return list;
-    }
-
-    public List<ExamOkBean> initExamOk() {
-        List<ExamOkBean> list = new ArrayList<>();
-        ExamOkBean bean = new ExamOkBean();
-        bean.setTitle("通昱消防全体大培训");
-        bean.setDate("2018-7-26 15:25");
-        list.add(bean);
-        return list;
-    }
-
     @Override
     public void preventPreLoad() {
         super.preventPreLoad();
-        getMvpPresenter().examsOnRequest("0");
+        switch (position) {
+            case 0:
+                getMvpPresenter().examsOnRequest("0");
+                break;
+            case 1:
+                getMvpPresenter().examsOnRequest("1");
+                break;
+
+        }
     }
 }

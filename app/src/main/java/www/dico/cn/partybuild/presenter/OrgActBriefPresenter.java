@@ -15,7 +15,7 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 public class OrgActBriefPresenter extends BaseMvpPresenter<OrgActBriefView> {
     //组织活动摘要
     public void doOrgActBriefRequest(String id) {
-        IProgressDialog dialog = new IProgressDialog() {
+        final IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
                 LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
@@ -38,6 +38,12 @@ public class OrgActBriefPresenter extends BaseMvpPresenter<OrgActBriefView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
                     }
                 });
     }

@@ -9,6 +9,8 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.MeetingAdapter;
 import www.dico.cn.partybuild.bean.MeetingBean;
@@ -22,7 +24,7 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 
 @CreatePresenter(MeetingPresenter.class)
 public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPresenter> implements MeetingView {
-    @FieldView(R.id.rv_meeting)
+    @BindView(R.id.rv_meeting)
     RecyclerView rv_meeting;
     private MeetingAdapter adapter;
 
@@ -30,7 +32,7 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
         rv_meeting.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MeetingAdapter(this, R.layout.item_meeting, meetings());
         rv_meeting.setAdapter(adapter);
@@ -42,7 +44,7 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
         });
     }
 
-    public void goback(View view) {
+    public void goBackMeeting(View view) {
         this.finish();
     }
 

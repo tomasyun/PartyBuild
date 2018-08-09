@@ -9,6 +9,8 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.NoticeAdapter;
 import www.dico.cn.partybuild.modleview.NoticeView;
@@ -24,14 +26,14 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 @CreatePresenter(NoticePresenter.class)
 public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresenter> implements NoticeView {
     private NoticeAdapter adapter;
-    @FieldView(R.id.rv_notice)
+    @BindView(R.id.rv_notice)
     RecyclerView rv_notice;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
         rv_notice.setLayoutManager(new LinearLayoutManager(this));
         adapter = new NoticeAdapter(this, R.layout.item_notice, notices());
         rv_notice.setAdapter(adapter);
@@ -43,7 +45,7 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
         });
     }
 
-    public void goback(View view) {
+    public void goBackNotice(View view) {
         this.finish();
     }
 

@@ -19,7 +19,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
         setContentView(R.layout.activity_noticeinfo);
     }
 
-    public void goback(View view) {
+    public void goBackNoticeInfo(View view) {
         this.finish();
     }
 

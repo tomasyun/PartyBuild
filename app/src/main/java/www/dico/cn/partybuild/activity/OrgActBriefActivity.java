@@ -19,7 +19,7 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
         setContentView(R.layout.activity_orgactbrief);
     }
 
-    public void goback(View view) {
+    public void goBackOrgActBrief(View view) {
         this.finish();
     }
 

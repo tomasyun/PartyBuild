@@ -7,4 +7,8 @@ public interface TaskBriefView extends BaseMvpView {
     void resultSuccess(String result);
 
     void resultFailure(String result);
+
+    void verifySuccess(String result);
+
+    void verifyFailure(String result);
 }

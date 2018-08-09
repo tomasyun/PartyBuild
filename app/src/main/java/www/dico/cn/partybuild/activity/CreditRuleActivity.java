@@ -14,7 +14,7 @@ public class CreditRuleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_creditrule);
     }
 
-    public void goback(View view) {
+    public void goBackCreditRule(View view) {
         finish();
     }
 }

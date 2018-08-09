@@ -8,6 +8,8 @@ import android.widget.EditText;
 
 import com.google.gson.Gson;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
@@ -22,16 +24,16 @@ import www.dico.cn.partybuild.presenter.LoginPresenter;
 //登录
 @CreatePresenter(LoginPresenter.class)
 public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter> implements LoginView {
-    @FieldView(R.id.et_name_login)
-    private EditText et_name_login;
-    @FieldView(R.id.et_password_login)
-    private EditText et_password_login;
+    @BindView(R.id.et_name_login)
+    EditText et_name_login;
+    @BindView(R.id.et_password_login)
+    EditText et_password_login;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
 //        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/fangzheng.ttf");
 //        tv_login_ok.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
     }
@@ -52,22 +54,24 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
     public void resultSuccess(String result) {
         LoginBean bean = new Gson().fromJson(result, LoginBean.class);
         if (bean.getCode().equals("0000")) {
-            String partyPosition = bean.getData().getPartyBranchPost();//党内职务
-            String position = bean.getData().getPosition();//行政职务
-            String token = bean.getData().getToken();
-            String userId = bean.getData().getUserId();//用户id
-            String avatar = bean.getData().getAvatar();//头像
-            boolean isManager = bean.getData().isManager();//是否为管理员
-            partyPosition = (null == partyPosition) ? "" : partyPosition;
-            AppConfig.getSpUtils().put("partyBranchPost", partyPosition);
-            position = (null == position) ? "" : position;
-            AppConfig.getSpUtils().put("position", position);
-            AppConfig.getSpUtils().put("token", "Bearer " + token);
-            AppConfig.getSpUtils().put("userId", userId);
-            AppConfig.getSpUtils().put("avatar", avatar);
-            AppConfig.getSpUtils().put("isManager", isManager);
-            goTo(MainActivity.class, null);
-            finish();
+            if (null != bean.getData()) {
+                String partyPosition = bean.getData().getPartyBranchPost();//党内职务
+                String position = bean.getData().getPosition();//行政职务
+                String token = bean.getData().getToken();
+                String userId = bean.getData().getUserId();//用户id
+                String avatar = bean.getData().getAvatar();//头像
+                boolean isManager = bean.getData().isManager();//是否为管理员
+                partyPosition = (null == partyPosition) ? "" : partyPosition;
+                AppConfig.getSpUtils().put("partyBranchPost", partyPosition);
+                position = (null == position) ? "" : position;
+                AppConfig.getSpUtils().put("position", position);
+                AppConfig.getSpUtils().put("token", "Bearer " + token);
+                AppConfig.getSpUtils().put("userId", userId);
+                AppConfig.getSpUtils().put("avatar", avatar);
+                AppConfig.getSpUtils().put("isManager", isManager);
+                goTo(MainActivity.class, null);
+                finish();
+            }
         } else {
             showToast(bean.getMsg());
         }

@@ -22,6 +22,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -51,6 +52,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -74,6 +76,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -123,6 +126,7 @@
             android:paddingRight="10dp"
             android:paddingTop="5dp"
             android:text="去学习"
+            android:textSize="14sp"
             android:textColor="@color/theme_color" />
     </RelativeLayout>
 

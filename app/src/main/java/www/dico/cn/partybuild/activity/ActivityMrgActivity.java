@@ -15,7 +15,7 @@ public class ActivityMrgActivity extends AppCompatActivity {
         setContentView(R.layout.activity_activitymrg);
     }
 
-    public void goback(View view) {
+    public void goBackActMrg(View view) {
         this.finish();
     }
 

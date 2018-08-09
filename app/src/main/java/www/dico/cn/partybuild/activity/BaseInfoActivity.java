@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.google.gson.Gson;
+
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.modleview.BaseInfoView;
 import www.dico.cn.partybuild.mvp.ViewFind;
@@ -19,17 +22,20 @@ public class BaseInfoActivity extends AbstractMvpActivity<BaseInfoView, BaseInfo
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baseinfo);
-        ViewFind.bind(this);
-       // getMvpPresenter().getBaseInfoRequest("");
+        ButterKnife.bind(this);
+        // getMvpPresenter().getBaseInfoRequest("");
     }
 
-    public void goback(View view) {
+    public void goBackBaseInfo(View view) {
         this.finish();
     }
 
     @Override
     public void resultSuccess(String result) {
+        BaseInfoBean bean = new Gson().fromJson(result, BaseInfoBean.class);
+        if (bean.code.equals("0000")) {
 
+        }
     }
 
     @Override

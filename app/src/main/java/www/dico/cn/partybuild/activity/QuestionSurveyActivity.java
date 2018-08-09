@@ -9,6 +9,8 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.QuestionSurveyAdapter;
 import www.dico.cn.partybuild.bean.QuestionSurveyBean;
@@ -22,7 +24,7 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 
 @CreatePresenter(QuestionSurveyPresenter.class)
 public class QuestionSurveyActivity extends AbstractMvpActivity<QuestionSurveyView, QuestionSurveyPresenter> implements QuestionSurveyView {
-    @FieldView(R.id.rv_question_survey)
+    @BindView(R.id.rv_question_survey)
     RecyclerView rv_question_survey;
     private QuestionSurveyAdapter adapter;
 
@@ -30,7 +32,7 @@ public class QuestionSurveyActivity extends AbstractMvpActivity<QuestionSurveyVi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionsurvey);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
         rv_question_survey.setLayoutManager(new LinearLayoutManager(this));
         adapter = new QuestionSurveyAdapter(this, R.layout.item_questionsurvey, questionSurveys());
         rv_question_survey.setAdapter(adapter);
@@ -42,7 +44,7 @@ public class QuestionSurveyActivity extends AbstractMvpActivity<QuestionSurveyVi
         });
     }
 
-    public void goback(View view) {
+    public void goBackQuestionSurvey(View view) {
         this.finish();
     }
 

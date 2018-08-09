@@ -15,7 +15,7 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 public class PreviewQuestionResultPresenter extends BaseMvpPresenter<PreviewQuestionResultView> {
     //试题结果查看
     public void doPreviewQuestionResultRequest(String id) {
-        IProgressDialog dialog = new IProgressDialog() {
+        final IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
                 LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
@@ -38,6 +38,12 @@ public class PreviewQuestionResultPresenter extends BaseMvpPresenter<PreviewQues
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
                     }
                 });
     }

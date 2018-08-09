@@ -10,6 +10,7 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import butterknife.BindView;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.modleview.PayDuesView;
 import www.dico.cn.partybuild.mvp.FieldView;
@@ -20,7 +21,7 @@ import www.dico.cn.partybuild.presenter.PayDuesPresenter;
 
 @CreatePresenter(PayDuesPresenter.class)
 public class PayDuesActivity extends AbstractMvpActivity<PayDuesView, PayDuesPresenter> implements PayDuesView {
-    @FieldView(R.id.tv_amount_pay_dues)
+    @BindView(R.id.tv_amount_pay_dues)
     TextView tv_amount_pay_dues;
 
     @Override
@@ -35,7 +36,7 @@ public class PayDuesActivity extends AbstractMvpActivity<PayDuesView, PayDuesPre
         tv_amount_pay_dues.setText(content);
     }
 
-    public void goback(View view) {
+    public void goBackPayDues(View view) {
         this.finish();
     }
 

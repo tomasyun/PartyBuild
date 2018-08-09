@@ -6,6 +6,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.modleview.FeedbackView;
@@ -18,17 +22,17 @@ import www.dico.cn.partybuild.presenter.FeedbackPresenter;
 //意见反馈
 @CreatePresenter(FeedbackPresenter.class)
 public class FeedbackActivity extends AbstractMvpActivity<FeedbackView, FeedbackPresenter> implements FeedbackView {
-    @FieldView(R.id.et_feed_back_content)
+    @BindView(R.id.et_feed_back_content)
     EditText et_feed_back_content;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
     }
 
-    public void goback(View view) {
+    public void goBackFeedBack(View view) {
         this.finish();
     }
 
@@ -44,7 +48,8 @@ public class FeedbackActivity extends AbstractMvpActivity<FeedbackView, Feedback
 
     @Override
     public void resultSuccess(String result) {
-
+        BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
+        showToast(protocol.msg);
     }
 
     @Override

@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.bean.VoteDetailBean;
 import www.dico.cn.partybuild.modleview.VoteDetailView;
@@ -24,7 +26,7 @@ import www.dico.cn.partybuild.utils.SizeUtils;
 
 @CreatePresenter(VoteDetailPresenter.class)
 public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, VoteDetailPresenter> implements VoteDetailView {
-    @FieldView(R.id.lin_options_vote)
+    @BindView(R.id.lin_options_vote)
     LinearLayout lin_options_vote;
     private boolean isSelected = true;
 
@@ -32,11 +34,11 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_votedetail);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
         addOptionsChildView();
     }
 
-    public void goback(View view) {
+    public void goBackVoteDetail(View view) {
         this.finish();
     }
 

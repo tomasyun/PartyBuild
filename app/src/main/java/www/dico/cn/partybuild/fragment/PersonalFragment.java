@@ -1,6 +1,8 @@
 package www.dico.cn.partybuild.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.BaseInfoActivity;
 import www.dico.cn.partybuild.activity.CollectActivity;
@@ -18,99 +22,101 @@ import www.dico.cn.partybuild.activity.FeedbackActivity;
 import www.dico.cn.partybuild.activity.MailboxListActivity;
 import www.dico.cn.partybuild.activity.NoticeActivity;
 import www.dico.cn.partybuild.activity.SettingActivity;
-import www.dico.cn.partybuild.modleview.PersonalView;
-import www.dico.cn.partybuild.mvp.FieldView;
-import www.dico.cn.partybuild.mvp.ViewFind;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
-import www.dico.cn.partybuild.mvp.view.AbstractFragment;
-import www.dico.cn.partybuild.presenter.PersonalPresenter;
 
 //个人中心
-@CreatePresenter(PersonalPresenter.class)
-public class PersonalFragment extends AbstractFragment<PersonalView, PersonalPresenter> implements PersonalView {
-    private ImageView iv_user_avatar_personal;
-    private TextView tv_name_personal;
-    private TextView tv_position_personal;
-
-    private LinearLayout lin_credit_personal;
-    private LinearLayout lin_rank_personal;
-    private RelativeLayout rel_baseinfo_personal;
-    private RelativeLayout rel_collect_personal;
-    private RelativeLayout rel_feedback_personal;
-    private ImageView iv_setting_personal;
-    private ImageView iv_notice_personal;
-    private RelativeLayout rel_mailbox_personal;
+public class PersonalFragment extends Fragment {
+    @BindView(R.id.iv_user_avatar_personal)
+    ImageView iv_user_avatar_personal;
+    @BindView(R.id.tv_name_personal)
+    TextView tv_name_personal;
+    @BindView(R.id.tv_position_personal)
+    TextView tv_position_personal;
+    @BindView(R.id.lin_credit_personal)
+    LinearLayout lin_credit_personal;
+    @BindView(R.id.lin_rank_personal)
+    LinearLayout lin_rank_personal;
+    @BindView(R.id.rel_baseinfo_personal)
+    RelativeLayout rel_baseinfo_personal;
+    @BindView(R.id.rel_collect_personal)
+    RelativeLayout rel_collect_personal;
+    @BindView(R.id.rel_feedback_personal)
+    RelativeLayout rel_feedback_personal;
+    @BindView(R.id.iv_setting_personal)
+    ImageView iv_setting_personal;
+    @BindView(R.id.iv_notice_personal)
+    ImageView iv_notice_personal;
+    @BindView(R.id.rel_mailbox_personal)
+    RelativeLayout rel_mailbox_personal;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_personal, null);
-        iv_user_avatar_personal = view.findViewById(R.id.iv_user_avatar_personal);
-        tv_name_personal = view.findViewById(R.id.tv_name_personal);
-        tv_position_personal = view.findViewById(R.id.tv_position_personal);
-        lin_credit_personal = view.findViewById(R.id.lin_credit_personal);
-        lin_rank_personal = view.findViewById(R.id.lin_rank_personal);
-        rel_baseinfo_personal = view.findViewById(R.id.rel_baseinfo_personal);
-        rel_collect_personal = view.findViewById(R.id.rel_collect_personal);
-        rel_feedback_personal = view.findViewById(R.id.rel_feedback_personal);
-        rel_mailbox_personal = view.findViewById(R.id.rel_mailbox_personal);
-        iv_setting_personal = view.findViewById(R.id.iv_setting_personal);
-        iv_notice_personal = view.findViewById(R.id.iv_notice_personal);
+        ButterKnife.bind(this, view);
+
         lin_credit_personal.setOnClickListener(new View.OnClickListener() {
             //积分明细
             @Override
             public void onClick(View view) {
-                goTo(CreditInfoActivity.class, null);
+                Intent intent = new Intent(getActivity(), CreditInfoActivity.class);
+                startActivity(intent);
             }
         });
         lin_rank_personal.setOnClickListener(new View.OnClickListener() {
             //积分排名
             @Override
             public void onClick(View view) {
-                goTo(CreditRankActivity.class, null);
+                Intent intent = new Intent(getActivity(), CreditRankActivity.class);
+                startActivity(intent);
             }
         });
         rel_baseinfo_personal.setOnClickListener(new View.OnClickListener() {
             //基本信息
             @Override
             public void onClick(View view) {
-                goTo(BaseInfoActivity.class, null);
+                Intent intent = new Intent(getActivity(), BaseInfoActivity.class);
+                startActivity(intent);
             }
         });
         rel_collect_personal.setOnClickListener(new View.OnClickListener() {
             //收藏
             @Override
             public void onClick(View view) {
-                goTo(CollectActivity.class, null);
+                Intent intent = new Intent(getActivity(), CollectActivity.class);
+                startActivity(intent);
             }
         });
         rel_feedback_personal.setOnClickListener(new View.OnClickListener() {
             //意见反馈
             @Override
             public void onClick(View view) {
-                goTo(FeedbackActivity.class, null);
+                Intent intent = new Intent(getActivity(), FeedbackActivity.class);
+                startActivity(intent);
             }
         });
         iv_setting_personal.setOnClickListener(new View.OnClickListener() {
             //设置
             @Override
             public void onClick(View view) {
-                goTo(SettingActivity.class, null);
+                Intent intent = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent);
             }
         });
         iv_notice_personal.setOnClickListener(new View.OnClickListener() {
             //通知消息
             @Override
             public void onClick(View view) {
-                goTo(NoticeActivity.class, null);
+                Intent intent = new Intent(getActivity(), NoticeActivity.class);
+                startActivity(intent);
             }
         });
         rel_mailbox_personal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goTo(MailboxListActivity.class, null);
+                Intent intent = new Intent(getActivity(), MailboxListActivity.class);
+                startActivity(intent);
             }
         });
         return view;
     }
-
 }

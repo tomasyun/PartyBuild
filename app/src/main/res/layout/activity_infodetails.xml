@@ -18,7 +18,7 @@
             android:contentDescription="@null"
             android:padding="5dp"
             android:clickable="true"
-            android:onClick="goback"
+            android:onClick="goBackInfodetail"
             android:scaleType="fitXY"
             android:src="@mipmap/img_back" />
 

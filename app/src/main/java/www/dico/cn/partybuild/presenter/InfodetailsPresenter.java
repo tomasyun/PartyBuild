@@ -2,6 +2,7 @@ package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.bean.InfodetailBean;
 import www.dico.cn.partybuild.modleview.InfodetailsView;
@@ -15,7 +16,7 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class InfodetailsPresenter extends BaseMvpPresenter<InfodetailsView> {
     //获取资讯详情
-    public void infoDetailsRequest(String id) {
+    public void infoDetailsRequest(String id,String taskId,String flag) {
         IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
@@ -27,8 +28,11 @@ public class InfodetailsPresenter extends BaseMvpPresenter<InfodetailsView> {
                 return builder.create();
             }
         };
-        disposable = EasyHttp.post("")
+        disposable = EasyHttp.post("courseInfo")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
+                .params("taskId", taskId)
+                .params("flag", flag)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {

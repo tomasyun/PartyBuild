@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.modleview.PwdupdateView;
 import www.dico.cn.partybuild.mvp.FieldView;
@@ -18,21 +20,21 @@ import www.dico.cn.partybuild.presenter.PwdupdatePresenter;
 //密码更新
 @CreatePresenter(PwdupdatePresenter.class)
 public class PwdupdateActivity extends AbstractMvpActivity<PwdupdateView, PwdupdatePresenter> implements PwdupdateView {
-    @FieldView(R.id.et_pwd_old)
+    @BindView(R.id.et_pwd_old)
     EditText et_pwd_old;
-    @FieldView(R.id.et_pwd_new)
+    @BindView(R.id.et_pwd_new)
     EditText et_pwd_new;
-    @FieldView(R.id.et_pwd_new_confirm)
+    @BindView(R.id.et_pwd_new_confirm)
     EditText et_pwd_new_confirm;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pwdupdate);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
     }
 
-    public void goback(View view) {
+    public void goBackPwdupdate(View view) {
         this.finish();
     }
 

@@ -6,9 +6,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.CollectListAdapter;
 import www.dico.cn.partybuild.bean.CollectListBean;
@@ -24,27 +28,30 @@ import www.dico.cn.partybuild.presenter.CollectPresenter;
 @CreatePresenter(CollectPresenter.class)
 public class CollectActivity extends AbstractMvpActivity<CollectView, CollectPresenter> implements CollectView {
     private CollectListAdapter adapter;
-    @FieldView(R.id.rv_collect)
+    @BindView(R.id.rv_collect)
     RecyclerView rv_collect;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collect);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
         //getMvpPresenter().collectsRequest("");
         rv_collect.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CollectListAdapter(this, R.layout.item_collect, collects());
         rv_collect.setAdapter(adapter);
     }
 
-    public void goback(View view) {
+    public void goBackCollect(View view) {
         this.finish();
     }
 
     @Override
     public void resultSuccess(String result) {
+        CollectListBean bean = new Gson().fromJson(result, CollectListBean.class);
+        if (bean.code.equals("0000")) {
 
+        }
     }
 
     @Override

@@ -3,93 +3,79 @@ package www.dico.cn.partybuild.bean;
 import java.util.List;
 
 public class StudyTaskBean extends BaseProtocol{
+    private List<DataBean> data;
 
-    private DataBean data;
-
-    public DataBean getData() {
+    public List<DataBean> getData() {
         return data;
     }
 
-    public void setData(DataBean data) {
+    public void setData(List<DataBean> data) {
         this.data = data;
     }
 
     public static class DataBean {
-        private List<Bean> studyTaskList;
+        private String id;
+        private String title;
+        private String isElective;
+        private String limitDate;
+        private String totalHours;
+        private String curHours;
+        private String taskState;
 
-        public List<Bean> getStudyTaskList() {
-            return studyTaskList;
+        public String getId() {
+            return id;
         }
 
-        public void setStudyTaskList(List<Bean> studyTaskList) {
-            this.studyTaskList = studyTaskList;
+        public void setId(String id) {
+            this.id = id;
         }
 
-        public static class  Bean {
+        public String getTitle() {
+            return title;
+        }
 
-            private String id;
-            private String title;
-            private String isElective;
-            private String limitDate;
-            private String totalHours;
-            private String curHours;
-            private String taskState;
+        public void setTitle(String title) {
+            this.title = title;
+        }
 
-            public String getId() {
-                return id;
-            }
+        public String getIsElective() {
+            return isElective;
+        }
 
-            public void setId(String id) {
-                this.id = id;
-            }
+        public void setIsElective(String isElective) {
+            this.isElective = isElective;
+        }
 
-            public String getTitle() {
-                return title;
-            }
+        public String getLimitDate() {
+            return limitDate;
+        }
 
-            public void setTitle(String title) {
-                this.title = title;
-            }
+        public void setLimitDate(String limitDate) {
+            this.limitDate = limitDate;
+        }
 
-            public String getIsElective() {
-                return isElective;
-            }
+        public String getTotalHours() {
+            return totalHours;
+        }
 
-            public void setIsElective(String isElective) {
-                this.isElective = isElective;
-            }
+        public void setTotalHours(String totalHours) {
+            this.totalHours = totalHours;
+        }
 
-            public String getLimitDate() {
-                return limitDate;
-            }
+        public String getCurHours() {
+            return curHours;
+        }
 
-            public void setLimitDate(String limitDate) {
-                this.limitDate = limitDate;
-            }
+        public void setCurHours(String curHours) {
+            this.curHours = curHours;
+        }
 
-            public String getTotalHours() {
-                return totalHours;
-            }
+        public String getTaskState() {
+            return taskState;
+        }
 
-            public void setTotalHours(String totalHours) {
-                this.totalHours = totalHours;
-            }
-
-            public String getCurHours() {
-                return curHours;
-            }
-
-            public void setCurHours(String curHours) {
-                this.curHours = curHours;
-            }
-
-            public String getTaskState() {
-                return taskState;
-            }
-
-            public void setTaskState(String taskState) {
-                this.taskState = taskState;
-            }
+        public void setTaskState(String taskState) {
+            this.taskState = taskState;
         }
     }
 }

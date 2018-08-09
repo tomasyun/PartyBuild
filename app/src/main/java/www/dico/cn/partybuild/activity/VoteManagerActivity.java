@@ -9,6 +9,8 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.VoteListAdapter;
 import www.dico.cn.partybuild.bean.VoteListBean;
@@ -22,7 +24,7 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 
 @CreatePresenter(VoteManagerPresenter.class)
 public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, VoteManagerPresenter> implements VoteManagerView {
-    @FieldView(R.id.rv_vote)
+    @BindView(R.id.rv_vote)
     RecyclerView rv_vote;
     private VoteListAdapter adapter;
 
@@ -30,7 +32,7 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_votemanager);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
         rv_vote.setLayoutManager(new LinearLayoutManager(this));
         adapter = new VoteListAdapter(this, R.layout.item_vote, votes());
         rv_vote.setAdapter(adapter);
@@ -42,7 +44,7 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
         });
     }
 
-    public void goback(View view) {
+    public void goBackVoteManager(View view) {
         this.finish();
     }
 

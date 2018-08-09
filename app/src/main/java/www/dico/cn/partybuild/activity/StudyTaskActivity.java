@@ -11,6 +11,8 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.StudyTaskAdapter;
 import www.dico.cn.partybuild.bean.StudyTaskBean;
@@ -25,7 +27,7 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 
 @CreatePresenter(StudyTaskPresenter.class)
 public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyTaskPresenter> implements StudyTaskView {
-    @FieldView(R.id.rv_study_task)
+    @BindView(R.id.rv_study_task)
     RecyclerView rv_study_task;
     private StudyTaskAdapter adapter;
 
@@ -33,12 +35,12 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studytask);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
         rv_study_task.setLayoutManager(new LinearLayoutManager(this));
         getMvpPresenter().doStudyTaskRequest();
     }
 
-    public void goback(View view) {
+    public void goBackStudyTask(View view) {
         finish();
     }
 
@@ -46,8 +48,8 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
     public void resultSuccess(String result) {
         StudyTaskBean bean = new Gson().fromJson(result, StudyTaskBean.class);
         if (bean.code.equals("0000")) {
-            final List<StudyTaskBean.DataBean.Bean> beans = bean.getData().getStudyTaskList();
-            if (!beans.isEmpty()) {
+            final List<StudyTaskBean.DataBean> beans = bean.getData();
+            if (null != beans && !beans.isEmpty()) {
                 adapter = new StudyTaskAdapter(this, R.layout.item_study_task, beans);
                 rv_study_task.setAdapter(adapter);
                 adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {

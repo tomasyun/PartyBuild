@@ -27,6 +27,8 @@ import com.amap.api.services.route.DistanceSearch;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.modleview.SignInView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
@@ -38,14 +40,22 @@ import www.dico.cn.partybuild.widget.LoadingDialog;
 //签到
 @CreatePresenter(SignInPresenter.class)
 public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter> implements SignInView, AMapLocationListener, GeocodeSearch.OnGeocodeSearchListener, DistanceSearch.OnDistanceSearchListener {
-    private ImageView iv_conference_theme_pic;//主题图片
-    private TextView tv_sign_in_address;//地址
-    private TextView tv_sign_in_date;//日期
-    private TextView tv_sign_in_enable;//立即签到
-    private TextView tv_sign_in_count_down;//倒计时显示
-    private ImageView iv_sign_in_enable;//
-    private TextView tv_sign_in_tips;
-    private RelativeLayout rel_sign_in_start;
+    @BindView(R.id.iv_conference_theme_pic)
+    ImageView iv_conference_theme_pic;//主题图片
+    @BindView(R.id.tv_sign_in_address)
+    TextView tv_sign_in_address;//地址
+    @BindView(R.id.tv_sign_in_date)
+    TextView tv_sign_in_date;//日期
+    @BindView(R.id.tv_sign_in_enable)
+    TextView tv_sign_in_enable;//立即签到
+    @BindView(R.id.tv_sign_in_count_down)
+    TextView tv_sign_in_count_down;//倒计时显示
+    @BindView(R.id.iv_sign_in_enable)
+    ImageView iv_sign_in_enable;//
+    @BindView(R.id.tv_sign_in_tips)
+    TextView tv_sign_in_tips;
+    @BindView(R.id.rel_sign_in_start)
+    RelativeLayout rel_sign_in_start;
     private LoadingDialog dialog;
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
@@ -84,16 +94,8 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signin, null);
-        iv_conference_theme_pic = view.findViewById(R.id.iv_conference_theme_pic);
-        tv_sign_in_address = view.findViewById(R.id.tv_sign_in_address);
-        tv_sign_in_date = view.findViewById(R.id.tv_sign_in_date);
-        tv_sign_in_enable = view.findViewById(R.id.tv_sign_in_enable);
-        tv_sign_in_count_down = view.findViewById(R.id.tv_sign_in_count_down);
+        ButterKnife.bind(this, view);
         tv_sign_in_count_down.setText("00:00:00");
-        iv_sign_in_enable = view.findViewById(R.id.iv_sign_in_enable);
-        tv_sign_in_tips = view.findViewById(R.id.tv_sign_in_tips);
-        rel_sign_in_start = view.findViewById(R.id.rel_sign_in_start);
-
 //        initLocationClient();
 //        initGeocodeSearch();
 //        initDistanceSearch();
@@ -244,5 +246,4 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
             Log.i("####", distance + "");
         }
     }
-
 }

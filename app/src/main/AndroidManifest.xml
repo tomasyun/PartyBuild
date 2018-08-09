@@ -69,6 +69,7 @@
         <activity android:name=".activity.TaskBriefActivity" />
         <activity android:name=".activity.MailboxListActivity" />
         <activity android:name=".activity.VoteDetailActivity" />
+        <activity android:name=".activity.StudyResultActivity" />
 
         <!--使用高德api所申请的key-->
         <meta-data

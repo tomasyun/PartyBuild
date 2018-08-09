@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.modleview.MailboxView;
@@ -17,19 +19,19 @@ import www.dico.cn.partybuild.presenter.MailboxPresenter;
 
 @CreatePresenter(MailboxPresenter.class)
 public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPresenter> implements MailboxView {
-    @FieldView(R.id.et_name_mail_box)
+    @BindView(R.id.et_name_mail_box)
     EditText et_name_mail_box;
-    @FieldView(R.id.et_content_mail_box)
+    @BindView(R.id.et_content_mail_box)
     EditText et_content_mail_box;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mailbox);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
     }
 
-    public void goback(View view) {
+    public void goBackMailbox(View view) {
         this.finish();
     }
 

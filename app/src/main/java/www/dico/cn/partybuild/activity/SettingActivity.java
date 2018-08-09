@@ -18,7 +18,7 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
     }
 
-    public void goback(View view) {
+    public void goBackSetting(View view) {
         this.finish();
     }
 

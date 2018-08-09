@@ -14,6 +14,8 @@ import android.widget.RadioGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.InfodetailsActivity;
 import www.dico.cn.partybuild.adapter.InfoAdapter;
@@ -29,9 +31,12 @@ import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshLoad
 
 @CreatePresenter(InfoPresenter.class)
 public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> implements InfoView {
-    private RadioGroup rg_info;
-    private SmartRefreshLayout srl_info;
-    private RecyclerView rv_info;
+    @BindView(R.id.rg_info)
+    RadioGroup rg_info;
+    @BindView(R.id.srl_info)
+    SmartRefreshLayout srl_info;
+    @BindView(R.id.rv_info)
+    RecyclerView rv_info;
     private InfoAdapter newsAdapter;
     private InfoAdapter talkAdapter;
     private InfoAdapter historyAdapter;
@@ -41,7 +46,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_info, null);
-        rg_info = view.findViewById(R.id.rg_info);
+        ButterKnife.bind(this,view);
         rg_info.check(R.id.rbt_news_info);
         rg_info.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -67,7 +72,6 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
             }
         });
 
-        srl_info = view.findViewById(R.id.srl_info);
         srl_info.setOnRefreshListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
@@ -79,7 +83,6 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
 
             }
         });
-        rv_info = view.findViewById(R.id.rv_info);
         rv_info.setLayoutManager(new LinearLayoutManager(getActivity()));
         newsAdapter = new InfoAdapter(getActivity(), R.layout.item_info, initNews());
         rv_info.setAdapter(newsAdapter);

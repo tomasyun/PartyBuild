@@ -16,7 +16,7 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
     //任务摘要
     public void doTaskBriefRequest(String id) {
-        IProgressDialog dialog = new IProgressDialog() {
+        final IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
                 LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
@@ -40,6 +40,48 @@ public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
+                    }
+                });
+    }
+
+    //校验是否可以添加学习成果
+    public void verifyOpenStudyResult(String id) {
+        final IProgressDialog dialog = new IProgressDialog() {
+            @Override
+            public Dialog getDialog() {
+                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
+                        .setCancelable(true)
+                        .setCancelOutside(true)
+                        .setMessage("验证中..")
+                        .setShowMessage(true);
+                return builder.create();
+            }
+        };
+        disposable = EasyHttp.post("isCompleteTask")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
+                .params("id", id)
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
+                    @Override
+                    public void onSuccess(String s) {
+                        getMvpView().verifySuccess(s);
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        super.onError(e);
+                        getMvpView().verifyFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
                     }
                 });
     }

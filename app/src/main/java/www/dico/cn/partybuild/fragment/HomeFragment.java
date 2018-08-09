@@ -19,6 +19,8 @@ import com.stx.xhb.xbanner.XBanner;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.ActivityMrgActivity;
 import www.dico.cn.partybuild.activity.MailboxActivity;
@@ -37,21 +39,28 @@ import www.dico.cn.partybuild.widget.CustomTextView;
 //首页
 @CreatePresenter(HomePresenter.class)
 public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> implements HomeView, View.OnClickListener {
-    private XBanner xbanner;//轮播
-    private TextView tv_gongshi_home;
-    private CustomTextView tv_notice_home;
-    private LinearLayout lin_meeting_home;
-    private LinearLayout lin_studies_home;
-    private LinearLayout lin_activity_home;
-    private LinearLayout lin_dues_home;
-    private LinearLayout lin_mailbox_home;
+    @BindView(R.id.xbanner)
+    XBanner xbanner;//轮播
+    @BindView(R.id.tv_gongshi_home)
+    TextView tv_gongshi_home;
+    @BindView(R.id.tv_notice_home)
+    CustomTextView tv_notice_home;
+    @BindView(R.id.lin_meeting_home)
+    LinearLayout lin_meeting_home;
+    @BindView(R.id.lin_studies_home)
+    LinearLayout lin_studies_home;
+    @BindView(R.id.lin_activity_home)
+    LinearLayout lin_activity_home;
+    @BindView(R.id.lin_dues_home)
+    LinearLayout lin_dues_home;
+    @BindView(R.id.lin_mailbox_home)
+    LinearLayout lin_mailbox_home;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, null);
-        xbanner = view.findViewById(R.id.xbanner);
+        ButterKnife.bind(this,view);
 
-        tv_gongshi_home = view.findViewById(R.id.tv_gongshi_home);
         SpannableString content = new SpannableString("公示公告");
         content.setSpan(new ForegroundColorSpan(Color.parseColor("#0099EE")), 0, content.length() - 2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         content.setSpan(new ForegroundColorSpan(Color.RED), 2, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
@@ -59,17 +68,11 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         content.setSpan(style, 0, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         tv_gongshi_home.setText(content);
 
-        tv_notice_home = view.findViewById(R.id.tv_notice_home);
         tv_notice_home.setText("陕西缔科网络科技有限公司");
         tv_notice_home.init(getActivity().getWindowManager());
         tv_notice_home.startScroll();
         tv_notice_home.setEnabled(false);
 
-        lin_meeting_home = view.findViewById(R.id.lin_meeting_home);
-        lin_studies_home = view.findViewById(R.id.lin_studies_home);
-        lin_activity_home = view.findViewById(R.id.lin_activity_home);
-        lin_dues_home = view.findViewById(R.id.lin_dues_home);
-        lin_mailbox_home = view.findViewById(R.id.lin_mailbox_home);
         lin_meeting_home.setOnClickListener(this);
         lin_studies_home.setOnClickListener(this);
         lin_activity_home.setOnClickListener(this);

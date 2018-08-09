@@ -7,17 +7,14 @@ import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 
-import retrofit2.converter.gson.GsonConverterFactory;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.LoginView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.bean.LoginBean;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
 import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
-import www.yuntdev.com.library.utils.HttpLog;
 
 public class LoginPresenter extends BaseMvpPresenter<LoginView> {
     IProgressDialog dialog = new IProgressDialog() {
@@ -49,6 +46,12 @@ public class LoginPresenter extends BaseMvpPresenter<LoginView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
                     }
                 });
     }

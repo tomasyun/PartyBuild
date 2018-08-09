@@ -14,7 +14,7 @@ public class PaymentRuleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_paymentrule);
     }
 
-    public void goback(View view) {
+    public void goBackPaymentRule(View view) {
         this.finish();
     }
 }

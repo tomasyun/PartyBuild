@@ -11,6 +11,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.QuestionsAdapter;
 import www.dico.cn.partybuild.bean.QuestionBean;
@@ -29,11 +31,11 @@ import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;
 @CreatePresenter(OnlineExamPresenter.class)
 public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, OnlineExamPresenter> implements OnlineExamView {
     private CountDownButtonHelper helper;
-    @FieldView(R.id.tv_residue_time_online_exam)
+    @BindView(R.id.tv_residue_time_online_exam)
     TextView tv_residue_time_online_exam;
     private String during = "1";
     private QuestionsAdapter adapter;
-    @FieldView(R.id.vp_online_exam)
+    @BindView(R.id.vp_online_exam)
     NoTouchViewPager vp_online_exam;
     private Handler mHandler = new Handler() {
         @Override
@@ -60,13 +62,13 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onlineexam);
-        ViewFind.bind(this);
+        ButterKnife.bind(this);
         mHandler.sendEmptyMessage(0);
         adapter = new QuestionsAdapter(this,questions() , R.layout.item_question);
         vp_online_exam.setAdapter(adapter);
     }
 
-    public void goback(View view) {
+    public void goBackOnlineExam(View view) {
         new AlertDialog(this).builder()
                 .setTitle("退出考试")
                 .setMsg("考试中途退出，会记零分，您确定退出?")

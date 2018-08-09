@@ -15,7 +15,7 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 public class ExamPresenter extends BaseMvpPresenter<ExamView> {
     //待考
     public void examsOnRequest(String type) {
-        IProgressDialog dialog = new IProgressDialog() {
+        final IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
                 LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
@@ -40,6 +40,11 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().examOnResultFailure(e.getMessage());
+                    }
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
                     }
                 });
     }

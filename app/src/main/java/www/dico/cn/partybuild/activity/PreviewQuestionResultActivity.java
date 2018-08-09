@@ -19,7 +19,7 @@ public class PreviewQuestionResultActivity extends AbstractMvpActivity<PreviewQu
         setContentView(R.layout.activity_previewquestionresult);
     }
 
-    public void goback(View view) {
+    public void goBackPreviewQuestionResult(View view) {
         this.finish();
     }
 
