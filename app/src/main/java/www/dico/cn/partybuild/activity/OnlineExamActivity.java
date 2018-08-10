@@ -8,7 +8,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -27,13 +28,17 @@ import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;
 
 //在线考试
 @CreatePresenter(OnlineExamPresenter.class)
-public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, OnlineExamPresenter> implements OnlineExamView {
+public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, OnlineExamPresenter> implements OnlineExamView, QuestionsAdapter.CallBackInterface {
     @BindView(R.id.tv_residue_time_online_exam)
     TextView tv_residue_time_online_exam;
     @BindView(R.id.vp_online_exam)
     NoTouchViewPager vp_online_exam;
+    @BindView(R.id.tv_current_item_online_exam)
+    TextView tv_current_item_online_exam;
+    @BindView(R.id.tv_question_total_online_exam)
+    TextView tv_question_total_online_exam;
     private CountDownButtonHelper helper;
-    private String during = "1";
+    private int during = 0;
     private QuestionsAdapter adapter;
     private Handler mHandler = new Handler() {
         @Override
@@ -42,7 +47,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
             switch (msg.what) {
                 case 0:
                     if (tv_residue_time_online_exam != null) {
-                        helper = new CountDownButtonHelper(tv_residue_time_online_exam, "00分:00秒", Integer.parseInt(during) * 60, 1, 0);
+                        helper = new CountDownButtonHelper(tv_residue_time_online_exam, "00分:00秒", during * 60, 1, 0);
                         helper.setOnFinishListener(new CountDownButtonHelper.OnFinishListener() {
                             @Override
                             public void finish() {
@@ -63,8 +68,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
         setContentView(R.layout.activity_onlineexam);
         ButterKnife.bind(this);
         mHandler.sendEmptyMessage(0);
-        adapter = new QuestionsAdapter(this, questions(), R.layout.item_question);
-        vp_online_exam.setAdapter(adapter);
+
         form = getParam();
         if (form != null)
             getMvpPresenter().onlineExamRequest(form.examId);
@@ -89,7 +93,18 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
 
     @Override
     public void resultSuccess(String result) {
-
+        QuestionBean bean = new Gson().fromJson(result, QuestionBean.class);
+        if (bean.code.equals("0000")) {
+            during = bean.getData().getDuration();
+            List<QuestionBean.DataBean.QuestionListBean> beans = bean.getData().getQuestionList();
+            if (null != beans && !beans.isEmpty()) {
+                tv_current_item_online_exam.setText("1");
+                tv_question_total_online_exam.setText("/" + beans.size());
+                adapter = new QuestionsAdapter(this, beans, R.layout.item_question);
+                vp_online_exam.setAdapter(adapter);
+                adapter.setCallBackInterface(this);
+            }
+        }
     }
 
     @Override
@@ -118,11 +133,13 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
         return false;
     }
 
-    public List<QuestionBean> questions() {
-        List<QuestionBean> list = new ArrayList<>();
-        QuestionBean bean = new QuestionBean();
-        bean.setTitle("中国共产党成立日期___");
-        list.add(bean);
-        return list;
+    @Override
+    public void nextStep(String tqId, String serial, String answer) {
+
+    }
+
+    @Override
+    public void submit(String tqId, String serial, String answer) {
+
     }
 }

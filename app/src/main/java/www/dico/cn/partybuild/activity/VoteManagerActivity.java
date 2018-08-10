@@ -6,13 +6,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.VoteListAdapter;
+import www.dico.cn.partybuild.bean.VoteForm;
 import www.dico.cn.partybuild.bean.VoteListBean;
 import www.dico.cn.partybuild.modleview.VoteManagerView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
@@ -32,31 +32,30 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
         setContentView(R.layout.activity_votemanager);
         ButterKnife.bind(this);
         rv_vote.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new VoteListAdapter(this, R.layout.item_vote, votes());
-        rv_vote.setAdapter(adapter);
-        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                goTo(VoteDetailActivity.class, null);
-            }
-        });
+        getMvpPresenter().doVoteManagerRequest();
     }
 
     public void goBackVoteManager(View view) {
         this.finish();
     }
 
-    public List<VoteListBean> votes() {
-        List<VoteListBean> list = new ArrayList<>();
-        VoteListBean bean = new VoteListBean();
-        bean.setTitle("党委书记党内初选投票");
-        list.add(bean);
-        return list;
-    }
-
     @Override
     public void resultSuccess(String result) {
-
+        final VoteListBean bean = new Gson().fromJson(result, VoteListBean.class);
+        if (bean.code.equals("0000")) {
+            if (null != bean.getData() && !bean.getData().isEmpty()) {
+                adapter = new VoteListAdapter(this, R.layout.item_vote, bean.getData());
+                rv_vote.setAdapter(adapter);
+                adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                        VoteForm form = new VoteForm();
+                        form.voteId = bean.getData().get(position).getId();
+                        goTo(VoteDetailActivity.class, form);
+                    }
+                });
+            }
+        }
     }
 
     @Override

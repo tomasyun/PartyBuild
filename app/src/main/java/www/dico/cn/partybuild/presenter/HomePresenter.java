@@ -14,19 +14,19 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class HomePresenter extends BaseMvpPresenter<HomeView> {
+    IProgressDialog dialog = new IProgressDialog() {
+        @Override
+        public Dialog getDialog() {
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
+                    .setCancelable(true)
+                    .setCancelOutside(true)
+                    .setMessage("请求中..")
+                    .setShowMessage(true);
+            return builder.create();
+        }
+    };
 
     public void homeDataRequest() {
-        final IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("请求中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
         EasyHttp.post("")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .execute(new ProgressDialogCallBack<HomeBean>(dialog, true, true) {

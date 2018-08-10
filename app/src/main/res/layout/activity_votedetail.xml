@@ -46,6 +46,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_title_vote_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -72,6 +73,7 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/tv_limit_date_vote_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -82,7 +84,7 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/tv_type_vote"
+                        android:id="@+id/tv_type_vote_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -96,13 +98,14 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="10dp"
-                        android:layout_toLeftOf="@+id/tv_type_vote"
+                        android:layout_toLeftOf="@+id/tv_type_vote_detail"
                         android:text="投票类型:"
                         android:textColor="@android:color/darker_gray"
                         android:textSize="14sp" />
                 </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/tv_des_vote_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"

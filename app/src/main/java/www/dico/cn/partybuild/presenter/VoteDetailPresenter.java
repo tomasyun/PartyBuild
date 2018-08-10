@@ -14,19 +14,20 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class VoteDetailPresenter extends BaseMvpPresenter<VoteDetailView> {
     //投票详情
+    IProgressDialog dialog = new IProgressDialog() {
+        @Override
+        public Dialog getDialog() {
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
+                    .setCancelable(true)
+                    .setCancelOutside(true)
+                    .setMessage("加载中..")
+                    .setShowMessage(true);
+            return builder.create();
+        }
+    };
+
     public void doVoteDetailRequest(String id) {
-        final IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("加载中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
-        disposable = EasyHttp.post("")
+        EasyHttp.post("voteBrief")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {

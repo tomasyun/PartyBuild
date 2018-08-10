@@ -14,18 +14,19 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
     //任务摘要
+    IProgressDialog dialog = new IProgressDialog() {
+        @Override
+        public Dialog getDialog() {
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
+                    .setCancelable(true)
+                    .setCancelOutside(true)
+                    .setMessage("加载中..")
+                    .setShowMessage(true);
+            return builder.create();
+        }
+    };
+
     public void doTaskBriefRequest(String id) {
-        final IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("加载中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
         EasyHttp.post("studyTaskInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
@@ -51,18 +52,7 @@ public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
 
     //校验是否可以添加学习成果
     public void verifyOpenStudyResult(String id) {
-        final IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("验证中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
-       EasyHttp.post("isCompleteTask")
+        EasyHttp.post("isCompleteTask")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {

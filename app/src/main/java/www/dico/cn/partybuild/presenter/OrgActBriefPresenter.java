@@ -14,18 +14,19 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class OrgActBriefPresenter extends BaseMvpPresenter<OrgActBriefView> {
     //组织活动摘要
+    IProgressDialog dialog = new IProgressDialog() {
+        @Override
+        public Dialog getDialog() {
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
+                    .setCancelable(true)
+                    .setCancelOutside(true)
+                    .setMessage("加载中..")
+                    .setShowMessage(true);
+            return builder.create();
+        }
+    };
+
     public void doOrgActBriefRequest(String id) {
-        final IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("加载中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
         EasyHttp.post("")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)

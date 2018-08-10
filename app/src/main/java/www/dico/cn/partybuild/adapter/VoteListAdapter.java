@@ -9,13 +9,13 @@ import www.dico.cn.partybuild.bean.VoteListBean;
 import www.yuntdev.com.baseadapterlibrary.base.CommonAdapter;
 import www.yuntdev.com.baseadapterlibrary.base.ViewHolder;
 
-public class VoteListAdapter extends CommonAdapter<VoteListBean> {
-    public VoteListAdapter(Context context, int layoutId, List<VoteListBean> datas) {
+public class VoteListAdapter extends CommonAdapter<VoteListBean.DataBean> {
+    public VoteListAdapter(Context context, int layoutId, List<VoteListBean.DataBean> datas) {
         super(context, layoutId, datas);
     }
 
     @Override
-    protected void convert(ViewHolder holder, VoteListBean voteListBean, int position) {
-        holder.setText(R.id.tv_title_vote_item, voteListBean.getTitle());
+    protected void convert(ViewHolder holder, VoteListBean.DataBean bean, int position) {
+        holder.setText(R.id.tv_title_vote_item, bean.getTitle());
     }
 }

@@ -14,18 +14,19 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class OnlineExamPresenter extends BaseMvpPresenter<OnlineExamView> {
     //获取试卷试题
+    IProgressDialog dialog = new IProgressDialog() {
+        @Override
+        public Dialog getDialog() {
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
+                    .setCancelable(true)
+                    .setCancelOutside(true)
+                    .setMessage("获取中..")
+                    .setShowMessage(true);
+            return builder.create();
+        }
+    };
+
     public void onlineExamRequest(String examId) {
-        final IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("获取中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
         EasyHttp.post("queryExamQuestionList")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", examId)

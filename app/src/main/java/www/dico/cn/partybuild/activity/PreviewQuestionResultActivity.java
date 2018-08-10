@@ -22,7 +22,6 @@ public class PreviewQuestionResultActivity extends AbstractMvpActivity<PreviewQu
         this.finish();
     }
 
-
     @Override
     public void resultSuccess(String result) {
 

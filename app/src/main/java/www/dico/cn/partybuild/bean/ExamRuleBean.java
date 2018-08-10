@@ -20,7 +20,8 @@ public class ExamRuleBean extends BaseProtocol {
         private String limitScore;
         private String examHours;
         private String questionNum;
-        private String examDuration;
+        private String examStartTime;
+        private String examEndTime;
 
         public String getId() {
             return id;
@@ -70,12 +71,20 @@ public class ExamRuleBean extends BaseProtocol {
             this.questionNum = questionNum;
         }
 
-        public String getExamDuration() {
-            return examDuration;
+        public String getExamStartTime() {
+            return examStartTime;
         }
 
-        public void setExamDuration(String examDuration) {
-            this.examDuration = examDuration;
+        public void setExamStartTime(String examStartTime) {
+            this.examStartTime = examStartTime;
+        }
+
+        public String getExamEndTime() {
+            return examEndTime;
+        }
+
+        public void setExamEndTime(String examEndTime) {
+            this.examEndTime = examEndTime;
         }
     }
 }
