@@ -133,7 +133,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                         break;
                 }
                 tv_des_vote_detail.setText(bean.getData().getDescription());
-                if (null != bean.getData().getOptions() && !bean.getData().getOptions().isEmpty()) {
+                if (null != bean.getData().getOptions() && bean.getData().getOptions().size()>0) {
                     for (int i = 0; i < bean.getData().getOptions().size(); i++) {
                         LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         LinearLayout layout1 = new LinearLayout(this);

@@ -43,7 +43,7 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
     public void resultSuccess(String result) {
         final VoteListBean bean = new Gson().fromJson(result, VoteListBean.class);
         if (bean.code.equals("0000")) {
-            if (null != bean.getData() && !bean.getData().isEmpty()) {
+            if (null != bean.getData() && bean.getData().size() > 0) {
                 adapter = new VoteListAdapter(this, R.layout.item_vote, bean.getData());
                 rv_vote.setAdapter(adapter);
                 adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {

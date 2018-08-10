@@ -10,18 +10,22 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.QuestionsAdapter;
+import www.dico.cn.partybuild.bean.ExamAnswerBean;
+import www.dico.cn.partybuild.bean.ExamResultBean;
 import www.dico.cn.partybuild.bean.ExamRuleForm;
 import www.dico.cn.partybuild.bean.QuestionBean;
 import www.dico.cn.partybuild.modleview.OnlineExamView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.OnlineExamPresenter;
+import www.dico.cn.partybuild.utils.DateTimeUtils;
 import www.dico.cn.partybuild.widget.CountDownButtonHelper;
 import www.yuntdev.com.bottomnavigationlibrary.referview.NoTouchViewPager;
 import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;
@@ -40,6 +44,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
     private CountDownButtonHelper helper;
     private int during = 0;
     private QuestionsAdapter adapter;
+    private List<ExamAnswerBean.TestAnswersBean> answers;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -51,7 +56,15 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
                         helper.setOnFinishListener(new CountDownButtonHelper.OnFinishListener() {
                             @Override
                             public void finish() {
-
+                                ExamAnswerBean answerBean = new ExamAnswerBean();
+                                ExamAnswerBean.ExamRecordBean recordBean = new ExamAnswerBean.ExamRecordBean();
+                                recordBean.setExamRuleId(form.examId);
+                                recordBean.setExamTime(DateTimeUtils.getNow());
+                                answerBean.setExamRecord(recordBean);
+                                answerBean.setTestAnswers(answers);
+                                answerBean.setLimitScore(form.limitScore);
+                                String requestParams = new Gson().toJson(answerBean);
+                                getMvpPresenter().doSaveExamAnswer(requestParams);
                             }
                         });
                         helper.start();
@@ -67,8 +80,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onlineexam);
         ButterKnife.bind(this);
-        mHandler.sendEmptyMessage(0);
-
+        answers = new ArrayList<>();
         form = getParam();
         if (form != null)
             getMvpPresenter().onlineExamRequest(form.examId);
@@ -97,18 +109,34 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
         if (bean.code.equals("0000")) {
             during = bean.getData().getDuration();
             List<QuestionBean.DataBean.QuestionListBean> beans = bean.getData().getQuestionList();
-            if (null != beans && !beans.isEmpty()) {
+            if (null != beans && beans.size() > 0) {
                 tv_current_item_online_exam.setText("1");
                 tv_question_total_online_exam.setText("/" + beans.size());
                 adapter = new QuestionsAdapter(this, beans, R.layout.item_question);
                 vp_online_exam.setAdapter(adapter);
                 adapter.setCallBackInterface(this);
+                mHandler.sendEmptyMessage(0);
             }
         }
     }
 
     @Override
     public void resultFailure(String result) {
+        showToast(result);
+    }
+
+    @Override
+    public void submitSuccess(String result) {
+        ExamResultBean bean = new Gson().fromJson(result, ExamResultBean.class);
+        if (bean.code.equals("0000")) {
+            goTo(ExamResultActivity.class, null);
+        }else {
+            showToast(bean.msg);
+        }
+    }
+
+    @Override
+    public void submitFailure(String result) {
         showToast(result);
     }
 
@@ -135,11 +163,28 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
 
     @Override
     public void nextStep(String tqId, String serial, String answer) {
-
+        vp_online_exam.setCurrentItem(vp_online_exam.getCurrentItem() + 1, true);
+        tv_current_item_online_exam.setText(String.valueOf(Integer.valueOf(serial) + 1));
+        ExamAnswerBean.TestAnswersBean bean = new ExamAnswerBean.TestAnswersBean();
+        bean.setQuestionId(tqId);
+        bean.setAnswer(answer);
+        answers.add(bean);
     }
 
     @Override
     public void submit(String tqId, String serial, String answer) {
-
+        ExamAnswerBean answerBean = new ExamAnswerBean();
+        ExamAnswerBean.ExamRecordBean recordBean = new ExamAnswerBean.ExamRecordBean();
+        recordBean.setExamRuleId(form.examId);
+        recordBean.setExamTime(DateTimeUtils.getNow());
+        ExamAnswerBean.TestAnswersBean bean = new ExamAnswerBean.TestAnswersBean();
+        bean.setQuestionId(tqId);
+        bean.setAnswer(answer);
+        answers.add(bean);
+        answerBean.setExamRecord(recordBean);
+        answerBean.setTestAnswers(answers);
+        answerBean.setLimitScore(form.limitScore);
+        String requestParams = new Gson().toJson(answerBean);
+        getMvpPresenter().doSaveExamAnswer(requestParams);
     }
 }

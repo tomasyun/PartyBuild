@@ -76,7 +76,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
             if (null != briefBean.getData()) {
                 tv_content_task.setText("\u3000\u3000" + briefBean.getData().getContent());
                 final List<TaskBriefBean.DataBean.CourseListBean> beans = briefBean.getData().getCourseList();
-                if (null != beans && !beans.isEmpty()) {
+                if (null != beans && beans.size()>0) {
                     for (int i = 0; i < beans.size(); i++) {
                         TextView courseView = new TextView(this);
                         courseView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));

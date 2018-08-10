@@ -50,4 +50,29 @@ public class OnlineExamPresenter extends BaseMvpPresenter<OnlineExamView> {
                     }
                 });
     }
+
+    //提交答案
+    public void doSaveExamAnswer(String answer) {
+        EasyHttp.post("saveExamAnswers")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
+                .upJson(answer)
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
+                    @Override
+                    public void onSuccess(String s) {
+                        getMvpView().submitSuccess(s);
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        super.onError(e);
+                        getMvpView().submitFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        dialog.getDialog().dismiss();
+                    }
+                });
+    }
 }

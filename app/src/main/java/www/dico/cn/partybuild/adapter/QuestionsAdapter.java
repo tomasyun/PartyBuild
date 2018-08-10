@@ -1,7 +1,6 @@
 package www.dico.cn.partybuild.adapter;
 
 import android.content.Context;
-import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import www.dico.cn.partybuild.AppConfig;
@@ -101,8 +101,6 @@ public class QuestionsAdapter extends ViewPagerCommonAdapter<QuestionBean.DataBe
         else
             holder.setText(R.id.tv_next_question, "下一题");
         holder.setOnClickListener(R.id.tv_next_question, new View.OnClickListener() {
-            LocalBroadcastManager manager = LocalBroadcastManager.getInstance(AppConfig.getContext());
-
             @Override
             public void onClick(View view) {
                 String content = ((TextView) holder.getView(R.id.tv_next_question)).getText().toString().trim();
@@ -125,7 +123,10 @@ public class QuestionsAdapter extends ViewPagerCommonAdapter<QuestionBean.DataBe
                                 if (str.equals("")) {
                                     Toast.makeText(AppConfig.getContext(), "请选择", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    callBackInterface.nextStep(item.getId(), String.valueOf(position + 1), str);
+                                    char[] c = str.toCharArray();//将字符串转换成char数组
+                                    Arrays.sort(c);//对数组进行排序
+                                    String sortAnswer=new String(c);
+                                    callBackInterface.nextStep(item.getId(), String.valueOf(position + 1), sortAnswer);
                                 }
                             }
                         }
@@ -142,13 +143,16 @@ public class QuestionsAdapter extends ViewPagerCommonAdapter<QuestionBean.DataBe
                                 String str = "";
                                 for (CheckBox checkBox : list) {
                                     if (checkBox.isChecked()) {
-                                        str += checkBox.getText().toString().trim().substring(0, 1) + ",";
+                                        str += checkBox.getText().toString().trim().substring(0, 1);
                                     }
                                 }
                                 if (str.equals("")) {
                                     Toast.makeText(AppManager.getManager().curActivity(), "请选择", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    callBackInterface.submit(item.getId(), String.valueOf(position + 1), str);
+                                    char[] c = str.toCharArray();//将字符串转换成char数组
+                                    Arrays.sort(c);//对数组进行排序
+                                    String sortAnswer=new String(c);
+                                    callBackInterface.submit(item.getId(), String.valueOf(position + 1), sortAnswer);
                                 }
                             }
                         }
