@@ -40,12 +40,6 @@ public class InfoPresenter extends BaseMvpPresenter<InfoView> {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
     }
 }

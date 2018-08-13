@@ -26,7 +26,7 @@ public class MeetingPresenter extends BaseMvpPresenter<MeetingView> {
         }
     };
     public void doMeetingRequest() {
-        EasyHttp.post("")
+        EasyHttp.post("conferenceList")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
@@ -38,12 +38,6 @@ public class MeetingPresenter extends BaseMvpPresenter<MeetingView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
-                    }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
                     }
                 });
     }

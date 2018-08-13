@@ -80,7 +80,7 @@
                             android:textSize="14sp" />
 
                         <TextView
-                            android:id="@+id/tv_title_meeting_brief"
+                            android:id="@+id/tv_theme_meeting_brief"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -150,9 +150,9 @@
                             android:layout_marginLeft="20dp"
                             android:layout_weight="8"
                             android:ellipsize="end"
-                            android:maxLines="2"
                             android:letterSpacing="0.08"
                             android:lineSpacingExtra="8dp"
+                            android:maxLines="2"
                             android:text="陕西缔科网络科技有限公司丈八一路 汇鑫IBC 1501室"
                             android:textColor="@color/text_color"
                             android:textSize="14sp"
@@ -258,6 +258,7 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rel_participants_meeting_brief"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -295,6 +296,7 @@
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/iv_participants_meeting_brief"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -304,12 +306,35 @@
                         android:src="@mipmap/img_arrow_right" />
                 </RelativeLayout>
 
-                <com.zhy.view.flowlayout.TagFlowLayout
-                    android:id="@+id/tfl_participants_meeting_brief"
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="0.5dp"
+                    android:background="#ddd" />
 
-                </com.zhy.view.flowlayout.TagFlowLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2" />
+
+                    <com.zhy.view.flowlayout.TagFlowLayout
+                        android:id="@+id/tfl_participants_meeting_brief"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="15dp">
+
+                    </com.zhy.view.flowlayout.TagFlowLayout>
+                </LinearLayout>
+
 
                 <View
                     android:layout_width="match_parent"
@@ -322,13 +347,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <include
+                android:id="@+id/sign_up"
+                layout="@layout/include_sign_up"
+                android:visibility="gone" />
+
             <LinearLayout
+                android:id="@+id/lin_leave_and_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:background="@color/white"
                 android:orientation="vertical"
-                android:paddingBottom="15dp">
+                android:paddingBottom="15dp"
+                android:visibility="visible">
 
                 <View
                     android:layout_width="match_parent"

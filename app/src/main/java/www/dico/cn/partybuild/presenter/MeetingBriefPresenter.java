@@ -27,7 +27,7 @@ public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
     };
 
     public void doMeetingBriefRequest(String id) {
-        EasyHttp.post("")
+        EasyHttp.post("conferenceBrief")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
@@ -40,12 +40,6 @@ public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
-                    }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
                     }
                 });
     }

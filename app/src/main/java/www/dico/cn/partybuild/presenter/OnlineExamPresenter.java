@@ -42,12 +42,6 @@ public class OnlineExamPresenter extends BaseMvpPresenter<OnlineExamView> {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
     }
 
@@ -66,12 +60,6 @@ public class OnlineExamPresenter extends BaseMvpPresenter<OnlineExamView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().submitFailure(e.getMessage());
-                    }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
                     }
                 });
     }

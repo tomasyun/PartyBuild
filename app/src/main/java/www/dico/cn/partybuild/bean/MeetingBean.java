@@ -1,31 +1,56 @@
 package www.dico.cn.partybuild.bean;
 
+import java.util.List;
+
 public class MeetingBean extends BaseProtocol {
-    private String state;
-    private String title;
-    private String date;
 
-    public String getState() {
-        return state;
+    private List<DataBean> data;
+
+    public List<DataBean> getData() {
+        return data;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setData(List<DataBean> data) {
+        this.data = data;
     }
 
-    public String getTitle() {
-        return title;
-    }
+    public static class DataBean {
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+        private String id;
+        private String title;
+        private String state;
+        private String limitDate;
 
-    public String getDate() {
-        return date;
-    }
+        public String getId() {
+            return id;
+        }
 
-    public void setDate(String date) {
-        this.date = date;
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getState() {
+            return state;
+        }
+
+        public void setState(String state) {
+            this.state = state;
+        }
+
+        public String getLimitDate() {
+            return limitDate;
+        }
+
+        public void setLimitDate(String limitDate) {
+            this.limitDate = limitDate;
+        }
     }
 }

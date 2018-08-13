@@ -24,6 +24,7 @@ public class CreditInfoPresenter extends BaseMvpPresenter<CreditInfoView> {
             return builder.create();
         }
     };
+
     public void creditInfoRequest(String id) {
         EasyHttp.post("")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
@@ -38,12 +39,6 @@ public class CreditInfoPresenter extends BaseMvpPresenter<CreditInfoView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
-                    }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
                     }
                 });
     }

@@ -42,12 +42,6 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
                         super.onError(e);
                         getMvpView().examOnResultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
     }
 
@@ -66,12 +60,6 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().examOkResultFailure(e.getMessage());
-                    }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
                     }
                 });
     }

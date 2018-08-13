@@ -39,12 +39,6 @@ public class NoticePresenter extends BaseMvpPresenter<NoticeView> {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
     }
 }

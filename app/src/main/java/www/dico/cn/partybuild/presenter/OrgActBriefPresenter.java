@@ -41,12 +41,6 @@ public class OrgActBriefPresenter extends BaseMvpPresenter<OrgActBriefView> {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
     }
 }

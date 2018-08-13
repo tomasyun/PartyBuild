@@ -25,6 +25,7 @@ public class CourseInfoPresenter extends BaseMvpPresenter<CourseInfoView> {
             return builder.create();
         }
     };
+
     public void doGetIntoCourseInfoRequest(String id, String taskId, String flag) {
         EasyHttp.post("courseInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
@@ -41,12 +42,6 @@ public class CourseInfoPresenter extends BaseMvpPresenter<CourseInfoView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().intoResultFailure(e.getMessage());
-                    }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
                     }
                 });
     }
@@ -67,12 +62,6 @@ public class CourseInfoPresenter extends BaseMvpPresenter<CourseInfoView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().outResultFailure(e.getMessage());
-                    }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
                     }
                 });
     }

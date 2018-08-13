@@ -66,12 +66,6 @@ public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
                         super.onError(e);
                         getMvpView().verifyFailure(e.getMessage());
                     }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        dialog.getDialog().dismiss();
-                    }
                 });
     }
 }
