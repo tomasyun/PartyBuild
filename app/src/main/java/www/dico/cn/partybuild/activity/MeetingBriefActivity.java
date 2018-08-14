@@ -15,6 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.ParticipantsAdapter;
+import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.bean.MeetBriefBean;
 import www.dico.cn.partybuild.bean.MeetingForm;
 import www.dico.cn.partybuild.modleview.MeetingBriefView;
@@ -92,7 +93,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
 
     //报名
     public void signUp(View view) {
-        goTo(SignUpSuccessActivity.class, null);
+        getMvpPresenter().doSignUpRequest("");
     }
 
     @Override
@@ -123,6 +124,36 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
 
     @Override
     public void resultFailure(String result) {
+        showToast(result);
+    }
+
+    @Override
+    public void signUpResultSuccess(String result) {
+        BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
+        if (protocol.code.equals("0000")) {
+            goTo(SignUpSuccessActivity.class, null);
+        } else {
+
+        }
+    }
+
+    @Override
+    public void signUpResultFailure(String result) {
+        showToast(result);
+    }
+
+    @Override
+    public void leaveResultSuccess(String result) {
+        BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
+        if (protocol.code.equals("0000")) {
+
+        } else {
+
+        }
+    }
+
+    @Override
+    public void leaveResultFailure(String result) {
         showToast(result);
     }
 }

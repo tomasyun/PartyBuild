@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.ExamRuleActivity;
 import www.dico.cn.partybuild.adapter.ExamOkAdapter;
@@ -26,7 +27,7 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 
 //考试列表
 @CreatePresenter(ExamPresenter.class)
-public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> implements ExamView {
+public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> implements ExamView ,MainActivity.ExamFragmentInterface{
     @BindView(R.id.rg_exam)
     RadioGroup rg_exam;
     @BindView(R.id.rv_exam)
@@ -58,6 +59,9 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
             }
         });
         rv_exam.setLayoutManager(new LinearLayoutManager(getActivity()));
+        if (getActivity() instanceof MainActivity){
+            ((MainActivity) getActivity()).setFragmentInterface(this);
+        }
         return view;
     }
 
@@ -100,6 +104,8 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                         goTo(ExamRuleActivity.class, null);
                     }
                 });
+            }else {
+
             }
         } else {
 
@@ -119,9 +125,20 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                 getMvpPresenter().examsOnRequest("0");
                 break;
             case 1:
-                getMvpPresenter().examsOnRequest("1");
+                getMvpPresenter().examsOkRequest("1");
                 break;
+        }
+    }
 
+    @Override
+    public void notifyRefresh() {
+        switch (position) {
+            case 0:
+                getMvpPresenter().examsOnRequest("0");
+                break;
+            case 1:
+                getMvpPresenter().examsOkRequest("1");
+                break;
         }
     }
 }

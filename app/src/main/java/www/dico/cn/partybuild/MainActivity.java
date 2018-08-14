@@ -1,10 +1,15 @@
 package www.dico.cn.partybuild;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
@@ -40,6 +45,7 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
     PageBottomTabLayout tab_main;
     private NavigationController controller;
     private List<Fragment> fragments;
+    private ExamFragmentInterface fragmentInterface;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -47,6 +53,7 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
             isExit = false;
         }
     };
+    private MyViewPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +71,12 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
                 .build();
         setUp();
         vp_main.setNoScroll(true);
-        vp_main.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager(), controller.getItemCount(), fragments));
+        adapter = new MyViewPagerAdapter(getSupportFragmentManager(), controller.getItemCount(), fragments);
+        vp_main.setAdapter(adapter);
         vp_main.setCurrentItem(0);
         controller.setupWithViewPager(vp_main);
+        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
+        manager.registerReceiver(new SkipReceiver(), new IntentFilter("cn.diconet.www"));
     }
 
     public void setUp() {
@@ -121,5 +131,30 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
             return true;
         }
         return false;
+    }
+
+    private class SkipReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String skip = intent.getStringExtra("skip");
+            switch (skip) {
+                case "3":
+                    vp_main.setCurrentItem(Integer.parseInt(skip));
+                    fragmentInterface.notifyRefresh();
+                    break;
+            }
+        }
+    }
+
+    public interface ExamFragmentInterface {
+        void notifyRefresh();
+    }
+
+    public ExamFragmentInterface getFragmentInterface() {
+        return fragmentInterface;
+    }
+
+    public void setFragmentInterface(ExamFragmentInterface fragmentInterface) {
+        this.fragmentInterface = fragmentInterface;
     }
 }

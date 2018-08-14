@@ -6,7 +6,7 @@ import www.dico.cn.partybuild.utils.SPUtils;
 
 public class AppConfig {
     public static final boolean DEBUG = Boolean.parseBoolean("true");
-    public static final String ACTION = "cn.diconet.www.action";
+    public static final String ACTION = "cn.diconet.www";
     private static Context context = null;
     private static SPUtils spUtils;
 

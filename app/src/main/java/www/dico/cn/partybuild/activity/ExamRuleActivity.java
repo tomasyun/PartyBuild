@@ -53,6 +53,7 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
     public void startExam(View view) {
         if (form != null)
             goTo(OnlineExamActivity.class, form);
+        this.finish();
     }
 
     @Override
@@ -66,7 +67,7 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
                 tv_exam_during.setText(bean.getData().getExamHours());
                 tv_exam_start_date.setText(bean.getData().getExamStartTime());
                 tv_exam_end_date.setText(bean.getData().getExamEndTime());
-                form.limitScore=bean.getData().getLimitScore();
+                form.limitScore = bean.getData().getLimitScore();
             }
         }
     }

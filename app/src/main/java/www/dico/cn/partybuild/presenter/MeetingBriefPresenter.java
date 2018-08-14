@@ -43,4 +43,39 @@ public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
                     }
                 });
     }
+
+    public void doSignUpRequest(String id) {
+        EasyHttp.post("signUp")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
+                .params("id", id)
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
+                    @Override
+                    public void onSuccess(String s) {
+                        getMvpView().signUpResultSuccess(s);
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        super.onError(e);
+                        getMvpView().signUpResultFailure(e.getMessage());
+                    }
+                });
+    }
+
+    public void doLeaveRequest(String id){
+        EasyHttp.post("leave")
+                .params("id",id)
+                .execute(new ProgressDialogCallBack<String>(dialog,true,true) {
+                    @Override
+                    public void onSuccess(String s) {
+                        getMvpView().leaveResultSuccess(s);
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        super.onError(e);
+                        getMvpView().leaveResultFailure(e.getMessage());
+                    }
+                });
+    }
 }

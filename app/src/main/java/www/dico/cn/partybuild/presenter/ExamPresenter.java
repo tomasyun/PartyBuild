@@ -1,9 +1,11 @@
 package www.dico.cn.partybuild.presenter;
 
 import android.app.Dialog;
+import android.content.Context;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.modleview.ExamView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;

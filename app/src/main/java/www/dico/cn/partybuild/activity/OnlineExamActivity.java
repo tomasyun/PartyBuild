@@ -1,9 +1,11 @@
 package www.dico.cn.partybuild.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -15,6 +17,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import www.dico.cn.partybuild.AppConfig;
+import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.QuestionsAdapter;
 import www.dico.cn.partybuild.bean.ExamAnswerBean;
@@ -93,6 +97,8 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
                 .setPositiveButton("确定", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        LocalBroadcastManager manager=LocalBroadcastManager.getInstance(OnlineExamActivity.this);
+                        manager.sendBroadcast(new Intent("cn.diconet.www").putExtra("skip","3"));
                         OnlineExamActivity.this.finish();
                     }
                 }).setNegativeButton("取消", new View.OnClickListener() {

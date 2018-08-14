@@ -36,74 +36,147 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".MainActivity" />
+        <!--登录-->
+        <activity
+            android:name=".activity.LoginActivity"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask"/>
+
         <!--设置-->
-        <activity android:name=".activity.SettingActivity" />
+        <activity
+            android:name=".activity.SettingActivity"
+            android:launchMode="singleTask" />
         <!--密码修改-->
-        <activity android:name=".activity.PwdupdateActivity" />
+        <activity
+            android:name=".activity.PwdupdateActivity"
+            android:launchMode="singleTask" />
         <!--积分明细-->
-        <activity android:name=".activity.CreditInfoActivity" />
+        <activity
+            android:name=".activity.CreditInfoActivity"
+            android:launchMode="singleTask" />
         <!--积分排名-->
-        <activity android:name=".activity.CreditRankActivity" />
+        <activity
+            android:name=".activity.CreditRankActivity"
+            android:launchMode="singleTask" />
         <!--基本信息-->
-        <activity android:name=".activity.BaseInfoActivity" />
+        <activity
+            android:name=".activity.BaseInfoActivity"
+            android:launchMode="singleTask" />
         <!--收藏-->
-        <activity android:name=".activity.CollectActivity" />
+        <activity
+            android:name=".activity.CollectActivity"
+            android:launchMode="singleTask" />
         <!--意见反馈-->
-        <activity android:name=".activity.FeedbackActivity" />
+        <activity
+            android:name=".activity.FeedbackActivity"
+            android:launchMode="singleTask" />
         <!--考试规则-->
-        <activity android:name=".activity.ExamRuleActivity" />
+        <activity
+            android:name=".activity.ExamRuleActivity"
+            android:launchMode="singleTask" />
         <!--在线考试-->
-        <activity android:name=".activity.OnlineExamActivity" />
+        <activity
+            android:name=".activity.OnlineExamActivity"
+            android:launchMode="singleTask" />
         <!--通知-->
-        <activity android:name=".activity.NoticeActivity" />
+        <activity
+            android:name=".activity.NoticeActivity"
+            android:launchMode="singleTask" />
         <!--资讯详情-->
-        <activity android:name=".activity.InfodetailsActivity" />
+        <activity
+            android:name=".activity.InfodetailsActivity"
+            android:launchMode="singleTask" />
         <!--党费缴纳-->
-        <activity android:name=".activity.PayDuesActivity" />
+        <activity
+            android:name=".activity.PayDuesActivity"
+            android:launchMode="singleTask" />
         <!--积分规则-->
-        <activity android:name=".activity.CreditRuleActivity" />
+        <activity
+            android:name=".activity.CreditRuleActivity"
+            android:launchMode="singleTask" />
         <!--三会一课-->
-        <activity android:name=".activity.MeetingActivity" />
+        <activity
+            android:name=".activity.MeetingActivity"
+            android:launchMode="singleTask" />
         <!--会议摘要-->
-        <activity android:name=".activity.MeetingBriefActivity" />
+        <activity
+            android:name=".activity.MeetingBriefActivity"
+            android:launchMode="singleTask" />
         <!--领导信箱-->
-        <activity android:name=".activity.MailboxActivity" />
+        <activity
+            android:name=".activity.MailboxActivity"
+            android:launchMode="singleTask" />
         <!--活动管理-->
-        <activity android:name=".activity.ActivityMrgActivity" />
+        <activity
+            android:name=".activity.ActivityMrgActivity"
+            android:launchMode="singleTask" />
         <!--组织活动-->
-        <activity android:name=".activity.OrgActActivity" />
+        <activity
+            android:name=".activity.OrgActActivity"
+            android:launchMode="singleTask" />
         <!--投票管理-->
-        <activity android:name=".activity.VoteManagerActivity" />
+        <activity
+            android:name=".activity.VoteManagerActivity"
+            android:launchMode="singleTask" />
         <!--问卷调查-->
-        <activity android:name=".activity.QuestionSurveyActivity" />
+        <activity
+            android:name=".activity.QuestionSurveyActivity"
+            android:launchMode="singleTask" />
         <!--缴纳规则-->
-        <activity android:name=".activity.PaymentRuleActivity" />
+        <activity
+            android:name=".activity.PaymentRuleActivity"
+            android:launchMode="singleTask" />
         <!--组织活动摘要-->
-        <activity android:name=".activity.OrgActBriefActivity" />
+        <activity
+            android:name=".activity.OrgActBriefActivity"
+            android:launchMode="singleTask" />
         <!--学习任务-->
-        <activity android:name=".activity.StudyTaskActivity" />
+        <activity
+            android:name=".activity.StudyTaskActivity"
+            android:launchMode="singleTask" />
         <!--通知详情-->
-        <activity android:name=".activity.NoticeInfoActivity" />
+        <activity
+            android:name=".activity.NoticeInfoActivity"
+            android:launchMode="singleTask" />
         <!--考试结果-->
-        <activity android:name=".activity.ExamResultActivity" />
+        <activity
+            android:name=".activity.ExamResultActivity"
+            android:launchMode="singleTask" />
         <!--查看试题结果-->
-        <activity android:name=".activity.PreviewQuestionResultActivity" />
+        <activity
+            android:name=".activity.PreviewQuestionResultActivity"
+            android:launchMode="singleTask" />
         <!--请假原因-->
-        <activity android:name=".activity.LeaveReasonActivity" />
+        <activity
+            android:name=".activity.LeaveReasonActivity"
+            android:launchMode="singleTask" />
         <!--报名成功-->
-        <activity android:name=".activity.SignUpSuccessActivity" />
+        <activity
+            android:name=".activity.SignUpSuccessActivity"
+            android:launchMode="singleTask" />
         <!--任务摘要-->
-        <activity android:name=".activity.TaskBriefActivity" />
+        <activity
+            android:name=".activity.TaskBriefActivity"
+            android:launchMode="singleTask" />
         <!--信箱列表-->
-        <activity android:name=".activity.MailboxListActivity" />
+        <activity
+            android:name=".activity.MailboxListActivity"
+            android:launchMode="singleTask" />
         <!--投票详情-->
-        <activity android:name=".activity.VoteDetailActivity" />
+        <activity
+            android:name=".activity.VoteDetailActivity"
+            android:launchMode="singleTask" />
         <!--学习成果-->
-        <activity android:name=".activity.StudyResultActivity" />
+        <activity
+            android:name=".activity.StudyResultActivity"
+            android:launchMode="singleTask" />
         <!--课件详情-->
-        <activity android:name=".activity.CourseInfoActivity" />
+        <activity
+            android:name=".activity.CourseInfoActivity"
+            android:launchMode="singleTask" />
 
         <!--使用高德api所申请的key-->
         <meta-data
