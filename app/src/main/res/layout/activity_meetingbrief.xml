@@ -302,8 +302,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:contentDescription="@null"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/img_arrow_right" />
+                        android:scaleType="fitXY" />
                 </RelativeLayout>
 
                 <View
@@ -360,7 +359,7 @@
                 android:background="@color/white"
                 android:orientation="vertical"
                 android:paddingBottom="15dp"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <View
                     android:layout_width="match_parent"
@@ -376,6 +375,7 @@
                     android:paddingRight="15dp">
 
                     <TextView
+                        android:id="@+id/tv_leave_brief"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -389,6 +389,7 @@
                         android:textColor="@color/theme_color" />
 
                     <TextView
+                        android:id="@+id/tv_sign_up_brief"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"

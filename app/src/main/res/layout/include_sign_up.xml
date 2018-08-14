@@ -13,6 +13,7 @@
         android:background="#ddd" />
 
     <TextView
+        android:id="@+id/tv_sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"

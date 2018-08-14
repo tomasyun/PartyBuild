@@ -1,5 +1,6 @@
 package www.dico.cn.partybuild.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,7 +28,7 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 
 //考试列表
 @CreatePresenter(ExamPresenter.class)
-public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> implements ExamView ,MainActivity.ExamFragmentInterface{
+public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> implements ExamView, MainActivity.ExamFragmentInterface {
     @BindView(R.id.rg_exam)
     RadioGroup rg_exam;
     @BindView(R.id.rv_exam)
@@ -35,6 +36,14 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     private ExamOnAdapter onAdapter;
     private ExamOkAdapter okAdapter;
     private int position = 0;
+    private MainActivity activity;
+
+    @Override
+    public void onAttach(Activity context) {
+        super.onAttach(context);
+        this.activity = (MainActivity) context;
+        activity.setFragmentInterface(this);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,9 +68,6 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
             }
         });
         rv_exam.setLayoutManager(new LinearLayoutManager(getActivity()));
-        if (getActivity() instanceof MainActivity){
-            ((MainActivity) getActivity()).setFragmentInterface(this);
-        }
         return view;
     }
 
@@ -104,7 +110,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                         goTo(ExamRuleActivity.class, null);
                     }
                 });
-            }else {
+            } else {
 
             }
         } else {

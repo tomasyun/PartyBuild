@@ -375,4 +375,19 @@ public class DateTimeUtils {
         return beiJingTime;
     }
 
+    public static String getMinutes(String startTime, String endTime) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date start = sdf.parse(startTime);
+            Date end = sdf.parse(endTime);
+            long minutes = (end.getTime() - start.getTime()) / (1000 * 60);
+            if (minutes == 0) {
+                minutes = 1;
+            }
+            return String.valueOf(minutes);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

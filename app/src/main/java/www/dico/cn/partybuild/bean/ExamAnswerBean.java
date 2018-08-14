@@ -36,6 +36,15 @@ public class ExamAnswerBean {
 
         private String examRuleId;
         private String examTime;
+        private String examCost;
+
+        public String getExamCost() {
+            return examCost;
+        }
+
+        public void setExamCost(String examCost) {
+            this.examCost = examCost;
+        }
 
         public String getExamRuleId() {
             return examRuleId;
