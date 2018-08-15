@@ -1,7 +1,6 @@
 package www.dico.cn.partybuild.adapter;
 
 import android.content.Context;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -19,7 +18,6 @@ public class ExamOkAdapter extends CommonAdapter<ExamsBean.DataBean> {
     protected void convert(ViewHolder holder, ExamsBean.DataBean bean, int position) {
         holder.setText(R.id.tv_title_exam_ok_item, bean.getTitle());
         holder.setText(R.id.tv_date_exam_ok_item, bean.getEndDate());
-        TextView tv_state_exam_ok_item = holder.getView(R.id.tv_state_exam_ok_item);
-
+        holder.setText(R.id.tv_exam_ok_score, bean.getExamScore());
     }
 }

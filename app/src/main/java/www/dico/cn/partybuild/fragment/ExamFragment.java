@@ -83,6 +83,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                         ExamRuleForm form = new ExamRuleForm();
                         form.examId = bean.getData().get(position).getId();
+                        form.state="0";//0：待考 1：已考
                         goTo(ExamRuleActivity.class, form);
                     }
                 });
@@ -99,7 +100,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
 
     @Override
     public void examOkResultSuccess(String result) {
-        ExamsBean bean = new Gson().fromJson(result, ExamsBean.class);
+        final ExamsBean bean = new Gson().fromJson(result, ExamsBean.class);
         if (bean.code.equals("0000")) {
             if (null != bean.getData() && bean.getData().size() > 0) {
                 okAdapter = new ExamOkAdapter(getActivity(), R.layout.item_exam_ok, bean.getData());
@@ -107,7 +108,10 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                 okAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        goTo(ExamRuleActivity.class, null);
+                        ExamRuleForm form = new ExamRuleForm();
+                        form.examId = bean.getData().get(position).getId();
+                        form.state="0";//0：待考 1：已考
+                        goTo(ExamRuleActivity.class, form);
                     }
                 });
             } else {

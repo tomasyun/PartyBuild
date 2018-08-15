@@ -32,6 +32,8 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
     TextView tv_exam_start_date;//考试开始时间
     @BindView(R.id.tv_exam_end_date)
     TextView tv_exam_end_date;//考试结束时间
+    @BindView(R.id.tv_start_exam)
+    TextView tv_start_exam;
     private ExamRuleForm form;
 
     @Override
@@ -40,8 +42,20 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
         setContentView(R.layout.activity_examrule);
         ButterKnife.bind(this);
         form = getParam();
-        if (form != null)
+        if (form != null) {
             getMvpPresenter().examRuleRequest(form.examId);
+            if (form.state.equals("0")) {
+                tv_start_exam.setText("已结束");
+                tv_start_exam.setEnabled(false);
+                tv_start_exam.setClickable(false);
+                tv_start_exam.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+            } else {
+                tv_start_exam.setText("开始答题");
+                tv_start_exam.setEnabled(true);
+                tv_start_exam.setClickable(true);
+                tv_start_exam.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_red_bg));
+            }
+        }
     }
 
     //返回

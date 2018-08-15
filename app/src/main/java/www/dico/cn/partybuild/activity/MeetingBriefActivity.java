@@ -110,6 +110,13 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
             tv_brief_meeting_brief.setText(briefBean.getData().getBrief());
             adapter = new ParticipantsAdapter(briefBean.getData().getAttender());
             tv_participants_meeting_brief.setText(briefBean.getData().getAttendNum());
+            if (tv_participants_meeting_brief.getText().toString().equals("0")){
+                rel_participants_meeting_brief.setEnabled(false);
+                rel_participants_meeting_brief.setClickable(false);
+            }else {
+                rel_participants_meeting_brief.setEnabled(true);
+                rel_participants_meeting_brief.setClickable(true);
+            }
             tfl_participants_meeting_brief.setAdapter(adapter);
             String conferenceState = briefBean.getData().getConferenceState();
             String signUpState = briefBean.getData().getSignUpState();
