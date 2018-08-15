@@ -4,7 +4,7 @@ import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.modleview.PreviewQuestionResultView;
+import www.dico.cn.partybuild.modleview.ExamResultView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
@@ -12,28 +12,27 @@ import www.yuntdev.com.library.callback.ProgressDialogCallBack;
 import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
-public class PreviewQuestionResultPresenter extends BaseMvpPresenter<PreviewQuestionResultView> {
-    //试题结果查看
+public class ExamResultPresenter extends BaseMvpPresenter<ExamResultView> {
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
             LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
                     .setCancelable(true)
                     .setCancelOutside(true)
-                    .setMessage("加载中..")
+                    .setMessage("获取中...")
                     .setShowMessage(true);
             return builder.create();
         }
     };
 
-    public void doPreviewQuestionResultRequest(String id) {
-        EasyHttp.post("")
+    public void doExamResultPreviewRequest(String id) {
+        EasyHttp.post("getExamAnswersRecord")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
-                .params("id", id)
+                .params("ruleId", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(String result) {
-                        getMvpView().resultSuccess(result);
+                    public void onSuccess(String s) {
+                        getMvpView().resultSuccess(s);
                     }
 
                     @Override

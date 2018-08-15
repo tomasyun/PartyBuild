@@ -1,5 +1,6 @@
 package www.dico.cn.partybuild.activity;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,9 +14,15 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.bean.VoteDetailBean;
 import www.dico.cn.partybuild.bean.VoteForm;
 import www.dico.cn.partybuild.modleview.VoteDetailView;
@@ -36,8 +43,12 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
     TextView tv_type_vote_detail;
     @BindView(R.id.tv_des_vote_detail)
     TextView tv_des_vote_detail;
-    private boolean isSelected = true;
+    private boolean isSelected = false;
     private VoteForm form;
+    private String voteOptionId = "";
+    private List<String> options;
+    @BindView(R.id.tv_submit_vote_detail)
+    TextView tv_submit_vote_detail;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +56,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
         setContentView(R.layout.activity_votedetail);
         ButterKnife.bind(this);
 //        addOptionsChildView();
+        options = new ArrayList<>();
         form = getParam();
         if (form != null)
             getMvpPresenter().doVoteDetailRequest(form.voteId);
@@ -55,8 +67,16 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
     }
 
     //提交
-    public void submit(View view) {
-        showToast("暂未开通");
+    public void submitVote(View view) {
+        if (options.size() > 0) {
+            Map map = new HashMap();
+            map.put("id", form.voteId);
+            map.put("optionIds", options);
+            String json = new Gson().toJson(map);
+            getMvpPresenter().doSubmitVoteResultRequest(json);
+        } else {
+            showToast("请选择");
+        }
     }
 
     public void addOptionsChildView() {
@@ -133,8 +153,9 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                         break;
                 }
                 tv_des_vote_detail.setText(bean.getData().getDescription());
-                if (null != bean.getData().getOptions() && bean.getData().getOptions().size()>0) {
-                    for (int i = 0; i < bean.getData().getOptions().size(); i++) {
+                final List<VoteDetailBean.DataBean.OptionsBean> beans = bean.getData().getOptions();
+                if (null != beans && beans.size() > 0) {
+                    for (int i = 0; i < beans.size(); i++) {
                         LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         LinearLayout layout1 = new LinearLayout(this);
                         layout1.setLayoutParams(params1);
@@ -150,11 +171,11 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
 
                         final ImageView image = new ImageView(this);
                         image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                        image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
+                        image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
 
                         TextView optionText = new TextView(this);
                         optionText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                        optionText.setText(bean.getData().getOptions().get(i).getOption());
+                        optionText.setText(beans.get(i).getOption());
                         optionText.setTextSize(16);
                         optionText.setTypeface(Typeface.DEFAULT_BOLD);
                         optionText.setTextColor(getResources().getColor(R.color.text_color));
@@ -167,7 +188,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
 
                         TextView votesText = new TextView(this);
                         votesText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                        votesText.setText(bean.getData().getOptions().get(i).getVotes());
+                        votesText.setText(beans.get(i).getVotes());
                         votesText.setTextSize(14);
                         votesText.setPadding(SizeUtils.dp2px(this, 33), 0, 0, 0);
                         votesText.setTextColor(getResources().getColor(R.color.theme_color));
@@ -176,15 +197,22 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                         layout1.addView(votesText);
                         lin_options_vote.addView(layout1);
 
+                        final String optionId = beans.get(i).getId();
                         image.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 if (isSelected) {
-                                    image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
-                                    isSelected = false;
-                                } else {
                                     image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
                                     isSelected = true;
+                                    for (int i = 0; i < options.size(); i++) {
+                                        if (options.get(i).equals(optionId)) {
+                                            options.remove(i);
+                                        }
+                                    }
+                                } else {
+                                    image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
+                                    isSelected = true;
+                                    options.add(optionId);
                                 }
                             }
                         });
@@ -196,6 +224,28 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
 
     @Override
     public void resultFailure(String result) {
+        showToast(result);
+    }
+
+    @Override
+    public void submitVoteResultSuccess(String result) {
+        BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
+        if (protocol.code.equals("0000")) {
+            showToast(protocol.msg);
+            tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+            tv_submit_vote_detail.setTextColor(Color.parseColor("#febfb5"));
+            tv_submit_vote_detail.setText("已投票");
+            tv_submit_vote_detail.setEnabled(false);
+            tv_submit_vote_detail.setClickable(false);
+
+            getMvpPresenter().doVoteDetailRequest(form.voteId);
+        } else {
+            showToast(protocol.msg);
+        }
+    }
+
+    @Override
+    public void submitVoteResultFailure(String result) {
         showToast(result);
     }
 }

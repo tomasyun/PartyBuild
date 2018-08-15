@@ -75,7 +75,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     public void examOnResultSuccess(String result) {
         final ExamsBean bean = new Gson().fromJson(result, ExamsBean.class);
         if (bean.code.equals("0000")) {
-            if (null != bean.getData() && !bean.getData().isEmpty()) {
+            if (null != bean.getData() &&bean.getData().size()>0) {
                 onAdapter = new ExamOnAdapter(getActivity(), R.layout.item_exam_on, bean.getData());
                 rv_exam.setAdapter(onAdapter);
                 onAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {

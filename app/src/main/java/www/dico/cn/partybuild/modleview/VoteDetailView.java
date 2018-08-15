@@ -6,4 +6,8 @@ public interface VoteDetailView extends BaseMvpView {
     void resultSuccess(String result);
 
     void resultFailure(String result);
+
+    void submitVoteResultSuccess(String result);
+
+    void submitVoteResultFailure(String result);
 }

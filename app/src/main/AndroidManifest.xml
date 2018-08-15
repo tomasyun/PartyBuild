@@ -43,7 +43,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask" />
 
         <!--设置-->
         <activity
@@ -145,10 +145,6 @@
         <activity
             android:name=".activity.ExamResultActivity"
             android:launchMode="singleTask" />
-        <!--查看试题结果-->
-        <activity
-            android:name=".activity.PreviewQuestionResultActivity"
-            android:launchMode="singleTask" />
         <!--请假原因-->
         <activity
             android:name=".activity.LeaveReasonActivity"
@@ -177,7 +173,10 @@
         <activity
             android:name=".activity.CourseInfoActivity"
             android:launchMode="singleTask" />
-
+        <!--考试试题选项查看-->
+        <activity
+            android:name=".activity.QuestionOptionPreviewActivity"
+            android:launchMode="singleTask" />
         <!--使用高德api所申请的key-->
         <meta-data
             android:name="com.amap.api.v2.apikey"

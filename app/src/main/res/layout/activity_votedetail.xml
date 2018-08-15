@@ -159,6 +159,7 @@
                     android:background="#ddd" />
 
                 <TextView
+                    android:id="@+id/tv_submit_vote_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -170,7 +171,7 @@
                     android:paddingTop="11dp"
                     android:text="提交"
                     android:clickable="true"
-                    android:onClick="submit"
+                    android:onClick="submitVote"
                     android:textColor="@color/white" />
             </LinearLayout>
         </RelativeLayout>

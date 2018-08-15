@@ -141,6 +141,8 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                             tv_sign_up.setText("已请假");
                             tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
                             tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                            tv_sign_up.setClickable(false);
+                            tv_sign_up.setEnabled(false);
                         }
                     } else {//已报名
                         lin_leave_and_sign_up.setVisibility(View.GONE);

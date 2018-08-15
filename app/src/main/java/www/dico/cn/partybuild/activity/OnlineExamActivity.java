@@ -21,6 +21,7 @@ import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.QuestionsAdapter;
 import www.dico.cn.partybuild.bean.ExamAnswerBean;
 import www.dico.cn.partybuild.bean.ExamResultBean;
+import www.dico.cn.partybuild.bean.ExamResultForm;
 import www.dico.cn.partybuild.bean.ExamRuleForm;
 import www.dico.cn.partybuild.bean.QuestionBean;
 import www.dico.cn.partybuild.modleview.OnlineExamView;
@@ -48,6 +49,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
     private QuestionsAdapter adapter;
     private List<ExamAnswerBean.TestAnswersBean> answers;
     private String examStartTime;
+    private String examCost;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -63,7 +65,8 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
                                 ExamAnswerBean.ExamRecordBean recordBean = new ExamAnswerBean.ExamRecordBean();
                                 recordBean.setExamRuleId(form.examId);
                                 recordBean.setExamTime(DateTimeUtils.getNow());
-                                recordBean.setExamCost(DateTimeUtils.getMinutes(examStartTime,DateTimeUtils.getNow()));
+                                examCost = DateTimeUtils.getMinutes(examStartTime, DateTimeUtils.getNow());
+                                recordBean.setExamCost(examCost);
                                 answerBean.setExamRecord(recordBean);
                                 answerBean.setTestAnswers(answers);
                                 answerBean.setLimitScore(form.limitScore);
@@ -122,7 +125,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
                 vp_online_exam.setAdapter(adapter);
                 adapter.setCallBackInterface(this);
                 mHandler.sendEmptyMessage(0);
-                examStartTime=DateTimeUtils.getNow();
+                examStartTime = DateTimeUtils.getNow();
             }
         }
     }
@@ -136,7 +139,15 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
     public void submitSuccess(String result) {
         ExamResultBean bean = new Gson().fromJson(result, ExamResultBean.class);
         if (bean.code.equals("0000")) {
-            goTo(ExamResultActivity.class, null);
+            ExamResultForm form = new ExamResultForm();
+            form.examScore = String.valueOf(bean.getData().getExamScore());
+            form.isPass = bean.getData().getIsPass();
+            form.limitScore = this.form.limitScore;
+            form.examCost = examCost;
+            form.examId = this.form.examId;
+            goTo(ExamResultActivity.class, form);
+            helper.cancel();
+            this.finish();
         } else {
             showToast(bean.msg);
         }
@@ -156,6 +167,8 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
                     .setPositiveButton("确定", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            LocalBroadcastManager manager = LocalBroadcastManager.getInstance(OnlineExamActivity.this);
+                            manager.sendBroadcast(new Intent("cn.diconet.www").putExtra("skip", "3"));
                             OnlineExamActivity.this.finish();
                         }
                     }).setNegativeButton("取消", new View.OnClickListener() {
@@ -184,7 +197,8 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
         ExamAnswerBean.ExamRecordBean recordBean = new ExamAnswerBean.ExamRecordBean();
         recordBean.setExamRuleId(form.examId);
         recordBean.setExamTime(DateTimeUtils.getNow());
-        recordBean.setExamCost(DateTimeUtils.getMinutes(examStartTime,DateTimeUtils.getNow()));
+        examCost = DateTimeUtils.getMinutes(examStartTime, DateTimeUtils.getNow());
+        recordBean.setExamCost(examCost);
         ExamAnswerBean.TestAnswersBean bean = new ExamAnswerBean.TestAnswersBean();
         bean.setQuestionId(tqId);
         bean.setAnswer(answer);
