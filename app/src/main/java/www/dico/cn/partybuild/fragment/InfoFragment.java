@@ -12,20 +12,15 @@ import android.widget.RadioGroup;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
-import www.dico.cn.partybuild.activity.InfodetailsActivity;
 import www.dico.cn.partybuild.adapter.InfoAdapter;
 import www.dico.cn.partybuild.bean.InfoBean;
 import www.dico.cn.partybuild.modleview.InfoView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
 import www.dico.cn.partybuild.presenter.InfoPresenter;
-import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshLoadmoreListener;
@@ -42,6 +37,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     private InfoAdapter talkAdapter;
     private InfoAdapter historyAdapter;
     private InfoAdapter vanguardAdapter;
+    private int position = 0;
 
     @Nullable
     @Override
@@ -54,20 +50,20 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 switch (checkedId) {
                     case R.id.rbt_news_info://党建要闻
-                        newsAdapter = new InfoAdapter(getActivity(), R.layout.item_info, initNews());
-                        rv_info.setAdapter(newsAdapter);
+                        position = 0;
+                        getMvpPresenter().doGetInfoRequest("0");
                         break;
                     case R.id.rbt_talk_info://习总讲话
-                        talkAdapter = new InfoAdapter(getActivity(), R.layout.item_info, initTalk());
-                        rv_info.setAdapter(talkAdapter);
+                        position = 1;
+                        getMvpPresenter().doGetInfoRequest("1");
                         break;
                     case R.id.rbt_history_info://国史党史
-                        historyAdapter = new InfoAdapter(getActivity(), R.layout.item_info, initHistory());
-                        rv_info.setAdapter(historyAdapter);
+                        position = 2;
+                        getMvpPresenter().doGetInfoRequest("2");
                         break;
                     case R.id.tv_vanguard_info://时代先锋
-                        vanguardAdapter = new InfoAdapter(getActivity(), R.layout.item_info, initVanguard());
-                        rv_info.setAdapter(vanguardAdapter);
+                        position = 3;
+                        getMvpPresenter().doGetInfoRequest("3");
                         break;
                 }
             }
@@ -85,55 +81,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
             }
         });
         rv_info.setLayoutManager(new LinearLayoutManager(getActivity()));
-        newsAdapter = new InfoAdapter(getActivity(), R.layout.item_info, initNews());
-        rv_info.setAdapter(newsAdapter);
-        newsAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                goTo(InfodetailsActivity.class, null);
-            }
-        });
         return view;
-    }
-
-    public List<InfoBean> initNews() {
-        List<InfoBean> list = new ArrayList<>();
-        InfoBean bean = new InfoBean();
-        bean.setTitle("党建要闻");
-        bean.setDate("2018-7-26 18:00");
-        bean.setComment("75");
-        list.add(bean);
-        return list;
-    }
-
-    public List<InfoBean> initTalk() {
-        List<InfoBean> list = new ArrayList<>();
-        InfoBean bean = new InfoBean();
-        bean.setTitle("习总讲话");
-        bean.setDate("2018-7-26 18:00");
-        bean.setComment("75");
-        list.add(bean);
-        return list;
-    }
-
-    public List<InfoBean> initHistory() {
-        List<InfoBean> list = new ArrayList<>();
-        InfoBean bean = new InfoBean();
-        bean.setTitle("国史党史");
-        bean.setDate("2018-7-26 18:00");
-        bean.setComment("75");
-        list.add(bean);
-        return list;
-    }
-
-    public List<InfoBean> initVanguard() {
-        List<InfoBean> list = new ArrayList<>();
-        InfoBean bean = new InfoBean();
-        bean.setTitle("时代先锋");
-        bean.setDate("2018-7-26 18:00");
-        bean.setComment("75");
-        list.add(bean);
-        return list;
     }
 
     @Override
@@ -149,5 +97,25 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void preventPreLoad() {
+        super.preventPreLoad();
+        switch (position){
+            case 0:
+                getMvpPresenter().doGetInfoRequest("0");
+                break;
+            case 1:
+                getMvpPresenter().doGetInfoRequest("1");
+                break;
+            case 2:
+                getMvpPresenter().doGetInfoRequest("2");
+                break;
+            case 3:
+                getMvpPresenter().doGetInfoRequest("3");
+                break;
+        }
+
     }
 }

@@ -84,7 +84,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
                         courseView.setTextColor(getResources().getColor(R.color.actionsheet_blue));
                         courseView.setSingleLine(true);
                         courseView.setEllipsize(TextUtils.TruncateAt.END);
-                        courseView.setTypeface(Typeface.DEFAULT_BOLD);
+//                        courseView.setTypeface(Typeface.DEFAULT_BOLD);
                         courseView.setText("\u3000"+beans.get(i).getTitle());
                         lin_course_task_brief.addView(courseView);
                         final int position = i;
@@ -112,7 +112,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
     public void verifySuccess(String result) {
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
         if (protocol.code.equals("0000")) {
-            goTo(StudyResultActivity.class, null);
+            goTo(StudyResultActivity.class, form);
         } else {
             showToast("抱歉，未完成任务课时");
         }

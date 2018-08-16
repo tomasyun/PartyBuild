@@ -6,8 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,14 +32,7 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
         setContentView(R.layout.activity_notice);
         ButterKnife.bind(this);
         rv_notice.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new NoticeAdapter(this, R.layout.item_notice, notices());
-        rv_notice.setAdapter(adapter);
-        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                goTo(NoticeInfoActivity.class, null);
-            }
-        });
+        getMvpPresenter().noticeRequest();
     }
 
     public void goBackNotice(View view) {
@@ -49,22 +41,23 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
 
     @Override
     public void resultSuccess(String result) {
-
+        NoticeBean bean=new Gson().fromJson(result,NoticeBean.class);
+        if (bean.code.equals("0000")){
+            if (null!=bean.getData()&&bean.getData().size()>0){
+                adapter = new NoticeAdapter(this, R.layout.item_notice, bean.getData());
+                rv_notice.setAdapter(adapter);
+                adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                        goTo(NoticeInfoActivity.class, null);
+                    }
+                });
+            }
+        }
     }
 
     @Override
     public void resultFailure(String result) {
         showToast(result);
-    }
-
-    public List<NoticeBean> notices() {
-        List<NoticeBean> list = new ArrayList<>();
-        NoticeBean bean = new NoticeBean();
-        bean.setAvatar("");
-        bean.setName("席沛锋");
-        bean.setDate("5小时前");
-        bean.setContent("为使我公司各部门工作顺利的开展，并且保证各部门之间能够衍接顺畅，有效地提高工作效率。经公司领导研究决定将定期召开公司员工例会。");
-        list.add(bean);
-        return list;
     }
 }

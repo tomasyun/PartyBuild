@@ -1142,4 +1142,32 @@ public class StringUtils {
         return matcher.matches();
     }
 
+    /**
+     * 去除字符中的html标签
+     *
+     * @param str
+     * @return
+     */
+    public static String delHtmlTag(String str) {
+        String newstr = "";
+        newstr = str.replaceAll("<[.[^>]]*>", "");
+        newstr = newstr.replaceAll(" ", "");
+        return newstr;
+    }
+
+    /**
+     * 将目标字符串转换成utf-8
+     *
+     * @param content
+     * @return
+     */
+    public static String encode(String content) {
+        String encode_content = "";
+        try {
+            encode_content = URLEncoder.encode(content, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return encode_content;
+    }
 }

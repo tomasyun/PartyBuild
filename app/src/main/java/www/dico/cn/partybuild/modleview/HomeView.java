@@ -4,7 +4,7 @@ import www.dico.cn.partybuild.bean.HomeBean;
 import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 
 public interface HomeView extends BaseMvpView {
-    void resultSuccess(HomeBean result);
+    void resultSuccess(String result);
 
     void resultFailure(String result);
 }

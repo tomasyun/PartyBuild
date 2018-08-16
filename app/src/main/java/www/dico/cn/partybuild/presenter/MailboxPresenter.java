@@ -27,7 +27,7 @@ public class MailboxPresenter extends BaseMvpPresenter<MailboxView> {
     };
 
     public void doMailboxRequest(String id, String content) {
-        EasyHttp.post("")
+        EasyHttp.post("leaderMailbox")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
                 .params("content", content)

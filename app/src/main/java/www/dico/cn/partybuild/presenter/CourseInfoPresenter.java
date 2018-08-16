@@ -20,7 +20,7 @@ public class CourseInfoPresenter extends BaseMvpPresenter<CourseInfoView> {
             LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
                     .setCancelable(true)
                     .setCancelOutside(true)
-                    .setMessage("获取中..")
+                    .setMessage("请求中..")
                     .setShowMessage(true);
             return builder.create();
         }

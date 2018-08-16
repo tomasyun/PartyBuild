@@ -25,10 +25,9 @@ public class PwdupdatePresenter extends BaseMvpPresenter<PwdupdateView> {
         }
     };
 
-    public void pwdupdateRequest(String id, String oldPassword, String newPassword) {
-        EasyHttp.post("")
+    public void pwdupdateRequest(String oldPassword, String newPassword) {
+        EasyHttp.post("updatePassword")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
-                .params("id", id)
                 .params("oldPassword", oldPassword)
                 .params("newPassword", newPassword)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {

@@ -31,14 +31,12 @@
                     android:id="@+id/tv_elective_study_task_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_corner20_red_bg"
-                    android:paddingBottom="3dp"
                     android:paddingLeft="5dp"
+                    android:background="#f97d6c"
                     android:paddingRight="5dp"
-                    android:paddingTop="3dp"
                     android:text="必修"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tv_title_study_task_item"
@@ -55,7 +53,7 @@
                 android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -79,7 +77,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -116,15 +114,16 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_state_study_task_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/textview_corner20_red_stroke_white_bg"
-            android:paddingBottom="5dp"
+            android:paddingBottom="2dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingTop="5dp"
+            android:paddingTop="2dp"
             android:text="去学习"
             android:textSize="14sp"
             android:textColor="@color/theme_color" />

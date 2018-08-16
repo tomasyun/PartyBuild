@@ -4,7 +4,6 @@ import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.bean.HomeBean;
 import www.dico.cn.partybuild.modleview.HomeView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -27,12 +26,12 @@ public class HomePresenter extends BaseMvpPresenter<HomeView> {
     };
 
     public void homeDataRequest() {
-        EasyHttp.post("")
+        EasyHttp.post("home")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
-                .execute(new ProgressDialogCallBack<HomeBean>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
-                    public void onSuccess(HomeBean homeBean) {
-
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
                     }
 
                     @Override

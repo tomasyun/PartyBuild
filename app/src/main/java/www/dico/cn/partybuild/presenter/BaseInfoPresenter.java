@@ -25,10 +25,9 @@ public class BaseInfoPresenter extends BaseMvpPresenter<BaseInfoView> {
         }
     };
 
-    public void getBaseInfoRequest(String id) {
-        EasyHttp.post("")
+    public void getBaseInfoRequest() {
+        EasyHttp.post("basicInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
-                .params("id", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {

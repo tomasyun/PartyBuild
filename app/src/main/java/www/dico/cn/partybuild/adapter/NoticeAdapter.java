@@ -18,17 +18,17 @@ import www.dico.cn.partybuild.widget.ExpandLongTextView;
 import www.yuntdev.com.baseadapterlibrary.base.CommonAdapter;
 import www.yuntdev.com.baseadapterlibrary.base.ViewHolder;
 
-public class NoticeAdapter extends CommonAdapter<NoticeBean> {
-    public NoticeAdapter(Context context, int layoutId, List<NoticeBean> datas) {
+public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
+    public NoticeAdapter(Context context, int layoutId, List<NoticeBean.DataBean> datas) {
         super(context, layoutId, datas);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    protected void convert(ViewHolder holder, NoticeBean noticeBean, int position) {
+    protected void convert(ViewHolder holder, NoticeBean.DataBean noticeBean, int position) {
 //        GlideUtils.loadCircleImage(AppManager.getManager().curActivity(),noticeBean.getAvatar(),(ImageView)holder.getView(R.id.iv_avatar_notice_item));
         holder.setText(R.id.tv_name_notice_item, noticeBean.getName());
-        holder.setText(R.id.tv_date_notice_item, noticeBean.getDate());
+        holder.setText(R.id.tv_date_notice_item, noticeBean.getPublishDate());
 
         ExpandLongTextView tv_content_notice_item = holder.getView(R.id.tv_content_notice_item);
         tv_content_notice_item.setExpand(false);

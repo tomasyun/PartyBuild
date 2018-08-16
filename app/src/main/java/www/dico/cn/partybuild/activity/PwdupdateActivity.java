@@ -6,9 +6,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.modleview.PwdupdateView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -49,13 +52,18 @@ public class PwdupdateActivity extends AbstractMvpActivity<PwdupdateView, Pwdupd
         } else if (!new_password.equals(confirm_password)) {
             showToast("抱歉!两次密码不一致");
         } else {
-            getMvpPresenter().pwdupdateRequest("", old_password, new_password);
+            getMvpPresenter().pwdupdateRequest(old_password, new_password);
         }
     }
 
     @Override
     public void resultSuccess(String result) {
-
+        BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
+        if (protocol.code.equals("0000")) {
+            showToast(protocol.msg);
+        } else {
+            showToast(protocol.msg);
+        }
     }
 
     @Override

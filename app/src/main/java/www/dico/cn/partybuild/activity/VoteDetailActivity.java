@@ -155,6 +155,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                 tv_des_vote_detail.setText(bean.getData().getDescription());
                 final List<VoteDetailBean.DataBean.OptionsBean> beans = bean.getData().getOptions();
                 if (null != beans && beans.size() > 0) {
+                    lin_options_vote.setVisibility(View.VISIBLE);
                     for (int i = 0; i < beans.size(); i++) {
                         LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         LinearLayout layout1 = new LinearLayout(this);
@@ -217,6 +218,8 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                             }
                         });
                     }
+                } else {
+                    lin_options_vote.setVisibility(View.GONE);
                 }
             }
         }

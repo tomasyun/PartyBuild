@@ -101,12 +101,12 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 GlideUtils.loadImage(getActivity(), ((AdvertiseImgM) model).getPoster(), (ImageView) view);
             }
         });
-
+        getMvpPresenter().homeDataRequest();
         return view;
     }
 
     @Override
-    public void resultSuccess(HomeBean result) {
+    public void resultSuccess(String result) {
 
     }
 

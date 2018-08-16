@@ -26,7 +26,7 @@ public class NoticePresenter extends BaseMvpPresenter<NoticeView> {
     };
 
     public void noticeRequest() {
-        EasyHttp.post("")
+        EasyHttp.post("noticeList")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/activity_bg_color"
+    android:background="@color/white"
     android:orientation="vertical">
     <!--标题-->
     <RelativeLayout
@@ -30,4 +30,40 @@
             android:textColor="@color/white"
             android:textSize="16sp" />
     </RelativeLayout>
+
+    <!--内容-->
+    <EditText
+        android:translationZ="5dp"
+        android:id="@+id/et_content_study_result"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edittext_corner10_gray_bg"
+        android:gravity="left|top"
+        android:hint="请填写学习任务成果"
+        android:inputType="textMultiLine"
+        android:letterSpacing="0.08"
+        android:lineSpacingExtra="8dp"
+        android:maxLength="50"
+        android:padding="15dp"
+        android:text=""
+        android:textColor="@color/text_color"
+        android:textColorHint="#989898"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/button_corner20_red_bg"
+        android:clickable="true"
+        android:gravity="center"
+        android:onClick="submitStudyResult"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:translationZ="5dp" />
 </LinearLayout>
