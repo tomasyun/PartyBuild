@@ -9,15 +9,15 @@ import www.dico.cn.partybuild.bean.InfoBean;
 import www.yuntdev.com.baseadapterlibrary.base.CommonAdapter;
 import www.yuntdev.com.baseadapterlibrary.base.ViewHolder;
 
-public class InfoAdapter extends CommonAdapter<InfoBean> {
-    public InfoAdapter(Context context, int layoutId, List<InfoBean> datas) {
+public class InfoAdapter extends CommonAdapter<InfoBean.DataBeanX.DataBean> {
+    public InfoAdapter(Context context, int layoutId, List<InfoBean.DataBeanX.DataBean> datas) {
         super(context, layoutId, datas);
     }
 
     @Override
-    protected void convert(ViewHolder holder, InfoBean infoBean, int position) {
+    protected void convert(ViewHolder holder, InfoBean.DataBeanX.DataBean infoBean, int position) {
         holder.setText(R.id.tv_title_info_item, infoBean.getTitle());
-        holder.setText(R.id.tv_date_info_item, infoBean.getDate());
-        holder.setText(R.id.tv_comment_info_item, infoBean.getComment() + "评论");
+        holder.setText(R.id.tv_date_info_item, infoBean.getPublishDate());
+        holder.setText(R.id.tv_comment_info_item, infoBean.getCommentNum() + "评论");
     }
 }

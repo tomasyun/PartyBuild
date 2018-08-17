@@ -32,7 +32,6 @@
     </RelativeLayout>
     <!--内容-->
     <EditText
-        android:translationZ="5dp"
         android:id="@+id/et_feed_back_content"
         android:layout_width="match_parent"
         android:layout_height="200dp"

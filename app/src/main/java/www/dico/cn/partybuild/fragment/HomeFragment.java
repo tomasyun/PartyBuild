@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.stx.xhb.xbanner.XBanner;
 
 import java.util.ArrayList;
@@ -35,10 +36,15 @@ import www.dico.cn.partybuild.mvp.view.AbstractFragment;
 import www.dico.cn.partybuild.presenter.HomePresenter;
 import www.dico.cn.partybuild.utils.GlideUtils;
 import www.dico.cn.partybuild.widget.CustomTextView;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshListener;
 
 //首页
 @CreatePresenter(HomePresenter.class)
 public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> implements HomeView, View.OnClickListener {
+    @BindView(R.id.srl_home)
+    SmartRefreshLayout srl_home;
     @BindView(R.id.xbanner)
     XBanner xbanner;//轮播
     @BindView(R.id.tv_gongshi_home)
@@ -61,6 +67,13 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         View view = inflater.inflate(R.layout.fragment_home, null);
         ButterKnife.bind(this, view);
 
+        srl_home.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                getMvpPresenter().homeDataRequest();
+            }
+        });
+
         SpannableString content = new SpannableString("公示公告");
         content.setSpan(new ForegroundColorSpan(Color.parseColor("#0099EE")), 0, content.length() - 2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         content.setSpan(new ForegroundColorSpan(Color.RED), 2, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
@@ -68,7 +81,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         content.setSpan(style, 0, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         tv_gongshi_home.setText(content);
 
-        tv_notice_home.setText("陕西缔科网络科技有限公司");
+//        tv_notice_home.setText("陕西缔科网络科技有限公司");
         tv_notice_home.init(getActivity().getWindowManager());
         tv_notice_home.startScroll();
         tv_notice_home.setEnabled(false);
@@ -79,39 +92,75 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         lin_dues_home.setOnClickListener(this);
         lin_mailbox_home.setOnClickListener(this);
 
-        List<AdvertiseImgM> urls = new ArrayList<>();
-        AdvertiseImgM advertise = new AdvertiseImgM();
-        advertise.setPoster("http://pic.5tu.cn/uploads/allimg/1606/pic_5tu_big_201606272309319893.jpg");
-        urls.add(advertise);
-        AdvertiseImgM advertise2 = new AdvertiseImgM();
-        advertise2.setPoster("http://pic.5tu.cn/uploads/allimg/1607/pic_5tu_big_2016070102141153200.jpg");
-        urls.add(advertise2);
-        AdvertiseImgM advertise3 = new AdvertiseImgM();
-        advertise3.setPoster("http://pic.5tu.cn/uploads/allimg/1607/pic_5tu_big_201607091531527229.jpg");
-        urls.add(advertise3);
-        List<String> titles = new ArrayList<>();
-        titles.add("飞屋环游记");
-        titles.add("蓝色科技");
-        titles.add("运动会");
-        xbanner.setAutoPlayAble(urls.size() > 1);
-        xbanner.setData(urls, titles);
-        xbanner.loadImage(new XBanner.XBannerAdapter() {
-            @Override
-            public void loadBanner(XBanner banner, Object model, View view, int position) {
-                GlideUtils.loadImage(getActivity(), ((AdvertiseImgM) model).getPoster(), (ImageView) view);
-            }
-        });
+//        List<AdvertiseImgM> urls = new ArrayList<>();
+//        AdvertiseImgM advertise = new AdvertiseImgM();
+//        advertise.setPoster("http://pic.5tu.cn/uploads/allimg/1606/pic_5tu_big_201606272309319893.jpg");
+//        urls.add(advertise);
+//        AdvertiseImgM advertise2 = new AdvertiseImgM();
+//        advertise2.setPoster("http://pic.5tu.cn/uploads/allimg/1607/pic_5tu_big_2016070102141153200.jpg");
+//        urls.add(advertise2);
+//        AdvertiseImgM advertise3 = new AdvertiseImgM();
+//        advertise3.setPoster("http://pic.5tu.cn/uploads/allimg/1607/pic_5tu_big_201607091531527229.jpg");
+//        urls.add(advertise3);
+//        List<String> titles = new ArrayList<>();
+//        titles.add("飞屋环游记");
+//        titles.add("蓝色科技");
+//        titles.add("运动会");
+//        xbanner.setAutoPlayAble(urls.size() > 1);
+//        xbanner.setData(urls, titles);
+//        xbanner.loadImage(new XBanner.XBannerAdapter() {
+//            @Override
+//            public void loadBanner(XBanner banner, Object model, View view, int position) {
+//                GlideUtils.loadImage(getActivity(), ((AdvertiseImgM) model).getPoster(), (ImageView) view);
+//            }
+//        });
         getMvpPresenter().homeDataRequest();
         return view;
     }
 
     @Override
     public void resultSuccess(String result) {
+        srl_home.finishRefresh();
+        HomeBean bean = new Gson().fromJson(result, HomeBean.class);
+        if (bean.code.equals("0000")) {
+            if (bean.getData() != null) {
+                if (bean.getData().getAnnouncement()!=null){
+                    String content=bean.getData().getAnnouncement().getContent();
+                    tv_notice_home.setText(content);
+                }
+                List<AdvertiseImgM> urls = new ArrayList<>();
+                List<String> titles = new ArrayList<>();
+                List<HomeBean.DataBean.AdvertisementBean> list = bean.getData().getAdvertisement();
+                if (null != list && list.size() > 0) {
+                    for (int i = 0; i < list.size(); i++) {
+                        AdvertiseImgM advertise = new AdvertiseImgM();
+                        advertise.setPoster(list.get(i).getAdvertImg());
+                        urls.add(advertise);
+                        titles.add(list.get(i).getAdvertTitle());
+                    }
+                }
+                if (urls.size() > 1)
+                    xbanner.setAutoPlayAble(urls.size() > 1);
+                xbanner.setData(urls, titles);
+                xbanner.loadImage(new XBanner.XBannerAdapter() {
+                    @Override
+                    public void loadBanner(XBanner banner, Object model, View view, int position) {
+                        GlideUtils.loadImage(getActivity(), ((AdvertiseImgM) model).getPoster(), (ImageView) view);
+                    }
+                });
+                xbanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(XBanner banner, Object model, int position) {
 
+                    }
+                });
+            }
+        }
     }
 
     @Override
     public void resultFailure(String result) {
+        srl_home.finishRefresh();
         showToast(result);
     }
 

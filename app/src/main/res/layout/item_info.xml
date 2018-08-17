@@ -15,6 +15,8 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:textStyle="bold"
+        android:lineSpacingExtra="5dp"
+        android:letterSpacing="0.1"
         android:textColor="@color/text_color"
         android:text="攀上一座高山后，你会发现，还有更多的高山等着你去攀登"
         android:textSize="14sp" />

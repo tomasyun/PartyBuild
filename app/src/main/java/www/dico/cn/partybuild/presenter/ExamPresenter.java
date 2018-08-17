@@ -16,11 +16,11 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class ExamPresenter extends BaseMvpPresenter<ExamView> {
+    Activity activity=AppManager.getManager().findActivity(MainActivity.class);
     //待考
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
-            Activity activity=AppManager.getManager().findActivity(MainActivity.class);
             LoadingDialog.Builder builder = new LoadingDialog.Builder(activity)
                     .setCancelable(true)
                     .setCancelOutside(true)

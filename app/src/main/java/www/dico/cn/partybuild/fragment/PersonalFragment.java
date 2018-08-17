@@ -10,18 +10,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.BaseInfoActivity;
-import www.dico.cn.partybuild.activity.CollectActivity;
 import www.dico.cn.partybuild.activity.CreditInfoActivity;
 import www.dico.cn.partybuild.activity.CreditRankActivity;
 import www.dico.cn.partybuild.activity.FeedbackActivity;
 import www.dico.cn.partybuild.activity.MailboxListActivity;
 import www.dico.cn.partybuild.activity.NoticeActivity;
 import www.dico.cn.partybuild.activity.SettingActivity;
+import www.dico.cn.partybuild.utils.GlideUtils;
 
 //个人中心
 public class PersonalFragment extends Fragment {
@@ -47,12 +49,23 @@ public class PersonalFragment extends Fragment {
     ImageView iv_notice_personal;
     @BindView(R.id.rel_mailbox_personal)
     RelativeLayout rel_mailbox_personal;
+    @BindView(R.id.divide)
+    View divide;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_personal, null);
         ButterKnife.bind(this, view);
-
+        GlideUtils.loadImage(getActivity(), AppConfig.getSpUtils().getString("avatar"), iv_user_avatar_personal);
+        tv_name_personal.setText(AppConfig.getSpUtils().getString(""));
+        tv_position_personal.setText(AppConfig.getSpUtils().getString("position"));
+        if (!AppConfig.getSpUtils().getBoolean("isManager")) {
+            rel_mailbox_personal.setVisibility(View.GONE);
+            divide.setVisibility(View.GONE);
+        } else {
+            rel_mailbox_personal.setVisibility(View.VISIBLE);
+            divide.setVisibility(View.VISIBLE);
+        }
         lin_credit_personal.setOnClickListener(new View.OnClickListener() {
             //积分明细
             @Override
@@ -81,16 +94,18 @@ public class PersonalFragment extends Fragment {
             //收藏
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CollectActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), CollectActivity.class);
+//                startActivity(intent);
+                Toast.makeText(getActivity(), "暂未开通", Toast.LENGTH_SHORT).show();
             }
         });
         rel_feedback_personal.setOnClickListener(new View.OnClickListener() {
             //意见反馈
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), FeedbackActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), FeedbackActivity.class);
+//                startActivity(intent);
+                Toast.makeText(getActivity(), "暂未开通", Toast.LENGTH_SHORT).show();
             }
         });
         iv_setting_personal.setOnClickListener(new View.OnClickListener() {

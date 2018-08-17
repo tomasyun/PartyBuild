@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +35,7 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
         rv_mailbox_list.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MailboxListAdapter(this, R.layout.item_mailbox, mailboxs());
         rv_mailbox_list.setAdapter(adapter);
+        getMvpPresenter().doMailboxListRequest();
     }
 
     public void goBackMailboxList(View view) {
@@ -49,7 +52,10 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
 
     @Override
     public void resultSuccess(String result) {
+        MailboxListBean bean = new Gson().fromJson(result, MailboxListBean.class);
+        if (bean.code.equals("0000")){
 
+        }
     }
 
     @Override

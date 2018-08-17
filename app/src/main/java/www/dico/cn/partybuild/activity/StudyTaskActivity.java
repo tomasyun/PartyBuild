@@ -34,6 +34,11 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
         setContentView(R.layout.activity_studytask);
         ButterKnife.bind(this);
         rv_study_task.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getMvpPresenter().doStudyTaskRequest();
     }
 

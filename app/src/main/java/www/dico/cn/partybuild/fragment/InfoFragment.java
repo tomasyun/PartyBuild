@@ -12,6 +12,8 @@ import android.widget.RadioGroup;
 
 import com.google.gson.Gson;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
@@ -33,11 +35,11 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     SmartRefreshLayout srl_info;
     @BindView(R.id.rv_info)
     RecyclerView rv_info;
-    private InfoAdapter newsAdapter;
-    private InfoAdapter talkAdapter;
-    private InfoAdapter historyAdapter;
-    private InfoAdapter vanguardAdapter;
+    private InfoAdapter adapter;
     private int position = 0;
+    private int start = 0;
+    private int length = 10;
+    private List<InfoBean.DataBeanX.DataBean> list;
 
     @Nullable
     @Override
@@ -51,33 +53,65 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                 switch (checkedId) {
                     case R.id.rbt_news_info://党建要闻
                         position = 0;
-                        getMvpPresenter().doGetInfoRequest("0");
+                        start = 0;
+                        getMvpPresenter().doGetInfoRequest("0", "0", start, length);
                         break;
                     case R.id.rbt_talk_info://习总讲话
                         position = 1;
-                        getMvpPresenter().doGetInfoRequest("1");
+                        start = 0;
+                        getMvpPresenter().doGetInfoRequest("1", "0", start, length);
                         break;
                     case R.id.rbt_history_info://国史党史
                         position = 2;
-                        getMvpPresenter().doGetInfoRequest("2");
+                        start = 0;
+                        getMvpPresenter().doGetInfoRequest("2", "0", start, length);
                         break;
                     case R.id.tv_vanguard_info://时代先锋
                         position = 3;
-                        getMvpPresenter().doGetInfoRequest("3");
+                        start = 0;
+                        getMvpPresenter().doGetInfoRequest("3", "0", start, length);
                         break;
                 }
             }
         });
 
-        srl_info.setOnRefreshListener(new OnRefreshLoadmoreListener() {
+        srl_info.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-
+                start = start + length;
+                switch (position) {
+                    case 0:
+                        getMvpPresenter().doGetInfoRequest("0", "0", start, length);
+                        break;
+                    case 1:
+                        getMvpPresenter().doGetInfoRequest("1", "0", start, length);
+                        break;
+                    case 2:
+                        getMvpPresenter().doGetInfoRequest("2", "0", start, length);
+                        break;
+                    case 3:
+                        getMvpPresenter().doGetInfoRequest("3", "0", start, length);
+                        break;
+                }
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-
+                start = 0;
+                switch (position) {
+                    case 0:
+                        getMvpPresenter().doGetInfoRequest("0", "0", start, length);
+                        break;
+                    case 1:
+                        getMvpPresenter().doGetInfoRequest("1", "0", start, length);
+                        break;
+                    case 2:
+                        getMvpPresenter().doGetInfoRequest("2", "0", start, length);
+                        break;
+                    case 3:
+                        getMvpPresenter().doGetInfoRequest("3", "0", start, length);
+                        break;
+                }
             }
         });
         rv_info.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -86,9 +120,27 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
 
     @Override
     public void resultSuccess(String result) {
+        srl_info.finishRefresh();
+        srl_info.finishLoadmore();
         InfoBean bean = new Gson().fromJson(result, InfoBean.class);
         if (bean.code.equals("0000")) {
+            if (bean.getData() != null) {
+                if (start == 0) {
+                    list = bean.getData().getData();
+                    if (null != list && list.size() > 0) {
+                        adapter = new InfoAdapter(getActivity(), R.layout.item_info, list);
+                        rv_info.setAdapter(adapter);
+                    } else {
 
+                    }
+                } else {
+                    List<InfoBean.DataBeanX.DataBean> list = bean.getData().getData();
+                    if (null != list && list.size() > 0) {
+                        this.list.addAll(list);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
         } else {
 
         }
@@ -96,26 +148,28 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
 
     @Override
     public void resultFailure(String result) {
+        srl_info.finishRefresh();
+        srl_info.finishLoadmore();
         showToast(result);
     }
 
     @Override
     public void preventPreLoad() {
         super.preventPreLoad();
-        switch (position){
+        start = 0;
+        switch (position) {
             case 0:
-                getMvpPresenter().doGetInfoRequest("0");
+                getMvpPresenter().doGetInfoRequest("0", "0", start, length);
                 break;
             case 1:
-                getMvpPresenter().doGetInfoRequest("1");
+                getMvpPresenter().doGetInfoRequest("1", "0", start, length);
                 break;
             case 2:
-                getMvpPresenter().doGetInfoRequest("2");
+                getMvpPresenter().doGetInfoRequest("2", "0", start, length);
                 break;
             case 3:
-                getMvpPresenter().doGetInfoRequest("3");
+                getMvpPresenter().doGetInfoRequest("3", "0", start, length);
                 break;
         }
-
     }
 }

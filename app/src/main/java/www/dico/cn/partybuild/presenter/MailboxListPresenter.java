@@ -27,7 +27,7 @@ public class MailboxListPresenter extends BaseMvpPresenter<MailboxListView> {
     };
 
     public void doMailboxListRequest() {
-        EasyHttp.post("")
+        EasyHttp.post("mailboxList")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override

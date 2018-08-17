@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <!--标题-->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,230 +17,239 @@
             android:text="智慧党建云平台"
             android:textColor="@color/white"
             android:textSize="16sp" />
-
     </RelativeLayout>
 
-    <ScrollView
-        android:id="@+id/id_scrollview"
+    <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout
+        android:id="@+id/srl_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:visibility="visible">
+        app:srlAccentColor="@android:color/white"
+        app:srlEnablePreviewInEditMode="true">
 
-        <LinearLayout
-            android:id="@+id/id_zong"
+        <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:id="@+id/id_scrollview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-            <!--轮播图-->
-            <com.stx.xhb.xbanner.XBanner
-                android:id="@+id/xbanner"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                app:AutoPlayTime="3000"
-                app:isShowIndicatorOnlyOne="true"
-                app:isShowNumberIndicator="true"
-                app:pageChangeDuration="800"
-                app:pointSelect="@drawable/arp_dot_bg"
-                app:pointTopBottomPadding="10dp"
-                app:pointsContainerBackground="#60000000"
-                app:pointsPosition="RIGHT"
-                app:tipTextSize="14sp" />
-            <!--通知-->
+            android:scrollbars="none"
+            android:visibility="visible">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="15dp">
-                <!--系统公告-->
-                <TextView
-                    android:id="@+id/tv_gongshi_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="公示公告"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <www.dico.cn.partybuild.widget.CustomTextView
-                    android:id="@+id/tv_notice_home"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <!--轮播图-->
+                <com.stx.xhb.xbanner.XBanner
+                    android:id="@+id/xbanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    app:AutoPlayTime="3000"
+                    app:isShowIndicatorOnlyOne="true"
+                    app:isShowNumberIndicator="true"
+                    app:pageChangeDuration="800"
+                    app:pointSelect="@drawable/arp_dot_bg"
+                    app:pointTopBottomPadding="10dp"
+                    app:pointsContainerBackground="#60000000"
+                    app:pointsPosition="RIGHT"
+                    app:tipTextSize="14sp" />
+                <!--通知-->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="15dp"
-                    android:textColor="@color/text_color"
-                    android:gravity="center"
-                    android:textSize="14sp">
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+                    <!--系统公告-->
+                    <TextView
+                        android:id="@+id/tv_gongshi_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="公示公告"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                </www.dico.cn.partybuild.widget.CustomTextView>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="#ddd" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="15dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <!--三会一课-->
-                    <LinearLayout
-                        android:id="@+id/lin_meeting_home"
+                    <www.dico.cn.partybuild.widget.CustomTextView
+                        android:id="@+id/tv_notice_home"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/home_meeting_corner10_bg"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
                         android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingBottom="60dp"
-                        android:paddingTop="60dp">
+                        android:textColor="@color/text_color"
+                        android:textSize="14sp">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@null"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/img_meeting_home" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:text="三会一课"
-                            android:textStyle="bold"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
-                    <!--学习任务-->
-                    <LinearLayout
-                        android:id="@+id/lin_studies_home"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/home_studies_corner10_bg"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingBottom="60dp"
-                        android:paddingTop="60dp">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@null"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/img_studies_home" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:text="学习任务"
-                            android:textStyle="bold"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
+                    </www.dico.cn.partybuild.widget.CustomTextView>
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#ddd" />
+
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <!--活动管理-->
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
                     <LinearLayout
-                        android:id="@+id/lin_activity_home"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/home_activity_corner10_bg"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingBottom="30dp"
-                        android:paddingTop="30dp">
+                        android:orientation="vertical">
+                        <!--三会一课-->
+                        <LinearLayout
+                            android:id="@+id/lin_meeting_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/home_meeting_corner10_bg"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingBottom="60dp"
+                            android:paddingTop="60dp">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@null"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/img_activity_home" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@null"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/img_meeting_home" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:text="活动管理"
-                            android:textStyle="bold"
-                            android:textColor="@color/white" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:text="三会一课"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                        <!--学习任务-->
+                        <LinearLayout
+                            android:id="@+id/lin_studies_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/home_studies_corner10_bg"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingBottom="60dp"
+                            android:paddingTop="60dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@null"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/img_studies_home" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:text="学习任务"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
-                    <!--党费缴纳-->
+
                     <LinearLayout
-                        android:id="@+id/lin_dues_home"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
                         android:layout_weight="1"
-                        android:background="@drawable/home_dues_corner10_bg"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingBottom="30dp"
-                        android:paddingTop="30dp">
+                        android:orientation="vertical">
+                        <!--活动管理-->
+                        <LinearLayout
+                            android:id="@+id/lin_activity_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/home_activity_corner10_bg"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingBottom="30dp"
+                            android:paddingTop="30dp">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@null"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/img_dues_home" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@null"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/img_activity_home" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:text="党费缴纳"
-                            android:textStyle="bold"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
-                    <!--领导信箱-->
-                    <LinearLayout
-                        android:id="@+id/lin_mailbox_home"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/home_mailbox_corner10_bg"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingBottom="30dp"
-                        android:paddingTop="30dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:text="活动管理"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                        <!--党费缴纳-->
+                        <LinearLayout
+                            android:id="@+id/lin_dues_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/home_dues_corner10_bg"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingBottom="30dp"
+                            android:paddingTop="30dp">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@null"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/img_mailbox_home" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@null"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/img_dues_home" />
 
-                        <TextView
-                            android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:text="领导信箱"
-                            android:textColor="@color/white" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:text="党费缴纳"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                        <!--领导信箱-->
+                        <LinearLayout
+                            android:id="@+id/lin_mailbox_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/home_mailbox_corner10_bg"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingBottom="30dp"
+                            android:paddingTop="30dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@null"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/img_mailbox_home" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:text="领导信箱"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout>
 </LinearLayout>
