@@ -15,6 +15,7 @@ import java.util.List;
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.activity.MailboxActivity;
 import www.dico.cn.partybuild.adapter.LeaderSelectAdapter;
 import www.dico.cn.partybuild.bean.LeaderBean;
 import www.dico.cn.partybuild.modleview.MailboxView;
@@ -27,6 +28,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class MailboxPresenter extends BaseMvpPresenter<MailboxView> {
+    Activity activity=AppManager.getManager().findActivity(MailboxActivity.class);
     private LeaderSelectInterface selectInterface;
 
     public LeaderSelectInterface getSelectInterface() {
@@ -41,7 +43,7 @@ public class MailboxPresenter extends BaseMvpPresenter<MailboxView> {
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(activity)
                     .setCancelable(true)
                     .setCancelOutside(true)
                     .setMessage("请求中..")

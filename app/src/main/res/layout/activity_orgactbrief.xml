@@ -48,6 +48,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/iv_orgact_brief_theme_pic"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:background="@mipmap/img_dico"
@@ -80,6 +81,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_orgact_brief_theme"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -111,6 +113,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_orgact_brief_date"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -142,6 +145,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_orgact_brief_address"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -177,6 +181,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_orgact_brief_speaker"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -208,6 +213,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_orgact_brief_category"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -238,6 +244,7 @@
                         android:textSize="14sp" />
 
                     <cn.carbs.android.expandabletextview.library.ExpandableTextView
+                        android:id="@+id/tv_orgact_brief_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -252,6 +259,7 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:id="@+id/rel_orgact_brief_participants"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -277,6 +285,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_orgact_brief_participants"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -288,6 +297,7 @@
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/iv_orgact_brief_participants"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -296,6 +306,36 @@
                         android:scaleType="fitXY"
                         android:src="@mipmap/img_arrow_right" />
                 </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#ddd" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2" />
+
+                    <com.zhy.view.flowlayout.TagFlowLayout
+                        android:id="@+id/tfl_orgact_brief_participants"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="15dp">
+
+                    </com.zhy.view.flowlayout.TagFlowLayout>
+                </LinearLayout>
+
 
                 <View
                     android:layout_width="match_parent"
@@ -308,7 +348,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <include layout="@layout/include_sign_up" />
+            <include
+                android:id="@+id/sign_up_orgact_brief"
+                layout="@layout/include_sign_up" />
         </RelativeLayout>
     </FrameLayout>
 </LinearLayout>

@@ -6,7 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -14,6 +15,7 @@ import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.OrgActAdapter;
 import www.dico.cn.partybuild.bean.OrgActBean;
+import www.dico.cn.partybuild.bean.OrgActForm;
 import www.dico.cn.partybuild.modleview.OrgActView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -32,33 +34,37 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
         setContentView(R.layout.activity_orgact);
         ButterKnife.bind(this);
         rv_org_act.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new OrgActAdapter(this, R.layout.item_meeting, orgActs());
-        rv_org_act.setAdapter(adapter);
-        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                goTo(OrgActBriefActivity.class, null);
-            }
-        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getMvpPresenter().doOrgActRequest();
     }
 
     public void goBackOrgAct(View view) {
         this.finish();
     }
 
-    public List<OrgActBean> orgActs() {
-        List<OrgActBean> list = new ArrayList<>();
-        OrgActBean bean = new OrgActBean();
-        bean.setState("");
-        bean.setDate("2018-7-29 13:00");
-        bean.setTitle("");
-        list.add(bean);
-        return list;
-    }
-
     @Override
     public void resultSuccess(String result) {
-
+        OrgActBean bean = new Gson().fromJson(result, OrgActBean.class);
+        if (bean.code.equals("0000")) {
+            final List<OrgActBean.DataBean> list = bean.getData();
+            if (null != list && list.size() > 0) {
+                adapter = new OrgActAdapter(this, R.layout.item_meeting, list);
+                rv_org_act.setAdapter(adapter);
+                adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                        OrgActForm form = new OrgActForm();
+                        form.orgActId = list.get(position).getId();
+                        form.state = list.get(position).getState();
+                        goTo(OrgActBriefActivity.class, form);
+                    }
+                });
+            }
+        }
     }
 
     @Override

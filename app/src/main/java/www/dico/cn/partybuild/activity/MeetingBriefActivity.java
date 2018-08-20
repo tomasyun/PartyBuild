@@ -96,99 +96,99 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
     public void resultSuccess(String result) {
         MeetBriefBean briefBean = new Gson().fromJson(result, MeetBriefBean.class);
         if (briefBean.code.equals("0000")) {
-            GlideUtils.loadImage(this, briefBean.getData().getThemeImg(), iv_theme_meeting_brief);
-            tv_theme_meeting_brief.setText(briefBean.getData().getTheme());
-            tv_date_meeting_brief.setText(briefBean.getData().getStartDate());
-            tv_address_meeting_brief.setText(briefBean.getData().getAddress());
-            tv_speaker_meeting_brief.setText(briefBean.getData().getSpeaker());
-            tv_type_meeting_brief.setText(briefBean.getData().getCategory());
-            tv_brief_meeting_brief.setText(briefBean.getData().getBrief());
-            adapter = new ParticipantsAdapter(briefBean.getData().getAttender());
-            tv_participants_meeting_brief.setText(briefBean.getData().getAttendNum());
-            if (tv_participants_meeting_brief.getText().toString().equals("0")){
-                rel_participants_meeting_brief.setEnabled(false);
-                rel_participants_meeting_brief.setClickable(false);
-            }else {
-                rel_participants_meeting_brief.setEnabled(true);
-                rel_participants_meeting_brief.setClickable(true);
-            }
-            tfl_participants_meeting_brief.setAdapter(adapter);
-            String conferenceState = briefBean.getData().getConferenceState();
-            String signUpState = briefBean.getData().getSignUpState();
-            String leaveState = briefBean.getData().getLeaveState();
-            switch (conferenceState) {
-                case "0"://会议未开始
-                    if (signUpState.equals("0")) {//未报名
-                        if (leaveState.equals("0")) {//未请假
-                            lin_leave_and_sign_up.setVisibility(View.VISIBLE);
-                            sign_up.setVisibility(View.GONE);
-                            TextView tv_leave_brief = lin_leave_and_sign_up.findViewById(R.id.tv_leave_brief);
-                            TextView tv_sign_up_brief = lin_leave_and_sign_up.findViewById(R.id.tv_sign_up_brief);
-                            tv_leave_brief.setOnClickListener(new View.OnClickListener() {//开始请假
-                                @Override
-                                public void onClick(View view) {
-                                    getMvpPresenter().doLeaveRequest(form.meetingId);
-                                }
-                            });
-                            tv_sign_up_brief.setOnClickListener(new View.OnClickListener() {//开始报名
-                                @Override
-                                public void onClick(View view) {
-                                    getMvpPresenter().doSignUpRequest(form.meetingId);
-                                }
-                            });
-                        } else {//已请假
+            if (briefBean.getData() != null) {
+                GlideUtils.loadImage(this, briefBean.getData().getThemeImg(), iv_theme_meeting_brief);
+                tv_theme_meeting_brief.setText(briefBean.getData().getTheme());
+                tv_date_meeting_brief.setText(briefBean.getData().getStartDate());
+                tv_address_meeting_brief.setText(briefBean.getData().getAddress());
+                tv_speaker_meeting_brief.setText(briefBean.getData().getSpeaker());
+                tv_type_meeting_brief.setText(briefBean.getData().getCategory());
+                tv_brief_meeting_brief.setText(briefBean.getData().getBrief());
+                adapter = new ParticipantsAdapter(briefBean.getData().getAttender());
+                tv_participants_meeting_brief.setText(briefBean.getData().getAttendNum());
+                if (tv_participants_meeting_brief.getText().toString().equals("0")) {
+                    rel_participants_meeting_brief.setEnabled(false);
+                    rel_participants_meeting_brief.setClickable(false);
+                } else {
+                    rel_participants_meeting_brief.setEnabled(true);
+                    rel_participants_meeting_brief.setClickable(true);
+                }
+                tfl_participants_meeting_brief.setAdapter(adapter);
+                String conferenceState = briefBean.getData().getConferenceState();
+                String signUpState = briefBean.getData().getSignUpState();
+                String leaveState = briefBean.getData().getLeaveState();
+                switch (conferenceState) {
+                    case "0"://会议未开始
+                        if (signUpState.equals("0")) {//未报名
+                            if (leaveState.equals("0")) {//未请假
+                                lin_leave_and_sign_up.setVisibility(View.VISIBLE);
+                                sign_up.setVisibility(View.GONE);
+                                TextView tv_leave_brief = lin_leave_and_sign_up.findViewById(R.id.tv_leave_brief);
+                                TextView tv_sign_up_brief = lin_leave_and_sign_up.findViewById(R.id.tv_sign_up_brief);
+                                tv_leave_brief.setOnClickListener(new View.OnClickListener() {//开始请假
+                                    @Override
+                                    public void onClick(View view) {
+                                        getMvpPresenter().doLeaveRequest(form.meetingId);
+                                    }
+                                });
+                                tv_sign_up_brief.setOnClickListener(new View.OnClickListener() {//开始报名
+                                    @Override
+                                    public void onClick(View view) {
+                                        getMvpPresenter().doSignUpRequest(form.meetingId);
+                                    }
+                                });
+                            } else {//已请假
+                                lin_leave_and_sign_up.setVisibility(View.GONE);
+                                sign_up.setVisibility(View.VISIBLE);
+                                TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
+                                tv_sign_up.setText("已请假");
+                                tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                                tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                            }
+                        } else {//已报名
                             lin_leave_and_sign_up.setVisibility(View.GONE);
                             sign_up.setVisibility(View.VISIBLE);
                             TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
-                            tv_sign_up.setText("已请假");
-                            tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                            tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-                            tv_sign_up.setClickable(false);
-                            tv_sign_up.setEnabled(false);
-                        }
-                    } else {//已报名
-                        lin_leave_and_sign_up.setVisibility(View.GONE);
-                        sign_up.setVisibility(View.VISIBLE);
-                        TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
-                        tv_sign_up.setText("已报名");
-                        tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                        tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-                    }
-                    break;
-                case "1"://会议进行中
-                    if (signUpState.equals("0")) {//未报名
-                        if (leaveState.equals("0")) {//未请假
-                            lin_leave_and_sign_up.setVisibility(View.GONE);
-                            sign_up.setVisibility(View.VISIBLE);
-                            TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
-                            tv_sign_up.setText("会议进行中");
-                            tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                            tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-                        } else {//已请假
-                            lin_leave_and_sign_up.setVisibility(View.GONE);
-                            sign_up.setVisibility(View.VISIBLE);
-                            TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
-                            tv_sign_up.setText("已请假");
+                            tv_sign_up.setText("已报名");
                             tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
                             tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
                         }
-                    } else {//已报名
+                        break;
+                    case "1"://会议进行中
+                        if (signUpState.equals("0")) {//未报名
+                            if (leaveState.equals("0")) {//未请假
+                                lin_leave_and_sign_up.setVisibility(View.GONE);
+                                sign_up.setVisibility(View.VISIBLE);
+                                TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
+                                tv_sign_up.setText("会议进行中");
+                                tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                                tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                            } else {//已请假
+                                lin_leave_and_sign_up.setVisibility(View.GONE);
+                                sign_up.setVisibility(View.VISIBLE);
+                                TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
+                                tv_sign_up.setText("已请假");
+                                tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                                tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                            }
+                        } else {//已报名
+                            lin_leave_and_sign_up.setVisibility(View.GONE);
+                            sign_up.setVisibility(View.VISIBLE);
+                            TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
+                            tv_sign_up.setText("已报名");
+                            tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                            tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                        }
+                        break;
+                    case "2"://会议已结束
                         lin_leave_and_sign_up.setVisibility(View.GONE);
                         sign_up.setVisibility(View.VISIBLE);
                         TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
-                        tv_sign_up.setText("已报名");
+                        tv_sign_up.setText("查看会议记录");
                         tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
                         tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-                    }
-                    break;
-                case "2"://会议已结束
-                    lin_leave_and_sign_up.setVisibility(View.GONE);
-                    sign_up.setVisibility(View.VISIBLE);
-                    TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
-                    tv_sign_up.setText("查看会议记录");
-                    tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                    tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-                    break;
+                        break;
+                }
             }
         }
     }

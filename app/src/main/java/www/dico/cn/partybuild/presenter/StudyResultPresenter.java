@@ -1,5 +1,6 @@
 package www.dico.cn.partybuild.presenter;
 
+import android.app.Activity;
 import android.app.Dialog;
 
 import com.google.gson.Gson;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.activity.StudyResultActivity;
 import www.dico.cn.partybuild.modleview.StudyResultView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -17,6 +19,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class StudyResultPresenter extends BaseMvpPresenter<StudyResultView> {
+    Activity activity=AppManager.getManager().findActivity(StudyResultActivity.class);
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {

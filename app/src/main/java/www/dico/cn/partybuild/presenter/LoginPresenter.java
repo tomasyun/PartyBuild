@@ -1,5 +1,6 @@
 package www.dico.cn.partybuild.presenter;
 
+import android.app.Activity;
 import android.app.Dialog;
 
 import com.google.gson.Gson;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.activity.LoginActivity;
 import www.dico.cn.partybuild.modleview.LoginView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -17,10 +19,11 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class LoginPresenter extends BaseMvpPresenter<LoginView> {
+    Activity activity=AppManager.getManager().findActivity(LoginActivity.class);
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(activity)
                     .setCancelable(true)
                     .setCancelOutside(true)
                     .setMessage("登录中..")

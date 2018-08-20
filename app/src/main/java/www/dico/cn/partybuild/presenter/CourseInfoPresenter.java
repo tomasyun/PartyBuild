@@ -1,9 +1,11 @@
 package www.dico.cn.partybuild.presenter;
 
+import android.app.Activity;
 import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.activity.CourseInfoActivity;
 import www.dico.cn.partybuild.modleview.CourseInfoView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -13,11 +15,12 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class CourseInfoPresenter extends BaseMvpPresenter<CourseInfoView> {
+    Activity activity=AppManager.getManager().findActivity(CourseInfoActivity.class);
     //课件详情
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(activity)
                     .setCancelable(true)
                     .setCancelOutside(true)
                     .setMessage("请求中..")
