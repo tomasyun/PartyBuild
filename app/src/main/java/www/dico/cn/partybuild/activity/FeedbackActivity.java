@@ -16,6 +16,7 @@ import www.dico.cn.partybuild.modleview.FeedbackView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.FeedbackPresenter;
+import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;
 
 //意见反馈
 @CreatePresenter(FeedbackPresenter.class)
@@ -40,14 +41,27 @@ public class FeedbackActivity extends AbstractMvpActivity<FeedbackView, Feedback
         if (TextUtils.isEmpty(content)) {
             showToast("请填写意见");
         } else {
-            getMvpPresenter().feedBackSubmit("", content);
+            getMvpPresenter().feedBackSubmit(content);
         }
     }
 
     @Override
     public void resultSuccess(String result) {
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
-        showToast(protocol.msg);
+        if (protocol.code.equals("0000")){
+            new AlertDialog(this).builder()
+                    .setTitle("提交成功")
+                    .setMsg("感谢您此次提交的意见，我们会尽快予您回复。")
+                    .setCancelable(false)
+                    .setPositiveButton("确定", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            FeedbackActivity.this.finish();
+                        }
+                    }).show();
+        }else {
+            showToast(protocol.msg);
+        }
     }
 
     @Override

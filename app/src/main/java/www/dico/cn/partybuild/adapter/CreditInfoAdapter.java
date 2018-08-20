@@ -12,15 +12,15 @@ import www.dico.cn.partybuild.bean.CreditInfoBean;
 import www.yuntdev.com.baseadapterlibrary.base.CommonAdapter;
 import www.yuntdev.com.baseadapterlibrary.base.ViewHolder;
 
-public class CreditInfoAdapter extends CommonAdapter<CreditInfoBean> {
-    public CreditInfoAdapter(Context context, int layoutId, List<CreditInfoBean> datas) {
+public class CreditInfoAdapter extends CommonAdapter<CreditInfoBean.DataBean.CreditListBean> {
+    public CreditInfoAdapter(Context context, int layoutId, List<CreditInfoBean.DataBean.CreditListBean> datas) {
         super(context, layoutId, datas);
     }
 
     @Override
-    protected void convert(ViewHolder holder, CreditInfoBean creditInfoBean, int position) {
+    protected void convert(ViewHolder holder, CreditInfoBean.DataBean.CreditListBean creditInfoBean, int position) {
         holder.setText(R.id.tv_credit_info_title_item, creditInfoBean.getTitle());
-        holder.setText(R.id.tv_credit_info_date_item, creditInfoBean.getDate());
+        holder.setText(R.id.tv_credit_info_date_item, creditInfoBean.getAuditDate());
         SpannableString score = new SpannableString(creditInfoBean.getScore());
         score.setSpan(new AbsoluteSizeSpan(28), 0, 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         score.setSpan(new AbsoluteSizeSpan(40), 1, score.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);

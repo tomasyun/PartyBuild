@@ -25,10 +25,9 @@ public class FeedbackPresenter extends BaseMvpPresenter<FeedbackView> {
         }
     };
 
-    public void feedBackSubmit(String id, String content) {
-        EasyHttp.post("")
+    public void feedBackSubmit(String content) {
+        EasyHttp.post("suggestFeedback")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
-                .params("id", id)
                 .params("content", content)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override

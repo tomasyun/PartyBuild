@@ -32,6 +32,11 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
         setContentView(R.layout.activity_meeting);
         ButterKnife.bind(this);
         rv_meeting.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getMvpPresenter().doMeetingRequest();
     }
 

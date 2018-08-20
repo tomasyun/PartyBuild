@@ -76,6 +76,7 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
         rv_rank.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CreditRankAdapter(this, R.layout.item_credit_rank, ranks());
         rv_rank.setAdapter(adapter);
+        getMvpPresenter().creditRankRequest();
     }
 
     public void goBackRank(View view) {

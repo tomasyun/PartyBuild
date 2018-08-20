@@ -3,7 +3,6 @@ package www.dico.cn.partybuild.bean;
 import java.util.List;
 
 public class VoteListBean extends BaseProtocol {
-
     private List<DataBean> data;
 
     public List<DataBean> getData() {
@@ -18,6 +17,7 @@ public class VoteListBean extends BaseProtocol {
         private String id;
         private String title;
         private String voterNum;
+        private String isVoter;
         private String limitDate;
 
         public String getId() {
@@ -42,6 +42,14 @@ public class VoteListBean extends BaseProtocol {
 
         public void setVoterNum(String voterNum) {
             this.voterNum = voterNum;
+        }
+
+        public String getIsVoter() {
+            return isVoter;
+        }
+
+        public void setIsVoter(String isVoter) {
+            this.isVoter = isVoter;
         }
 
         public String getLimitDate() {

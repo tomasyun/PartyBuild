@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -45,27 +44,29 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
         scoreContent.setSpan(new AbsoluteSizeSpan(40), 0, scoreContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         scoreContent.setSpan(new AbsoluteSizeSpan(28), scoreContent.length() - 1, scoreContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         tv_credit_info_score.setText(scoreContent);
-        //getMvpPresenter().creditInfoRequest("");
+        getMvpPresenter().creditInfoRequest("0");
         rg_credit_info.check(R.id.rbt_credit_info_all);
         rg_credit_info.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 switch (checkedId) {
                     case R.id.rbt_credit_info_all:
+                        getMvpPresenter().creditInfoRequest("0");
                         break;
                     case R.id.rbt_credit_info_month:
+                        getMvpPresenter().creditInfoRequest("1");
                         break;
                     case R.id.rbt_credit_info_week:
+                        getMvpPresenter().creditInfoRequest("2");
                         break;
                     case R.id.rbt_credit_info_day:
+                        getMvpPresenter().creditInfoRequest("3");
                         break;
                 }
             }
         });
 
         rv_credit_info.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new CreditInfoAdapter(this, R.layout.item_credit_info, creditInfos());
-        rv_credit_info.setAdapter(adapter);
     }
 
     public void goBackCreditInfo(View view) {
@@ -80,22 +81,21 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
     public void resultSuccess(String result) {
         CreditInfoBean bean = new Gson().fromJson(result, CreditInfoBean.class);
         if (bean.code.equals("0000")) {
-
+            if (bean.getData() != null) {
+                tv_credit_info_score.setText(bean.getData().getTotalScore());
+                List<CreditInfoBean.DataBean.CreditListBean> beans = bean.getData().getCreditList();
+                if (null != beans && beans.size() > 0) {
+                    for (int i = 0; i < beans.size(); i++) {
+                        adapter = new CreditInfoAdapter(this, R.layout.item_credit_info, beans);
+                        rv_credit_info.setAdapter(adapter);
+                    }
+                }
+            }
         }
     }
 
     @Override
     public void resultFailure(String result) {
         showToast(result);
-    }
-
-    public List<CreditInfoBean> creditInfos() {
-        List<CreditInfoBean> list = new ArrayList<>();
-        CreditInfoBean bean = new CreditInfoBean();
-        bean.setTitle("党内送温暖");
-        bean.setDate("2018-7-27 12:30");
-        bean.setScore("+5");
-        list.add(bean);
-        return list;
     }
 }

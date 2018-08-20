@@ -103,9 +103,8 @@ public class PersonalFragment extends Fragment {
             //意见反馈
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), FeedbackActivity.class);
-//                startActivity(intent);
-                Toast.makeText(getActivity(), "暂未开通", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), FeedbackActivity.class);
+                startActivity(intent);
             }
         });
         iv_setting_personal.setOnClickListener(new View.OnClickListener() {

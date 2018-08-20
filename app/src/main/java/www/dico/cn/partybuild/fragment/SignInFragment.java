@@ -104,7 +104,7 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                 dialog = new LoadingDialog.Builder(getActivity())
                         .setCancelable(true)
                         .setCancelOutside(true)
-                        .setMessage("定位中...")
+                        .setMessage("定位中..")
                         .setShowMessage(true)
                         .create();
                 dialog.show();
@@ -113,7 +113,6 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
         });
         return view;
     }
-
 
     /**
      * 初始化定位对象
@@ -243,5 +242,21 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
             }
             Log.i("####", distance + "");
         }
+    }
+
+    @Override
+    public void resultSuccess(String result) {
+
+    }
+
+    @Override
+    public void resultFailure(String result) {
+
+    }
+
+    @Override
+    public void preventPreLoad() {
+        super.preventPreLoad();
+        getMvpPresenter().doGetSignInConferenceRequest();
     }
 }

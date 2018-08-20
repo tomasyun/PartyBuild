@@ -26,9 +26,9 @@ public class CreditInfoPresenter extends BaseMvpPresenter<CreditInfoView> {
     };
 
     public void creditInfoRequest(String id) {
-        EasyHttp.post("")
+        EasyHttp.post("creditInfoList")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
-                .params("id", id)
+                .params("id", id)//id:0,全部 1.本月 2.本周 3.本日
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {

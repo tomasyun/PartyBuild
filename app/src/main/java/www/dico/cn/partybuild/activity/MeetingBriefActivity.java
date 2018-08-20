@@ -63,8 +63,6 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
         setContentView(R.layout.activity_meetingbrief);
         ButterKnife.bind(this);
         form = getParam();
-        if (form != null)
-            getMvpPresenter().doMeetingBriefRequest(form.meetingId);
         iv_participants_meeting_brief.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_arrow_right));
         tfl_participants_meeting_brief.setVisibility(View.GONE);
         rel_participants_meeting_brief.setOnClickListener(new View.OnClickListener() {
@@ -87,14 +85,11 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
         this.finish();
     }
 
-    //请假
-    public void askForLeave(View view) {
-        goTo(LeaveReasonActivity.class, null);
-    }
-
-    //报名
-    public void signUp(View view) {
-        getMvpPresenter().doSignUpRequest("");
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (form != null)
+            getMvpPresenter().doMeetingBriefRequest(form.meetingId);
     }
 
     @Override
@@ -132,13 +127,13 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                             tv_leave_brief.setOnClickListener(new View.OnClickListener() {//开始请假
                                 @Override
                                 public void onClick(View view) {
-                                    getMvpPresenter().doLeaveRequest("");
+                                    getMvpPresenter().doLeaveRequest(form.meetingId);
                                 }
                             });
                             tv_sign_up_brief.setOnClickListener(new View.OnClickListener() {//开始报名
                                 @Override
                                 public void onClick(View view) {
-                                    getMvpPresenter().doSignUpRequest("");
+                                    getMvpPresenter().doSignUpRequest(form.meetingId);
                                 }
                             });
                         } else {//已请假
