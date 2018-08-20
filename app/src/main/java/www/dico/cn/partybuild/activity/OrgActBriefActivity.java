@@ -13,6 +13,7 @@ import com.zhy.view.flowlayout.TagFlowLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.carbs.android.expandabletextview.library.ExpandableTextView;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.ParticipantsAdapter;
 import www.dico.cn.partybuild.bean.BaseProtocol;
@@ -41,7 +42,7 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
     @BindView(R.id.tv_orgact_brief_category)
     TextView tv_orgact_brief_category;
     @BindView(R.id.tv_orgact_brief_content)
-    TextView tv_orgact_brief_content;
+    ExpandableTextView tv_orgact_brief_content;
     @BindView(R.id.tv_orgact_brief_participants)
     TextView tv_orgact_brief_participants;
     @BindView(R.id.iv_orgact_brief_participants)

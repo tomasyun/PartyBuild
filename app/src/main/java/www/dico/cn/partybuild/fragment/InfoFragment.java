@@ -20,7 +20,7 @@ import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.InfodetailsActivity;
 import www.dico.cn.partybuild.adapter.InfoAdapter;
 import www.dico.cn.partybuild.bean.InfoBean;
-import www.dico.cn.partybuild.bean.InfoDetailForm;
+import www.dico.cn.partybuild.bean.InfodetailForm;
 import www.dico.cn.partybuild.modleview.InfoView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
@@ -136,7 +136,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfoDetailForm form=new InfoDetailForm();
+                                InfodetailForm form=new InfodetailForm();
                                 form.infoId=list.get(position).getId();
                                 goTo(InfodetailsActivity.class,form);
                             }
@@ -152,7 +152,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfoDetailForm form=new InfoDetailForm();
+                                InfodetailForm form=new InfodetailForm();
                                 form.infoId=InfoFragment.this.list.get(position).getId();
                                 goTo(InfodetailsActivity.class,form);
                             }

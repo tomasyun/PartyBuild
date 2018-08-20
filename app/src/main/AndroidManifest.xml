@@ -88,7 +88,8 @@
         <!--资讯详情-->
         <activity
             android:name=".activity.InfodetailsActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateAlwaysHidden|stateUnchanged" />
         <!--党费缴纳-->
         <activity
             android:name=".activity.PayDuesActivity"

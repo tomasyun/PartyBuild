@@ -30,7 +30,7 @@ public class InfodetailsPresenter extends BaseMvpPresenter<InfodetailsView> {
     };
 
     public void infoDetailsRequest(String id) {
-        EasyHttp.post("")
+        EasyHttp.post("infoDetail")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {

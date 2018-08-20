@@ -14,6 +14,7 @@ import com.zhy.view.flowlayout.TagFlowLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.carbs.android.expandabletextview.library.ExpandableTextView;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.ParticipantsAdapter;
 import www.dico.cn.partybuild.bean.BaseProtocol;
@@ -42,7 +43,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
     @BindView(R.id.rel_participants_meeting_brief)
     RelativeLayout rel_participants_meeting_brief;
     @BindView(R.id.tv_brief_meeting_brief)
-    TextView tv_brief_meeting_brief;
+    ExpandableTextView tv_brief_meeting_brief;
     @BindView(R.id.tv_participants_meeting_brief)
     TextView tv_participants_meeting_brief;
     @BindView(R.id.iv_participants_meeting_brief)
