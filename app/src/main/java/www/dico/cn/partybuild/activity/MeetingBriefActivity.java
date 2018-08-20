@@ -204,7 +204,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
         if (protocol.code.equals("0000")) {
             goTo(SignUpSuccessActivity.class, null);
         } else {
-
+            showToast(protocol.msg);
         }
     }
 
@@ -219,7 +219,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
         if (protocol.code.equals("0000")) {
 
         } else {
-
+            showToast(protocol.msg);
         }
     }
 

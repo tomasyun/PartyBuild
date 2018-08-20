@@ -46,4 +46,21 @@ public class OrgActBriefPresenter extends BaseMvpPresenter<OrgActBriefView> {
                     }
                 });
     }
+    public void doSignUpRequest(String id) {
+        EasyHttp.post("signUpActivity")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
+                .params("id", id)
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
+                    @Override
+                    public void onSuccess(String s) {
+                        getMvpView().signUpResultSuccess(s);
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        super.onError(e);
+                        getMvpView().signUpResultFailure(e.getMessage());
+                    }
+                });
+    }
 }

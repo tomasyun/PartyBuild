@@ -15,6 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.ParticipantsAdapter;
+import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.bean.OrgActBriefBean;
 import www.dico.cn.partybuild.bean.OrgActForm;
 import www.dico.cn.partybuild.modleview.OrgActBriefView;
@@ -114,47 +115,66 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
                 String signUpState = briefBean.getData().getSignUpState();
                 switch (conferenceState) {
                     case "0"://未开始
+                        if (signUpState!=null&&!signUpState.equals("")){
                         if (signUpState.equals("0")) {//未报名
-                            TextView tv_sign_up=sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
+                            TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
                             tv_sign_up.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-
+                                    getMvpPresenter().doSignUpRequest(form.orgActId);
                                 }
                             });
                         } else {//已报名
-                            TextView tv_sign_up=sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
+                            TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
                             tv_sign_up.setText("已报名");
                             tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
                             tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-                        }
+                        }}
                         break;
                     case "1"://进行中
+                        if (signUpState!=null&&!signUpState.equals("")){
                         if (signUpState.equals("0")) {//未报名
-                            TextView tv_sign_up=sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
+                            TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
                             tv_sign_up.setText("会议进行中");
                             tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
                             tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
                         } else {//已报名
-                            TextView tv_sign_up=sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
+                            TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
                             tv_sign_up.setText("已报名");
                             tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
                             tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-                        }
+                        }}
                         break;
                     case "2"://已结束
-                        TextView tv_sign_up=sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
+                        TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
                         tv_sign_up.setText("查看会议记录");
                         tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
                         tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
                         break;
                 }
             }
+        } else {
+            showToast(briefBean.msg);
         }
     }
 
     @Override
     public void resultFailure(String result) {
+        showToast(result);
+    }
+
+    @Override
+    public void signUpResultSuccess(String result) {
+        BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
+        if (protocol.code.equals("0000")) {
+            goTo(SignUpSuccessActivity.class, null);
+        } else {
+            showToast(protocol.msg);
+        }
+    }
+
+    @Override
+    public void signUpResultFailure(String result) {
         showToast(result);
     }
 }

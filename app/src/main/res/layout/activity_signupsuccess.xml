@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textColor="@color/text_color"
-            android:text="注意开会时间和地点,千万不要迟到哦~~"
+            android:text="注意开会/活动时间和地点,千万不要迟到哦~~"
             android:textSize="14sp" />
 
         <TextView
