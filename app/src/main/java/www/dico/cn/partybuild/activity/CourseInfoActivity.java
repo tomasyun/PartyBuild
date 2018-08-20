@@ -87,7 +87,8 @@ public class CourseInfoActivity extends AbstractMvpActivity<CourseInfoView, Cour
         if (protocol.code.equals("0000")) {
             this.finish();
         } else {
-            showToast("");
+            showToast(protocol.msg);
+            this.finish();
         }
     }
 

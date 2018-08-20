@@ -123,7 +123,7 @@
             android:launchMode="singleTask" />
         <!--问卷调查-->
         <activity
-            android:name=".activity.QuestionSurveyActivity"
+            android:name=".activity.SurveyListActivity"
             android:launchMode="singleTask" />
         <!--缴纳规则-->
         <activity
@@ -176,6 +176,10 @@
         <!--考试试题选项查看-->
         <activity
             android:name=".activity.QuestionOptionPreviewActivity"
+            android:launchMode="singleTask" />
+        <!--在线调查-->
+        <activity
+            android:name=".activity.OnlineSurveyActivity"
             android:launchMode="singleTask" />
         <!--使用高德api所申请的key-->
         <meta-data

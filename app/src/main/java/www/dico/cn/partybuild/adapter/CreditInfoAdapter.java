@@ -21,9 +21,9 @@ public class CreditInfoAdapter extends CommonAdapter<CreditInfoBean.DataBean.Cre
     protected void convert(ViewHolder holder, CreditInfoBean.DataBean.CreditListBean creditInfoBean, int position) {
         holder.setText(R.id.tv_credit_info_title_item, creditInfoBean.getTitle());
         holder.setText(R.id.tv_credit_info_date_item, creditInfoBean.getAuditDate());
-        SpannableString score = new SpannableString(creditInfoBean.getScore());
-        score.setSpan(new AbsoluteSizeSpan(28), 0, 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-        score.setSpan(new AbsoluteSizeSpan(40), 1, score.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+        SpannableString score = new SpannableString("+ "+creditInfoBean.getScore());
+        score.setSpan(new AbsoluteSizeSpan(28), 0, 2, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+        score.setSpan(new AbsoluteSizeSpan(40), 2, score.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         TextView tv_credit_info_score_item = holder.getView(R.id.tv_credit_info_score_item);
         tv_credit_info_score_item.setText(score);
     }

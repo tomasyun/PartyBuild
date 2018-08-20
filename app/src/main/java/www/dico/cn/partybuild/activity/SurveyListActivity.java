@@ -14,14 +14,14 @@ import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.QuestionSurveyAdapter;
 import www.dico.cn.partybuild.bean.QuestionSurveyBean;
-import www.dico.cn.partybuild.modleview.QuestionSurveyView;
+import www.dico.cn.partybuild.modleview.SurveyListView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
-import www.dico.cn.partybuild.presenter.QuestionSurveyPresenter;
+import www.dico.cn.partybuild.presenter.SurveyListPresenter;
 import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 
-@CreatePresenter(QuestionSurveyPresenter.class)
-public class QuestionSurveyActivity extends AbstractMvpActivity<QuestionSurveyView, QuestionSurveyPresenter> implements QuestionSurveyView {
+@CreatePresenter(SurveyListPresenter.class)
+public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, SurveyListPresenter> implements SurveyListView {
     @BindView(R.id.rv_question_survey)
     RecyclerView rv_question_survey;
     private QuestionSurveyAdapter adapter;
@@ -29,7 +29,7 @@ public class QuestionSurveyActivity extends AbstractMvpActivity<QuestionSurveyVi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_questionsurvey);
+        setContentView(R.layout.activity_surveylist);
         ButterKnife.bind(this);
         rv_question_survey.setLayoutManager(new LinearLayoutManager(this));
         adapter = new QuestionSurveyAdapter(this, R.layout.item_questionsurvey, questionSurveys());
@@ -37,7 +37,7 @@ public class QuestionSurveyActivity extends AbstractMvpActivity<QuestionSurveyVi
         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-
+                goTo(OnlineSurveyActivity.class, null);
             }
         });
     }

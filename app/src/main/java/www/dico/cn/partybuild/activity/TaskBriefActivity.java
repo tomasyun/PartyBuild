@@ -74,9 +74,15 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
         TaskBriefBean briefBean = new Gson().fromJson(result, TaskBriefBean.class);
         if (briefBean.code.equals("0000")) {
             if (null != briefBean.getData()) {
-                tv_content_task.setText("\u3000\u3000" + briefBean.getData().getContent());
+                String content = briefBean.getData().getContent();
+                if (null != content && !content.equals("")) {
+                    tv_content_task.setVisibility(View.VISIBLE);
+                    tv_content_task.setText("\u3000\u3000" + briefBean.getData().getContent());
+                }
                 final List<TaskBriefBean.DataBean.CourseListBean> beans = briefBean.getData().getCourseList();
-                if (null != beans && beans.size()>0) {
+                if (null != beans && beans.size() > 0) {
+                    lin_course_task_brief.setVisibility(View.VISIBLE);
+                    lin_course_task_brief.removeAllViews();
                     for (int i = 0; i < beans.size(); i++) {
                         TextView courseView = new TextView(this);
                         courseView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -85,7 +91,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
                         courseView.setSingleLine(true);
                         courseView.setEllipsize(TextUtils.TruncateAt.END);
 //                        courseView.setTypeface(Typeface.DEFAULT_BOLD);
-                        courseView.setText("\u3000"+beans.get(i).getTitle());
+                        courseView.setText("\u3000" + beans.get(i).getTitle());
                         lin_course_task_brief.addView(courseView);
                         final int position = i;
                         courseView.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +104,8 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
                             }
                         });
                     }
+                } else {
+                    lin_course_task_brief.setVisibility(View.GONE);
                 }
             }
         }

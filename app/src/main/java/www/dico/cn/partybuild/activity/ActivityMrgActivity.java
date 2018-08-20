@@ -29,6 +29,6 @@ public class ActivityMrgActivity extends BaseActivity {
 
     //问卷调查
     public void gotoQuestionSur(View view) {
-        goTo(QuestionSurveyActivity.class, null);
+        goTo(SurveyListActivity.class, null);
     }
 }

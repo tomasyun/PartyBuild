@@ -156,6 +156,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                 final List<VoteDetailBean.DataBean.OptionsBean> beans = bean.getData().getOptions();
                 if (null != beans && beans.size() > 0) {
                     lin_options_vote.setVisibility(View.VISIBLE);
+                    lin_options_vote.removeAllViews();
                     for (int i = 0; i < beans.size(); i++) {
                         LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         LinearLayout layout1 = new LinearLayout(this);

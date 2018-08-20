@@ -76,6 +76,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:letterSpacing="0.08"
+                android:visibility="gone"
                 android:lineSpacingExtra="8dp"
                 android:padding="15dp"
                 android:textColor="#000000"
@@ -119,6 +120,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical"
+                android:visibility="gone"
                 android:paddingBottom="25dp">
 
             </LinearLayout>

@@ -4,7 +4,7 @@ import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.modleview.QuestionSurveyView;
+import www.dico.cn.partybuild.modleview.SurveyListView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
@@ -12,7 +12,7 @@ import www.yuntdev.com.library.callback.ProgressDialogCallBack;
 import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
-public class QuestionSurveyPresenter extends BaseMvpPresenter<QuestionSurveyView> {
+public class SurveyListPresenter extends BaseMvpPresenter<SurveyListView> {
     //问卷调查
     IProgressDialog dialog = new IProgressDialog() {
         @Override
