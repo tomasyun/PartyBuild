@@ -46,7 +46,6 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
         scoreContent.setSpan(new AbsoluteSizeSpan(40), 0, scoreContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         scoreContent.setSpan(new AbsoluteSizeSpan(28), scoreContent.length() - 1, scoreContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         tv_credit_info_score.setText(scoreContent);
-        getMvpPresenter().creditInfoRequest("0");
         rg_credit_info.check(R.id.rbt_credit_info_all);
         rg_credit_info.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -73,6 +72,12 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
         });
 
         rv_credit_info.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getMvpPresenter().creditInfoRequest("0");
     }
 
     public void goBackCreditInfo(View view) {

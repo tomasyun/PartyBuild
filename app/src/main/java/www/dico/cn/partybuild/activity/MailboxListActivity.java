@@ -33,6 +33,11 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
         setContentView(R.layout.activity_mailboxlist);
         ButterKnife.bind(this);
         rv_mailbox_list.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getMvpPresenter().doMailboxListRequest();
     }
 

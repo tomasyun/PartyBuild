@@ -44,16 +44,6 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creditrank);
         ButterKnife.bind(this);
-
-        SpannableString numContent = new SpannableString("12名");
-        numContent.setSpan(new AbsoluteSizeSpan(40), 0, numContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-        numContent.setSpan(new AbsoluteSizeSpan(28), numContent.length() - 1, numContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-        tv_user_rank_num.setText(numContent);
-        SpannableString scoreContent = new SpannableString("520分");
-        scoreContent.setSpan(new AbsoluteSizeSpan(40), 0, scoreContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-        scoreContent.setSpan(new AbsoluteSizeSpan(28), scoreContent.length() - 1, scoreContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-        tv_user_rank_score.setText(scoreContent);
-
         //getMvpPresenter().creditRankRequest("");
 //        rg_rank.check(R.id.rbt_rank_all);
 //        rg_rank.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -72,6 +62,12 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
 //            }
 //        });
         rv_rank.setLayoutManager(new LinearLayoutManager(this));
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getMvpPresenter().creditRankRequest();
     }
 
