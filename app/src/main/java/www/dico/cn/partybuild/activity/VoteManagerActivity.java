@@ -51,6 +51,7 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
                     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                         VoteForm form = new VoteForm();
                         form.voteId = bean.getData().get(position).getId();
+                        form.isVoter=bean.getData().get(position).getIsVoter();
                         goTo(VoteDetailActivity.class, form);
                     }
                 });

@@ -72,15 +72,19 @@ public class VoteDetailBean extends BaseProtocol {
         }
 
         public static class OptionsBean {
-            /**
-             * id : 1
-             * option : 高大陆
-             * votes : 4
-             */
 
             private String id;
             private String option;
             private String votes;
+            private String isVote;
+
+            public String getIsVote() {
+                return isVote;
+            }
+
+            public void setIsVote(String isVote) {
+                this.isVote = isVote;
+            }
 
             public String getId() {
                 return id;

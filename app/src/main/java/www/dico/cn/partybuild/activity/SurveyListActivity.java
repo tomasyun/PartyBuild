@@ -6,7 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -14,6 +15,7 @@ import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.QuestionSurveyAdapter;
 import www.dico.cn.partybuild.bean.QuestionSurveyBean;
+import www.dico.cn.partybuild.bean.SurveyForm;
 import www.dico.cn.partybuild.modleview.SurveyListView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -32,31 +34,36 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
         setContentView(R.layout.activity_surveylist);
         ButterKnife.bind(this);
         rv_question_survey.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new QuestionSurveyAdapter(this, R.layout.item_questionsurvey, questionSurveys());
-        rv_question_survey.setAdapter(adapter);
-        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                goTo(OnlineSurveyActivity.class, null);
-            }
-        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getMvpPresenter().doQuestionSurveyRequest();
     }
 
     public void goBackQuestionSurvey(View view) {
         this.finish();
     }
 
-    public List<QuestionSurveyBean> questionSurveys() {
-        List<QuestionSurveyBean> list = new ArrayList<>();
-        QuestionSurveyBean bean = new QuestionSurveyBean();
-        bean.setTitle("问卷调查1");
-        list.add(bean);
-        return list;
-    }
-
     @Override
     public void resultSuccess(String result) {
-
+        QuestionSurveyBean bean = new Gson().fromJson(result, QuestionSurveyBean.class);
+        if (bean.code.equals("0000")) {
+            final List<QuestionSurveyBean.DataBean> beans = bean.getData();
+            if (null != beans && beans.size() > 0) {
+                adapter = new QuestionSurveyAdapter(this, R.layout.item_questionsurvey, beans);
+                rv_question_survey.setAdapter(adapter);
+                adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                        SurveyForm form = new SurveyForm();
+                        form.surveyId = beans.get(position).getId();
+                        goTo(OnlineSurveyActivity.class, form);
+                    }
+                });
+            }
+        }
     }
 
     @Override

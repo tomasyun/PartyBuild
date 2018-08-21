@@ -9,14 +9,16 @@ import www.dico.cn.partybuild.bean.QuestionSurveyBean;
 import www.yuntdev.com.baseadapterlibrary.base.CommonAdapter;
 import www.yuntdev.com.baseadapterlibrary.base.ViewHolder;
 
-public class QuestionSurveyAdapter extends CommonAdapter<QuestionSurveyBean> {
+public class QuestionSurveyAdapter extends CommonAdapter<QuestionSurveyBean.DataBean> {
 
-    public QuestionSurveyAdapter(Context context, int layoutId, List<QuestionSurveyBean> datas) {
+    public QuestionSurveyAdapter(Context context, int layoutId, List<QuestionSurveyBean.DataBean> datas) {
         super(context, layoutId, datas);
     }
 
     @Override
-    protected void convert(ViewHolder holder, QuestionSurveyBean questionSurveyBean, int position) {
+    protected void convert(ViewHolder holder, QuestionSurveyBean.DataBean questionSurveyBean, int position) {
         holder.setText(R.id.tv_title_question_survey_item, questionSurveyBean.getTitle());
+        holder.setText(R.id.tv_date_question_survey_item,questionSurveyBean.getLimitDate());
+        holder.setText(R.id.tv_population_question_survey_item,questionSurveyBean.getPaticipants());
     }
 }

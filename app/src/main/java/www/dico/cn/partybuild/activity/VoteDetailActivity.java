@@ -45,7 +45,6 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
     TextView tv_des_vote_detail;
     private boolean isSelected = false;
     private VoteForm form;
-    private String voteOptionId = "";
     private List<String> options;
     @BindView(R.id.tv_submit_vote_detail)
     TextView tv_submit_vote_detail;
@@ -58,8 +57,14 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
 //        addOptionsChildView();
         options = new ArrayList<>();
         form = getParam();
-        if (form != null)
+        if (form != null){
+            tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+            tv_submit_vote_detail.setTextColor(Color.parseColor("#febfb5"));
+            tv_submit_vote_detail.setText("已投票");
+            tv_submit_vote_detail.setEnabled(false);
+            tv_submit_vote_detail.setClickable(false);
             getMvpPresenter().doVoteDetailRequest(form.voteId);
+        }
     }
 
     public void goBackVoteDetail(View view) {
@@ -173,8 +178,11 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
 
                         final ImageView image = new ImageView(this);
                         image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                        image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
-
+                        if (beans.get(i).getIsVote().equals("0")) {
+                            image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
+                        } else {
+                            image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_vote_ok));
+                        }
                         TextView optionText = new TextView(this);
                         optionText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                         optionText.setText(beans.get(i).getOption());
@@ -200,24 +208,26 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                         lin_options_vote.addView(layout1);
 
                         final String optionId = beans.get(i).getId();
-                        image.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                if (isSelected) {
-                                    image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
-                                    isSelected = true;
-                                    for (int i = 0; i < options.size(); i++) {
-                                        if (options.get(i).equals(optionId)) {
-                                            options.remove(i);
+                        if (form.isVoter.equals("0")) {
+                            image.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    if (isSelected) {
+                                        image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
+                                        isSelected = true;
+                                        for (int i = 0; i < options.size(); i++) {
+                                            if (options.get(i).equals(optionId)) {
+                                                options.remove(i);
+                                            }
                                         }
+                                    } else {
+                                        image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
+                                        isSelected = true;
+                                        options.add(optionId);
                                     }
-                                } else {
-                                    image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
-                                    isSelected = true;
-                                    options.add(optionId);
                                 }
-                            }
-                        });
+                            });
+                        }
                     }
                 } else {
                     lin_options_vote.setVisibility(View.GONE);
@@ -241,7 +251,6 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
             tv_submit_vote_detail.setText("已投票");
             tv_submit_vote_detail.setEnabled(false);
             tv_submit_vote_detail.setClickable(false);
-
             getMvpPresenter().doVoteDetailRequest(form.voteId);
         } else {
             showToast(protocol.msg);

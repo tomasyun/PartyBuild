@@ -30,7 +30,7 @@ public class SurveyListPresenter extends BaseMvpPresenter<SurveyListView> {
     };
 
     public void doQuestionSurveyRequest() {
-        EasyHttp.post("")
+        EasyHttp.post("questionSurveyList")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override

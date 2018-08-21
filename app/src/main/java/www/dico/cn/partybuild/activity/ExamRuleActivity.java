@@ -44,7 +44,7 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
         form = getParam();
         if (form != null) {
             getMvpPresenter().examRuleRequest(form.examId);
-            if (form.state.equals("0")) {
+            if (form.state.equals("1")) {
                 tv_start_exam.setText("已结束");
                 tv_start_exam.setEnabled(false);
                 tv_start_exam.setClickable(false);
