@@ -35,8 +35,8 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
     ImageView iv_user_icon_rank;//个人头像
     @BindView(R.id.tv_user_rank_score)
     TextView tv_user_rank_score;//积分
-    @BindView(R.id.rg_rank)
-    RadioGroup rg_rank;
+//    @BindView(R.id.rg_rank)
+//    RadioGroup rg_rank;
     @BindView(R.id.rv_rank)
     RecyclerView rv_rank;
     private CreditRankAdapter adapter;
@@ -57,22 +57,22 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
         tv_user_rank_score.setText(scoreContent);
 
         //getMvpPresenter().creditRankRequest("");
-        rg_rank.check(R.id.rbt_rank_all);
-        rg_rank.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rbt_rank_all:
-                        break;
-                    case R.id.rbt_rank_master:
-                        break;
-                    case R.id.rbt_rank_branch:
-                        break;
-                    case R.id.rbt_rank_group:
-                        break;
-                }
-            }
-        });
+//        rg_rank.check(R.id.rbt_rank_all);
+//        rg_rank.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+//                switch (checkedId) {
+//                    case R.id.rbt_rank_all:
+//                        break;
+//                    case R.id.rbt_rank_master:
+//                        break;
+//                    case R.id.rbt_rank_branch:
+//                        break;
+//                    case R.id.rbt_rank_group:
+//                        break;
+//                }
+//            }
+//        });
         rv_rank.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CreditRankAdapter(this, R.layout.item_credit_rank, ranks());
         rv_rank.setAdapter(adapter);

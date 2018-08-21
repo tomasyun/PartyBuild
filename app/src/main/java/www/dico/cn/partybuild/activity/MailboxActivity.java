@@ -69,7 +69,7 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
                     .setTitle("发送成功")
                     .setMsg("请耐心等待领导回复")
                     .setCancelable(false)
-                    .setPositiveButton("确定", new View.OnClickListener() {
+                    .setPositiveButton("知道了", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     MailboxActivity.this.finish();

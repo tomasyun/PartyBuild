@@ -53,7 +53,7 @@ public class FeedbackActivity extends AbstractMvpActivity<FeedbackView, Feedback
                     .setTitle("提交成功")
                     .setMsg("感谢您此次提交的意见，我们会尽快予您回复。")
                     .setCancelable(false)
-                    .setPositiveButton("确定", new View.OnClickListener() {
+                    .setPositiveButton("知道了", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             FeedbackActivity.this.finish();

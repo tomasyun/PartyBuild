@@ -34,6 +34,8 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
     @BindView(R.id.rv_credit_info)
     RecyclerView rv_credit_info;
     private CreditInfoAdapter adapter;
+    @BindView(R.id.tv_desc_credit_info)
+    TextView tv_desc_credit_info;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,15 +53,19 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 switch (checkedId) {
                     case R.id.rbt_credit_info_all:
+                        tv_desc_credit_info.setText("全部积分");
                         getMvpPresenter().creditInfoRequest("0");
                         break;
                     case R.id.rbt_credit_info_month:
+                        tv_desc_credit_info.setText("本月积分");
                         getMvpPresenter().creditInfoRequest("1");
                         break;
                     case R.id.rbt_credit_info_week:
+                        tv_desc_credit_info.setText("本周积分");
                         getMvpPresenter().creditInfoRequest("2");
                         break;
                     case R.id.rbt_credit_info_day:
+                        tv_desc_credit_info.setText("本日积分");
                         getMvpPresenter().creditInfoRequest("3");
                         break;
                 }

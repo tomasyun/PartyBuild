@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.R;
 import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;
@@ -28,9 +29,10 @@ public class SettingActivity extends BaseActivity {
                 .setPositiveButton("确定退出", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        AppManager.getManager().finishAllActivity();
                         goTo(SplashActivity.class, null);
                         finish();
+                        AppConfig.getSpUtils().clear();
+                        AppManager.getManager().finishAllActivity();
                     }
                 }).setNegativeButton("取消", new View.OnClickListener() {
             @Override

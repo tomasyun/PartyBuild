@@ -68,6 +68,7 @@
         </LinearLayout>
         <!--积分时间段-->
         <TextView
+            android:id="@+id/tv_desc_credit_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
