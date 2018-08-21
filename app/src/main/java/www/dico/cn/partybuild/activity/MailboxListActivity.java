@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -48,14 +47,18 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
     @Override
     public void resultSuccess(String result) {
         MailboxListBean bean = new Gson().fromJson(result, MailboxListBean.class);
-        if (bean.code.equals("0000")){
-            if (null!=bean.getData()){
-                List<MailboxListBean.DataBean> list=bean.getData();
-                for (int i=0;i<list.size();i++){
+        if (bean.code.equals("0000")) {
+            if (null != bean.getData()) {
+                List<MailboxListBean.DataBean> list = bean.getData();
+                if (null != list && list.size() > 0) {
                     adapter = new MailboxListAdapter(this, R.layout.item_mailbox, list);
                     rv_mailbox_list.setAdapter(adapter);
+                }else {
+                    //空白页面
                 }
             }
+        }else {
+            showToast(bean.msg);
         }
     }
 

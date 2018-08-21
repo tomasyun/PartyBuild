@@ -95,8 +95,10 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
                     }
                 });
             } else {
-                showToast(bean.msg);
+                //空白页面
             }
+        }else {
+            showToast(bean.msg);
         }
     }
 

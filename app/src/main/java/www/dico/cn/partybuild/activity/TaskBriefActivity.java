@@ -113,6 +113,8 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
                     lin_course_task_brief.setVisibility(View.GONE);
                 }
             }
+        }else {
+            showToast(briefBean.msg);
         }
     }
 

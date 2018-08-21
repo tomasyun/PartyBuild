@@ -90,12 +90,10 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
                 tv_user_rank_score.setText(scoreContent);
                 List<CreditRankBean.DataBean.CreditInfoListBean> list = bean.getData().getCreditInfoList();
                 if (null != list && list.size() > 0) {
-                    for (int i = 0; i < list.size(); i++) {
-                        adapter = new CreditRankAdapter(this, R.layout.item_credit_rank, list);
-                        rv_rank.setAdapter(adapter);
-                    }
+                    adapter = new CreditRankAdapter(this, R.layout.item_credit_rank, list);
+                    rv_rank.setAdapter(adapter);
                 } else {
-
+                     //空白页面
                 }
             }
         } else {

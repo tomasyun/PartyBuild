@@ -91,7 +91,11 @@ public class OnlineSurveyActivity extends AbstractMvpActivity<OnlineSurveyView, 
                 adapter = new SurveyQuestionAdapter(this, beans, R.layout.item_question);
                 vp_online_survey.setAdapter(adapter);
                 adapter.setHandleInterface(this);
+            } else {
+                //空白
             }
+        } else {
+            showToast(bean.msg);
         }
     }
 

@@ -139,15 +139,17 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
     public void submitSuccess(String result) {
         ExamResultBean bean = new Gson().fromJson(result, ExamResultBean.class);
         if (bean.code.equals("0000")) {
-            ExamResultForm form = new ExamResultForm();
-            form.examScore = String.valueOf(bean.getData().getExamScore());
-            form.isPass = bean.getData().getIsPass();
-            form.limitScore = this.form.limitScore;
-            form.examCost = examCost;
-            form.examId = this.form.examId;
-            goTo(ExamResultActivity.class, form);
-            helper.cancel();
-            this.finish();
+            if (bean.getData() != null) {
+                ExamResultForm form = new ExamResultForm();
+                form.examScore = String.valueOf(bean.getData().getExamScore());
+                form.isPass = bean.getData().getIsPass();
+                form.limitScore = this.form.limitScore;
+                form.examCost = examCost;
+                form.examId = this.form.examId;
+                goTo(ExamResultActivity.class, form);
+                helper.cancel();
+                this.finish();
+            }
         } else {
             showToast(bean.msg);
         }

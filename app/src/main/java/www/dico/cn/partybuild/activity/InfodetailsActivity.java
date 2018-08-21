@@ -81,8 +81,12 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                     View footerView = LayoutInflater.from(InfodetailsActivity.this).inflate(R.layout.comment_footer, null);
                     adapter.setFooterView(footerView);
                     rv_info_comment.setAdapter(adapter);
+                } else {
+                    //空白页面
                 }
             }
+        } else {
+            showToast(bean.msg);
         }
     }
 

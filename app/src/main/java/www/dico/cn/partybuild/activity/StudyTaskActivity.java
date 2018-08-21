@@ -50,19 +50,25 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
     public void resultSuccess(String result) {
         StudyTaskBean bean = new Gson().fromJson(result, StudyTaskBean.class);
         if (bean.code.equals("0000")) {
-            final List<StudyTaskBean.DataBean> beans = bean.getData();
-            if (null != beans && beans.size()>0) {
-                adapter = new StudyTaskAdapter(this, R.layout.item_study_task, beans);
-                rv_study_task.setAdapter(adapter);
-                adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        StudyTaskForm form = new StudyTaskForm();
-                        form.taskId = beans.get(position).getId();
-                        goTo(TaskBriefActivity.class, form);
-                    }
-                });
+            if (bean.getData() != null) {
+                final List<StudyTaskBean.DataBean> beans = bean.getData();
+                if (null != beans && beans.size() > 0) {
+                    adapter = new StudyTaskAdapter(this, R.layout.item_study_task, beans);
+                    rv_study_task.setAdapter(adapter);
+                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                            StudyTaskForm form = new StudyTaskForm();
+                            form.taskId = beans.get(position).getId();
+                            goTo(TaskBriefActivity.class, form);
+                        }
+                    });
+                } else {
+
+                }
             }
+        }else{
+            showToast(bean.msg);
         }
     }
 

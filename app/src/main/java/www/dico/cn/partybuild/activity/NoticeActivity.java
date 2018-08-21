@@ -8,6 +8,8 @@ import android.view.View;
 
 import com.google.gson.Gson;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
@@ -41,9 +43,10 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
 
     @Override
     public void resultSuccess(String result) {
-        NoticeBean bean=new Gson().fromJson(result,NoticeBean.class);
-        if (bean.code.equals("0000")){
-            if (null!=bean.getData()&&bean.getData().size()>0){
+        NoticeBean bean = new Gson().fromJson(result, NoticeBean.class);
+        if (bean.code.equals("0000")) {
+            List<NoticeBean.DataBean> list = bean.getData();
+            if (null != list && list.size() > 0) {
                 adapter = new NoticeAdapter(this, R.layout.item_notice, bean.getData());
                 rv_notice.setAdapter(adapter);
                 adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -52,7 +55,11 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
                         goTo(NoticeInfoActivity.class, null);
                     }
                 });
+            } else {
+                //空白页面
             }
+        } else {
+            showToast(bean.msg);
         }
     }
 

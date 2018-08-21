@@ -8,6 +8,8 @@ import android.view.View;
 
 import com.google.gson.Gson;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
@@ -48,7 +50,8 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
     public void resultSuccess(String result) {
         final MeetingBean bean = new Gson().fromJson(result, MeetingBean.class);
         if (bean.code.equals("0000")) {
-            if (null != bean.getData() && bean.getData().size() > 0) {
+            List<MeetingBean.DataBean> list = bean.getData();
+            if (null != list && list.size() > 0) {
                 adapter = new MeetingAdapter(this, R.layout.item_meeting, bean.getData());
                 rv_meeting.setAdapter(adapter);
                 adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -60,7 +63,11 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
                         goTo(MeetingBriefActivity.class, form);
                     }
                 });
+            } else {
+                //空白页面
             }
+        } else {
+            showToast(bean.msg);
         }
 
     }

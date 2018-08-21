@@ -100,8 +100,12 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
                         adapter = new CreditInfoAdapter(this, R.layout.item_credit_info, beans);
                         rv_credit_info.setAdapter(adapter);
                     }
+                }else {
+                    //空白页面
                 }
             }
+        }else {
+            showToast(bean.msg);
         }
     }
 

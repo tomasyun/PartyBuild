@@ -235,6 +235,8 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                     lin_options_vote.setVisibility(View.GONE);
                 }
             }
+        }else {
+            showToast(bean.msg);
         }
     }
 

@@ -136,9 +136,9 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfodetailForm form=new InfodetailForm();
-                                form.infoId=list.get(position).getId();
-                                goTo(InfodetailsActivity.class,form);
+                                InfodetailForm form = new InfodetailForm();
+                                form.infoId = list.get(position).getId();
+                                goTo(InfodetailsActivity.class, form);
                             }
                         });
                     } else {
@@ -152,16 +152,18 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfodetailForm form=new InfodetailForm();
-                                form.infoId=InfoFragment.this.list.get(position).getId();
-                                goTo(InfodetailsActivity.class,form);
+                                InfodetailForm form = new InfodetailForm();
+                                form.infoId = InfoFragment.this.list.get(position).getId();
+                                goTo(InfodetailsActivity.class, form);
                             }
                         });
+                    } else {
+
                     }
                 }
             }
         } else {
-
+            showToast(bean.msg);
         }
     }
 

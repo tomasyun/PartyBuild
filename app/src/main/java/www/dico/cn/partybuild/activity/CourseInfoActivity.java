@@ -73,6 +73,8 @@ public class CourseInfoActivity extends AbstractMvpActivity<CourseInfoView, Cour
                 tv_title_course_info.setText(bean.getData().getTitle());
                 tv_content_course_info.setText(StringUtils.delHtmlTag(bean.getData().getContext()));
             }
+        }else {
+            showToast(bean.msg);
         }
     }
 

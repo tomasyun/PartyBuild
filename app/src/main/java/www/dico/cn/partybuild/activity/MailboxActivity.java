@@ -63,19 +63,19 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
 
     @Override
     public void resultSuccess(String result) {
-        BaseProtocol protocol=new Gson().fromJson(result,BaseProtocol.class);
-        if (protocol.code.equals("0000")){
+        BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
+        if (protocol.code.equals("0000")) {
             new AlertDialog(this).builder()
                     .setTitle("发送成功")
                     .setMsg("请耐心等待领导回复")
                     .setCancelable(false)
                     .setPositiveButton("知道了", new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    MailboxActivity.this.finish();
-                }
-            }).show();
-        }else {
+                        @Override
+                        public void onClick(View view) {
+                            MailboxActivity.this.finish();
+                        }
+                    }).show();
+        } else {
             showToast(protocol.msg);
         }
     }
@@ -92,7 +92,11 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
             List<LeaderBean.DataBean> list = bean.getData();
             if (null != list && list.size() > 0) {
                 getMvpPresenter().setUpLeaderSelectPopupWindow(this, list).showAsDropDown(tv_name_mail_box, tv_name_mail_box.getWidth() - SizeUtils.dp2px(this, 150), SizeUtils.dp2px(this, 10));
+            } else {
+                //无数据
             }
+        } else {
+            showToast(bean.msg);
         }
     }
 

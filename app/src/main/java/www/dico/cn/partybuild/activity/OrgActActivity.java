@@ -63,7 +63,11 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
                         goTo(OrgActBriefActivity.class, form);
                     }
                 });
+            }else {
+                //空白
             }
+        }else {
+            showToast(bean.msg);
         }
     }
 

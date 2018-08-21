@@ -60,7 +60,11 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
                         goTo(VoteDetailActivity.class, form);
                     }
                 });
+            }else {
+
             }
+        }else {
+            showToast(bean.msg);
         }
     }
 

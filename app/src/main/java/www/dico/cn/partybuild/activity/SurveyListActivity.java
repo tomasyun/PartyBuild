@@ -50,19 +50,25 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
     public void resultSuccess(String result) {
         QuestionSurveyBean bean = new Gson().fromJson(result, QuestionSurveyBean.class);
         if (bean.code.equals("0000")) {
-            final List<QuestionSurveyBean.DataBean> beans = bean.getData();
-            if (null != beans && beans.size() > 0) {
-                adapter = new QuestionSurveyAdapter(this, R.layout.item_questionsurvey, beans);
-                rv_question_survey.setAdapter(adapter);
-                adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        SurveyForm form = new SurveyForm();
-                        form.surveyId = beans.get(position).getId();
-                        goTo(OnlineSurveyActivity.class, form);
-                    }
-                });
+            if (null != bean.getData()) {
+                final List<QuestionSurveyBean.DataBean> beans = bean.getData();
+                if (null != beans && beans.size() > 0) {
+                    adapter = new QuestionSurveyAdapter(this, R.layout.item_questionsurvey, beans);
+                    rv_question_survey.setAdapter(adapter);
+                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                            SurveyForm form = new SurveyForm();
+                            form.surveyId = beans.get(position).getId();
+                            goTo(OnlineSurveyActivity.class, form);
+                        }
+                    });
+                }else {
+
+                }
             }
+        }else {
+            showToast(bean.msg);
         }
     }
 

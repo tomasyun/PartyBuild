@@ -104,6 +104,8 @@ public class QuestionOptionPreviewActivity extends AbstractMvpActivity<QuestionO
                     }
                 }
             }
+        }else {
+            showToast(bean.msg);
         }
     }
 

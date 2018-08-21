@@ -83,6 +83,8 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
                 tv_exam_end_date.setText(bean.getData().getExamEndTime());
                 form.limitScore = bean.getData().getLimitScore();
             }
+        }else {
+            showToast(bean.msg);
         }
     }
 

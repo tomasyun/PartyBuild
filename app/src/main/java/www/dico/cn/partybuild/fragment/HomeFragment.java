@@ -121,8 +121,8 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         HomeBean bean = new Gson().fromJson(result, HomeBean.class);
         if (bean.code.equals("0000")) {
             if (bean.getData() != null) {
-                if (bean.getData().getAnnouncement()!=null){
-                    String content=bean.getData().getAnnouncement().getContent();
+                if (bean.getData().getAnnouncement() != null) {
+                    String content = bean.getData().getAnnouncement().getContent();
                     tv_notice_home.setText(content);
                     tv_notice_home.startScroll();
                     tv_notice_home.setEnabled(false);
@@ -154,6 +154,8 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                     }
                 });
             }
+        } else {
+            showToast(bean.msg);
         }
     }
 

@@ -116,35 +116,37 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
                 String signUpState = briefBean.getData().getSignUpState();
                 switch (conferenceState) {
                     case "0"://未开始
-                        if (signUpState!=null&&!signUpState.equals("")){
-                        if (signUpState.equals("0")) {//未报名
-                            TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
-                            tv_sign_up.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    getMvpPresenter().doSignUpRequest(form.orgActId);
-                                }
-                            });
-                        } else {//已报名
-                            TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
-                            tv_sign_up.setText("已报名");
-                            tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                            tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-                        }}
+                        if (signUpState != null && !signUpState.equals("")) {
+                            if (signUpState.equals("0")) {//未报名
+                                TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
+                                tv_sign_up.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        getMvpPresenter().doSignUpRequest(form.orgActId);
+                                    }
+                                });
+                            } else {//已报名
+                                TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
+                                tv_sign_up.setText("已报名");
+                                tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                                tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                            }
+                        }
                         break;
                     case "1"://进行中
-                        if (signUpState!=null&&!signUpState.equals("")){
-                        if (signUpState.equals("0")) {//未报名
-                            TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
-                            tv_sign_up.setText("会议进行中");
-                            tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                            tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-                        } else {//已报名
-                            TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
-                            tv_sign_up.setText("已报名");
-                            tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                            tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-                        }}
+                        if (signUpState != null && !signUpState.equals("")) {
+                            if (signUpState.equals("0")) {//未报名
+                                TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
+                                tv_sign_up.setText("会议进行中");
+                                tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                                tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                            } else {//已报名
+                                TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
+                                tv_sign_up.setText("已报名");
+                                tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                                tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                            }
+                        }
                         break;
                     case "2"://已结束
                         TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);

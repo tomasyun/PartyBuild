@@ -191,6 +191,8 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                         break;
                 }
             }
+        }else {
+            showToast(briefBean.msg);
         }
     }
 
