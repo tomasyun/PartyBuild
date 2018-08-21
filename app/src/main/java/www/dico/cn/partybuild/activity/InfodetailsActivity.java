@@ -94,4 +94,14 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     public void resultFailure(String result) {
         showToast(result);
     }
+
+    @Override
+    public void submitCommentSuccess(String result) {
+
+    }
+
+    @Override
+    public void submitCommentFailure(String result) {
+        showToast(result);
+    }
 }

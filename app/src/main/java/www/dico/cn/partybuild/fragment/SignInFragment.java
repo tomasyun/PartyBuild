@@ -251,7 +251,17 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
 
     @Override
     public void resultFailure(String result) {
+        showToast(result);
+    }
 
+    @Override
+    public void saveSignInSuccess(String result) {
+
+    }
+
+    @Override
+    public void saveSignInFailure(String result) {
+        showToast(result);
     }
 
     @Override

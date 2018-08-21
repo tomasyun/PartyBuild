@@ -6,4 +6,8 @@ public interface InfodetailsView extends BaseMvpView {
     void resultSuccess(String result);
 
     void resultFailure(String result);
+
+    void submitCommentSuccess(String result);
+
+    void submitCommentFailure(String result);
 }

@@ -2,12 +2,12 @@ package www.dico.cn.partybuild.modleview;
 
 import www.dico.cn.partybuild.mvp.view.BaseMvpView;
 
-public interface SignInView extends BaseMvpView {
+public interface ConferenceInfoView extends BaseMvpView {
     void resultSuccess(String result);
 
     void resultFailure(String result);
 
-    void saveSignInSuccess(String result);
+    void submitCommentSuccess(String result);
 
-    void saveSignInFailure(String result);
+    void submitCommentFailure(String result);
 }

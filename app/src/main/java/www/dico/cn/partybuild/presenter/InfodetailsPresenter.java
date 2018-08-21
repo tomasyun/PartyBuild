@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class InfodetailsPresenter extends BaseMvpPresenter<InfodetailsView> {
-    Activity activity=AppManager.getManager().findActivity(InfodetailsActivity.class);
+    Activity activity = AppManager.getManager().findActivity(InfodetailsActivity.class);
     //获取资讯详情
     IProgressDialog dialog = new IProgressDialog() {
         @Override
@@ -45,5 +45,25 @@ public class InfodetailsPresenter extends BaseMvpPresenter<InfodetailsView> {
                         getMvpView().resultFailure(e.getMessage());
                     }
                 });
+    }
+
+    public void doSubmitCommentRequest(String isFlag, String id, String content) {
+        EasyHttp.post("saveComment")
+                .params("isFlag", isFlag)
+                .params("id", id)
+                .params("content", content)
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
+                    @Override
+                    public void onSuccess(String s) {
+                        getMvpView().submitCommentSuccess(s);
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        super.onError(e);
+                        getMvpView().submitCommentFailure(e.getMessage());
+                    }
+                });
+
     }
 }

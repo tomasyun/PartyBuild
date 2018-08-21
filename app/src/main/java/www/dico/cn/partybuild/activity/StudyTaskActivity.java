@@ -43,7 +43,7 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
     }
 
     public void goBackStudyTask(View view) {
-        finish();
+        this.finish();
     }
 
     @Override

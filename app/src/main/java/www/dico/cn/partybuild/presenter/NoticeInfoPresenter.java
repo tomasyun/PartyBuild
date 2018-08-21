@@ -46,4 +46,24 @@ public class NoticeInfoPresenter extends BaseMvpPresenter<NoticeInfoView> {
                     }
                 });
     }
+
+    public void doSubmitCommentRequest(String isFlag, String id, String content) {
+        EasyHttp.post("saveComment")
+                .params("isFlag", isFlag)
+                .params("id", id)
+                .params("content", content)
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
+                    @Override
+                    public void onSuccess(String s) {
+                        getMvpView().submitCommentSuccess(s);
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        super.onError(e);
+                        getMvpView().submitCommentFailure(e.getMessage());
+                    }
+                });
+
+    }
 }

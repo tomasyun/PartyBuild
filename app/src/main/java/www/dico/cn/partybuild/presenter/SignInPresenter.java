@@ -27,11 +27,12 @@ public class SignInPresenter extends BaseMvpPresenter<SignInView> {
             return builder.create();
         }
     };
+
     //获取需要签到的会议、活动
     public void doGetSignInConferenceRequest() {
-        EasyHttp.post("getSignInConference")
+        EasyHttp.post("getSignIn")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
-                .execute(new ProgressDialogCallBack<String>(dialog,true,true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String s) {
                         getMvpView().resultSuccess(s);
@@ -41,6 +42,26 @@ public class SignInPresenter extends BaseMvpPresenter<SignInView> {
                     public void onError(ApiException e) {
                         super.onError(e);
                         getMvpView().resultFailure(e.getMessage());
+                    }
+                });
+    }
+    //签到
+
+    public void doSaveSignIn(String id, String is) {
+        EasyHttp.post("signIn")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
+                .params("id", id)
+                .params("is", is)
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
+                    @Override
+                    public void onSuccess(String s) {
+                        getMvpView().saveSignInSuccess(s);
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        super.onError(e);
+                        getMvpView().saveSignInFailure(e.getMessage());
                     }
                 });
     }
