@@ -20,6 +20,7 @@ import www.dico.cn.partybuild.adapter.ParticipantsAdapter;
 import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.bean.MeetBriefBean;
 import www.dico.cn.partybuild.bean.MeetingForm;
+import www.dico.cn.partybuild.bean.SkipForm;
 import www.dico.cn.partybuild.modleview.MeetingBriefView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -191,7 +192,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                         break;
                 }
             }
-        }else {
+        } else {
             showToast(briefBean.msg);
         }
     }
@@ -205,7 +206,9 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
     public void signUpResultSuccess(String result) {
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
         if (protocol.code.equals("0000")) {
-            goTo(SignUpSuccessActivity.class, null);
+            SkipForm form = new SkipForm();
+            form.skipType = "0";
+            goTo(SignUpSuccessActivity.class, form);
         } else {
             showToast(protocol.msg);
         }
