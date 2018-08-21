@@ -17,7 +17,7 @@
             android:layout_marginLeft="15dp"
             android:clickable="true"
             android:contentDescription="@null"
-            android:onClick="goBackSignUpSuccess"
+            android:onClick="goBackLeaveSuccess"
             android:padding="5dp"
             android:scaleType="fitXY"
             android:src="@mipmap/img_back" />
@@ -49,18 +49,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="恭喜您! 报名成功"
+            android:text="成功提交假条"
             android:textSize="18sp"
             android:textColor="@color/text_color"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_sign_up_success_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textColor="@color/text_color"
-            android:text=""
+            android:text="下次请尽量参加会议哦~~"
             android:textSize="14sp" />
 
         <TextView
@@ -70,7 +69,7 @@
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
             android:layout_marginTop="50dp"
-            android:onClick="signUpComplete"
+            android:onClick="leaveComplete"
             android:clickable="true"
             android:background="@drawable/button_corner20_red_bg"
             android:gravity="center"

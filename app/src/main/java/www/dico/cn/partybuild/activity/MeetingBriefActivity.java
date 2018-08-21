@@ -223,7 +223,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
     public void leaveResultSuccess(String result) {
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
         if (protocol.code.equals("0000")) {
-
+            goTo(LeaveSuccessActivity.class, null);
         } else {
             showToast(protocol.msg);
         }

@@ -182,6 +182,10 @@
         <activity
             android:name=".activity.OnlineSurveyActivity"
             android:launchMode="singleTask" />
+        <!--请假成功-->
+        <activity
+            android:name=".activity.LeaveSuccessActivity"
+            android:launchMode="singleTask" />
         <!--使用高德api所申请的key-->
         <meta-data
             android:name="com.amap.api.v2.apikey"

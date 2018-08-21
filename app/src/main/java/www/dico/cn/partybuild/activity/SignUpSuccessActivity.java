@@ -35,7 +35,7 @@ public class SignUpSuccessActivity extends BaseActivity {
     }
 
     //完成
-    public void complete(View view) {
+    public void signUpComplete(View view) {
         this.finish();
     }
 }
