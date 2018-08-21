@@ -57,12 +57,14 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
 //        addOptionsChildView();
         options = new ArrayList<>();
         form = getParam();
-        if (form != null){
-            tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-            tv_submit_vote_detail.setTextColor(Color.parseColor("#febfb5"));
-            tv_submit_vote_detail.setText("已投票");
-            tv_submit_vote_detail.setEnabled(false);
-            tv_submit_vote_detail.setClickable(false);
+        if (form != null) {
+            if (form.isVoter.equals("1")) {
+                tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                tv_submit_vote_detail.setTextColor(Color.parseColor("#febfb5"));
+                tv_submit_vote_detail.setText("已投票");
+                tv_submit_vote_detail.setEnabled(false);
+                tv_submit_vote_detail.setClickable(false);
+            }
             getMvpPresenter().doVoteDetailRequest(form.voteId);
         }
     }

@@ -81,10 +81,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         content.setSpan(style, 0, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         tv_gongshi_home.setText(content);
 
-//        tv_notice_home.setText("陕西缔科网络科技有限公司");
         tv_notice_home.init(getActivity().getWindowManager());
-        tv_notice_home.startScroll();
-        tv_notice_home.setEnabled(false);
 
         lin_meeting_home.setOnClickListener(this);
         lin_studies_home.setOnClickListener(this);
@@ -127,6 +124,8 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 if (bean.getData().getAnnouncement()!=null){
                     String content=bean.getData().getAnnouncement().getContent();
                     tv_notice_home.setText(content);
+                    tv_notice_home.startScroll();
+                    tv_notice_home.setEnabled(false);
                 }
                 List<AdvertiseImgM> urls = new ArrayList<>();
                 List<String> titles = new ArrayList<>();

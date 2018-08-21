@@ -12,13 +12,13 @@ import www.dico.cn.partybuild.bean.CreditRankBean;
 import www.yuntdev.com.baseadapterlibrary.base.CommonAdapter;
 import www.yuntdev.com.baseadapterlibrary.base.ViewHolder;
 
-public class CreditRankAdapter extends CommonAdapter<CreditRankBean> {
-    public CreditRankAdapter(Context context, int layoutId, List<CreditRankBean> datas) {
+public class CreditRankAdapter extends CommonAdapter<CreditRankBean.DataBean.CreditInfoListBean> {
+    public CreditRankAdapter(Context context, int layoutId, List<CreditRankBean.DataBean.CreditInfoListBean> datas) {
         super(context, layoutId, datas);
     }
 
     @Override
-    protected void convert(ViewHolder holder, CreditRankBean creditRankBean, int position) {
+    protected void convert(ViewHolder holder, CreditRankBean.DataBean.CreditInfoListBean creditRankBean, int position) {
         holder.setText(R.id.tv_credit_rank_num_item, creditRankBean.getRank());
         holder.setText(R.id.tv_name_credit_rank_item, creditRankBean.getName());
         SpannableString score = new SpannableString(creditRankBean.getScore());

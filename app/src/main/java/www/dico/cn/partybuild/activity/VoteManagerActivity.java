@@ -32,6 +32,11 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
         setContentView(R.layout.activity_votemanager);
         ButterKnife.bind(this);
         rv_vote.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getMvpPresenter().doVoteManagerRequest();
     }
 

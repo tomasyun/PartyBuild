@@ -8,12 +8,10 @@ import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,7 +33,7 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
     ImageView iv_user_icon_rank;//个人头像
     @BindView(R.id.tv_user_rank_score)
     TextView tv_user_rank_score;//积分
-//    @BindView(R.id.rg_rank)
+    //    @BindView(R.id.rg_rank)
 //    RadioGroup rg_rank;
     @BindView(R.id.rv_rank)
     RecyclerView rv_rank;
@@ -74,8 +72,6 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
 //            }
 //        });
         rv_rank.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new CreditRankAdapter(this, R.layout.item_credit_rank, ranks());
-        rv_rank.setAdapter(adapter);
         getMvpPresenter().creditRankRequest();
     }
 
@@ -87,23 +83,32 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
     public void resultSuccess(String result) {
         CreditRankBean bean = new Gson().fromJson(result, CreditRankBean.class);
         if (bean.code.equals("0000")) {
+            if (bean.getData() != null) {
+                SpannableString numContent = new SpannableString(bean.getData().getMrank() + "名");
+                numContent.setSpan(new AbsoluteSizeSpan(40), 0, numContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+                numContent.setSpan(new AbsoluteSizeSpan(28), numContent.length() - 1, numContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+                tv_user_rank_num.setText(numContent);
+                SpannableString scoreContent = new SpannableString(bean.getData().getMscore() + "分");
+                scoreContent.setSpan(new AbsoluteSizeSpan(40), 0, scoreContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+                scoreContent.setSpan(new AbsoluteSizeSpan(28), scoreContent.length() - 1, scoreContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+                tv_user_rank_score.setText(scoreContent);
+                List<CreditRankBean.DataBean.CreditInfoListBean> list = bean.getData().getCreditInfoList();
+                if (null != list && list.size() > 0) {
+                    for (int i = 0; i < list.size(); i++) {
+                        adapter = new CreditRankAdapter(this, R.layout.item_credit_rank, list);
+                        rv_rank.setAdapter(adapter);
+                    }
+                } else {
 
+                }
+            }
+        } else {
+            showToast(bean.msg);
         }
     }
 
     @Override
     public void resultFailure(String result) {
         showToast(result);
-    }
-
-    public List<CreditRankBean> ranks() {
-        List<CreditRankBean> list = new ArrayList<>();
-        CreditRankBean bean = new CreditRankBean();
-        bean.setRank("25");
-        bean.setAvatar("");
-        bean.setName("席沛锋");
-        bean.setScore("250分");
-        list.add(bean);
-        return list;
     }
 }

@@ -33,8 +33,6 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
         setContentView(R.layout.activity_mailboxlist);
         ButterKnife.bind(this);
         rv_mailbox_list.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MailboxListAdapter(this, R.layout.item_mailbox, mailboxs());
-        rv_mailbox_list.setAdapter(adapter);
         getMvpPresenter().doMailboxListRequest();
     }
 
@@ -42,19 +40,17 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
         this.finish();
     }
 
-    public List<MailboxListBean> mailboxs() {
-        List<MailboxListBean> list = new ArrayList<>();
-        MailboxListBean bean = new MailboxListBean();
-        bean.setName("席沛锋");
-        list.add(bean);
-        return list;
-    }
-
     @Override
     public void resultSuccess(String result) {
         MailboxListBean bean = new Gson().fromJson(result, MailboxListBean.class);
         if (bean.code.equals("0000")){
-
+            if (null!=bean.getData()){
+                List<MailboxListBean.DataBean> list=bean.getData();
+                for (int i=0;i<list.size();i++){
+                    adapter = new MailboxListAdapter(this, R.layout.item_mailbox, list);
+                    rv_mailbox_list.setAdapter(adapter);
+                }
+            }
         }
     }
 

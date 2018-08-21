@@ -1,13 +1,64 @@
 package www.dico.cn.partybuild.bean;
 
-public class MailboxListBean extends BaseProtocol {
-    private String name;
+import java.util.List;
 
-    public String getName() {
-        return name;
+public class MailboxListBean extends BaseProtocol {
+
+    private List<DataBean> data;
+
+    public List<DataBean> getData() {
+        return data;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setData(List<DataBean> data) {
+        this.data = data;
+    }
+
+    public static class DataBean {
+        private String id;
+        private String content;
+        private String avatar;
+        private String name;
+        private String submitDate;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        public String getAvatar() {
+            return avatar;
+        }
+
+        public void setAvatar(String avatar) {
+            this.avatar = avatar;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getSubmitDate() {
+            return submitDate;
+        }
+
+        public void setSubmitDate(String submitDate) {
+            this.submitDate = submitDate;
+        }
     }
 }
