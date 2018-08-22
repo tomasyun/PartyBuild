@@ -46,6 +46,8 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     private int length = 10;
     private List<InfoBean.DataBeanX.DataBean> list;
     private MainActivity activity;
+    @BindView(R.id.info_empty_data)
+    View info_empty_data;
 
     @Override
     public void onAttach(Context context) {
@@ -141,6 +143,8 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                 if (start == 0) {
                     list = bean.getData().getData();
                     if (null != list && list.size() > 0) {
+                        srl_info.setVisibility(View.VISIBLE);
+                        info_empty_data.setVisibility(View.GONE);
                         adapter = new InfoAdapter(getActivity(), R.layout.item_info, list);
                         rv_info.setAdapter(adapter);
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -152,7 +156,8 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                             }
                         });
                     } else {
-
+                        srl_info.setVisibility(View.GONE);
+                        info_empty_data.setVisibility(View.VISIBLE);
                     }
                 } else {
                     List<InfoBean.DataBeanX.DataBean> list = bean.getData().getData();

@@ -38,4 +38,8 @@
         android:scrollbars="none">
 
     </android.support.v7.widget.RecyclerView>
+
+    <include layout="@layout/empty_data"
+        android:visibility="gone"
+        android:id="@+id/vote_empty_data"/>
 </LinearLayout>

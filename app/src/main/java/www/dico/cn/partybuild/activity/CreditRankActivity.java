@@ -38,6 +38,8 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
     @BindView(R.id.rv_rank)
     RecyclerView rv_rank;
     private CreditRankAdapter adapter;
+    @BindView(R.id.credit_rank_empty_data)
+    View credit_rank_empty_data;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,10 +92,14 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
                 tv_user_rank_score.setText(scoreContent);
                 List<CreditRankBean.DataBean.CreditInfoListBean> list = bean.getData().getCreditInfoList();
                 if (null != list && list.size() > 0) {
+                    rv_rank.setVisibility(View.VISIBLE);
+                    credit_rank_empty_data.setVisibility(View.GONE);
                     adapter = new CreditRankAdapter(this, R.layout.item_credit_rank, list);
                     rv_rank.setAdapter(adapter);
                 } else {
                     //空白页面
+                    rv_rank.setVisibility(View.GONE);
+                    credit_rank_empty_data.setVisibility(View.VISIBLE);
                 }
             }
         } else {

@@ -27,6 +27,8 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
     @BindView(R.id.rv_meeting)
     RecyclerView rv_meeting;
     private MeetingAdapter adapter;
+    @BindView(R.id.meeting_empty_data)
+    View meeting_empty_data;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
         if (bean.code.equals("0000")) {
             List<MeetingBean.DataBean> list = bean.getData();
             if (null != list && list.size() > 0) {
+                rv_meeting.setVisibility(View.VISIBLE);
+                meeting_empty_data.setVisibility(View.GONE);
                 adapter = new MeetingAdapter(this, R.layout.item_meeting, bean.getData());
                 rv_meeting.setAdapter(adapter);
                 adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -65,6 +69,8 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
                 });
             } else {
                 //空白页面
+                rv_meeting.setVisibility(View.GONE);
+                meeting_empty_data.setVisibility(View.VISIBLE);
             }
         } else {
             showToast(bean.msg);

@@ -115,4 +115,8 @@
             android:layout_height="wrap_content" />
 
     </www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout>
+
+    <include layout="@layout/empty_data"
+        android:visibility="gone"
+        android:id="@+id/info_empty_data"/>
 </LinearLayout>

@@ -27,7 +27,8 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
     @BindView(R.id.rv_study_task)
     RecyclerView rv_study_task;
     private StudyTaskAdapter adapter;
-
+@BindView(R.id.study_task_empty_data)
+View study_task_empty_data;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,8 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
             if (bean.getData() != null) {
                 final List<StudyTaskBean.DataBean> beans = bean.getData();
                 if (null != beans && beans.size() > 0) {
+                    rv_study_task.setVisibility(View.VISIBLE);
+                    study_task_empty_data.setVisibility(View.GONE);
                     adapter = new StudyTaskAdapter(this, R.layout.item_study_task, beans);
                     rv_study_task.setAdapter(adapter);
                     adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -64,7 +67,8 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
                         }
                     });
                 } else {
-
+                    rv_study_task.setVisibility(View.GONE);
+                    study_task_empty_data.setVisibility(View.VISIBLE);
                 }
             }
         } else {

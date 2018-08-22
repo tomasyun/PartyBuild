@@ -25,6 +25,8 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
     @BindView(R.id.rv_vote)
     RecyclerView rv_vote;
     private VoteListAdapter adapter;
+    @BindView(R.id.vote_empty_data)
+    View vote_empty_data;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
         final VoteListBean bean = new Gson().fromJson(result, VoteListBean.class);
         if (bean.code.equals("0000")) {
             if (null != bean.getData() && bean.getData().size() > 0) {
+                rv_vote.setVisibility(View.VISIBLE);
+                vote_empty_data.setVisibility(View.GONE);
                 adapter = new VoteListAdapter(this, R.layout.item_vote, bean.getData());
                 rv_vote.setAdapter(adapter);
                 adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -61,7 +65,8 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
                     }
                 });
             } else {
-
+                rv_vote.setVisibility(View.GONE);
+                vote_empty_data.setVisibility(View.VISIBLE);
             }
         } else {
             showToast(bean.msg);

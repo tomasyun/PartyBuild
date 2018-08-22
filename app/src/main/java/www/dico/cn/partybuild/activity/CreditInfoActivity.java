@@ -36,6 +36,8 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
     @BindView(R.id.tv_desc_credit_info)
     TextView tv_desc_credit_info;
     private CreditInfoAdapter adapter;
+    @BindView(R.id.credit_info_empty_data)
+    View credit_info_empty_data;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,11 +99,15 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
                 List<CreditInfoBean.DataBean.CreditListBean> beans = bean.getData().getCreditList();
                 if (null != beans && beans.size() > 0) {
                     for (int i = 0; i < beans.size(); i++) {
+                        rv_credit_info.setVisibility(View.VISIBLE);
+                        credit_info_empty_data.setVisibility(View.GONE);
                         adapter = new CreditInfoAdapter(this, R.layout.item_credit_info, beans);
                         rv_credit_info.setAdapter(adapter);
                     }
                 } else {
                     //空白页面
+                    rv_credit_info.setVisibility(View.GONE);
+                    credit_info_empty_data.setVisibility(View.VISIBLE);
                 }
             }
         } else {

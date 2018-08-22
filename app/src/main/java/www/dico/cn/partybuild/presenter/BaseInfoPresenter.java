@@ -8,6 +8,7 @@ import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.activity.BaseInfoActivity;
 import www.dico.cn.partybuild.modleview.BaseInfoView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
+import www.dico.cn.partybuild.utils.NetworkUtils;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;

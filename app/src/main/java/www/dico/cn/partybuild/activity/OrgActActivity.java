@@ -27,6 +27,8 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
     @BindView(R.id.rv_org_act)
     RecyclerView rv_org_act;
     private OrgActAdapter adapter;
+    @BindView(R.id.org_act_empty_data)
+    View org_act_empty_data;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
         if (bean.code.equals("0000")) {
             final List<OrgActBean.DataBean> list = bean.getData();
             if (null != list && list.size() > 0) {
+                rv_org_act.setVisibility(View.VISIBLE);
+                org_act_empty_data.setVisibility(View.GONE);
                 adapter = new OrgActAdapter(this, R.layout.item_meeting, list);
                 rv_org_act.setAdapter(adapter);
                 adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -65,6 +69,8 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
                 });
             } else {
                 //空白
+                rv_org_act.setVisibility(View.GONE);
+                org_act_empty_data.setVisibility(View.VISIBLE);
             }
         } else {
             showToast(bean.msg);

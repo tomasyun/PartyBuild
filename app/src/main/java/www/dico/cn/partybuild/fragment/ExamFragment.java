@@ -37,6 +37,8 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     private ExamOkAdapter okAdapter;
     private int position = 0;
     private MainActivity activity;
+    @BindView(R.id.exam_empty_data)
+    View exam_empty_data;
 
     @Override
     public void onAttach(Activity context) {
@@ -76,6 +78,8 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
         final ExamsBean bean = new Gson().fromJson(result, ExamsBean.class);
         if (bean.code.equals("0000")) {
             if (null != bean.getData() && bean.getData().size() > 0) {
+                rv_exam.setVisibility(View.VISIBLE);
+                exam_empty_data.setVisibility(View.GONE);
                 onAdapter = new ExamOnAdapter(getActivity(), R.layout.item_exam_on, bean.getData());
                 rv_exam.setAdapter(onAdapter);
                 onAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -88,7 +92,8 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                     }
                 });
             } else {
-
+                rv_exam.setVisibility(View.GONE);
+                exam_empty_data.setVisibility(View.VISIBLE);
             }
         } else {
             showToast(bean.msg);
@@ -105,6 +110,8 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
         final ExamsBean bean = new Gson().fromJson(result, ExamsBean.class);
         if (bean.code.equals("0000")) {
             if (null != bean.getData() && bean.getData().size() > 0) {
+                rv_exam.setVisibility(View.VISIBLE);
+                exam_empty_data.setVisibility(View.GONE);
                 okAdapter = new ExamOkAdapter(getActivity(), R.layout.item_exam_ok, bean.getData());
                 rv_exam.setAdapter(okAdapter);
                 okAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -117,7 +124,8 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                     }
                 });
             } else {
-
+                rv_exam.setVisibility(View.GONE);
+                exam_empty_data.setVisibility(View.VISIBLE);
             }
         } else {
 

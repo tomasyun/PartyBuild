@@ -150,4 +150,9 @@
         android:scrollbars="none">
 
     </android.support.v7.widget.RecyclerView>
+
+    <include
+        android:id="@+id/credit_rank_empty_data"
+        layout="@layout/empty_data"
+        android:visibility="gone" />
 </LinearLayout>

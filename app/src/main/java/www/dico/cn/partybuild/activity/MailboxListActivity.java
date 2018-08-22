@@ -25,6 +25,8 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
     @BindView(R.id.rv_mailbox_list)
     RecyclerView rv_mailbox_list;
     private MailboxListAdapter adapter;
+    @BindView(R.id.mailbox_empty_data)
+    View mailbox_empty_data;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,10 +53,14 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
             if (null != bean.getData()) {
                 List<MailboxListBean.DataBean> list = bean.getData();
                 if (null != list && list.size() > 0) {
+                    rv_mailbox_list.setVisibility(View.VISIBLE);
+                    mailbox_empty_data.setVisibility(View.GONE);
                     adapter = new MailboxListAdapter(this, R.layout.item_mailbox, list);
                     rv_mailbox_list.setAdapter(adapter);
                 } else {
                     //空白页面
+                    rv_mailbox_list.setVisibility(View.GONE);
+                    mailbox_empty_data.setVisibility(View.VISIBLE);
                 }
             }
         } else {

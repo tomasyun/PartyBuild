@@ -27,6 +27,8 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
     @BindView(R.id.rv_question_survey)
     RecyclerView rv_question_survey;
     private QuestionSurveyAdapter adapter;
+    @BindView(R.id.survey_empty_data)
+    View survey_empty_data;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
             if (null != bean.getData()) {
                 final List<QuestionSurveyBean.DataBean> beans = bean.getData();
                 if (null != beans && beans.size() > 0) {
+                    rv_question_survey.setVisibility(View.VISIBLE);
+                    survey_empty_data.setVisibility(View.GONE);
                     adapter = new QuestionSurveyAdapter(this, R.layout.item_questionsurvey, beans);
                     rv_question_survey.setAdapter(adapter);
                     adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -64,7 +68,8 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
                         }
                     });
                 } else {
-
+                    rv_question_survey.setVisibility(View.GONE);
+                    survey_empty_data.setVisibility(View.VISIBLE);
                 }
             }
         } else {
