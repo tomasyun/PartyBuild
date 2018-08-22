@@ -31,35 +31,98 @@
             android:textSize="16sp" />
     </RelativeLayout>
 
+    <!--内容-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <!--内容-->
+
         <ScrollView
-            android:id="@+id/sv_article_comment"
+            android:id="@+id/sv_notice_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:scrollbars="none">
 
             <LinearLayout
+                android:id="@+id/lin_notice_info"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_title_notice_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/lin_desc_notice_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="1dp"
+                        android:text="发布人:"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_name_notice_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text=""
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_date_notice_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text=""
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_content_notice_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:letterSpacing="0.08"
+                    android:lineSpacingExtra="8dp"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#ddd" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_comment"
+                    android:id="@+id/rv_notice_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scrollbars="none">
 
                 </android.support.v7.widget.RecyclerView>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp" />
             </LinearLayout>
         </ScrollView>
 
-        <include layout="@layout/include_reply_comment" />
+        <include
+            android:visibility="gone"
+            android:id="@+id/notice_info_reply_comment"
+            layout="@layout/include_reply_comment" />
     </FrameLayout>
+
 </LinearLayout>

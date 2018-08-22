@@ -44,12 +44,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingBottom="20dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:paddingTop="30dp">
 
                 <TextView
-                    android:id="@+id/tv_info_title"
+                    android:id="@+id/tv_info_detail_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
@@ -57,10 +58,9 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:id="@+id/lin_info_desc"
+                    android:id="@+id/lin_info_detail_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -71,7 +71,7 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/tv_info_source"
+                        android:id="@+id/tv_info_detail_source"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -80,7 +80,7 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/tv_info_date"
+                        android:id="@+id/tv_info_detail_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -91,12 +91,14 @@
             </LinearLayout>
             <!--内容-->
             <ScrollView
+                android:id="@+id/sv_info_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:scrollbars="none">
 
                 <LinearLayout
+                    android:id="@+id/lin_info_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -104,7 +106,7 @@
                     android:paddingRight="15dp">
 
                     <TextView
-                        android:id="@+id/tv_info_content"
+                        android:id="@+id/tv_info_detail_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:letterSpacing="0.08"
@@ -119,16 +121,19 @@
                         android:background="#ddd" />
 
                     <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_info_comment"
+                        android:id="@+id/rv_info_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:scrollbars="none">
 
                     </android.support.v7.widget.RecyclerView>
+
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
 
-        <include layout="@layout/include_reply_comment" />
+        <include
+            android:id="@+id/info_detail_reply_comment"
+            layout="@layout/include_reply_comment" />
     </FrameLayout>
 </LinearLayout>

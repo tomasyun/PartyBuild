@@ -49,6 +49,7 @@ public class InfodetailsPresenter extends BaseMvpPresenter<InfodetailsView> {
 
     public void doSubmitCommentRequest(String isFlag, String id, String content) {
         EasyHttp.post("saveComment")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("isFlag", isFlag)
                 .params("id", id)
                 .params("content", content)

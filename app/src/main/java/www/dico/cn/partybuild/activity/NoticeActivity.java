@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.NoticeAdapter;
 import www.dico.cn.partybuild.bean.NoticeBean;
+import www.dico.cn.partybuild.bean.NoticeForm;
 import www.dico.cn.partybuild.modleview.NoticeView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -45,14 +46,17 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
     public void resultSuccess(String result) {
         NoticeBean bean = new Gson().fromJson(result, NoticeBean.class);
         if (bean.code.equals("0000")) {
-            List<NoticeBean.DataBean> list = bean.getData();
+            final List<NoticeBean.DataBean> list = bean.getData();
             if (null != list && list.size() > 0) {
                 adapter = new NoticeAdapter(this, R.layout.item_notice, bean.getData());
                 rv_notice.setAdapter(adapter);
                 adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        goTo(NoticeInfoActivity.class, null);
+                        NoticeForm form = new NoticeForm();
+                        form.noticeId = list.get(position).getId();
+                        form.isReply = list.get(position).getIsReply();
+                        goTo(NoticeInfoActivity.class, form);
                     }
                 });
             } else {

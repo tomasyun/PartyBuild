@@ -189,6 +189,11 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                         tv_sign_up.setText("查看会议记录");
                         tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
                         tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                        tv_sign_up.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                            }
+                        });
                         break;
                 }
             }

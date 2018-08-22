@@ -15,32 +15,33 @@ import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.InfodetailsActivity;
 import www.dico.cn.partybuild.bean.InfodetailBean;
+import www.dico.cn.partybuild.bean.NoticeInfoBean;
 
-public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentHolder> {
+public class InfoCommentAdapter extends RecyclerView.Adapter<InfoCommentAdapter.InfoCommentHolder> {
     public static final int TYPE_FOOTER = 0;
     public static final int TYPE_NORMAL = 1;
     private View mFooterView;
     private List<InfodetailBean.DataBean.CommitListBean> mDatas;
 
-    public CommentAdapter(List<InfodetailBean.DataBean.CommitListBean> mDatas) {
+    public InfoCommentAdapter(List<InfodetailBean.DataBean.CommitListBean> mDatas) {
         this.mDatas = mDatas;
     }
 
     @NonNull
     @Override
-    public CommentHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public InfoCommentHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         if (mFooterView != null && viewType == TYPE_FOOTER)
-            return new CommentHolder(mFooterView);
+            return new InfoCommentHolder(mFooterView);
         View view = LayoutInflater.from(AppManager.getManager().findActivity(InfodetailsActivity.class)).inflate(R.layout.item_comment, viewGroup, false);
-        return new CommentHolder(view);
+        return new InfoCommentHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CommentHolder commentHolder, int position) {
+    public void onBindViewHolder(@NonNull InfoCommentHolder commentHolder, int position) {
         if (getItemViewType(position) == TYPE_FOOTER) return;
 //        final int pos = getRealPosition(commentHolder);
         if (position < mDatas.size()) {
-            if (commentHolder instanceof CommentHolder) {
+            if (commentHolder instanceof InfoCommentHolder) {
                 commentHolder.tv_comment_user_name.setText(mDatas.get(position).getName());
                 commentHolder.tv_comment_user_content.setText(mDatas.get(position).getCommitContent());
                 commentHolder.tv_comment_date.setText(mDatas.get(position).getCommitDate());
@@ -72,13 +73,13 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
         return TYPE_NORMAL;
     }
 
-    public class CommentHolder extends RecyclerView.ViewHolder {
+    public class InfoCommentHolder extends RecyclerView.ViewHolder {
         public ImageView iv_comment_user_avatar;
         public TextView tv_comment_user_name;
         public ExpandableTextView tv_comment_user_content;
         public TextView tv_comment_date;
 
-        public CommentHolder(@NonNull View itemView) {
+        public InfoCommentHolder(@NonNull View itemView) {
             super(itemView);
             iv_comment_user_avatar = itemView.findViewById(R.id.iv_comment_user_avatar);
             tv_comment_user_name = itemView.findViewById(R.id.tv_comment_user_name);

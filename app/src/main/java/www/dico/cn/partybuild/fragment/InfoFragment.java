@@ -1,5 +1,6 @@
 package www.dico.cn.partybuild.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.InfodetailsActivity;
 import www.dico.cn.partybuild.adapter.InfoAdapter;
@@ -31,7 +33,7 @@ import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshLoadmoreListener;
 
 @CreatePresenter(InfoPresenter.class)
-public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> implements InfoView {
+public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> implements InfoView, MainActivity.FragmentRefreshInterface {
     @BindView(R.id.rg_info)
     RadioGroup rg_info;
     @BindView(R.id.srl_info)
@@ -43,6 +45,14 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     private int start = 0;
     private int length = 10;
     private List<InfoBean.DataBeanX.DataBean> list;
+    private MainActivity activity;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.activity = (MainActivity) context;
+        activity.setInfoListRefresh(this);
+    }
 
     @Nullable
     @Override
@@ -177,6 +187,25 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     @Override
     public void preventPreLoad() {
         super.preventPreLoad();
+        start = 0;
+        switch (position) {
+            case 0:
+                getMvpPresenter().doGetInfoRequest("0", "0", start, length);
+                break;
+            case 1:
+                getMvpPresenter().doGetInfoRequest("1", "0", start, length);
+                break;
+            case 2:
+                getMvpPresenter().doGetInfoRequest("2", "0", start, length);
+                break;
+            case 3:
+                getMvpPresenter().doGetInfoRequest("3", "0", start, length);
+                break;
+        }
+    }
+
+    @Override
+    public void Refresh() {
         start = 0;
         switch (position) {
             case 0:

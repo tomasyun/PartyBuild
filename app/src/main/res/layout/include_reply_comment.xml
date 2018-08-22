@@ -21,10 +21,11 @@
             android:padding="15dp">
 
             <EditText
+                android:id="@+id/et_reply_comment"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/tv_reply_notice"
+                android:layout_toLeftOf="@+id/tv_reply_comment"
                 android:background="@drawable/edittext_corner10_gray_bg"
                 android:gravity="center_vertical"
                 android:hint="评论/回复..."
@@ -35,19 +36,19 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tv_reply_notice"
+                android:id="@+id/tv_reply_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:layout_toLeftOf="@+id/iv_collect_notice"
-                android:text="发布"
+                android:layout_toLeftOf="@+id/iv_reply_comment"
+                android:text="发送"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/iv_collect_notice"
+                android:id="@+id/iv_reply_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

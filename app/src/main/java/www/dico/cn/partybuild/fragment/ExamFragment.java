@@ -28,7 +28,7 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 
 //考试列表
 @CreatePresenter(ExamPresenter.class)
-public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> implements ExamView, MainActivity.ExamFragmentInterface {
+public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> implements ExamView, MainActivity.FragmentRefreshInterface {
     @BindView(R.id.rg_exam)
     RadioGroup rg_exam;
     @BindView(R.id.rv_exam)
@@ -42,7 +42,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     public void onAttach(Activity context) {
         super.onAttach(context);
         this.activity = (MainActivity) context;
-        activity.setFragmentInterface(this);
+        activity.setExamListRefresh(this);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     }
 
     @Override
-    public void notifyRefresh() {
+    public void Refresh() {
         switch (position) {
             case 0:
                 getMvpPresenter().examsOnRequest("0");

@@ -141,7 +141,8 @@
         <!--通知详情-->
         <activity
             android:name=".activity.NoticeInfoActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateAlwaysHidden|stateUnchanged"/>
         <!--考试结果-->
         <activity
             android:name=".activity.ExamResultActivity"
@@ -183,9 +184,6 @@
             android:name=".activity.OnlineSurveyActivity"
             android:launchMode="singleTask" />
         <!--会议纪要-->
-        <activity
-            android:name=".activity.ConferenceInfoActivity"
-            android:launchMode="singleTask" />
         <!--请假成功-->
         <activity
             android:name=".activity.LeaveSuccessActivity"

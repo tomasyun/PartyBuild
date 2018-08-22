@@ -45,7 +45,8 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
     PageBottomTabLayout tab_main;
     private NavigationController controller;
     private List<Fragment> fragments;
-    private ExamFragmentInterface fragmentInterface;
+    private FragmentRefreshInterface examListRefresh;
+    private FragmentRefreshInterface infoListRefresh;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -133,26 +134,30 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
         return false;
     }
 
-    public ExamFragmentInterface getFragmentInterface() {
-        return fragmentInterface;
+
+    public void setExamListRefresh(FragmentRefreshInterface examListRefresh) {
+        this.examListRefresh = examListRefresh;
     }
 
-    public void setFragmentInterface(ExamFragmentInterface fragmentInterface) {
-        this.fragmentInterface = fragmentInterface;
+    public void setInfoListRefresh(FragmentRefreshInterface infoListRefresh) {
+        this.infoListRefresh = infoListRefresh;
     }
 
-    public interface ExamFragmentInterface {
-        void notifyRefresh();
+    public interface FragmentRefreshInterface {
+        void Refresh();
     }
 
     private class SkipReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             String skip = intent.getStringExtra("skip");
+            vp_main.setCurrentItem(Integer.parseInt(skip));
             switch (skip) {
+                case "1":
+                    infoListRefresh.Refresh();
+                    break;
                 case "3":
-                    vp_main.setCurrentItem(Integer.parseInt(skip));
-                    fragmentInterface.notifyRefresh();
+                    examListRefresh.Refresh();
                     break;
             }
         }

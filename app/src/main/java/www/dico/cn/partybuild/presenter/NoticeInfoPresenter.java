@@ -30,7 +30,7 @@ public class NoticeInfoPresenter extends BaseMvpPresenter<NoticeInfoView> {
     };
 
     public void doNoticeInfoRequest(String id) {
-        EasyHttp.post("")
+        EasyHttp.post("noticeInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
@@ -49,6 +49,7 @@ public class NoticeInfoPresenter extends BaseMvpPresenter<NoticeInfoView> {
 
     public void doSubmitCommentRequest(String isFlag, String id, String content) {
         EasyHttp.post("saveComment")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("isFlag", isFlag)
                 .params("id", id)
                 .params("content", content)

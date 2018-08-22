@@ -15,12 +15,11 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class StudyTaskPresenter extends BaseMvpPresenter<StudyTaskView> {
-    Activity activity = AppManager.getManager().findActivity(StudyTaskActivity.class);
     //学习任务列表
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(activity)
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
                     .setCancelable(true)
                     .setCancelOutside(true)
                     .setMessage("获取中..")
