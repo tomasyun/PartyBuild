@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class QuestionOptionPreviewPresenter extends BaseMvpPresenter<QuestionOptionPreviewView> {
-    Activity activity=AppManager.getManager().findActivity(QuestionOptionPreviewActivity.class);
+    Activity activity = AppManager.getManager().findActivity(QuestionOptionPreviewActivity.class);
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
@@ -27,6 +27,7 @@ public class QuestionOptionPreviewPresenter extends BaseMvpPresenter<QuestionOpt
             return builder.create();
         }
     };
+
     public void doQuestionPreviewRequest(String id) {
         EasyHttp.post("getExamQuestionAnswers")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))

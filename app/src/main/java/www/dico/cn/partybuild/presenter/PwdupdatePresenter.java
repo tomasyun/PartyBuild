@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class PwdupdatePresenter extends BaseMvpPresenter<PwdupdateView> {
-    Activity activity=AppManager.getManager().findActivity(PwdupdateActivity.class);
+    Activity activity = AppManager.getManager().findActivity(PwdupdateActivity.class);
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {

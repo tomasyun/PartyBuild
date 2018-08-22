@@ -50,16 +50,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="成功提交假条"
-            android:textSize="18sp"
             android:textColor="@color/text_color"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColor="@color/text_color"
             android:text="下次请尽量参加会议哦~~"
+            android:textColor="@color/text_color"
             android:textSize="14sp" />
 
         <TextView
@@ -69,10 +69,10 @@
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
             android:layout_marginTop="50dp"
-            android:onClick="leaveComplete"
-            android:clickable="true"
             android:background="@drawable/button_corner20_red_bg"
+            android:clickable="true"
             android:gravity="center"
+            android:onClick="leaveComplete"
             android:text="完成"
             android:textColor="@color/white"
             android:translationZ="5dp" />

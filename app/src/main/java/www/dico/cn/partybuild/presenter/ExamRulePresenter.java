@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class ExamRulePresenter extends BaseMvpPresenter<ExamRuleView> {
-    Activity activity=AppManager.getManager().findActivity(ExamRuleActivity.class);
+    Activity activity = AppManager.getManager().findActivity(ExamRuleActivity.class);
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {

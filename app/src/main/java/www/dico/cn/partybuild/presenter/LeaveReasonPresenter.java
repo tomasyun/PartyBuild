@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class LeaveReasonPresenter extends BaseMvpPresenter<LeaveReasonView> {
-    Activity activity=AppManager.getManager().findActivity(LeaveReasonActivity.class);
+    Activity activity = AppManager.getManager().findActivity(LeaveReasonActivity.class);
     //请假
     IProgressDialog dialog = new IProgressDialog() {
         @Override

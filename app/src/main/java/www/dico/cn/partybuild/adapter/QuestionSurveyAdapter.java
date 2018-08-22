@@ -18,7 +18,7 @@ public class QuestionSurveyAdapter extends CommonAdapter<QuestionSurveyBean.Data
     @Override
     protected void convert(ViewHolder holder, QuestionSurveyBean.DataBean questionSurveyBean, int position) {
         holder.setText(R.id.tv_title_question_survey_item, questionSurveyBean.getTitle());
-        holder.setText(R.id.tv_date_question_survey_item,questionSurveyBean.getLimitDate());
-        holder.setText(R.id.tv_population_question_survey_item,questionSurveyBean.getPaticipants());
+        holder.setText(R.id.tv_date_question_survey_item, questionSurveyBean.getLimitDate());
+        holder.setText(R.id.tv_population_question_survey_item, questionSurveyBean.getPaticipants());
     }
 }

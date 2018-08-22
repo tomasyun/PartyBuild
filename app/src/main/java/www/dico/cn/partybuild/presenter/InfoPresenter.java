@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class InfoPresenter extends BaseMvpPresenter<InfoView> {
-    Activity activity=AppManager.getManager().findActivity(MainActivity.class);
+    Activity activity = AppManager.getManager().findActivity(MainActivity.class);
     //资讯列表
     IProgressDialog dialog = new IProgressDialog() {
         @Override

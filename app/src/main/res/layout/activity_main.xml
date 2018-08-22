@@ -17,8 +17,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="56.3dp" >
-        </www.dico.cn.partybuild.widget.NoScrollViewPager>
+            android:layout_marginBottom="56.3dp"></www.dico.cn.partybuild.widget.NoScrollViewPager>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,8 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@color/white"
-                android:elevation="8dp">
-            </www.yuntdev.com.bottomnavigationlibrary.referview.PageBottomTabLayout>
+                android:elevation="8dp"></www.yuntdev.com.bottomnavigationlibrary.referview.PageBottomTabLayout>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

@@ -60,7 +60,6 @@
             </LinearLayout>
         </ScrollView>
 
-      <include
-          layout="@layout/include_reply_comment"/>
+        <include layout="@layout/include_reply_comment" />
     </FrameLayout>
 </LinearLayout>

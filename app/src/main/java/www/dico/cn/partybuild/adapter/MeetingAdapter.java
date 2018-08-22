@@ -36,7 +36,7 @@ public class MeetingAdapter extends CommonAdapter<MeetingBean.DataBean> {
                 tv_state_meeting_item.setText("已结束");
                 break;
         }
-        holder.setText(R.id.tv_title_meeting_item,meetingBean.getTitle());
+        holder.setText(R.id.tv_title_meeting_item, meetingBean.getTitle());
         holder.setText(R.id.tv_date_meeting_item, meetingBean.getLimitDate());
     }
 }

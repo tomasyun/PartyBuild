@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class VoteDetailPresenter extends BaseMvpPresenter<VoteDetailView> {
-    Activity activity=AppManager.getManager().findActivity(VoteDetailActivity.class);
+    Activity activity = AppManager.getManager().findActivity(VoteDetailActivity.class);
     //投票详情
     IProgressDialog dialog = new IProgressDialog() {
         @Override
@@ -47,7 +47,7 @@ public class VoteDetailPresenter extends BaseMvpPresenter<VoteDetailView> {
                 });
     }
 
-    public void doSubmitVoteResultRequest(String json){
+    public void doSubmitVoteResultRequest(String json) {
         EasyHttp.post("submitVote")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .upJson(json)

@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class MailboxListPresenter extends BaseMvpPresenter<MailboxListView> {
-    Activity activity=AppManager.getManager().findActivity(MailboxListActivity.class);
+    Activity activity = AppManager.getManager().findActivity(MailboxListActivity.class);
     //信箱列表
     IProgressDialog dialog = new IProgressDialog() {
         @Override

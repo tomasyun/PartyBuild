@@ -33,9 +33,9 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
     RadioGroup rg_credit_info;
     @BindView(R.id.rv_credit_info)
     RecyclerView rv_credit_info;
-    private CreditInfoAdapter adapter;
     @BindView(R.id.tv_desc_credit_info)
     TextView tv_desc_credit_info;
+    private CreditInfoAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,11 +100,11 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
                         adapter = new CreditInfoAdapter(this, R.layout.item_credit_info, beans);
                         rv_credit_info.setAdapter(adapter);
                     }
-                }else {
+                } else {
                     //空白页面
                 }
             }
-        }else {
+        } else {
             showToast(bean.msg);
         }
     }

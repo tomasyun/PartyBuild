@@ -19,7 +19,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class StudyResultPresenter extends BaseMvpPresenter<StudyResultView> {
-    Activity activity=AppManager.getManager().findActivity(StudyResultActivity.class);
+    Activity activity = AppManager.getManager().findActivity(StudyResultActivity.class);
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {

@@ -33,12 +33,12 @@
 
     <!--密码修改-->
     <RelativeLayout
-        android:clickable="true"
-        android:onClick="passwordUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/white"
+        android:clickable="true"
+        android:onClick="passwordUpdate"
         android:paddingBottom="15dp"
         android:paddingTop="15dp">
 
@@ -76,11 +76,11 @@
         android:background="#ddd" />
     <!--版本更新-->
     <RelativeLayout
-        android:clickable="true"
-        android:onClick="checkUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:clickable="true"
+        android:onClick="checkUpdate"
         android:paddingBottom="15dp"
         android:paddingTop="15dp">
 
@@ -119,11 +119,11 @@
         android:layout_marginTop="20dp"
         android:background="@color/white"
         android:gravity="center"
+        android:onClick="logout"
         android:paddingBottom="15dp"
         android:paddingTop="15dp"
         android:text="退出登录"
         android:textColor="@color/text_color"
-        android:onClick="logout"
         android:textSize="15sp"
         android:translationZ="5dp" />
 </LinearLayout>

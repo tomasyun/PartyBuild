@@ -29,7 +29,6 @@ import www.dico.cn.partybuild.presenter.ExamResultPresenter;
 
 @CreatePresenter(ExamResultPresenter.class)
 public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, ExamResultPresenter> implements ExamResultView {
-    private ExamResultForm form;
     @BindView(R.id.tv_score_exam_result)
     TextView tv_score_exam_result;
     @BindView(R.id.tv_cost_exam_result)
@@ -42,6 +41,7 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
     RelativeLayout rel_exam_result;
     @BindView(R.id.tfl_exam_result_preview)
     TagFlowLayout tfl_exam_result_preview;
+    private ExamResultForm form;
     private ExamResultPreviewAdapter adapter;
 
     @Override
@@ -87,17 +87,17 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
                 tfl_exam_result_preview.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
                     @Override
                     public boolean onTagClick(View view, int position, FlowLayout parent) {
-                        QuestionOptionPreviewForm form=new QuestionOptionPreviewForm();
-                        form.position=position+1;
-                        form.questionId=idsBeans.get(position).getId();
-                        goTo(QuestionOptionPreviewActivity.class,form);
+                        QuestionOptionPreviewForm form = new QuestionOptionPreviewForm();
+                        form.position = position + 1;
+                        form.questionId = idsBeans.get(position).getId();
+                        goTo(QuestionOptionPreviewActivity.class, form);
                         return true;
                     }
                 });
             } else {
                 //空白页面
             }
-        }else {
+        } else {
             showToast(bean.msg);
         }
     }
@@ -109,7 +109,7 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode==KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
             manager.sendBroadcast(new Intent("cn.diconet.www").putExtra("skip", "3"));
             this.finish();

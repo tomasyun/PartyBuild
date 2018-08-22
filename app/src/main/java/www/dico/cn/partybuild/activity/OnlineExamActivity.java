@@ -50,6 +50,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
     private List<ExamAnswerBean.TestAnswersBean> answers;
     private String examStartTime;
     private String examCost;
+    private ExamRuleForm form;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -80,7 +81,6 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
             }
         }
     };
-    private ExamRuleForm form;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

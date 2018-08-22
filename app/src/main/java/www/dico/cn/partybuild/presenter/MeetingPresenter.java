@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class MeetingPresenter extends BaseMvpPresenter<MeetingView> {
-    Activity activity=AppManager.getManager().findActivity(MeetingActivity.class);
+    Activity activity = AppManager.getManager().findActivity(MeetingActivity.class);
     //三会一课列表
     IProgressDialog dialog = new IProgressDialog() {
         @Override
@@ -28,6 +28,7 @@ public class MeetingPresenter extends BaseMvpPresenter<MeetingView> {
             return builder.create();
         }
     };
+
     public void doMeetingRequest() {
         EasyHttp.post("conferenceList")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))

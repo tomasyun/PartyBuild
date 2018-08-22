@@ -2,7 +2,7 @@ package www.dico.cn.partybuild.bean;
 
 import java.util.List;
 
-public class SurveyAnswerBean  {
+public class SurveyAnswerBean {
     /**
      * id : 问卷id
      * answers : [{"userId":"放问题id","answer":""}]

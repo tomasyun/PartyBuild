@@ -20,7 +20,7 @@ public class StudyTaskAdapter extends CommonAdapter<StudyTaskBean.DataBean> {
     @Override
     protected void convert(ViewHolder holder, StudyTaskBean.DataBean bean, int position) {
         TextView tv_elective_study_task_item = holder.getView(R.id.tv_elective_study_task_item);
-        switch (bean.getIsElective()){
+        switch (bean.getIsElective()) {
             case "0":
                 tv_elective_study_task_item.setText("选修");
                 tv_elective_study_task_item.setBackgroundColor(Color.parseColor("#f97d6c"));

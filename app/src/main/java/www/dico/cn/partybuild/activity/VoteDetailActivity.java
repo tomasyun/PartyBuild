@@ -43,11 +43,11 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
     TextView tv_type_vote_detail;
     @BindView(R.id.tv_des_vote_detail)
     TextView tv_des_vote_detail;
+    @BindView(R.id.tv_submit_vote_detail)
+    TextView tv_submit_vote_detail;
     private boolean isSelected = false;
     private VoteForm form;
     private List<String> options;
-    @BindView(R.id.tv_submit_vote_detail)
-    TextView tv_submit_vote_detail;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -235,7 +235,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                     lin_options_vote.setVisibility(View.GONE);
                 }
             }
-        }else {
+        } else {
             showToast(bean.msg);
         }
     }

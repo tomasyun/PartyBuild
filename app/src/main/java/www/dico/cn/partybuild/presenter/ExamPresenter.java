@@ -2,7 +2,6 @@ package www.dico.cn.partybuild.presenter;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
@@ -16,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class ExamPresenter extends BaseMvpPresenter<ExamView> {
-    Activity activity=AppManager.getManager().findActivity(MainActivity.class);
+    Activity activity = AppManager.getManager().findActivity(MainActivity.class);
     //待考
     IProgressDialog dialog = new IProgressDialog() {
         @Override

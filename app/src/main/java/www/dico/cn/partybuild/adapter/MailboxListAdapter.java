@@ -21,9 +21,9 @@ public class MailboxListAdapter extends CommonAdapter<MailboxListBean.DataBean> 
 
     @Override
     protected void convert(ViewHolder holder, MailboxListBean.DataBean mailboxListBean, int position) {
-        GlideUtils.loadImage(AppManager.getManager().findActivity(MailboxListActivity.class),mailboxListBean.getAvatar(), (ImageView) holder.getView(R.id.iv_avatar_mailbox_item));
+        GlideUtils.loadImage(AppManager.getManager().findActivity(MailboxListActivity.class), mailboxListBean.getAvatar(), (ImageView) holder.getView(R.id.iv_avatar_mailbox_item));
         holder.setText(R.id.tv_name_mailbox_item, mailboxListBean.getName());
-        holder.setText(R.id.tv_date_mailbox_item,mailboxListBean.getSubmitDate());
-        holder.setText(R.id.tv_content_mailbox_item,mailboxListBean.getContent());
+        holder.setText(R.id.tv_date_mailbox_item, mailboxListBean.getSubmitDate());
+        holder.setText(R.id.tv_content_mailbox_item, mailboxListBean.getContent());
     }
 }

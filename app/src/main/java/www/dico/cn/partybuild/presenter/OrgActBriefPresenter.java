@@ -16,7 +16,7 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class OrgActBriefPresenter extends BaseMvpPresenter<OrgActBriefView> {
     //组织活动摘要
-    Activity activity=AppManager.getManager().findActivity(OrgActBriefActivity.class);
+    Activity activity = AppManager.getManager().findActivity(OrgActBriefActivity.class);
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
@@ -46,6 +46,7 @@ public class OrgActBriefPresenter extends BaseMvpPresenter<OrgActBriefView> {
                     }
                 });
     }
+
     public void doSignUpRequest(String id) {
         EasyHttp.post("signUpActivity")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))

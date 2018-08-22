@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class OrgActPresenter extends BaseMvpPresenter<OrgActView> {
-    Activity activity=AppManager.getManager().findActivity(OrgActActivity.class);
+    Activity activity = AppManager.getManager().findActivity(OrgActActivity.class);
     //组织活动
     IProgressDialog dialog = new IProgressDialog() {
         @Override

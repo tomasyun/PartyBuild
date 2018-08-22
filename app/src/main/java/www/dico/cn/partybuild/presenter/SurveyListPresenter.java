@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class SurveyListPresenter extends BaseMvpPresenter<SurveyListView> {
-    Activity activity=AppManager.getManager().findActivity(SurveyListActivity.class);
+    Activity activity = AppManager.getManager().findActivity(SurveyListActivity.class);
     //问卷调查
     IProgressDialog dialog = new IProgressDialog() {
         @Override

@@ -27,10 +27,10 @@ import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;
 
 @CreatePresenter(OnlineSurveyPresenter.class)
 public class OnlineSurveyActivity extends AbstractMvpActivity<OnlineSurveyView, OnlineSurveyPresenter> implements OnlineSurveyView, SurveyQuestionAdapter.SurveyQuestionHandleInterface {
-    private SurveyForm form;
-    private SurveyQuestionAdapter adapter;
     @BindView(R.id.vp_online_survey)
     NoTouchViewPager vp_online_survey;
+    private SurveyForm form;
+    private SurveyQuestionAdapter adapter;
     private List<SurveyAnswerBean.AnswersBean> answers;
 
     @Override

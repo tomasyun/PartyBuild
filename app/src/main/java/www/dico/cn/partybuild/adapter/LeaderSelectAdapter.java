@@ -16,7 +16,7 @@ public class LeaderSelectAdapter extends CommonAdapter<LeaderBean.DataBean> {
 
     @Override
     protected void convert(ViewHolder holder, LeaderBean.DataBean dataBean, int position) {
-        holder.setText(R.id.tv_leader_position_pop,dataBean.getPosition());
-        holder.setText(R.id.tv_leader_name_pop,dataBean.getName());
+        holder.setText(R.id.tv_leader_position_pop, dataBean.getPosition());
+        holder.setText(R.id.tv_leader_name_pop, dataBean.getName());
     }
 }

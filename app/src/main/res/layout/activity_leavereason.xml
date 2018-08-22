@@ -51,10 +51,10 @@
             android:letterSpacing="0.08"
             android:lineSpacingExtra="8dp"
             android:maxLength="50"
-            android:textColor="@color/text_color"
             android:padding="17dp"
-            android:translationZ="5dp"
-            android:textSize="14sp" />
+            android:textColor="@color/text_color"
+            android:textSize="14sp"
+            android:translationZ="5dp" />
 
         <TextView
             android:layout_width="match_parent"

@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class OnlineExamPresenter extends BaseMvpPresenter<OnlineExamView> {
-    Activity activity=AppManager.getManager().findActivity(OnlineExamActivity.class);
+    Activity activity = AppManager.getManager().findActivity(OnlineExamActivity.class);
     //获取试卷试题
     IProgressDialog dialog = new IProgressDialog() {
         @Override

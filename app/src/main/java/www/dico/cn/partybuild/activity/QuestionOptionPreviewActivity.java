@@ -1,6 +1,5 @@
 package www.dico.cn.partybuild.activity;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -28,13 +27,13 @@ import www.dico.cn.partybuild.utils.SizeUtils;
 
 @CreatePresenter(QuestionOptionPreviewPresenter.class)
 public class QuestionOptionPreviewActivity extends AbstractMvpActivity<QuestionOptionPreviewView, QuestionOptionPreviewPresenter> implements QuestionOptionPreviewView {
-    private QuestionOptionPreviewForm form;
     @BindView(R.id.tv_title_option_preview)
     TextView tv_title_option_preview;
     @BindView(R.id.rg_ls_option_preview)
     LinearLayout rg_ls_option_preview;
     @BindView(R.id.tv_correct_answer_option_preview)
     TextView tv_correct_answer_option_preview;
+    private QuestionOptionPreviewForm form;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,9 +72,9 @@ public class QuestionOptionPreviewActivity extends AbstractMvpActivity<QuestionO
 
                         switch (beans.get(i).getIsTrue()) {
                             case "0":
-                                if (bean.getData().getAnswer().equals(beans.get(i).getName())){
+                                if (bean.getData().getAnswer().equals(beans.get(i).getName())) {
                                     image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_right));
-                                }else {
+                                } else {
                                     image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_wrong));
                                 }
                                 break;
@@ -104,7 +103,7 @@ public class QuestionOptionPreviewActivity extends AbstractMvpActivity<QuestionO
                     }
                 }
             }
-        }else {
+        } else {
             showToast(bean.msg);
         }
     }

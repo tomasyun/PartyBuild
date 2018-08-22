@@ -67,7 +67,7 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
 
                 }
             }
-        }else{
+        } else {
             showToast(bean.msg);
         }
     }

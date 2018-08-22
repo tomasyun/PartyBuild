@@ -53,11 +53,11 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
                 if (null != list && list.size() > 0) {
                     adapter = new MailboxListAdapter(this, R.layout.item_mailbox, list);
                     rv_mailbox_list.setAdapter(adapter);
-                }else {
+                } else {
                     //空白页面
                 }
             }
-        }else {
+        } else {
             showToast(bean.msg);
         }
     }

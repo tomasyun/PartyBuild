@@ -28,17 +28,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class MailboxPresenter extends BaseMvpPresenter<MailboxView> {
-    Activity activity=AppManager.getManager().findActivity(MailboxActivity.class);
-    private LeaderSelectInterface selectInterface;
-
-    public LeaderSelectInterface getSelectInterface() {
-        return selectInterface;
-    }
-
-    public void setSelectInterface(LeaderSelectInterface selectInterface) {
-        this.selectInterface = selectInterface;
-    }
-
+    Activity activity = AppManager.getManager().findActivity(MailboxActivity.class);
     //领导信箱
     IProgressDialog dialog = new IProgressDialog() {
         @Override
@@ -51,6 +41,15 @@ public class MailboxPresenter extends BaseMvpPresenter<MailboxView> {
             return builder.create();
         }
     };
+    private LeaderSelectInterface selectInterface;
+
+    public LeaderSelectInterface getSelectInterface() {
+        return selectInterface;
+    }
+
+    public void setSelectInterface(LeaderSelectInterface selectInterface) {
+        this.selectInterface = selectInterface;
+    }
 
     public void doGetLeaderRequest() {
         EasyHttp.post("leaderList")
@@ -105,7 +104,7 @@ public class MailboxPresenter extends BaseMvpPresenter<MailboxView> {
         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                selectInterface.select(dataBeans.get(position).getId(),dataBeans.get(position).getPosition(), dataBeans.get(position).getName());
+                selectInterface.select(dataBeans.get(position).getId(), dataBeans.get(position).getPosition(), dataBeans.get(position).getName());
                 popup.dismiss();
             }
         });
@@ -119,6 +118,6 @@ public class MailboxPresenter extends BaseMvpPresenter<MailboxView> {
     }
 
     public interface LeaderSelectInterface {
-        void select(String id, String position,String name);
+        void select(String id, String position, String name);
     }
 }

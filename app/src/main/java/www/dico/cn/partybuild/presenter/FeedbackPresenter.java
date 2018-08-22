@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class FeedbackPresenter extends BaseMvpPresenter<FeedbackView> {
-    Activity activity=AppManager.getManager().findActivity(FeedbackActivity.class);
+    Activity activity = AppManager.getManager().findActivity(FeedbackActivity.class);
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {

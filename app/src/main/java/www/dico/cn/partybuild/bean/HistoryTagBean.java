@@ -10,6 +10,7 @@ public class HistoryTagBean {
     private int id;
     @DatabaseField(columnName = "name")
     private String name;//标签名
+
     public HistoryTagBean() {
     }
 

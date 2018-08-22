@@ -19,8 +19,8 @@
             android:layout_centerVertical="true"
             android:text="25"
             android:textColor="@color/text_color"
-            android:textStyle="bold"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/iv_credit_rank_avatar_item"
@@ -39,9 +39,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:textColor="@color/text_color"
             android:layout_toRightOf="@id/iv_credit_rank_avatar_item"
-            android:text="席沛锋" />
+            android:text="席沛锋"
+            android:textColor="@color/text_color" />
 
         <TextView
             android:id="@+id/tv_score_credit_rank_item"
@@ -51,8 +51,8 @@
             android:layout_centerVertical="true"
             android:text="260分"
             android:textColor="@color/text_color"
-            android:textStyle="bold"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <View

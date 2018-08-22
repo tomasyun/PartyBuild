@@ -29,7 +29,7 @@ public class ExamResultPreviewAdapter extends TagAdapter<ExamReviewBean.DataBean
         TextView tv_question_number = convertView.findViewById(R.id.tv_question_number);
         ImageView iv_result_flag = convertView.findViewById(R.id.iv_result_flag);
         tv_question_number.setText(String.valueOf(position + 1));
-        ExamResultActivity activity= (ExamResultActivity) AppManager.getManager().findActivity(ExamResultActivity.class);
+        ExamResultActivity activity = (ExamResultActivity) AppManager.getManager().findActivity(ExamResultActivity.class);
         switch (questionIdsBean.getIsTrue()) {
             case "0":
                 iv_result_flag.setBackgroundDrawable(activity.getResources().getDrawable(R.mipmap.img_error));

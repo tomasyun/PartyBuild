@@ -93,7 +93,7 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
                     adapter = new CreditRankAdapter(this, R.layout.item_credit_rank, list);
                     rv_rank.setAdapter(adapter);
                 } else {
-                     //空白页面
+                    //空白页面
                 }
             }
         } else {

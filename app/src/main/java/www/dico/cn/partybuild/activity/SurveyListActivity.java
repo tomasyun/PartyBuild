@@ -63,11 +63,11 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
                             goTo(OnlineSurveyActivity.class, form);
                         }
                     });
-                }else {
+                } else {
 
                 }
             }
-        }else {
+        } else {
             showToast(bean.msg);
         }
     }

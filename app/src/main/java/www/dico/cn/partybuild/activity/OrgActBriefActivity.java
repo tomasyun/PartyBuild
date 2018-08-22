@@ -28,8 +28,6 @@ import www.dico.cn.partybuild.utils.GlideUtils;
 
 @CreatePresenter(OrgActBriefPresenter.class)
 public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, OrgActBriefPresenter> implements OrgActBriefView {
-    private OrgActForm form;
-    private boolean isHide = true;
     @BindView(R.id.iv_orgact_brief_theme_pic)
     ImageView iv_orgact_brief_theme_pic;
     @BindView(R.id.tv_orgact_brief_theme)
@@ -52,9 +50,11 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
     TagFlowLayout tfl_orgact_brief_participants;
     @BindView(R.id.rel_orgact_brief_participants)
     RelativeLayout rel_orgact_brief_participants;
-    private ParticipantsAdapter adapter;
     @BindView(R.id.sign_up_orgact_brief)
     View sign_up_orgact_brief;
+    private OrgActForm form;
+    private boolean isHide = true;
+    private ParticipantsAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -171,8 +171,8 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
     public void signUpResultSuccess(String result) {
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
         if (protocol.code.equals("0000")) {
-            SkipForm form=new SkipForm();
-            form.skipType="1";
+            SkipForm form = new SkipForm();
+            form.skipType = "1";
             goTo(SignUpSuccessActivity.class, form);
         } else {
             showToast(protocol.msg);

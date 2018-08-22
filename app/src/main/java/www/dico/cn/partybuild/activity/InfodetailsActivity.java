@@ -30,7 +30,6 @@ import www.dico.cn.partybuild.utils.StringUtils;
 public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, InfodetailsPresenter> implements InfodetailsView {
     @BindView(R.id.tv_info_title)
     TextView tv_info_title;
-    private InfodetailForm form;
     @BindView(R.id.tv_info_source)
     TextView tv_info_source;
     @BindView(R.id.tv_info_date)
@@ -39,6 +38,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     TextView tv_info_content;
     @BindView(R.id.rv_info_comment)
     RecyclerView rv_info_comment;
+    private InfodetailForm form;
     private CommentAdapter adapter;
 
     @Override

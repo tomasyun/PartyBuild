@@ -4,7 +4,7 @@
     android:id="@+id/rv_leader_select"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:scrollbars="none"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:scrollbars="none">
 
 </android.support.v7.widget.RecyclerView>

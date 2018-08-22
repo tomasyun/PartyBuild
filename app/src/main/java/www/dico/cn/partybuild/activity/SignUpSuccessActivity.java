@@ -11,9 +11,9 @@ import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.bean.SkipForm;
 
 public class SignUpSuccessActivity extends BaseActivity {
-    private SkipForm form;
     @BindView(R.id.tv_sign_up_success_desc)
     TextView tv_sign_up_success_desc;
+    private SkipForm form;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

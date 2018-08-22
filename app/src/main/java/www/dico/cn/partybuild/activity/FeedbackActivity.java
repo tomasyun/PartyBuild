@@ -48,7 +48,7 @@ public class FeedbackActivity extends AbstractMvpActivity<FeedbackView, Feedback
     @Override
     public void resultSuccess(String result) {
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
-        if (protocol.code.equals("0000")){
+        if (protocol.code.equals("0000")) {
             new AlertDialog(this).builder()
                     .setTitle("提交成功")
                     .setMsg("感谢您此次提交的意见，我们会尽快予您回复。")
@@ -59,7 +59,7 @@ public class FeedbackActivity extends AbstractMvpActivity<FeedbackView, Feedback
                             FeedbackActivity.this.finish();
                         }
                     }).show();
-        }else {
+        } else {
             showToast(protocol.msg);
         }
     }

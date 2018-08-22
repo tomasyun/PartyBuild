@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class CreditRankPresenter extends BaseMvpPresenter<CreditRankView> {
-    Activity activity=AppManager.getManager().findActivity(CreditRankActivity.class);
+    Activity activity = AppManager.getManager().findActivity(CreditRankActivity.class);
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {

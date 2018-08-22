@@ -190,6 +190,7 @@
         <activity
             android:name=".activity.LeaveSuccessActivity"
             android:launchMode="singleTask" />
+        <!--通知详情-->
         <!--使用高德api所申请的key-->
         <meta-data
             android:name="com.amap.api.v2.apikey"

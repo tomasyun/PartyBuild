@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
-    Activity activity=AppManager.getManager().findActivity(MeetingBriefActivity.class);
+    Activity activity = AppManager.getManager().findActivity(MeetingBriefActivity.class);
     //会议摘要
     IProgressDialog dialog = new IProgressDialog() {
         @Override
@@ -65,10 +65,10 @@ public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
                 });
     }
 
-    public void doLeaveRequest(String id){
+    public void doLeaveRequest(String id) {
         EasyHttp.post("leave")
-                .params("id",id)
-                .execute(new ProgressDialogCallBack<String>(dialog,true,true) {
+                .params("id", id)
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String s) {
                         getMvpView().leaveResultSuccess(s);

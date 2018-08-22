@@ -5,10 +5,10 @@
     android:layout_marginLeft="15dp"
     android:layout_marginRight="15dp"
     android:layout_marginTop="10dp"
-    android:translationZ="5dp"
     android:background="@drawable/edittext_corner10_white_bg"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="15dp"
+    android:translationZ="5dp">
 
     <TextView
         android:id="@+id/tv_title_question_survey_item"
@@ -46,8 +46,8 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/tv_population_question_survey_item"
             android:text="参与人数:"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_population_question_survey_item"

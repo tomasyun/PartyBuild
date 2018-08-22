@@ -125,7 +125,7 @@ public class QuestionsAdapter extends ViewPagerCommonAdapter<QuestionBean.DataBe
                                 } else {
                                     char[] c = str.toCharArray();//将字符串转换成char数组
                                     Arrays.sort(c);//对数组进行排序
-                                    String sortAnswer=new String(c);
+                                    String sortAnswer = new String(c);
                                     callBackInterface.nextStep(item.getId(), String.valueOf(position + 1), sortAnswer);
                                 }
                             }
@@ -151,7 +151,7 @@ public class QuestionsAdapter extends ViewPagerCommonAdapter<QuestionBean.DataBe
                                 } else {
                                     char[] c = str.toCharArray();//将字符串转换成char数组
                                     Arrays.sort(c);//对数组进行排序
-                                    String sortAnswer=new String(c);
+                                    String sortAnswer = new String(c);
                                     callBackInterface.submit(item.getId(), String.valueOf(position + 1), sortAnswer);
                                 }
                             }

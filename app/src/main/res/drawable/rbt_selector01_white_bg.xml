@@ -3,18 +3,18 @@
     <item android:state_checked="true">
         <layer-list>
             <item android:left="50dp" android:right="50dp">
-                <color android:color="@color/theme_color"/>
+                <color android:color="@color/theme_color" />
             </item>
-            <item android:bottom="3dp" android:drawable="@color/white"/>
+            <item android:bottom="3dp" android:drawable="@color/white" />
 
         </layer-list>
     </item>
     <item>
         <layer-list>
             <!--<item>-->
-                <!--<color android:color="@color/theme_color"/>-->
+            <!--<color android:color="@color/theme_color"/>-->
             <!--</item>-->
-            <item android:drawable="@color/white"/>
+            <item android:drawable="@color/white" />
         </layer-list>
     </item>
 </selector>

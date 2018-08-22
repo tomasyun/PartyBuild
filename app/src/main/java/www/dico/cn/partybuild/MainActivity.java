@@ -133,6 +133,18 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
         return false;
     }
 
+    public ExamFragmentInterface getFragmentInterface() {
+        return fragmentInterface;
+    }
+
+    public void setFragmentInterface(ExamFragmentInterface fragmentInterface) {
+        this.fragmentInterface = fragmentInterface;
+    }
+
+    public interface ExamFragmentInterface {
+        void notifyRefresh();
+    }
+
     private class SkipReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -144,17 +156,5 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
                     break;
             }
         }
-    }
-
-    public interface ExamFragmentInterface {
-        void notifyRefresh();
-    }
-
-    public ExamFragmentInterface getFragmentInterface() {
-        return fragmentInterface;
-    }
-
-    public void setFragmentInterface(ExamFragmentInterface fragmentInterface) {
-        this.fragmentInterface = fragmentInterface;
     }
 }

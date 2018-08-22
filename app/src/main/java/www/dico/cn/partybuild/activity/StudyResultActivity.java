@@ -20,9 +20,9 @@ import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;
 
 @CreatePresenter(StudyResultPresenter.class)
 public class StudyResultActivity extends AbstractMvpActivity<StudyResultView, StudyResultPresenter> implements StudyResultView {
-    private StudyTaskForm form;
     @BindView(R.id.et_content_study_result)
     EditText et_content_study_result;
+    private StudyTaskForm form;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,8 +48,8 @@ public class StudyResultActivity extends AbstractMvpActivity<StudyResultView, St
 
     @Override
     public void resultSuccess(String result) {
-        BaseProtocol protocol=new Gson().fromJson(result,BaseProtocol.class);
-        if (protocol.code.equals("0000")){
+        BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
+        if (protocol.code.equals("0000")) {
             new AlertDialog(this).builder()
                     .setTitle("提交成功")
                     .setMsg("恭喜您完成了本次学习任务")
@@ -57,10 +57,10 @@ public class StudyResultActivity extends AbstractMvpActivity<StudyResultView, St
                     .setPositiveButton("确定", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            goTo(StudyTaskActivity.class,null);
+                            goTo(StudyTaskActivity.class, null);
                         }
                     }).show();
-        }else {
+        } else {
             showToast(protocol.msg);
         }
     }

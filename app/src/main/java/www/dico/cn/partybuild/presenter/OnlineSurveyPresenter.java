@@ -46,11 +46,11 @@ public class OnlineSurveyPresenter extends BaseMvpPresenter<OnlineSurveyView> {
                 });
     }
 
-    public void doSubmitSurveyQuestionAnswerRequest(String json){
+    public void doSubmitSurveyQuestionAnswerRequest(String json) {
         EasyHttp.post("saveQuestionnaireAnswers")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .upJson(json)
-                .execute(new ProgressDialogCallBack<String>(dialog,true,true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String s) {
                         getMvpView().saveAnswerSuccess(s);

@@ -15,7 +15,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class HomePresenter extends BaseMvpPresenter<HomeView> {
-    Activity activity=AppManager.getManager().findActivity(MainActivity.class);
+    Activity activity = AppManager.getManager().findActivity(MainActivity.class);
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
