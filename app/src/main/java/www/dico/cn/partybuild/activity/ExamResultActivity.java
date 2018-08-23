@@ -51,8 +51,8 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
         ButterKnife.bind(this);
         form = getParam();
         if (form != null) {
-            tv_score_exam_result.setText(form.examScore);
-            tv_cost_exam_result.setText(form.examCost);
+            tv_score_exam_result.setText(form.examScore + "分");
+            tv_cost_exam_result.setText(form.examCost + "分钟");
             tv_limit_score_exam_result.setText(form.limitScore);
             switch (form.isPass) {
                 case "0":
@@ -105,6 +105,11 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
     }
 
     @Override

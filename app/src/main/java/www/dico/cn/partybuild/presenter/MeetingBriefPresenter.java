@@ -1,11 +1,9 @@
 package www.dico.cn.partybuild.presenter;
 
-import android.app.Activity;
 import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.activity.MeetingBriefActivity;
 import www.dico.cn.partybuild.modleview.MeetingBriefView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -41,7 +39,10 @@ public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().resultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }
@@ -59,7 +60,10 @@ public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().signUpResultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().signUpResultFailure(e.getMessage());
                     }
                 });
     }
@@ -76,7 +80,10 @@ public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().leaveResultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().leaveResultFailure(e.getMessage());
                     }
                 });
     }

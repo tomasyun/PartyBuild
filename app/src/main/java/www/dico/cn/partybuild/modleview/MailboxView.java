@@ -10,4 +10,6 @@ public interface MailboxView extends BaseMvpView {
     void getLeadersResultSuccess(String result);
 
     void getLeadersResultFailure(String result);
+
+    void netWorkUnAvailable();
 }

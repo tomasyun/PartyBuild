@@ -68,4 +68,9 @@ public class FeedbackActivity extends AbstractMvpActivity<FeedbackView, Feedback
     public void resultFailure(String result) {
         showToast(result);
     }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
+    }
 }

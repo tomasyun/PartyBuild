@@ -10,4 +10,6 @@ public interface OrgActBriefView extends BaseMvpView {
     void signUpResultSuccess(String result);
 
     void signUpResultFailure(String result);
+
+    void netWorkUnAvailable();
 }

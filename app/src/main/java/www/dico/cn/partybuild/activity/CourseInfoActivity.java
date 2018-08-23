@@ -102,4 +102,9 @@ public class CourseInfoActivity extends AbstractMvpActivity<CourseInfoView, Cour
     public void outResultFailure(String result) {
         showToast(result);
     }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
+    }
 }

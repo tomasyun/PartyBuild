@@ -1,14 +1,11 @@
 package www.dico.cn.partybuild.presenter;
 
-import android.app.Activity;
 import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.activity.BaseInfoActivity;
 import www.dico.cn.partybuild.modleview.BaseInfoView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.utils.NetworkUtils;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
@@ -40,7 +37,10 @@ public class BaseInfoPresenter extends BaseMvpPresenter<BaseInfoView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().resultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }

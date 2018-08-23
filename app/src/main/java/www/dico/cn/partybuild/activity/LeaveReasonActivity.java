@@ -6,9 +6,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.modleview.LeaveReasonView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -33,7 +36,7 @@ public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, Le
 
     //提交
     public void submit(View view) {
-        String content = et_content_leave_reason.getText().toString();
+        final String content = et_content_leave_reason.getText().toString();
         if (TextUtils.isEmpty(content)) {
             showToast("请假理由不能为空");
         } else {
@@ -43,7 +46,7 @@ public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, Le
                     .setPositiveButton("确定", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
+                           getMvpPresenter().doLeaveRequest(content);
                         }
                     }).setNegativeButton("取消", new View.OnClickListener() {
                 @Override
@@ -56,7 +59,12 @@ public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, Le
 
     @Override
     public void resultSuccess(String result) {
-
+        BaseProtocol protocol=new Gson().fromJson(result,BaseProtocol.class);
+        if (protocol.code.equals("0000")){
+            goTo(LeaveSuccessActivity.class,null);
+        }else {
+            showToast(protocol.msg);
+        }
     }
 
     @Override

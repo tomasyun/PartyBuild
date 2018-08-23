@@ -79,4 +79,9 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
     public void resultFailure(String result) {
         showToast(result);
     }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
+    }
 }

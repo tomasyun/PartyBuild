@@ -122,7 +122,7 @@
                             android:id="@+id/tv_total_score"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="100分"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -167,7 +167,7 @@
                             android:id="@+id/tv_standard_score"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="60分"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -218,7 +218,7 @@
                             android:id="@+id/tv_question_total_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="20题"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -263,7 +263,7 @@
                             android:id="@+id/tv_exam_during"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="30分钟"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -303,7 +303,7 @@
                         android:id="@+id/tv_exam_start_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2018-5-25"
+                        android:text=""
                         android:textColor="@color/text_color"
                         android:textSize="14sp" />
 
@@ -319,7 +319,7 @@
                         android:id="@+id/tv_exam_end_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2018-5-26"
+                        android:text=""
                         android:textColor="@color/text_color"
                         android:textSize="14sp" />
                 </LinearLayout>

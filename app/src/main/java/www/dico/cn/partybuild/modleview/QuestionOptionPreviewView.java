@@ -6,4 +6,6 @@ public interface QuestionOptionPreviewView extends BaseMvpView {
     void questionPreviewResultSuccess(String result);
 
     void questionPreviewResultFailure(String result);
+
+    void netWorkUnAvailable();
 }

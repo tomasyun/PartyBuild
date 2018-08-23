@@ -10,4 +10,6 @@ public interface NoticeInfoView extends BaseMvpView {
     void submitCommentSuccess(String result);
 
     void submitCommentFailure(String result);
+
+    void netWorkUnAvailable();
 }

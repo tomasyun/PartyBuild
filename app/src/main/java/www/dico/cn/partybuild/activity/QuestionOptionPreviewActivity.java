@@ -112,4 +112,9 @@ public class QuestionOptionPreviewActivity extends AbstractMvpActivity<QuestionO
     public void questionPreviewResultFailure(String result) {
         showToast(result);
     }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
+    }
 }

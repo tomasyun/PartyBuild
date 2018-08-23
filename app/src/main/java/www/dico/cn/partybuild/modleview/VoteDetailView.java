@@ -10,4 +10,6 @@ public interface VoteDetailView extends BaseMvpView {
     void submitVoteResultSuccess(String result);
 
     void submitVoteResultFailure(String result);
+
+    void netWorkUnAvailable();
 }

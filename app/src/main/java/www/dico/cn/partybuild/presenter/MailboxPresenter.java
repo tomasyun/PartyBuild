@@ -15,7 +15,6 @@ import java.util.List;
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.R;
-import www.dico.cn.partybuild.activity.MailboxActivity;
 import www.dico.cn.partybuild.adapter.LeaderSelectAdapter;
 import www.dico.cn.partybuild.bean.LeaderBean;
 import www.dico.cn.partybuild.modleview.MailboxView;
@@ -42,10 +41,6 @@ public class MailboxPresenter extends BaseMvpPresenter<MailboxView> {
     };
     private LeaderSelectInterface selectInterface;
 
-    public LeaderSelectInterface getSelectInterface() {
-        return selectInterface;
-    }
-
     public void setSelectInterface(LeaderSelectInterface selectInterface) {
         this.selectInterface = selectInterface;
     }
@@ -62,7 +57,10 @@ public class MailboxPresenter extends BaseMvpPresenter<MailboxView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().getLeadersResultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().getLeadersResultFailure(e.getMessage());
                     }
                 });
     }
@@ -81,7 +79,10 @@ public class MailboxPresenter extends BaseMvpPresenter<MailboxView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().resultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }

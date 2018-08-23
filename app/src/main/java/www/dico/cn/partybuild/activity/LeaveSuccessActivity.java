@@ -18,6 +18,6 @@ public class LeaveSuccessActivity extends BaseActivity {
     }
 
     public void goBackLeaveSuccess(View view) {
-        this.finish();
+        goTo(MeetingBriefActivity.class, null);
     }
 }

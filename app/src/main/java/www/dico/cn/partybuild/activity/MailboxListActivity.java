@@ -27,6 +27,8 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
     private MailboxListAdapter adapter;
     @BindView(R.id.mailbox_empty_data)
     View mailbox_empty_data;
+    @BindView(R.id.mailbox_net_error)
+    View mailbox_net_error;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,12 +57,14 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
                 if (null != list && list.size() > 0) {
                     rv_mailbox_list.setVisibility(View.VISIBLE);
                     mailbox_empty_data.setVisibility(View.GONE);
+                    mailbox_net_error.setVisibility(View.GONE);
                     adapter = new MailboxListAdapter(this, R.layout.item_mailbox, list);
                     rv_mailbox_list.setAdapter(adapter);
                 } else {
                     //空白页面
                     rv_mailbox_list.setVisibility(View.GONE);
                     mailbox_empty_data.setVisibility(View.VISIBLE);
+                    mailbox_net_error.setVisibility(View.GONE);
                 }
             }
         } else {
@@ -71,5 +75,18 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        rv_mailbox_list.setVisibility(View.GONE);
+        mailbox_empty_data.setVisibility(View.GONE);
+        mailbox_net_error.setVisibility(View.VISIBLE);
+        mailbox_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMvpPresenter().doMailboxListRequest();
+            }
+        });
     }
 }

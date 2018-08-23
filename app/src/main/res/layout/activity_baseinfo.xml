@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="席沛锋"
+                    android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="席沛锋"
+                    android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
@@ -163,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="9567"
+                    android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
@@ -195,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="1990-02-28"
+                    android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
@@ -227,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="13096962939"
+                    android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
@@ -255,7 +255,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="汉"
+                    android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
@@ -286,7 +286,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="陕西省"
+                    android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
@@ -317,7 +317,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="本科"
+                    android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </RelativeLayout>
@@ -350,7 +350,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginTop="15dp"
                     android:letterSpacing="0.1"
-                    android:text="7月19日至28日，习近平主席对阿联酋、塞内加尔、卢旺达和南非进行国事访问，出席在南非约翰内斯堡举行的金砖国家领导人第十次会晤，过境毛里求斯并进行友好访问。习近平接连在出访国发表署名文章，讲述国与国之间相知相交的故事。今天的《习近平时间》，让我们一起聆听。"
+                    android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />
             </LinearLayout>

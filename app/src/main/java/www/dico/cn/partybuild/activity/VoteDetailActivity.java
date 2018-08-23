@@ -265,4 +265,9 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
     public void submitVoteResultFailure(String result) {
         showToast(result);
     }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
+    }
 }

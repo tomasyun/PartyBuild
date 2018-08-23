@@ -70,4 +70,9 @@ public class PwdupdateActivity extends AbstractMvpActivity<PwdupdateView, Pwdupd
     public void resultFailure(String result) {
         showToast(result);
     }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
+    }
 }

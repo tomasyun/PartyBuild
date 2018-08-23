@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:text="88"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="30sp" />
             </RelativeLayout>
@@ -84,7 +84,7 @@
                 android:background="@mipmap/img_pass_ok"
                 android:gravity="center"
                 android:paddingBottom="18dp"
-                android:text="恭喜您,考试通过"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="16sp" />
         </FrameLayout>
@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:text="25分钟"
+                android:text=""
                 android:textColor="@color/text_color" />
         </LinearLayout>
 
@@ -137,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:text="60分"
+                android:text=""
                 android:textColor="@color/text_color" />
         </LinearLayout>
     </LinearLayout>

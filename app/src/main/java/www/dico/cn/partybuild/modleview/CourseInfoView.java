@@ -10,4 +10,6 @@ public interface CourseInfoView extends BaseMvpView {
     void outResultSuccess(String result);
 
     void outResultFailure(String result);
+
+    void netWorkUnAvailable();
 }

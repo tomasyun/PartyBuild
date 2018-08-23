@@ -75,10 +75,10 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
         ExamRuleBean bean = new Gson().fromJson(result, ExamRuleBean.class);
         if (bean.code.equals("0000")) {
             if (null != bean.getData()) {
-                tv_total_score.setText(bean.getData().getTotalScore());
-                tv_standard_score.setText(bean.getData().getLimitScore());
-                tv_question_total_num.setText(bean.getData().getQuestionNum());
-                tv_exam_during.setText(bean.getData().getExamHours());
+                tv_total_score.setText(bean.getData().getTotalScore() + "分");
+                tv_standard_score.setText(bean.getData().getLimitScore() + "分");
+                tv_question_total_num.setText(bean.getData().getQuestionNum() + "道题");
+                tv_exam_during.setText(bean.getData().getExamHours() + "分钟");
                 tv_exam_start_date.setText(bean.getData().getExamStartTime());
                 tv_exam_end_date.setText(bean.getData().getExamEndTime());
                 form.limitScore = bean.getData().getLimitScore();
@@ -91,5 +91,10 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
     }
 }

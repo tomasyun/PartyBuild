@@ -138,4 +138,9 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
     public void verifyFailure(String result) {
         showToast(result);
     }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
+    }
 }

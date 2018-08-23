@@ -77,7 +77,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                     notice_info_reply_comment.setVisibility(View.VISIBLE);
                     et_reply_comment = notice_info_reply_comment.findViewById(R.id.et_reply_comment);
                     TextView tv_reply_comment = notice_info_reply_comment.findViewById(R.id.tv_reply_comment);
-                    ImageView iv_reply_comment=notice_info_reply_comment.findViewById(R.id.iv_reply_comment);
+                    ImageView iv_reply_comment = notice_info_reply_comment.findViewById(R.id.iv_reply_comment);
                     tv_reply_comment.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -172,5 +172,10 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
     @Override
     public void submitCommentFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
     }
 }

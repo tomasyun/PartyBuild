@@ -179,4 +179,9 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     public void submitCommentFailure(String result) {
         showToast(result);
     }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
+    }
 }

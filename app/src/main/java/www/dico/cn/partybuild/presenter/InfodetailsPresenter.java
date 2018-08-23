@@ -1,11 +1,9 @@
 package www.dico.cn.partybuild.presenter;
 
-import android.app.Activity;
 import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.activity.InfodetailsActivity;
 import www.dico.cn.partybuild.modleview.InfodetailsView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -41,7 +39,10 @@ public class InfodetailsPresenter extends BaseMvpPresenter<InfodetailsView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().resultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }
@@ -61,7 +62,10 @@ public class InfodetailsPresenter extends BaseMvpPresenter<InfodetailsView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().submitCommentFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().submitCommentFailure(e.getMessage());
                     }
                 });
 

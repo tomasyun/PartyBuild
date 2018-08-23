@@ -28,6 +28,10 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
     @BindView(R.id.rv_notice)
     RecyclerView rv_notice;
     private NoticeAdapter adapter;
+    @BindView(R.id.notice_empty_data)
+    View notice_empty_data;
+    @BindView(R.id.notice_net_error)
+    View notice_net_error;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +52,9 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
         if (bean.code.equals("0000")) {
             final List<NoticeBean.DataBean> list = bean.getData();
             if (null != list && list.size() > 0) {
+                rv_notice.setVisibility(View.VISIBLE);
+                notice_empty_data.setVisibility(View.GONE);
+                notice_net_error.setVisibility(View.GONE);
                 adapter = new NoticeAdapter(this, R.layout.item_notice, bean.getData());
                 rv_notice.setAdapter(adapter);
                 adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -61,6 +68,9 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
                 });
             } else {
                 //空白页面
+                rv_notice.setVisibility(View.GONE);
+                notice_empty_data.setVisibility(View.VISIBLE);
+                notice_net_error.setVisibility(View.GONE);
             }
         } else {
             showToast(bean.msg);
@@ -70,5 +80,18 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        rv_notice.setVisibility(View.GONE);
+        notice_empty_data.setVisibility(View.GONE);
+        notice_net_error.setVisibility(View.VISIBLE);
+        notice_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMvpPresenter().noticeRequest();
+            }
+        });
     }
 }

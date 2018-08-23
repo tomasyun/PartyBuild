@@ -10,4 +10,6 @@ public interface TaskBriefView extends BaseMvpView {
     void verifySuccess(String result);
 
     void verifyFailure(String result);
+
+    void netWorkUnAvailable();
 }

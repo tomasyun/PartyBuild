@@ -1,6 +1,5 @@
 package www.dico.cn.partybuild.presenter;
 
-import android.app.Activity;
 import android.app.Dialog;
 
 import com.google.gson.Gson;
@@ -9,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.activity.StudyResultActivity;
 import www.dico.cn.partybuild.modleview.StudyResultView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -47,7 +45,10 @@ public class StudyResultPresenter extends BaseMvpPresenter<StudyResultView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().resultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }

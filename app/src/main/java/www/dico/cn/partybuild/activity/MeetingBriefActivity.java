@@ -238,4 +238,9 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
     public void leaveResultFailure(String result) {
         showToast(result);
     }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
+    }
 }

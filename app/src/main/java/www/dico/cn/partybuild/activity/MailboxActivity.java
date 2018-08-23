@@ -106,6 +106,11 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
     }
 
     @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
+    }
+
+    @Override
     public void select(String id, String position, String name) {
         tv_name_mail_box.setText(position + " " + name);
         leaderId = id;

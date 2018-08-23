@@ -183,4 +183,9 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
     public void signUpResultFailure(String result) {
         showToast(result);
     }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
+    }
 }

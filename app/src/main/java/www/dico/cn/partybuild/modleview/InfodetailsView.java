@@ -10,4 +10,6 @@ public interface InfodetailsView extends BaseMvpView {
     void submitCommentSuccess(String result);
 
     void submitCommentFailure(String result);
+
+    void netWorkUnAvailable();
 }
