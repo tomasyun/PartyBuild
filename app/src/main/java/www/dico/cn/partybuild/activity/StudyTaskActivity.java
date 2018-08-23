@@ -27,8 +27,11 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
     @BindView(R.id.rv_study_task)
     RecyclerView rv_study_task;
     private StudyTaskAdapter adapter;
-@BindView(R.id.study_task_empty_data)
-View study_task_empty_data;
+    @BindView(R.id.study_task_empty_data)
+    View study_task_empty_data;
+    @BindView(R.id.study_task_net_error)
+    View study_task_net_error;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,7 @@ View study_task_empty_data;
                 if (null != beans && beans.size() > 0) {
                     rv_study_task.setVisibility(View.VISIBLE);
                     study_task_empty_data.setVisibility(View.GONE);
+                    study_task_net_error.setVisibility(View.GONE);
                     adapter = new StudyTaskAdapter(this, R.layout.item_study_task, beans);
                     rv_study_task.setAdapter(adapter);
                     adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -69,6 +73,7 @@ View study_task_empty_data;
                 } else {
                     rv_study_task.setVisibility(View.GONE);
                     study_task_empty_data.setVisibility(View.VISIBLE);
+                    study_task_net_error.setVisibility(View.GONE);
                 }
             }
         } else {
@@ -79,5 +84,18 @@ View study_task_empty_data;
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        rv_study_task.setVisibility(View.GONE);
+        study_task_empty_data.setVisibility(View.GONE);
+        study_task_net_error.setVisibility(View.VISIBLE);
+        study_task_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMvpPresenter().doStudyTaskRequest();
+            }
+        });
     }
 }

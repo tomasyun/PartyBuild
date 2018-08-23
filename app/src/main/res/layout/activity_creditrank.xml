@@ -155,4 +155,9 @@
         android:id="@+id/credit_rank_empty_data"
         layout="@layout/empty_data"
         android:visibility="gone" />
+
+    <include
+        android:id="@+id/credit_rank_net_error"
+        layout="@layout/net_error"
+        android:visibility="gone" />
 </LinearLayout>

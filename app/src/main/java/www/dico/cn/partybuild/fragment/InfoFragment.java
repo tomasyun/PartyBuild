@@ -48,6 +48,8 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     private MainActivity activity;
     @BindView(R.id.info_empty_data)
     View info_empty_data;
+    @BindView(R.id.info_net_error)
+    View info_net_error;
 
     @Override
     public void onAttach(Context context) {
@@ -145,6 +147,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                     if (null != list && list.size() > 0) {
                         srl_info.setVisibility(View.VISIBLE);
                         info_empty_data.setVisibility(View.GONE);
+                        info_net_error.setVisibility(View.GONE);
                         adapter = new InfoAdapter(getActivity(), R.layout.item_info, list);
                         rv_info.setAdapter(adapter);
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -158,6 +161,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                     } else {
                         srl_info.setVisibility(View.GONE);
                         info_empty_data.setVisibility(View.VISIBLE);
+                        info_net_error.setVisibility(View.GONE);
                     }
                 } else {
                     List<InfoBean.DataBeanX.DataBean> list = bean.getData().getData();
@@ -187,6 +191,32 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
         srl_info.finishRefresh();
         srl_info.finishLoadmore();
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        srl_info.setVisibility(View.GONE);
+        info_empty_data.setVisibility(View.GONE);
+        info_net_error.setVisibility(View.VISIBLE);
+        info_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (position) {
+                    case 0:
+                        getMvpPresenter().doGetInfoRequest("0", "0", start, length);
+                        break;
+                    case 1:
+                        getMvpPresenter().doGetInfoRequest("1", "0", start, length);
+                        break;
+                    case 2:
+                        getMvpPresenter().doGetInfoRequest("2", "0", start, length);
+                        break;
+                    case 3:
+                        getMvpPresenter().doGetInfoRequest("3", "0", start, length);
+                        break;
+                }
+            }
+        });
     }
 
     @Override

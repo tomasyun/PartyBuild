@@ -1,11 +1,9 @@
 package www.dico.cn.partybuild.presenter;
 
-import android.app.Activity;
 import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.modleview.ExamView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -42,7 +40,10 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().examOnResultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().examOnResultFailure(e.getMessage());
                     }
                 });
     }
@@ -61,7 +62,10 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().examOkResultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().examOkResultFailure(e.getMessage());
                     }
                 });
     }

@@ -29,6 +29,8 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
     private MeetingAdapter adapter;
     @BindView(R.id.meeting_empty_data)
     View meeting_empty_data;
+    @BindView(R.id.meeting_net_error)
+    View meeting_net_error;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
             if (null != list && list.size() > 0) {
                 rv_meeting.setVisibility(View.VISIBLE);
                 meeting_empty_data.setVisibility(View.GONE);
+                meeting_net_error.setVisibility(View.GONE);
                 adapter = new MeetingAdapter(this, R.layout.item_meeting, bean.getData());
                 rv_meeting.setAdapter(adapter);
                 adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -71,6 +74,7 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
                 //空白页面
                 rv_meeting.setVisibility(View.GONE);
                 meeting_empty_data.setVisibility(View.VISIBLE);
+                meeting_net_error.setVisibility(View.GONE);
             }
         } else {
             showToast(bean.msg);
@@ -81,5 +85,18 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        rv_meeting.setVisibility(View.GONE);
+        meeting_empty_data.setVisibility(View.GONE);
+        meeting_net_error.setVisibility(View.VISIBLE);
+        meeting_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMvpPresenter().doMeetingRequest();
+            }
+        });
     }
 }

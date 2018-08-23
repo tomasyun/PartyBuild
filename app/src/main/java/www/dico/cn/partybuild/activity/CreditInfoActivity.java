@@ -38,6 +38,9 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
     private CreditInfoAdapter adapter;
     @BindView(R.id.credit_info_empty_data)
     View credit_info_empty_data;
+    @BindView(R.id.credit_info_net_error)
+    View credit_info_net_error;
+    private int position = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,18 +57,22 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 switch (checkedId) {
                     case R.id.rbt_credit_info_all:
+                        position = 0;
                         tv_desc_credit_info.setText("全部积分");
                         getMvpPresenter().creditInfoRequest("0");
                         break;
                     case R.id.rbt_credit_info_month:
+                        position = 1;
                         tv_desc_credit_info.setText("本月积分");
                         getMvpPresenter().creditInfoRequest("1");
                         break;
                     case R.id.rbt_credit_info_week:
+                        position = 2;
                         tv_desc_credit_info.setText("本周积分");
                         getMvpPresenter().creditInfoRequest("2");
                         break;
                     case R.id.rbt_credit_info_day:
+                        position = 3;
                         tv_desc_credit_info.setText("本日积分");
                         getMvpPresenter().creditInfoRequest("3");
                         break;
@@ -101,6 +108,7 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
                     for (int i = 0; i < beans.size(); i++) {
                         rv_credit_info.setVisibility(View.VISIBLE);
                         credit_info_empty_data.setVisibility(View.GONE);
+                        credit_info_net_error.setVisibility(View.GONE);
                         adapter = new CreditInfoAdapter(this, R.layout.item_credit_info, beans);
                         rv_credit_info.setAdapter(adapter);
                     }
@@ -108,6 +116,7 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
                     //空白页面
                     rv_credit_info.setVisibility(View.GONE);
                     credit_info_empty_data.setVisibility(View.VISIBLE);
+                    credit_info_net_error.setVisibility(View.GONE);
                 }
             }
         } else {
@@ -118,5 +127,35 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        rv_credit_info.setVisibility(View.GONE);
+        credit_info_empty_data.setVisibility(View.GONE);
+        credit_info_net_error.setVisibility(View.VISIBLE);
+        credit_info_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (position) {
+                    case 0:
+                        tv_desc_credit_info.setText("全部积分");
+                        getMvpPresenter().creditInfoRequest("0");
+                        break;
+                    case 1:
+                        tv_desc_credit_info.setText("本月积分");
+                        getMvpPresenter().creditInfoRequest("1");
+                        break;
+                    case 2:
+                        tv_desc_credit_info.setText("本周积分");
+                        getMvpPresenter().creditInfoRequest("2");
+                        break;
+                    case 3:
+                        tv_desc_credit_info.setText("本日积分");
+                        getMvpPresenter().creditInfoRequest("3");
+                        break;
+                }
+            }
+        });
     }
 }

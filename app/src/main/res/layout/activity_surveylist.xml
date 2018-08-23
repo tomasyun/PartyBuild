@@ -39,7 +39,13 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <include layout="@layout/empty_data"
-        android:visibility="gone"
-        android:id="@+id/survey_empty_data"/>
+    <include
+        android:id="@+id/survey_empty_data"
+        layout="@layout/empty_data"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/survey_net_error"
+        layout="@layout/net_error"
+        android:visibility="gone" />
 </LinearLayout>

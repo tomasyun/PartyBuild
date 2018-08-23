@@ -29,6 +29,8 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
     private OrgActAdapter adapter;
     @BindView(R.id.org_act_empty_data)
     View org_act_empty_data;
+    @BindView(R.id.org_act_net_error)
+    View org_act_net_error;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
             if (null != list && list.size() > 0) {
                 rv_org_act.setVisibility(View.VISIBLE);
                 org_act_empty_data.setVisibility(View.GONE);
+                org_act_net_error.setVisibility(View.GONE);
                 adapter = new OrgActAdapter(this, R.layout.item_meeting, list);
                 rv_org_act.setAdapter(adapter);
                 adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -71,6 +74,7 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
                 //空白
                 rv_org_act.setVisibility(View.GONE);
                 org_act_empty_data.setVisibility(View.VISIBLE);
+                org_act_net_error.setVisibility(View.GONE);
             }
         } else {
             showToast(bean.msg);
@@ -80,5 +84,18 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        rv_org_act.setVisibility(View.GONE);
+        org_act_empty_data.setVisibility(View.GONE);
+        org_act_net_error.setVisibility(View.VISIBLE);
+        org_act_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMvpPresenter().doOrgActRequest();
+            }
+        });
     }
 }

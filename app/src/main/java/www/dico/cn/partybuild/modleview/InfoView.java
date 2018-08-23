@@ -6,4 +6,6 @@ public interface InfoView extends BaseMvpView {
     void resultSuccess(String result);
 
     void resultFailure(String result);
+
+    void netWorkUnAvailable();
 }

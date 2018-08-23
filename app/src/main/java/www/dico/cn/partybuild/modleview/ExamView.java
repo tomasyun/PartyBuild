@@ -10,4 +10,6 @@ public interface ExamView extends BaseMvpView {
     void examOkResultSuccess(String result);
 
     void examOkResultFailure(String result);
+
+    void netWorkUnAvailable();
 }

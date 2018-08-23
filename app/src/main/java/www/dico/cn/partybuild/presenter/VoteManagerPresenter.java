@@ -38,7 +38,10 @@ public class VoteManagerPresenter extends BaseMvpPresenter<VoteManagerView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().resultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }

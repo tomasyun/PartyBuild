@@ -39,6 +39,8 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     private MainActivity activity;
     @BindView(R.id.exam_empty_data)
     View exam_empty_data;
+    @BindView(R.id.exam_net_error)
+    View exam_net_error;
 
     @Override
     public void onAttach(Activity context) {
@@ -80,6 +82,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
             if (null != bean.getData() && bean.getData().size() > 0) {
                 rv_exam.setVisibility(View.VISIBLE);
                 exam_empty_data.setVisibility(View.GONE);
+                exam_net_error.setVisibility(View.GONE);
                 onAdapter = new ExamOnAdapter(getActivity(), R.layout.item_exam_on, bean.getData());
                 rv_exam.setAdapter(onAdapter);
                 onAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -94,6 +97,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
             } else {
                 rv_exam.setVisibility(View.GONE);
                 exam_empty_data.setVisibility(View.VISIBLE);
+                exam_net_error.setVisibility(View.GONE);
             }
         } else {
             showToast(bean.msg);
@@ -135,6 +139,26 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     @Override
     public void examOkResultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        rv_exam.setVisibility(View.GONE);
+        exam_empty_data.setVisibility(View.GONE);
+        exam_net_error.setVisibility(View.VISIBLE);
+        exam_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (position) {
+                    case 0:
+                        getMvpPresenter().examsOnRequest("0");
+                        break;
+                    case 1:
+                        getMvpPresenter().examsOkRequest("1");
+                        break;
+                }
+            }
+        });
     }
 
     @Override

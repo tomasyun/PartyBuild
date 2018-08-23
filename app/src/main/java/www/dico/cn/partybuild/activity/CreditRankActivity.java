@@ -40,6 +40,8 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
     private CreditRankAdapter adapter;
     @BindView(R.id.credit_rank_empty_data)
     View credit_rank_empty_data;
+    @BindView(R.id.credit_rank_net_error)
+    View credit_rank_net_error;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -94,12 +96,14 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
                 if (null != list && list.size() > 0) {
                     rv_rank.setVisibility(View.VISIBLE);
                     credit_rank_empty_data.setVisibility(View.GONE);
+                    credit_rank_net_error.setVisibility(View.GONE);
                     adapter = new CreditRankAdapter(this, R.layout.item_credit_rank, list);
                     rv_rank.setAdapter(adapter);
                 } else {
                     //空白页面
                     rv_rank.setVisibility(View.GONE);
                     credit_rank_empty_data.setVisibility(View.VISIBLE);
+                    credit_rank_net_error.setVisibility(View.GONE);
                 }
             }
         } else {
@@ -110,5 +114,18 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        rv_rank.setVisibility(View.GONE);
+        credit_rank_empty_data.setVisibility(View.GONE);
+        credit_rank_net_error.setVisibility(View.VISIBLE);
+        credit_rank_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMvpPresenter().creditRankRequest();
+            }
+        });
     }
 }

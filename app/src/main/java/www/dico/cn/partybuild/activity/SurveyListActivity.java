@@ -29,6 +29,8 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
     private QuestionSurveyAdapter adapter;
     @BindView(R.id.survey_empty_data)
     View survey_empty_data;
+    @BindView(R.id.survey_net_error)
+    View survey_net_error;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
                 if (null != beans && beans.size() > 0) {
                     rv_question_survey.setVisibility(View.VISIBLE);
                     survey_empty_data.setVisibility(View.GONE);
+                    survey_net_error.setVisibility(View.GONE);
                     adapter = new QuestionSurveyAdapter(this, R.layout.item_questionsurvey, beans);
                     rv_question_survey.setAdapter(adapter);
                     adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -70,6 +73,7 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
                 } else {
                     rv_question_survey.setVisibility(View.GONE);
                     survey_empty_data.setVisibility(View.VISIBLE);
+                    survey_net_error.setVisibility(View.GONE);
                 }
             }
         } else {
@@ -80,5 +84,18 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        rv_question_survey.setVisibility(View.GONE);
+        survey_empty_data.setVisibility(View.GONE);
+        survey_net_error.setVisibility(View.VISIBLE);
+        survey_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMvpPresenter().doQuestionSurveyRequest();
+            }
+        });
     }
 }

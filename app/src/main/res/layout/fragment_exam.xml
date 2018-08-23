@@ -76,7 +76,13 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <include layout="@layout/empty_data"
-        android:visibility="gone"
-        android:id="@+id/exam_empty_data"/>
+    <include
+        android:id="@+id/exam_empty_data"
+        layout="@layout/empty_data"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/exam_net_error"
+        layout="@layout/net_error"
+        android:visibility="gone" />
 </LinearLayout>

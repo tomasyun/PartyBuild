@@ -27,6 +27,8 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
     private VoteListAdapter adapter;
     @BindView(R.id.vote_empty_data)
     View vote_empty_data;
+    @BindView(R.id.vote_net_error)
+    View vote_net_error;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
             if (null != bean.getData() && bean.getData().size() > 0) {
                 rv_vote.setVisibility(View.VISIBLE);
                 vote_empty_data.setVisibility(View.GONE);
+                vote_net_error.setVisibility(View.GONE);
                 adapter = new VoteListAdapter(this, R.layout.item_vote, bean.getData());
                 rv_vote.setAdapter(adapter);
                 adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -67,6 +70,7 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
             } else {
                 rv_vote.setVisibility(View.GONE);
                 vote_empty_data.setVisibility(View.VISIBLE);
+                vote_net_error.setVisibility(View.GONE);
             }
         } else {
             showToast(bean.msg);
@@ -76,5 +80,18 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        rv_vote.setVisibility(View.GONE);
+        vote_empty_data.setVisibility(View.GONE);
+        vote_net_error.setVisibility(View.VISIBLE);
+        vote_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMvpPresenter().doVoteManagerRequest();
+            }
+        });
     }
 }
