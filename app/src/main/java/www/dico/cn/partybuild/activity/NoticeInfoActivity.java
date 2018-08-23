@@ -46,12 +46,12 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
     TextView tv_content_notice_info;
     @BindView(R.id.rv_notice_info)
     RecyclerView rv_notice_info;
-    private NoticeForm form;
-    private EditText et_reply_comment;
     @BindView(R.id.sv_notice_info)
     ScrollView sv_notice_info;
     @BindView(R.id.lin_notice_info)
     LinearLayout lin_notice_info;
+    private NoticeForm form;
+    private EditText et_reply_comment;
     private NoticeInfoCommentAdapter adapter;
 
     @Override

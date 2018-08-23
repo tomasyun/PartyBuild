@@ -46,7 +46,7 @@ public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, Le
                     .setPositiveButton("确定", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                           getMvpPresenter().doLeaveRequest(content);
+                            getMvpPresenter().doLeaveRequest(content);
                         }
                     }).setNegativeButton("取消", new View.OnClickListener() {
                 @Override
@@ -59,10 +59,10 @@ public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, Le
 
     @Override
     public void resultSuccess(String result) {
-        BaseProtocol protocol=new Gson().fromJson(result,BaseProtocol.class);
-        if (protocol.code.equals("0000")){
-            goTo(LeaveSuccessActivity.class,null);
-        }else {
+        BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
+        if (protocol.code.equals("0000")) {
+            goTo(LeaveSuccessActivity.class, null);
+        } else {
             showToast(protocol.msg);
         }
     }
@@ -70,5 +70,10 @@ public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, Le
     @Override
     public void resultFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
     }
 }

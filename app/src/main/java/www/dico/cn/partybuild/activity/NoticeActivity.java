@@ -27,11 +27,11 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresenter> implements NoticeView {
     @BindView(R.id.rv_notice)
     RecyclerView rv_notice;
-    private NoticeAdapter adapter;
     @BindView(R.id.notice_empty_data)
     View notice_empty_data;
     @BindView(R.id.notice_net_error)
     View notice_net_error;
+    private NoticeAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

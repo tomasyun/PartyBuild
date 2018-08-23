@@ -16,7 +16,7 @@ import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.NoticeInfoActivity;
 import www.dico.cn.partybuild.bean.NoticeInfoBean;
 
-public class NoticeInfoCommentAdapter extends RecyclerView.Adapter<NoticeInfoCommentAdapter.NoticeInfoCommentHolder>{
+public class NoticeInfoCommentAdapter extends RecyclerView.Adapter<NoticeInfoCommentAdapter.NoticeInfoCommentHolder> {
     public static final int TYPE_FOOTER = 0;
     public static final int TYPE_NORMAL = 1;
     private View mFooterView;

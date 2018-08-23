@@ -80,7 +80,8 @@
                 android:padding="15dp"
                 android:textColor="#000000"
                 android:textSize="14sp"
-                android:visibility="gone"
+                android:visibility="visible"
+                app:etv_InitState="shrink"
                 app:etv_MaxLinesOnShrink="5"
                 app:etv_ToExpandHintColor="@color/theme_color" />
 

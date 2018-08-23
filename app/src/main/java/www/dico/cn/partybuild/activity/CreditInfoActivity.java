@@ -35,11 +35,11 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
     RecyclerView rv_credit_info;
     @BindView(R.id.tv_desc_credit_info)
     TextView tv_desc_credit_info;
-    private CreditInfoAdapter adapter;
     @BindView(R.id.credit_info_empty_data)
     View credit_info_empty_data;
     @BindView(R.id.credit_info_net_error)
     View credit_info_net_error;
+    private CreditInfoAdapter adapter;
     private int position = 0;
 
     @Override

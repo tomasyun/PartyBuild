@@ -142,7 +142,7 @@
         <activity
             android:name=".activity.NoticeInfoActivity"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="stateAlwaysHidden|stateUnchanged"/>
+            android:windowSoftInputMode="stateAlwaysHidden|stateUnchanged" />
         <!--考试结果-->
         <activity
             android:name=".activity.ExamResultActivity"

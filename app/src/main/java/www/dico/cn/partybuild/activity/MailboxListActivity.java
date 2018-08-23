@@ -24,11 +24,11 @@ import www.dico.cn.partybuild.presenter.MailboxListPresenter;
 public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, MailboxListPresenter> implements MailboxListView {
     @BindView(R.id.rv_mailbox_list)
     RecyclerView rv_mailbox_list;
-    private MailboxListAdapter adapter;
     @BindView(R.id.mailbox_empty_data)
     View mailbox_empty_data;
     @BindView(R.id.mailbox_net_error)
     View mailbox_net_error;
+    private MailboxListAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

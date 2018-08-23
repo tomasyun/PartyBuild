@@ -15,7 +15,7 @@ import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.InfodetailsActivity;
 import www.dico.cn.partybuild.bean.InfodetailBean;
-import www.dico.cn.partybuild.bean.NoticeInfoBean;
+import www.dico.cn.partybuild.utils.GlideUtils;
 
 public class InfoCommentAdapter extends RecyclerView.Adapter<InfoCommentAdapter.InfoCommentHolder> {
     public static final int TYPE_FOOTER = 0;
@@ -42,6 +42,7 @@ public class InfoCommentAdapter extends RecyclerView.Adapter<InfoCommentAdapter.
 //        final int pos = getRealPosition(commentHolder);
         if (position < mDatas.size()) {
             if (commentHolder instanceof InfoCommentHolder) {
+                GlideUtils.loadCircleImage(AppManager.getManager().curActivity(), mDatas.get(position).getAvatar(), commentHolder.iv_comment_user_avatar);
                 commentHolder.tv_comment_user_name.setText(mDatas.get(position).getName());
                 commentHolder.tv_comment_user_content.setText(mDatas.get(position).getCommitContent());
                 commentHolder.tv_comment_date.setText(mDatas.get(position).getCommitDate());

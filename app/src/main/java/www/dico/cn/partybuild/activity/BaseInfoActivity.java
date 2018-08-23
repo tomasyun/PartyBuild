@@ -59,7 +59,7 @@ public class BaseInfoActivity extends AbstractMvpActivity<BaseInfoView, BaseInfo
         BaseInfoBean bean = new Gson().fromJson(result, BaseInfoBean.class);
         if (bean.code.equals("0000")) {
             if (bean.getData() != null) {
-                GlideUtils.loadImage(this, bean.getData().getAvatar(), iv_user_head_icon);
+                GlideUtils.loadCircleImage(this, bean.getData().getAvatar(), iv_user_head_icon);
                 tv_user_name.setText(bean.getData().getUsername());
                 tv_user_real_name.setText(bean.getData().getName());
                 tv_user_number.setText(bean.getData().getPartyNo());

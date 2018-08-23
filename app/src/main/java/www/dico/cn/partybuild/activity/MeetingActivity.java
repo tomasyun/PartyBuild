@@ -26,11 +26,11 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPresenter> implements MeetingView {
     @BindView(R.id.rv_meeting)
     RecyclerView rv_meeting;
-    private MeetingAdapter adapter;
     @BindView(R.id.meeting_empty_data)
     View meeting_empty_data;
     @BindView(R.id.meeting_net_error)
     View meeting_net_error;
+    private MeetingAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

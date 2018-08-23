@@ -50,14 +50,14 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     TextView tv_info_detail_content;
     @BindView(R.id.rv_info_detail)
     RecyclerView rv_info_detail;
-    private InfodetailForm form;
-    private InfoCommentAdapter adapter;
     @BindView(R.id.info_detail_reply_comment)
     View info_detail_reply_comment;
     @BindView(R.id.sv_info_detail)
     ScrollView sv_info_detail;
     @BindView(R.id.lin_info_detail)
     LinearLayout lin_info_detail;
+    private InfodetailForm form;
+    private InfoCommentAdapter adapter;
     private EditText et_reply_comment;
 
     @Override
@@ -102,7 +102,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
 
                 et_reply_comment = info_detail_reply_comment.findViewById(R.id.et_reply_comment);
                 TextView tv_reply_comment = info_detail_reply_comment.findViewById(R.id.tv_reply_comment);
-                ImageView iv_reply_comment=info_detail_reply_comment.findViewById(R.id.iv_reply_comment);
+                ImageView iv_reply_comment = info_detail_reply_comment.findViewById(R.id.iv_reply_comment);
                 tv_reply_comment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

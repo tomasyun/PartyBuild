@@ -23,6 +23,7 @@ import www.dico.cn.partybuild.modleview.CreditRankView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.CreditRankPresenter;
+import www.dico.cn.partybuild.utils.GlideUtils;
 
 //积分排名
 @CreatePresenter(CreditRankPresenter.class)
@@ -37,11 +38,11 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
 //    RadioGroup rg_rank;
     @BindView(R.id.rv_rank)
     RecyclerView rv_rank;
-    private CreditRankAdapter adapter;
     @BindView(R.id.credit_rank_empty_data)
     View credit_rank_empty_data;
     @BindView(R.id.credit_rank_net_error)
     View credit_rank_net_error;
+    private CreditRankAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,6 +85,7 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
         CreditRankBean bean = new Gson().fromJson(result, CreditRankBean.class);
         if (bean.code.equals("0000")) {
             if (bean.getData() != null) {
+                GlideUtils.loadCircleImage(this, bean.getData().getMavatar(), iv_user_icon_rank);
                 SpannableString numContent = new SpannableString(bean.getData().getMrank() + "名");
                 numContent.setSpan(new AbsoluteSizeSpan(40), 0, numContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
                 numContent.setSpan(new AbsoluteSizeSpan(28), numContent.length() - 1, numContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);

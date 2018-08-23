@@ -26,11 +26,11 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, SurveyListPresenter> implements SurveyListView {
     @BindView(R.id.rv_question_survey)
     RecyclerView rv_question_survey;
-    private QuestionSurveyAdapter adapter;
     @BindView(R.id.survey_empty_data)
     View survey_empty_data;
     @BindView(R.id.survey_net_error)
     View survey_net_error;
+    private QuestionSurveyAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

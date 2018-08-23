@@ -26,11 +26,11 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyTaskPresenter> implements StudyTaskView {
     @BindView(R.id.rv_study_task)
     RecyclerView rv_study_task;
-    private StudyTaskAdapter adapter;
     @BindView(R.id.study_task_empty_data)
     View study_task_empty_data;
     @BindView(R.id.study_task_net_error)
     View study_task_net_error;
+    private StudyTaskAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

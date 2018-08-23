@@ -24,11 +24,11 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, VoteManagerPresenter> implements VoteManagerView {
     @BindView(R.id.rv_vote)
     RecyclerView rv_vote;
-    private VoteListAdapter adapter;
     @BindView(R.id.vote_empty_data)
     View vote_empty_data;
     @BindView(R.id.vote_net_error)
     View vote_net_error;
+    private VoteListAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -53,8 +53,8 @@
                     android:id="@+id/tv_title_notice_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
                     android:gravity="center"
+                    android:text=""
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -120,9 +120,9 @@
         </ScrollView>
 
         <include
-            android:visibility="gone"
             android:id="@+id/notice_info_reply_comment"
-            layout="@layout/include_reply_comment" />
+            layout="@layout/include_reply_comment"
+            android:visibility="gone" />
     </FrameLayout>
 
 </LinearLayout>

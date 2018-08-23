@@ -40,16 +40,16 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     SmartRefreshLayout srl_info;
     @BindView(R.id.rv_info)
     RecyclerView rv_info;
+    @BindView(R.id.info_empty_data)
+    View info_empty_data;
+    @BindView(R.id.info_net_error)
+    View info_net_error;
     private InfoAdapter adapter;
     private int position = 0;
     private int start = 0;
     private int length = 10;
     private List<InfoBean.DataBeanX.DataBean> list;
     private MainActivity activity;
-    @BindView(R.id.info_empty_data)
-    View info_empty_data;
-    @BindView(R.id.info_net_error)
-    View info_net_error;
 
     @Override
     public void onAttach(Context context) {

@@ -26,11 +26,11 @@ import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresenter> implements OrgActView {
     @BindView(R.id.rv_org_act)
     RecyclerView rv_org_act;
-    private OrgActAdapter adapter;
     @BindView(R.id.org_act_empty_data)
     View org_act_empty_data;
     @BindView(R.id.org_act_net_error)
     View org_act_net_error;
+    private OrgActAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

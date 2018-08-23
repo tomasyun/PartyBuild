@@ -89,8 +89,10 @@ public class GlideUtils {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .circleCrop()//设置圆形
-                .placeholder(placeholderSoWhite)
-                .error(errorSoWhite)
+//                .placeholder(placeholderSoWhite)
+                .placeholder(R.mipmap.img_default_avatar)
+//                .error(errorSoWhite)
+                .error(R.mipmap.img_default_avatar)
                 //.priority(Priority.HIGH)
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(context).load(url).apply(options).into(imageView);

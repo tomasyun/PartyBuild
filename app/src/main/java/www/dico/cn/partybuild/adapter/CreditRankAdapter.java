@@ -21,7 +21,7 @@ public class CreditRankAdapter extends CommonAdapter<CreditRankBean.DataBean.Cre
     protected void convert(ViewHolder holder, CreditRankBean.DataBean.CreditInfoListBean creditRankBean, int position) {
         holder.setText(R.id.tv_credit_rank_num_item, creditRankBean.getRank());
         holder.setText(R.id.tv_name_credit_rank_item, creditRankBean.getName());
-        SpannableString score = new SpannableString(creditRankBean.getScore()+"分");
+        SpannableString score = new SpannableString(creditRankBean.getScore() + "分");
         score.setSpan(new AbsoluteSizeSpan(40), 0, score.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         score.setSpan(new AbsoluteSizeSpan(28), score.length() - 1, score.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         TextView tv_score_credit_rank_item = holder.getView(R.id.tv_score_credit_rank_item);

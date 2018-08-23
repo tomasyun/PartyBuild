@@ -33,14 +33,14 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     RadioGroup rg_exam;
     @BindView(R.id.rv_exam)
     RecyclerView rv_exam;
-    private ExamOnAdapter onAdapter;
-    private ExamOkAdapter okAdapter;
-    private int position = 0;
-    private MainActivity activity;
     @BindView(R.id.exam_empty_data)
     View exam_empty_data;
     @BindView(R.id.exam_net_error)
     View exam_net_error;
+    private ExamOnAdapter onAdapter;
+    private ExamOkAdapter okAdapter;
+    private int position = 0;
+    private MainActivity activity;
 
     @Override
     public void onAttach(Activity context) {
