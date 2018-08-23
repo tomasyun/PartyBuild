@@ -15,12 +15,11 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class OnlineExamPresenter extends BaseMvpPresenter<OnlineExamView> {
-    Activity activity = AppManager.getManager().findActivity(OnlineExamActivity.class);
     //获取试卷试题
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(activity)
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
                     .setCancelable(true)
                     .setCancelOutside(true)
                     .setMessage("获取中..")

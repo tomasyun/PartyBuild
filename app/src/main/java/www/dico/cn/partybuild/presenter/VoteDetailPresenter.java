@@ -15,12 +15,11 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class VoteDetailPresenter extends BaseMvpPresenter<VoteDetailView> {
-    Activity activity = AppManager.getManager().findActivity(VoteDetailActivity.class);
     //投票详情
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(activity)
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
                     .setCancelable(true)
                     .setCancelOutside(true)
                     .setMessage("加载中..")

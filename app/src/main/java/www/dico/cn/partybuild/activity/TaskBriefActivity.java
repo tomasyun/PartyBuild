@@ -82,6 +82,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
                 String content = briefBean.getData().getContent();
                 if (null != content && !content.equals("")) {
                     tv_content_task.setVisibility(View.VISIBLE);
+                    tv_content_task.setMaxLines(5);
                     tv_content_task.setText("\u3000\u3000" + briefBean.getData().getContent());
                 }
                 final List<TaskBriefBean.DataBean.CourseListBean> beans = briefBean.getData().getCourseList();

@@ -16,11 +16,10 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class OrgActBriefPresenter extends BaseMvpPresenter<OrgActBriefView> {
     //组织活动摘要
-    Activity activity = AppManager.getManager().findActivity(OrgActBriefActivity.class);
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(activity)
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
                     .setCancelable(true)
                     .setCancelOutside(true)
                     .setMessage("加载中..")

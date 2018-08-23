@@ -2,6 +2,8 @@ package www.dico.cn.partybuild.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,7 +21,7 @@ import www.dico.cn.partybuild.modleview.CourseInfoView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.CourseInfoPresenter;
-import www.dico.cn.partybuild.utils.StringUtils;
+import www.dico.cn.partybuild.widget.HtmlImageGetter;
 
 @CreatePresenter(CourseInfoPresenter.class)
 public class CourseInfoActivity extends AbstractMvpActivity<CourseInfoView, CourseInfoPresenter> implements CourseInfoView {
@@ -71,7 +73,9 @@ public class CourseInfoActivity extends AbstractMvpActivity<CourseInfoView, Cour
         if (bean.code.equals("0000")) {
             if (bean.getData() != null) {
                 tv_title_course_info.setText(bean.getData().getTitle());
-                tv_content_course_info.setText(StringUtils.delHtmlTag(bean.getData().getContext()));
+                HtmlImageGetter imageGetter = new HtmlImageGetter(this, tv_content_course_info);
+                Spanned spanned = Html.fromHtml(bean.getData().getContext(), imageGetter, null);
+                tv_content_course_info.setText(spanned);
             }
         } else {
             showToast(bean.msg);
