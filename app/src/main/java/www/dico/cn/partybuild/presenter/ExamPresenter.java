@@ -4,6 +4,7 @@ import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.modleview.ExamView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -17,7 +18,7 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(MainActivity.class))
                     .setCancelable(true)
                     .setCancelOutside(true)
                     .setMessage("获取中..")
