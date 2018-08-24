@@ -60,7 +60,7 @@ public class FeedbackActivity extends AbstractMvpActivity<FeedbackView, Feedback
                         }
                     }).show();
         } else {
-            showToast(protocol.msg);
+            showToast("服务器异常");
         }
     }
 

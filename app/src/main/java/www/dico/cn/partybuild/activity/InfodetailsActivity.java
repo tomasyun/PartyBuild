@@ -154,7 +154,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                 }
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 
@@ -171,7 +171,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
             getMvpPresenter().infoDetailsRequest(form.infoId);
             sv_info_detail.scrollTo(0, lin_info_detail.getMeasuredHeight() - sv_info_detail.getHeight());
         } else {
-            showToast(protocol.msg);
+            showToast("服务器异常");
         }
     }
 

@@ -8,9 +8,6 @@ import android.view.View;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
@@ -35,8 +32,6 @@ public class CollectActivity extends AbstractMvpActivity<CollectView, CollectPre
         ButterKnife.bind(this);
         //getMvpPresenter().collectsRequest("");
         rv_collect.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new CollectListAdapter(this, R.layout.item_collect, collects());
-        rv_collect.setAdapter(adapter);
     }
 
     public void goBackCollect(View view) {
@@ -48,19 +43,13 @@ public class CollectActivity extends AbstractMvpActivity<CollectView, CollectPre
         CollectListBean bean = new Gson().fromJson(result, CollectListBean.class);
         if (bean.code.equals("0000")) {
 
+        } else {
+            showToast("服务器异常");
         }
     }
 
     @Override
     public void resultFailure(String result) {
         showToast(result);
-    }
-
-    public List<CollectListBean> collects() {
-        List<CollectListBean> list = new ArrayList<>();
-        CollectListBean bean = new CollectListBean();
-        bean.setContent("习近平出席金砖国家领导人第十次会晤并发表重要讲话");
-        list.add(bean);
-        return list;
     }
 }

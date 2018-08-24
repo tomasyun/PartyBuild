@@ -120,7 +120,7 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
                 }
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 

@@ -71,7 +71,7 @@ public class BaseInfoActivity extends AbstractMvpActivity<BaseInfoView, BaseInfo
                 tv_user_brief.setText(bean.getData().getBrief());
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 

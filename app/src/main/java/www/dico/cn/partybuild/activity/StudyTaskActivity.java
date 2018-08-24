@@ -77,7 +77,7 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
                 }
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 

@@ -236,7 +236,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                 }
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 
@@ -257,7 +257,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
             tv_submit_vote_detail.setClickable(false);
             getMvpPresenter().doVoteDetailRequest(form.voteId);
         } else {
-            showToast(protocol.msg);
+            showToast("服务器异常");
         }
     }
 

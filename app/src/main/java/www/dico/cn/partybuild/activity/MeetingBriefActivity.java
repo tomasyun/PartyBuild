@@ -283,7 +283,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                 }
             }
         } else {
-            showToast(briefBean.msg);
+            showToast("服务器异常");
         }
     }
 

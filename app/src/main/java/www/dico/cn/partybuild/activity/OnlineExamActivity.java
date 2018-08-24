@@ -127,6 +127,8 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
                 mHandler.sendEmptyMessage(0);
                 examStartTime = DateTimeUtils.getNow();
             }
+        } else {
+            showToast("服务器异常");
         }
     }
 
@@ -151,7 +153,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
                 this.finish();
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 

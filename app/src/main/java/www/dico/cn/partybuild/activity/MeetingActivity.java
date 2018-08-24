@@ -77,7 +77,7 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
                 meeting_net_error.setVisibility(View.GONE);
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
 
     }

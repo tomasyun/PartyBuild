@@ -113,7 +113,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
                 }
             }
         } else {
-            showToast(briefBean.msg);
+            showToast("服务器异常");
         }
     }
 

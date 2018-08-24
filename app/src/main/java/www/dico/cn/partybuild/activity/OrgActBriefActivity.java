@@ -157,7 +157,7 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
 //                }
             }
         } else {
-            showToast(briefBean.msg);
+            showToast("服务器异常");
         }
     }
 
@@ -174,7 +174,7 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
             form.skipType = "1";
             goTo(SignUpSuccessActivity.class, form);
         } else {
-            showToast(protocol.msg);
+            showToast("服务器异常");
         }
     }
 

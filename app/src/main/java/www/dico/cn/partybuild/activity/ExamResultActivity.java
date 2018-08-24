@@ -98,7 +98,7 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
                 //空白页面
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 

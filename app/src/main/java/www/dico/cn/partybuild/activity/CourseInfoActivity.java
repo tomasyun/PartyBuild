@@ -78,7 +78,7 @@ public class CourseInfoActivity extends AbstractMvpActivity<CourseInfoView, Cour
                 tv_content_course_info.setText(spanned);
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 
@@ -93,7 +93,7 @@ public class CourseInfoActivity extends AbstractMvpActivity<CourseInfoView, Cour
         if (protocol.code.equals("0000")) {
             this.finish();
         } else {
-            showToast(protocol.msg);
+            showToast("服务器异常");
             this.finish();
         }
     }

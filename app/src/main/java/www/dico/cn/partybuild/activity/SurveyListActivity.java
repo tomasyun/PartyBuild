@@ -77,7 +77,7 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
                 }
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 

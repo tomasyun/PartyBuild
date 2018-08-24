@@ -77,7 +77,7 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
                 org_act_net_error.setVisibility(View.GONE);
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 

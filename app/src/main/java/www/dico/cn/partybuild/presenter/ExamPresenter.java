@@ -5,7 +5,6 @@ import android.app.Dialog;
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.MainActivity;
-import www.dico.cn.partybuild.activity.MeetingActivity;
 import www.dico.cn.partybuild.modleview.ExamView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -30,6 +29,7 @@ public class ExamPresenter extends BaseMvpPresenter<ExamView> {
         };
         return dialog;
     }
+
     public void examsOnRequest(String type) {
         EasyHttp.post("examList")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))

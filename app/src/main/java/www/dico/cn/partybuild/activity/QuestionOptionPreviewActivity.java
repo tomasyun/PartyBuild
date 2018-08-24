@@ -104,7 +104,7 @@ public class QuestionOptionPreviewActivity extends AbstractMvpActivity<QuestionO
                 }
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 

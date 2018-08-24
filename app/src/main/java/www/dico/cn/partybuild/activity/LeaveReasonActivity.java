@@ -63,7 +63,7 @@ public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, Le
         if (protocol.code.equals("0000")) {
             goTo(LeaveSuccessActivity.class, null);
         } else {
-            showToast(protocol.msg);
+            showToast("服务器异常");
         }
     }
 

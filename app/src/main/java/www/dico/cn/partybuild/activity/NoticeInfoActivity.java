@@ -148,7 +148,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                 }
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 
@@ -165,7 +165,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
             getMvpPresenter().doNoticeInfoRequest(form.noticeId);
             sv_notice_info.scrollTo(0, lin_notice_info.getMeasuredHeight() - sv_notice_info.getHeight());
         } else {
-            showToast(protocol.msg);
+            showToast("服务器异常");
         }
     }
 

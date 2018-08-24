@@ -5,7 +5,6 @@ import android.app.Dialog;
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.MainActivity;
-import www.dico.cn.partybuild.activity.MeetingActivity;
 import www.dico.cn.partybuild.modleview.InfoView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;

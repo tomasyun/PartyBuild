@@ -73,7 +73,7 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
                 vote_net_error.setVisibility(View.GONE);
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 

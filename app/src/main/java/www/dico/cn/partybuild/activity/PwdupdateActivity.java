@@ -62,7 +62,7 @@ public class PwdupdateActivity extends AbstractMvpActivity<PwdupdateView, Pwdupd
         if (protocol.code.equals("0000")) {
             showToast(protocol.msg);
         } else {
-            showToast(protocol.msg);
+            showToast("服务器异常");
         }
     }
 

@@ -95,7 +95,7 @@ public class OnlineSurveyActivity extends AbstractMvpActivity<OnlineSurveyView, 
                 //空白
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 
@@ -110,7 +110,7 @@ public class OnlineSurveyActivity extends AbstractMvpActivity<OnlineSurveyView, 
         if (protocol.code.equals("0000")) {
             this.finish();
         } else {
-            showToast(protocol.msg);
+            showToast("服务器异常");
         }
     }
 

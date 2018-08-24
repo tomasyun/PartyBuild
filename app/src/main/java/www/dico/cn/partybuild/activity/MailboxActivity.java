@@ -75,7 +75,7 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
                         }
                     }).show();
         } else {
-            showToast(protocol.msg);
+            showToast("服务器异常");
         }
     }
 
@@ -111,7 +111,7 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
                 }
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 

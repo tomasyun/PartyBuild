@@ -109,7 +109,7 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
                 }
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 

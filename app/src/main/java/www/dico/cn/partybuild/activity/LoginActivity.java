@@ -72,7 +72,7 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
                 finish();
             }
         } else {
-            showToast(bean.getMsg());
+            showToast("服务器异常");
         }
     }
 

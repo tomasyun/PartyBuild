@@ -68,7 +68,7 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
                 }
             }
         } else {
-            showToast(bean.msg);
+            showToast("服务器异常");
         }
     }
 
