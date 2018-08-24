@@ -17,6 +17,8 @@
         android:text="党委书记初选投票"
         android:textColor="@color/text_color"
         android:textSize="14sp"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:textStyle="bold" />
 
     <RelativeLayout

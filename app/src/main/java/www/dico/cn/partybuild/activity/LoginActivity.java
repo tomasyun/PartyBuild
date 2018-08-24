@@ -67,6 +67,7 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
                 AppConfig.getSpUtils().put("userId", userId);
                 AppConfig.getSpUtils().put("avatar", avatar);
                 AppConfig.getSpUtils().put("isManager", isManager);
+                AppConfig.getSpUtils().put("isLoginOk",1);
                 goTo(MainActivity.class, null);
                 finish();
             }

@@ -27,6 +27,15 @@ public class MeetBriefBean extends BaseProtocol {
         private String signUpState;
         private String leaveState;
         private List<String> attender;
+        private String action;
+
+        public String getAction() {
+            return action;
+        }
+
+        public void setAction(String action) {
+            this.action = action;
+        }
 
         public String getId() {
             return id;

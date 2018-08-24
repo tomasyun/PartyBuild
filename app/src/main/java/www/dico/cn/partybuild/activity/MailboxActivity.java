@@ -20,11 +20,11 @@ import www.dico.cn.partybuild.modleview.MailboxView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.MailboxPresenter;
-import www.dico.cn.partybuild.utils.SizeUtils;
+import www.yuntdev.com.imitationiosdialoglibrary.ActionSheetDialog;
 import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;
 
 @CreatePresenter(MailboxPresenter.class)
-public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPresenter> implements MailboxView, MailboxPresenter.LeaderSelectInterface {
+public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPresenter> implements MailboxView {
     @BindView(R.id.tv_name_mail_box)
     TextView tv_name_mail_box;
     @BindView(R.id.et_content_mail_box)
@@ -36,7 +36,6 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mailbox);
         ButterKnife.bind(this);
-        getMvpPresenter().setSelectInterface(this);
     }
 
     public void goBackMailbox(View view) {
@@ -89,11 +88,28 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
     public void getLeadersResultSuccess(String result) {
         LeaderBean bean = new Gson().fromJson(result, LeaderBean.class);
         if (bean.code.equals("0000")) {
-            List<LeaderBean.DataBean> list = bean.getData();
-            if (null != list && list.size() > 0) {
-                getMvpPresenter().setUpLeaderSelectPopupWindow(this, list).showAsDropDown(tv_name_mail_box, tv_name_mail_box.getWidth() - SizeUtils.dp2px(this, 150), SizeUtils.dp2px(this, 10));
-            } else {
-                //无数据
+            final List<LeaderBean.DataBean> list = bean.getData();
+            if (null != list) {
+//                getMvpPresenter().setUpLeaderSelectPopupWindow(this, list).showAsDropDown(tv_name_mail_box, tv_name_mail_box.getWidth() - SizeUtils.dp2px(this, 150), SizeUtils.dp2px(this, 10));
+                ActionSheetDialog dialog = new ActionSheetDialog(this).builder()
+                        .setCancelable(false)
+                        .setCanceledOnTouchOutside(false);
+                if (list.size() > 0) {
+                    for (int i = 0; i < list.size(); i++) {
+                        final int position = i;
+                        dialog.addSheetItem(list.get(i).getPosition(), ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                tv_name_mail_box.setText(list.get(position).getPosition());
+                                leaderId = list.get(position).getId();
+                            }
+                        });
+                    }
+                    dialog.show();
+                }else {
+                    //无数据
+                    showToast("没有可选的对象");
+                }
             }
         } else {
             showToast(bean.msg);
@@ -108,11 +124,5 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
     @Override
     public void netWorkUnAvailable() {
         showToast("网络出现异常");
-    }
-
-    @Override
-    public void select(String id, String position, String name) {
-        tv_name_mail_box.setText(position + " " + name);
-        leaderId = id;
     }
 }

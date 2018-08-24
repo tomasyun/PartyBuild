@@ -117,12 +117,17 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                 }
                 tfl_participants_meeting_brief.setAdapter(adapter);
                 String conferenceState = briefBean.getData().getConferenceState();
+                conferenceState = (conferenceState == null) ? "" : briefBean.getData().getConferenceState();
+                String action = briefBean.getData().getAction();
+                action = (action == null) ? "" : briefBean.getData().getAction();
                 String signUpState = briefBean.getData().getSignUpState();
+                signUpState = (signUpState == null) ? "" : briefBean.getData().getSignUpState();
                 String leaveState = briefBean.getData().getLeaveState();
+                leaveState = (leaveState == null) ? "" : briefBean.getData().getLeaveState();
                 switch (conferenceState) {
                     case "0"://会议未开始
-                        if (signUpState.equals("0")) {//未报名
-                            if (leaveState.equals("0")) {//未请假
+                        switch (action) {
+                            case "Q"://未到请假和报名时间
                                 lin_leave_and_sign_up.setVisibility(View.VISIBLE);
                                 sign_up.setVisibility(View.GONE);
                                 TextView tv_leave_brief = lin_leave_and_sign_up.findViewById(R.id.tv_leave_brief);
@@ -130,56 +135,136 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                                 tv_leave_brief.setOnClickListener(new View.OnClickListener() {//开始请假
                                     @Override
                                     public void onClick(View view) {
-                                        getMvpPresenter().doLeaveRequest(form.meetingId);
+                                        showToast("当前不能请假");
                                     }
                                 });
                                 tv_sign_up_brief.setOnClickListener(new View.OnClickListener() {//开始报名
                                     @Override
                                     public void onClick(View view) {
-                                        getMvpPresenter().doSignUpRequest(form.meetingId);
+                                        showToast("报名时间未到");
                                     }
                                 });
-                            } else {//已请假
-                                lin_leave_and_sign_up.setVisibility(View.GONE);
-                                sign_up.setVisibility(View.VISIBLE);
-                                TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
-                                tv_sign_up.setText("已请假");
-                                tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                                tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-                            }
-                        } else {//已报名
-                            lin_leave_and_sign_up.setVisibility(View.GONE);
-                            sign_up.setVisibility(View.VISIBLE);
-                            TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
-                            tv_sign_up.setText("已报名");
-                            tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                            tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                                break;
+                            case "O"://可以请假也可以报名
+                                if (signUpState.equals("0")) {//未报名
+                                    if (leaveState.equals("0")) {//未请假
+                                        lin_leave_and_sign_up.setVisibility(View.VISIBLE);
+                                        sign_up.setVisibility(View.GONE);
+                                        TextView tv_leave_brief1 = lin_leave_and_sign_up.findViewById(R.id.tv_leave_brief);
+                                        TextView tv_sign_up_brief1 = lin_leave_and_sign_up.findViewById(R.id.tv_sign_up_brief);
+                                        tv_leave_brief1.setOnClickListener(new View.OnClickListener() {//开始请假
+                                            @Override
+                                            public void onClick(View view) {
+                                                getMvpPresenter().doLeaveRequest(form.meetingId);
+                                            }
+                                        });
+                                        tv_sign_up_brief1.setOnClickListener(new View.OnClickListener() {//开始报名
+                                            @Override
+                                            public void onClick(View view) {
+                                                getMvpPresenter().doSignUpRequest(form.meetingId);
+                                            }
+                                        });
+                                    } else {//已请假
+                                        lin_leave_and_sign_up.setVisibility(View.GONE);
+                                        sign_up.setVisibility(View.VISIBLE);
+                                        TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
+                                        tv_sign_up.setText("已请假");
+                                        tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                                        tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                                    }
+                                } else {//已报名
+                                    lin_leave_and_sign_up.setVisibility(View.GONE);
+                                    sign_up.setVisibility(View.VISIBLE);
+                                    TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
+                                    tv_sign_up.setText("已报名");
+                                    tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                                    tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                                }
+                                break;
+                            case "H"://报名和请假时间已过
+                                lin_leave_and_sign_up.setVisibility(View.VISIBLE);
+                                sign_up.setVisibility(View.GONE);
+                                TextView tv_leave_brief2 = lin_leave_and_sign_up.findViewById(R.id.tv_leave_brief);
+                                TextView tv_sign_up_brief2 = lin_leave_and_sign_up.findViewById(R.id.tv_sign_up_brief);
+                                tv_leave_brief2.setOnClickListener(new View.OnClickListener() {//开始请假
+                                    @Override
+                                    public void onClick(View view) {
+                                        showToast("当前不能请假");
+                                    }
+                                });
+                                tv_sign_up_brief2.setOnClickListener(new View.OnClickListener() {//开始报名
+                                    @Override
+                                    public void onClick(View view) {
+                                        showToast("报名时间已结束");
+                                    }
+                                });
+                                break;
                         }
                         break;
                     case "1"://会议进行中
-                        if (signUpState.equals("0")) {//未报名
-                            if (leaveState.equals("0")) {//未请假
-                                lin_leave_and_sign_up.setVisibility(View.GONE);
-                                sign_up.setVisibility(View.VISIBLE);
-                                TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
-                                tv_sign_up.setText("会议进行中");
-                                tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                                tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-                            } else {//已请假
-                                lin_leave_and_sign_up.setVisibility(View.GONE);
-                                sign_up.setVisibility(View.VISIBLE);
-                                TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
-                                tv_sign_up.setText("已请假");
-                                tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                                tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-                            }
-                        } else {//已报名
-                            lin_leave_and_sign_up.setVisibility(View.GONE);
-                            sign_up.setVisibility(View.VISIBLE);
-                            TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
-                            tv_sign_up.setText("已报名");
-                            tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                            tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                        switch (action) {
+                            case "Q"://未到请假和报名时间
+                                lin_leave_and_sign_up.setVisibility(View.VISIBLE);
+                                sign_up.setVisibility(View.GONE);
+                                TextView tv_leave_brief = lin_leave_and_sign_up.findViewById(R.id.tv_leave_brief);
+                                TextView tv_sign_up_brief = lin_leave_and_sign_up.findViewById(R.id.tv_sign_up_brief);
+                                tv_leave_brief.setOnClickListener(new View.OnClickListener() {//开始请假
+                                    @Override
+                                    public void onClick(View view) {
+                                        showToast("当前不能请假");
+                                    }
+                                });
+                                tv_sign_up_brief.setOnClickListener(new View.OnClickListener() {//开始报名
+                                    @Override
+                                    public void onClick(View view) {
+                                        showToast("报名时间未到");
+                                    }
+                                });
+                                break;
+                            case "O"://可以请假也可以报名
+                                if (signUpState.equals("0")) {//未报名
+                                    if (leaveState.equals("0")) {//未请假
+                                        lin_leave_and_sign_up.setVisibility(View.GONE);
+                                        sign_up.setVisibility(View.VISIBLE);
+                                        TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
+                                        tv_sign_up.setText("会议进行中");
+                                        tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                                        tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                                    } else {//已请假
+                                        lin_leave_and_sign_up.setVisibility(View.GONE);
+                                        sign_up.setVisibility(View.VISIBLE);
+                                        TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
+                                        tv_sign_up.setText("已请假");
+                                        tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                                        tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                                    }
+                                } else {//已报名
+                                    lin_leave_and_sign_up.setVisibility(View.GONE);
+                                    sign_up.setVisibility(View.VISIBLE);
+                                    TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
+                                    tv_sign_up.setText("已报名");
+                                    tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                                    tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
+                                }
+                                break;
+                            case "H"://报名和请假时间已过
+                                lin_leave_and_sign_up.setVisibility(View.VISIBLE);
+                                sign_up.setVisibility(View.GONE);
+                                TextView tv_leave_brief1 = lin_leave_and_sign_up.findViewById(R.id.tv_leave_brief);
+                                TextView tv_sign_up_brief1 = lin_leave_and_sign_up.findViewById(R.id.tv_sign_up_brief);
+                                tv_leave_brief1.setOnClickListener(new View.OnClickListener() {//开始请假
+                                    @Override
+                                    public void onClick(View view) {
+                                        showToast("当前不能请假");
+                                    }
+                                });
+                                tv_sign_up_brief1.setOnClickListener(new View.OnClickListener() {//开始报名
+                                    @Override
+                                    public void onClick(View view) {
+                                        showToast("报名时间已结束");
+                                    }
+                                });
+                                break;
                         }
                         break;
                     case "2"://会议已结束

@@ -86,7 +86,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_weight="8"
-                            android:text="聚焦两会，关注民生"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -118,7 +118,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_weight="8"
-                            android:text="2018-7-28 12:00"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -154,7 +154,7 @@
                             android:letterSpacing="0.08"
                             android:lineSpacingExtra="8dp"
                             android:maxLines="2"
-                            android:text="陕西缔科网络科技有限公司丈八一路 汇鑫IBC 1501室"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -186,7 +186,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_weight="8"
-                            android:text="景召盼"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -218,7 +218,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_weight="8"
-                            android:text="党小组会议"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -339,18 +339,18 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="150dp" />
+                    android:layout_height="50dp" />
             </LinearLayout>
 
         </ScrollView>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
-            <include
-                android:id="@+id/sign_up_orgact_brief"
-                layout="@layout/include_sign_up" />
-        </RelativeLayout>
+            <!--<include-->
+                <!--android:id="@+id/sign_up_orgact_brief"-->
+                <!--layout="@layout/include_sign_up" />-->
+        <!--</RelativeLayout>-->
     </FrameLayout>
 </LinearLayout>

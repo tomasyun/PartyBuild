@@ -9,6 +9,7 @@ import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.MailboxListActivity;
 import www.dico.cn.partybuild.bean.MailboxListBean;
+import www.dico.cn.partybuild.utils.DateTimeUtils;
 import www.dico.cn.partybuild.utils.GlideUtils;
 import www.yuntdev.com.baseadapterlibrary.base.CommonAdapter;
 import www.yuntdev.com.baseadapterlibrary.base.ViewHolder;
@@ -23,7 +24,10 @@ public class MailboxListAdapter extends CommonAdapter<MailboxListBean.DataBean> 
     protected void convert(ViewHolder holder, MailboxListBean.DataBean mailboxListBean, int position) {
         GlideUtils.loadCircleImage(AppManager.getManager().findActivity(MailboxListActivity.class), mailboxListBean.getAvatar(), (ImageView) holder.getView(R.id.iv_avatar_mailbox_item));
         holder.setText(R.id.tv_name_mailbox_item, mailboxListBean.getName());
-        holder.setText(R.id.tv_date_mailbox_item, mailboxListBean.getSubmitDate());
+        String submitDate = mailboxListBean.getSubmitDate();
+        submitDate = (submitDate == null) ? DateTimeUtils.getNow() : mailboxListBean.getSubmitDate();
+        String minutes = DateTimeUtils.getMinutes(submitDate, DateTimeUtils.getNow());
+        holder.setText(R.id.tv_date_mailbox_item, minutes + "分钟前");
         holder.setText(R.id.tv_content_mailbox_item, mailboxListBean.getContent());
     }
 }
