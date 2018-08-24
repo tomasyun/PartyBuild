@@ -14,11 +14,11 @@
         android:id="@+id/tv_title_vote_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:text="党委书记初选投票"
         android:textColor="@color/text_color"
         android:textSize="14sp"
-        android:maxLines="2"
-        android:ellipsize="end"
         android:textStyle="bold" />
 
     <RelativeLayout

@@ -4,6 +4,7 @@ import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.activity.SurveyListActivity;
 import www.dico.cn.partybuild.modleview.SurveyListView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -14,22 +15,25 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class SurveyListPresenter extends BaseMvpPresenter<SurveyListView> {
     //问卷调查
-    IProgressDialog dialog = new IProgressDialog() {
-        @Override
-        public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                    .setCancelable(true)
-                    .setCancelOutside(true)
-                    .setMessage("获取中..")
-                    .setShowMessage(true);
-            return builder.create();
-        }
-    };
+    public IProgressDialog getDialog() {
+        IProgressDialog dialog = new IProgressDialog() {
+            @Override
+            public Dialog getDialog() {
+                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(SurveyListActivity.class))
+                        .setCancelable(true)
+                        .setCancelOutside(true)
+                        .setMessage("获取中..")
+                        .setShowMessage(true);
+                return builder.create();
+            }
+        };
+        return dialog;
+    }
 
     public void doQuestionSurveyRequest() {
         EasyHttp.post("questionSurveyList")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
-                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
                     @Override
                     public void onSuccess(String result) {
                         getMvpView().resultSuccess(result);

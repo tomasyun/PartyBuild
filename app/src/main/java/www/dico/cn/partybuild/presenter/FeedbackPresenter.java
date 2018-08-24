@@ -4,6 +4,7 @@ import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.activity.FeedbackActivity;
 import www.dico.cn.partybuild.modleview.FeedbackView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -13,23 +14,26 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class FeedbackPresenter extends BaseMvpPresenter<FeedbackView> {
-    IProgressDialog dialog = new IProgressDialog() {
-        @Override
-        public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                    .setCancelable(true)
-                    .setCancelOutside(true)
-                    .setMessage("提交中..")
-                    .setShowMessage(true);
-            return builder.create();
-        }
-    };
+    public IProgressDialog getDialog() {
+        IProgressDialog dialog = new IProgressDialog() {
+            @Override
+            public Dialog getDialog() {
+                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(FeedbackActivity.class))
+                        .setCancelable(true)
+                        .setCancelOutside(true)
+                        .setMessage("获取中..")
+                        .setShowMessage(true);
+                return builder.create();
+            }
+        };
+        return dialog;
+    }
 
     public void feedBackSubmit(String content) {
         EasyHttp.post("suggestFeedback")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("content", content)
-                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
                     @Override
                     public void onSuccess(String result) {
                         getMvpView().resultSuccess(result);

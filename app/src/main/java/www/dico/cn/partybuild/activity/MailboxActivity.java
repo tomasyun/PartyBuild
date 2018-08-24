@@ -90,7 +90,6 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
         if (bean.code.equals("0000")) {
             final List<LeaderBean.DataBean> list = bean.getData();
             if (null != list) {
-//                getMvpPresenter().setUpLeaderSelectPopupWindow(this, list).showAsDropDown(tv_name_mail_box, tv_name_mail_box.getWidth() - SizeUtils.dp2px(this, 150), SizeUtils.dp2px(this, 10));
                 ActionSheetDialog dialog = new ActionSheetDialog(this).builder()
                         .setCancelable(false)
                         .setCanceledOnTouchOutside(false);
@@ -106,7 +105,7 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
                         });
                     }
                     dialog.show();
-                }else {
+                } else {
                     //无数据
                     showToast("没有可选的对象");
                 }

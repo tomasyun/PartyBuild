@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.activity.LoginActivity;
 import www.dico.cn.partybuild.modleview.LoginView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -17,17 +18,20 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class LoginPresenter extends BaseMvpPresenter<LoginView> {
-    IProgressDialog dialog = new IProgressDialog() {
-        @Override
-        public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                    .setCancelable(true)
-                    .setCancelOutside(true)
-                    .setMessage("登录中..")
-                    .setShowMessage(true);
-            return builder.create();
-        }
-    };
+    public IProgressDialog getDialog() {
+        IProgressDialog dialog = new IProgressDialog() {
+            @Override
+            public Dialog getDialog() {
+                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(LoginActivity.class))
+                        .setCancelable(true)
+                        .setCancelOutside(true)
+                        .setMessage("获取中..")
+                        .setShowMessage(true);
+                return builder.create();
+            }
+        };
+        return dialog;
+    }
 
     public void clickRequest(String name, String password) {
         Map<String, String> map = new HashMap<>();
@@ -36,7 +40,7 @@ public class LoginPresenter extends BaseMvpPresenter<LoginView> {
         String params = new Gson().toJson(map);
         EasyHttp.post("auth/mobileLogin")
                 .upJson(params)
-                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
+                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
                     @Override
                     public void onSuccess(String result) {
                         getMvpView().resultSuccess(result);

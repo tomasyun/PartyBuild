@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.leo618.mpermission.AfterPermissionGranted;
@@ -20,7 +19,7 @@ import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
 
 //启动页
-public class SplashActivity extends AppCompatActivity implements MPermission.PermissionCallbacks {
+public class SplashActivity extends BaseActivity implements MPermission.PermissionCallbacks {
     private static final int PERMISSION = 123;
     Handler mHandler = new Handler() {
         @Override

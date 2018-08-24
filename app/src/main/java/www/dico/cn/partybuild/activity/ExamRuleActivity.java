@@ -78,8 +78,8 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
         ExamRuleBean bean = new Gson().fromJson(result, ExamRuleBean.class);
         if (bean.code.equals("0000")) {
             if (null != bean.getData()) {
-                NumberFormat nf =  new DecimalFormat("#");
-                tv_total_score.setText( nf.format(Double.valueOf(bean.getData().getTotalScore()))+ "分");
+                NumberFormat nf = new DecimalFormat("#");
+                tv_total_score.setText(nf.format(Double.valueOf(bean.getData().getTotalScore())) + "分");
                 tv_standard_score.setText(nf.format(Double.valueOf(bean.getData().getLimitScore())) + "分");
                 tv_question_total_num.setText(bean.getData().getQuestionNum() + "道题");
                 tv_exam_during.setText(bean.getData().getExamHours() + "分钟");

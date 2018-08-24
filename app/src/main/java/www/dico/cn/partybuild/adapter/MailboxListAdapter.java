@@ -26,8 +26,14 @@ public class MailboxListAdapter extends CommonAdapter<MailboxListBean.DataBean> 
         holder.setText(R.id.tv_name_mailbox_item, mailboxListBean.getName());
         String submitDate = mailboxListBean.getSubmitDate();
         submitDate = (submitDate == null) ? DateTimeUtils.getNow() : mailboxListBean.getSubmitDate();
-        String minutes = DateTimeUtils.getMinutes(submitDate, DateTimeUtils.getNow());
-        holder.setText(R.id.tv_date_mailbox_item, minutes + "分钟前");
+        int minutes = Integer.valueOf(DateTimeUtils.getMinutes(submitDate, DateTimeUtils.getNow()));
+        if (minutes < 60) {
+            holder.setText(R.id.tv_date_mailbox_item, minutes + "分钟前");
+        } else if (minutes > 60 && minutes <= 60 * 24) {
+            holder.setText(R.id.tv_date_mailbox_item, minutes / 60 + "小时前");
+        } else {
+            holder.setText(R.id.tv_date_mailbox_item, minutes / (60 * 24) + "天前");
+        }
         holder.setText(R.id.tv_content_mailbox_item, mailboxListBean.getContent());
     }
 }

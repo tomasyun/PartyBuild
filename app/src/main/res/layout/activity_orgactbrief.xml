@@ -303,8 +303,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:contentDescription="@null"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/img_arrow_right" />
+                        android:scaleType="fitXY" />
                 </RelativeLayout>
 
                 <View
@@ -345,12 +344,12 @@
         </ScrollView>
 
         <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
-            <!--<include-->
-                <!--android:id="@+id/sign_up_orgact_brief"-->
-                <!--layout="@layout/include_sign_up" />-->
+        <!--<include-->
+        <!--android:id="@+id/sign_up_orgact_brief"-->
+        <!--layout="@layout/include_sign_up" />-->
         <!--</RelativeLayout>-->
     </FrameLayout>
 </LinearLayout>

@@ -1,6 +1,5 @@
 package www.dico.cn.partybuild.presenter;
 
-import android.app.Activity;
 import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
@@ -15,11 +14,10 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class SignInPresenter extends BaseMvpPresenter<SignInView> {
-    Activity activity = AppManager.getManager().findActivity(MainActivity.class);
     IProgressDialog dialog = new IProgressDialog() {
         @Override
         public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(activity)
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(MainActivity.class))
                     .setCancelable(true)
                     .setCancelOutside(true)
                     .setMessage("获取中..")

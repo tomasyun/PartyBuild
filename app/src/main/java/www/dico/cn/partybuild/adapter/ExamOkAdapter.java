@@ -20,7 +20,7 @@ public class ExamOkAdapter extends CommonAdapter<ExamsBean.DataBean> {
     protected void convert(ViewHolder holder, ExamsBean.DataBean bean, int position) {
         holder.setText(R.id.tv_title_exam_ok_item, bean.getTitle());
         holder.setText(R.id.tv_date_exam_ok_item, bean.getEndDate());
-        NumberFormat nf =  new DecimalFormat("#");
-        holder.setText(R.id.tv_exam_ok_score, nf.format(Double.valueOf(bean.getExamScore()))+"分");
+        NumberFormat nf = new DecimalFormat("#");
+        holder.setText(R.id.tv_exam_ok_score, nf.format(Double.valueOf(bean.getExamScore())) + "分");
     }
 }

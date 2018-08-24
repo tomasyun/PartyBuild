@@ -166,6 +166,11 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
     }
 
     @Override
+    public void netWorkUnAvailable() {
+        showToast("网络出现异常");
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.lin_meeting_home://三会一课

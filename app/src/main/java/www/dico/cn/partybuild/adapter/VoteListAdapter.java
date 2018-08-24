@@ -17,7 +17,7 @@ public class VoteListAdapter extends CommonAdapter<VoteListBean.DataBean> {
     @Override
     protected void convert(ViewHolder holder, VoteListBean.DataBean bean, int position) {
         holder.setText(R.id.tv_title_vote_item, bean.getTitle());
-        holder.setText(R.id.tv_date_vote_item,bean.getLimitDate());
-        holder.setText(R.id.tv_population_vote_item,bean.getVoterNum());
+        holder.setText(R.id.tv_date_vote_item, bean.getLimitDate());
+        holder.setText(R.id.tv_population_vote_item, bean.getVoterNum());
     }
 }

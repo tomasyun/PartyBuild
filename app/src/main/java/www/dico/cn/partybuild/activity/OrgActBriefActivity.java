@@ -1,6 +1,5 @@
 package www.dico.cn.partybuild.activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -50,7 +49,7 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
     TagFlowLayout tfl_orgact_brief_participants;
     @BindView(R.id.rel_orgact_brief_participants)
     RelativeLayout rel_orgact_brief_participants;
-//    @BindView(R.id.sign_up_orgact_brief)
+    //    @BindView(R.id.sign_up_orgact_brief)
 //    View sign_up_orgact_brief;
     private OrgActForm form;
     private boolean isHide = true;
