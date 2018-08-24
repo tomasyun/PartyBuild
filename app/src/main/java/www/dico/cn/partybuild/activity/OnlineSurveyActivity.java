@@ -122,6 +122,7 @@ public class OnlineSurveyActivity extends AbstractMvpActivity<OnlineSurveyView, 
 
     @Override
     public void nextStep(String tqId, String serial, String answer) {
+        vp_online_survey.setCurrentItem(vp_online_survey.getCurrentItem() + 1, true);
         SurveyAnswerBean.AnswersBean bean = new SurveyAnswerBean.AnswersBean();
         bean.setUserId(tqId);
         bean.setAnswer(answer);

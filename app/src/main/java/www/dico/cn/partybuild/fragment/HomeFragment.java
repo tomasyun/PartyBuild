@@ -23,6 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.UpdateManager;
 import www.dico.cn.partybuild.activity.ActivityMrgActivity;
 import www.dico.cn.partybuild.activity.MailboxActivity;
 import www.dico.cn.partybuild.activity.MeetingActivity;
@@ -154,6 +155,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                     }
                 });
             }
+            new UpdateManager(getActivity()).checkUpdate(false);//版本检测
         } else {
             showToast(bean.msg);
         }

@@ -14,11 +14,14 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import www.dico.cn.partybuild.bean.VersionBean;
 import www.dico.cn.partybuild.fragment.ExamFragment;
 import www.dico.cn.partybuild.fragment.HomeFragment;
 import www.dico.cn.partybuild.fragment.InfoFragment;
@@ -78,6 +81,8 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
         controller.setupWithViewPager(vp_main);
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
         manager.registerReceiver(new SkipReceiver(), new IntentFilter("cn.diconet.www"));
+
+        getMvpPresenter().doVersionUpdateRequest();
     }
 
     public void setUp() {
@@ -141,6 +146,21 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
 
     public void setInfoListRefresh(FragmentRefreshInterface infoListRefresh) {
         this.infoListRefresh = infoListRefresh;
+    }
+
+    @Override
+    public void resultSuccess(String result) {
+        VersionBean bean = new Gson().fromJson(result, VersionBean.class);
+        if (bean.code.equals("0000")) {
+
+        } else {
+            //
+        }
+    }
+
+    @Override
+    public void resultFailure(String result) {
+        showToast(result);
     }
 
     public interface FragmentRefreshInterface {
