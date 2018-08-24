@@ -93,7 +93,9 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
         if (bean.code.equals("0000")) {
             if (bean.getData() != null) {
                 tv_info_detail_title.setText(bean.getData().getTitle());
-                tv_info_detail_source.setText(bean.getData().getPublicUnit());
+                String source=bean.getData().getPublicUnit();
+                source=(source==null)?"新华网":bean.getData().getPublicUnit();
+                tv_info_detail_source.setText(source);
                 tv_info_detail_date.setText(bean.getData().getPublishDate());
 //                tv_info_content.setText(StringUtils.delHtmlTag(bean.getData().getContent()));
                 HtmlImageGetter imageGetter = new HtmlImageGetter(this, tv_info_detail_content);

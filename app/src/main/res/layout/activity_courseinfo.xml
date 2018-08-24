@@ -31,17 +31,6 @@
             android:textSize="16sp" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_title_course_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="30dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="30dp"
-        android:text=""
-        android:textSize="16sp"
-        android:textStyle="bold" />
     <!--内容-->
     <ScrollView
         android:layout_width="match_parent"
@@ -52,8 +41,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp">
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/tv_title_course_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_content_course_info"
@@ -63,6 +59,7 @@
                 android:letterSpacing="0.08"
                 android:lineSpacingExtra="8dp"
                 android:text=""
+                android:textColor="@color/text_color"
                 android:textSize="14sp" />
 
             <View
