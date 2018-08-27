@@ -21,6 +21,9 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.MeetingPresenter;
 import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshListener;
 
 @CreatePresenter(MeetingPresenter.class)
 public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPresenter> implements MeetingView {
@@ -31,6 +34,8 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
     @BindView(R.id.meeting_net_error)
     View meeting_net_error;
     private MeetingAdapter adapter;
+    @BindView(R.id.srl_meeting)
+    SmartRefreshLayout srl_meeting;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,13 +43,20 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
         setContentView(R.layout.activity_meeting);
         ButterKnife.bind(this);
         rv_meeting.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+        srl_meeting.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                getMvpPresenter().doMeetingRequest();
+            }
+        });
         getMvpPresenter().doMeetingRequest();
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        getMvpPresenter().doMeetingRequest();
+//    }
 
     public void goBackMeeting(View view) {
         this.finish();
@@ -52,11 +64,12 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
 
     @Override
     public void resultSuccess(String result) {
+        srl_meeting.finishRefresh();
         final MeetingBean bean = new Gson().fromJson(result, MeetingBean.class);
         if (bean.code.equals("0000")) {
             List<MeetingBean.DataBean> list = bean.getData();
             if (null != list && list.size() > 0) {
-                rv_meeting.setVisibility(View.VISIBLE);
+                srl_meeting.setVisibility(View.VISIBLE);
                 meeting_empty_data.setVisibility(View.GONE);
                 meeting_net_error.setVisibility(View.GONE);
                 adapter = new MeetingAdapter(this, R.layout.item_meeting, bean.getData());
@@ -72,7 +85,7 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
                 });
             } else {
                 //空白页面
-                rv_meeting.setVisibility(View.GONE);
+                srl_meeting.setVisibility(View.GONE);
                 meeting_empty_data.setVisibility(View.VISIBLE);
                 meeting_net_error.setVisibility(View.GONE);
             }
@@ -84,12 +97,13 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
 
     @Override
     public void resultFailure(String result) {
+        srl_meeting.finishRefresh();
         showToast(result);
     }
 
     @Override
     public void netWorkUnAvailable() {
-        rv_meeting.setVisibility(View.GONE);
+        srl_meeting.setVisibility(View.GONE);
         meeting_empty_data.setVisibility(View.GONE);
         meeting_net_error.setVisibility(View.VISIBLE);
         meeting_net_error.setOnClickListener(new View.OnClickListener() {

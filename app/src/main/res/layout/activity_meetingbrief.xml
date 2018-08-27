@@ -289,7 +289,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_weight="8"
-                            android:text="12人"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="14sp"
                             android:textStyle="bold" />

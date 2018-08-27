@@ -271,7 +271,8 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                         lin_leave_and_sign_up.setVisibility(View.GONE);
                         sign_up.setVisibility(View.VISIBLE);
                         TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
-                        tv_sign_up.setText("查看会议记录");
+//                        tv_sign_up.setText("查看会议记录");
+                        tv_sign_up.setText("会议已结束");
                         tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
                         tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
                         tv_sign_up.setOnClickListener(new View.OnClickListener() {

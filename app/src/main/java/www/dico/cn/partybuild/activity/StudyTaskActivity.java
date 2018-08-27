@@ -21,6 +21,9 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.StudyTaskPresenter;
 import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshListener;
 
 @CreatePresenter(StudyTaskPresenter.class)
 public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyTaskPresenter> implements StudyTaskView {
@@ -31,6 +34,8 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
     @BindView(R.id.study_task_net_error)
     View study_task_net_error;
     private StudyTaskAdapter adapter;
+    @BindView(R.id.srl_study_task)
+    SmartRefreshLayout srl_study_task;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,13 +43,21 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
         setContentView(R.layout.activity_studytask);
         ButterKnife.bind(this);
         rv_study_task.setLayoutManager(new LinearLayoutManager(this));
+        srl_study_task.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                getMvpPresenter().doStudyTaskRequest();
+            }
+        });
+        getMvpPresenter().doStudyTaskRequest();
+
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getMvpPresenter().doStudyTaskRequest();
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        getMvpPresenter().doStudyTaskRequest();
+//    }
 
     public void goBackStudyTask(View view) {
         this.finish();
@@ -52,12 +65,13 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
 
     @Override
     public void resultSuccess(String result) {
+        srl_study_task.finishRefresh();
         StudyTaskBean bean = new Gson().fromJson(result, StudyTaskBean.class);
         if (bean.code.equals("0000")) {
             if (bean.getData() != null) {
                 final List<StudyTaskBean.DataBean> beans = bean.getData();
                 if (null != beans && beans.size() > 0) {
-                    rv_study_task.setVisibility(View.VISIBLE);
+                    srl_study_task.setVisibility(View.VISIBLE);
                     study_task_empty_data.setVisibility(View.GONE);
                     study_task_net_error.setVisibility(View.GONE);
                     adapter = new StudyTaskAdapter(this, R.layout.item_study_task, beans);
@@ -71,7 +85,7 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
                         }
                     });
                 } else {
-                    rv_study_task.setVisibility(View.GONE);
+                    srl_study_task.setVisibility(View.GONE);
                     study_task_empty_data.setVisibility(View.VISIBLE);
                     study_task_net_error.setVisibility(View.GONE);
                 }
@@ -83,12 +97,13 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
 
     @Override
     public void resultFailure(String result) {
+        srl_study_task.finishRefresh();
         showToast(result);
     }
 
     @Override
     public void netWorkUnAvailable() {
-        rv_study_task.setVisibility(View.GONE);
+        srl_study_task.setVisibility(View.GONE);
         study_task_empty_data.setVisibility(View.GONE);
         study_task_net_error.setVisibility(View.VISIBLE);
         study_task_net_error.setOnClickListener(new View.OnClickListener() {

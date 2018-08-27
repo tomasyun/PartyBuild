@@ -41,7 +41,7 @@ public class ExpandLongTextView extends TextView {
     }
 
     private void init() {
-        String content = "查看全文";
+        String content = "全文";
         ELLIPSIS = new SpannableString(content);
         ButtonSpan span = new ButtonSpan(getContext(), new View.OnClickListener() {
             @Override

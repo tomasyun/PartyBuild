@@ -1,8 +1,10 @@
 package www.dico.cn.partybuild.activity;
 
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +76,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
         getMvpPresenter().verifyOpenStudyResult(form.taskId);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void resultSuccess(String result) {
         TaskBriefBean briefBean = new Gson().fromJson(result, TaskBriefBean.class);

@@ -48,7 +48,7 @@ public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
                 curActivity()) - SizeUtils.dp2px(AppManager.getManager().
 
                 curActivity(), 100));
-        tv_content_notice_item.setMaxLines(2);
+        tv_content_notice_item.setMaxLines(3);
         tv_content_notice_item.setExpandText(noticeBean.getContent());
         tv_content_notice_item.setOnClickListener(new View.OnClickListener()
 
