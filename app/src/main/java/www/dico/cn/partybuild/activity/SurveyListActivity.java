@@ -21,6 +21,9 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.SurveyListPresenter;
 import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshListener;
 
 @CreatePresenter(SurveyListPresenter.class)
 public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, SurveyListPresenter> implements SurveyListView {
@@ -31,6 +34,8 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
     @BindView(R.id.survey_net_error)
     View survey_net_error;
     private QuestionSurveyAdapter adapter;
+    @BindView(R.id.srl_question_survey)
+    SmartRefreshLayout srl_question_survey;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,13 +43,20 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
         setContentView(R.layout.activity_surveylist);
         ButterKnife.bind(this);
         rv_question_survey.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+        srl_question_survey.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                getMvpPresenter().doQuestionSurveyRequest();
+            }
+        });
         getMvpPresenter().doQuestionSurveyRequest();
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        getMvpPresenter().doQuestionSurveyRequest();
+//    }
 
     public void goBackQuestionSurvey(View view) {
         this.finish();
@@ -52,12 +64,13 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
 
     @Override
     public void resultSuccess(String result) {
+        srl_question_survey.finishRefresh();
         QuestionSurveyBean bean = new Gson().fromJson(result, QuestionSurveyBean.class);
         if (bean.code.equals("0000")) {
             if (null != bean.getData()) {
                 final List<QuestionSurveyBean.DataBean> beans = bean.getData();
                 if (null != beans && beans.size() > 0) {
-                    rv_question_survey.setVisibility(View.VISIBLE);
+                    srl_question_survey.setVisibility(View.VISIBLE);
                     survey_empty_data.setVisibility(View.GONE);
                     survey_net_error.setVisibility(View.GONE);
                     adapter = new QuestionSurveyAdapter(this, R.layout.item_questionsurvey, beans);
@@ -71,7 +84,7 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
                         }
                     });
                 } else {
-                    rv_question_survey.setVisibility(View.GONE);
+                    srl_question_survey.setVisibility(View.GONE);
                     survey_empty_data.setVisibility(View.VISIBLE);
                     survey_net_error.setVisibility(View.GONE);
                 }
@@ -83,12 +96,13 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
 
     @Override
     public void resultFailure(String result) {
+        srl_question_survey.finishRefresh();
         showToast(result);
     }
 
     @Override
     public void netWorkUnAvailable() {
-        rv_question_survey.setVisibility(View.GONE);
+        srl_question_survey.setVisibility(View.GONE);
         survey_empty_data.setVisibility(View.GONE);
         survey_net_error.setVisibility(View.VISIBLE);
         survey_net_error.setOnClickListener(new View.OnClickListener() {

@@ -21,6 +21,9 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.OrgActPresenter;
 import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshListener;
 
 @CreatePresenter(OrgActPresenter.class)
 public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresenter> implements OrgActView {
@@ -31,6 +34,8 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
     @BindView(R.id.org_act_net_error)
     View org_act_net_error;
     private OrgActAdapter adapter;
+    @BindView(R.id.srl_org_act)
+    SmartRefreshLayout srl_org_act;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,13 +43,20 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
         setContentView(R.layout.activity_orgact);
         ButterKnife.bind(this);
         rv_org_act.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+        srl_org_act.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                getMvpPresenter().doOrgActRequest();
+            }
+        });
         getMvpPresenter().doOrgActRequest();
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        getMvpPresenter().doOrgActRequest();
+//    }
 
     public void goBackOrgAct(View view) {
         this.finish();
@@ -52,11 +64,12 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
 
     @Override
     public void resultSuccess(String result) {
+        srl_org_act.finishRefresh();
         OrgActBean bean = new Gson().fromJson(result, OrgActBean.class);
         if (bean.code.equals("0000")) {
             final List<OrgActBean.DataBean> list = bean.getData();
             if (null != list && list.size() > 0) {
-                rv_org_act.setVisibility(View.VISIBLE);
+                srl_org_act.setVisibility(View.VISIBLE);
                 org_act_empty_data.setVisibility(View.GONE);
                 org_act_net_error.setVisibility(View.GONE);
                 adapter = new OrgActAdapter(this, R.layout.item_meeting, list);
@@ -72,7 +85,7 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
                 });
             } else {
                 //空白
-                rv_org_act.setVisibility(View.GONE);
+                srl_org_act.setVisibility(View.GONE);
                 org_act_empty_data.setVisibility(View.VISIBLE);
                 org_act_net_error.setVisibility(View.GONE);
             }
@@ -83,12 +96,13 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
 
     @Override
     public void resultFailure(String result) {
+        srl_org_act.finishRefresh();
         showToast(result);
     }
 
     @Override
     public void netWorkUnAvailable() {
-        rv_org_act.setVisibility(View.GONE);
+        srl_org_act.setVisibility(View.GONE);
         org_act_empty_data.setVisibility(View.GONE);
         org_act_net_error.setVisibility(View.VISIBLE);
         org_act_net_error.setOnClickListener(new View.OnClickListener() {

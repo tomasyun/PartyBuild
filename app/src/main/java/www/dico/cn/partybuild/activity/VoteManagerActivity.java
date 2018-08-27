@@ -19,6 +19,9 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.VoteManagerPresenter;
 import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshListener;
 
 @CreatePresenter(VoteManagerPresenter.class)
 public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, VoteManagerPresenter> implements VoteManagerView {
@@ -29,6 +32,8 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
     @BindView(R.id.vote_net_error)
     View vote_net_error;
     private VoteListAdapter adapter;
+    @BindView(R.id.srl_vote)
+    SmartRefreshLayout srl_vote;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,13 +41,20 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
         setContentView(R.layout.activity_votemanager);
         ButterKnife.bind(this);
         rv_vote.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+        srl_vote.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                getMvpPresenter().doVoteManagerRequest();
+            }
+        });
         getMvpPresenter().doVoteManagerRequest();
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        getMvpPresenter().doVoteManagerRequest();
+//    }
 
     public void goBackVoteManager(View view) {
         this.finish();
@@ -50,10 +62,11 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
 
     @Override
     public void resultSuccess(String result) {
+        srl_vote.finishRefresh();
         final VoteListBean bean = new Gson().fromJson(result, VoteListBean.class);
         if (bean.code.equals("0000")) {
             if (null != bean.getData() && bean.getData().size() > 0) {
-                rv_vote.setVisibility(View.VISIBLE);
+                srl_vote.setVisibility(View.VISIBLE);
                 vote_empty_data.setVisibility(View.GONE);
                 vote_net_error.setVisibility(View.GONE);
                 adapter = new VoteListAdapter(this, R.layout.item_vote, bean.getData());
@@ -68,7 +81,7 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
                     }
                 });
             } else {
-                rv_vote.setVisibility(View.GONE);
+                srl_vote.setVisibility(View.GONE);
                 vote_empty_data.setVisibility(View.VISIBLE);
                 vote_net_error.setVisibility(View.GONE);
             }
@@ -79,12 +92,13 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
 
     @Override
     public void resultFailure(String result) {
+        srl_vote.finishRefresh();
         showToast(result);
     }
 
     @Override
     public void netWorkUnAvailable() {
-        rv_vote.setVisibility(View.GONE);
+        srl_vote.setVisibility(View.GONE);
         vote_empty_data.setVisibility(View.GONE);
         vote_net_error.setVisibility(View.VISIBLE);
         vote_net_error.setOnClickListener(new View.OnClickListener() {
