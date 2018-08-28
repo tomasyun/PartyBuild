@@ -12,4 +12,5 @@
     <color name="cornflowerBlue">#6495ED</color><!--矢车菊的蓝色-->
     <color name="grayer">#a1a1a1</color>
     <color name="light_gray">#aaa</color>
+    <color name="green">#64be50</color>
 </resources>

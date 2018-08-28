@@ -22,7 +22,6 @@ import www.dico.cn.partybuild.adapter.QuestionsAdapter;
 import www.dico.cn.partybuild.bean.ExamAnswerBean;
 import www.dico.cn.partybuild.bean.ExamResultBean;
 import www.dico.cn.partybuild.bean.ExamResultForm;
-import www.dico.cn.partybuild.bean.ExamRuleForm;
 import www.dico.cn.partybuild.bean.QuestionBean;
 import www.dico.cn.partybuild.modleview.OnlineExamView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
@@ -50,7 +49,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
     private List<ExamAnswerBean.TestAnswersBean> answers;
     private String examStartTime;
     private String examCost;
-    private ExamRuleForm form;
+    private ExamResultForm form;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {

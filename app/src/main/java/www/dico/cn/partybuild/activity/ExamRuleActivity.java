@@ -13,8 +13,8 @@ import java.text.NumberFormat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.ExamResultForm;
 import www.dico.cn.partybuild.bean.ExamRuleBean;
-import www.dico.cn.partybuild.bean.ExamRuleForm;
 import www.dico.cn.partybuild.modleview.ExamRuleView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -37,7 +37,7 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
     TextView tv_exam_end_date;//考试结束时间
     @BindView(R.id.tv_start_exam)
     TextView tv_start_exam;
-    private ExamRuleForm form;
+    private ExamResultForm form;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,19 +45,17 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
         setContentView(R.layout.activity_examrule);
         ButterKnife.bind(this);
         form = getParam();
-        if (form != null) {
-            getMvpPresenter().examRuleRequest(form.examId);
-            if (form.state.equals("1")) {
-                tv_start_exam.setText("已结束");
-                tv_start_exam.setEnabled(false);
-                tv_start_exam.setClickable(false);
-                tv_start_exam.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-            } else {
-                tv_start_exam.setText("开始答题");
-                tv_start_exam.setEnabled(true);
-                tv_start_exam.setClickable(true);
-                tv_start_exam.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_red_bg));
-            }
+        getMvpPresenter().examRuleRequest(form.examId);
+        if (form.state.equals("1")) {
+            tv_start_exam.setText("查看考试结果");
+            tv_start_exam.setEnabled(false);
+            tv_start_exam.setClickable(false);
+            tv_start_exam.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+        } else {
+            tv_start_exam.setText("开始答题");
+            tv_start_exam.setEnabled(false);
+            tv_start_exam.setClickable(false);
+            tv_start_exam.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_red_bg));
         }
     }
 
@@ -68,7 +66,9 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
 
     //开始答题
     public void startExam(View view) {
-        if (form != null)
+        if (form.state.equals("1"))
+            goTo(ExamResultActivity.class, form);
+        else
             goTo(OnlineExamActivity.class, form);
         this.finish();
     }
@@ -78,6 +78,8 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
         ExamRuleBean bean = new Gson().fromJson(result, ExamRuleBean.class);
         if (bean.code.equals("0000")) {
             if (null != bean.getData()) {
+                tv_start_exam.setEnabled(true);
+                tv_start_exam.setClickable(true);
                 NumberFormat nf = new DecimalFormat("#");
                 tv_total_score.setText(nf.format(Double.valueOf(bean.getData().getTotalScore())) + "分");
                 tv_standard_score.setText(nf.format(Double.valueOf(bean.getData().getLimitScore())) + "分");
@@ -86,6 +88,7 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
                 tv_exam_start_date.setText(bean.getData().getExamStartTime());
                 tv_exam_end_date.setText(bean.getData().getExamEndTime());
                 form.limitScore = bean.getData().getLimitScore();
+                form.examCost = bean.getData().getExamHours();
             }
         } else {
             showToast("服务器异常");

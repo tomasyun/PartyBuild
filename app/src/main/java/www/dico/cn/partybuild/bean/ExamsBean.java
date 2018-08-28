@@ -20,6 +20,15 @@ public class ExamsBean extends BaseProtocol {
         private String examScore;
         private String limitDate;
         private String endDate;
+        private String isPass;
+
+        public String getIsPass() {
+            return isPass;
+        }
+
+        public void setIsPass(String isPass) {
+            this.isPass = isPass;
+        }
 
         public String getId() {
             return id;

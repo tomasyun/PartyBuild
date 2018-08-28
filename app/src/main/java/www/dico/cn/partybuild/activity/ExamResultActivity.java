@@ -54,17 +54,19 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
             tv_score_exam_result.setText(form.examScore + "分");
             tv_cost_exam_result.setText(form.examCost + "分钟");
             tv_limit_score_exam_result.setText(form.limitScore);
-            switch (form.isPass) {
-                case "0":
-                    rel_exam_result.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_blue_bg));
-                    tv_desc_exam_result.setText("抱歉,考试未通过");
-                    tv_desc_exam_result.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_pass_on));
-                    break;
-                case "1":
-                    rel_exam_result.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_yellow_bg));
-                    tv_desc_exam_result.setText("恭喜您,考试通过");
-                    tv_desc_exam_result.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_pass_ok));
-                    break;
+            if (!form.isPass.equals("")) {
+                switch (form.isPass) {
+                    case "0":
+                        rel_exam_result.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_blue_bg));
+                        tv_desc_exam_result.setText("抱歉,考试未通过");
+                        tv_desc_exam_result.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_pass_on));
+                        break;
+                    case "1":
+                        rel_exam_result.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_yellow_bg));
+                        tv_desc_exam_result.setText("恭喜您,考试通过");
+                        tv_desc_exam_result.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_pass_ok));
+                        break;
+                }
             }
             getMvpPresenter().doExamResultPreviewRequest(form.examId);
         }
