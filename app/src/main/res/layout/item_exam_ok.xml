@@ -25,8 +25,7 @@
                 android:singleLine="true"
                 android:text="陕西缔科网络科技有限公司"
                 android:textColor="@color/text_color"
-                android:textSize="14sp"
-               />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,8 +60,8 @@
             android:background="@drawable/circle_gray_bg"
             android:gravity="center"
             android:text="60"
-            android:textSize="14sp"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <View

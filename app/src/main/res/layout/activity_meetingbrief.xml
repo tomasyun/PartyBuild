@@ -118,8 +118,7 @@
                             android:layout_weight="8"
                             android:text=""
                             android:textColor="@color/text_color"
-                            android:textSize="14sp"
-                         />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <View

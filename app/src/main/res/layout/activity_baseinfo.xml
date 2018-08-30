@@ -88,8 +88,7 @@
                     android:layout_centerVertical="true"
                     android:text="用户名"
                     android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                    />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_user_name"

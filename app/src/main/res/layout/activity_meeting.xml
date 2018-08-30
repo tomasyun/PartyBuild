@@ -38,15 +38,15 @@
 
         <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.header.ClassicsHeader
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_meeting"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="none">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_meeting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
-            </android.support.v7.widget.RecyclerView>
+        </android.support.v7.widget.RecyclerView>
     </www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout>
 
 

@@ -55,8 +55,7 @@
                     android:maxLines="2"
                     android:text="十九大预案"
                     android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                     />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -80,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.75"
                     android:text="2018-7-31 10:00"
-                 android:textColor="@color/grayer"
+                    android:textColor="@color/grayer"
                     android:textSize="12sp" />
             </LinearLayout>
 

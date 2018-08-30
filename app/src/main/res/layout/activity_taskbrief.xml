@@ -152,7 +152,7 @@
                         android:layout_marginLeft="10dp"
                         android:text="学习成果"
                         android:textColor="@color/text_color"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <ImageView

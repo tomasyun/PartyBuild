@@ -18,8 +18,7 @@
         android:paddingRight="15dp"
         android:text="攀上一座高山后，你会发现，还有更多的高山等着你去攀登"
         android:textColor="@color/text_color"
-        android:textSize="14sp"
-        />
+        android:textSize="14sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
