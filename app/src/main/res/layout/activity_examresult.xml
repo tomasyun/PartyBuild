@@ -102,7 +102,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="答题用时:"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/light_grayer"
                 android:textSize="14sp" />
 
             <TextView
@@ -128,7 +128,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="合格分数:"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/light_grayer"
                 android:textSize="14sp" />
 
             <TextView

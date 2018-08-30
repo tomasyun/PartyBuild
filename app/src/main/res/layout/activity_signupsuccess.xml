@@ -51,8 +51,7 @@
             android:layout_marginTop="50dp"
             android:text="恭喜您! 报名成功"
             android:textColor="@color/text_color"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_sign_up_success_desc"

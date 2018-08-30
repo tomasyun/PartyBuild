@@ -12,5 +12,4 @@
     android:paddingTop="3dp"
     android:text="陕西缔科"
     android:textColor="@color/text_color"
-    android:textSize="13sp"
-    android:textStyle="bold" />
+    android:textSize="13sp" />

@@ -56,7 +56,7 @@
                     android:text="十九大预案"
                     android:textColor="@color/text_color"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                     />
             </LinearLayout>
 
             <LinearLayout
@@ -71,8 +71,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
                     android:text="截止日期"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp" />
+                    android:textColor="@color/grayer"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/tv_date_study_task_item"
@@ -80,8 +80,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.75"
                     android:text="2018-7-31 10:00"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp" />
+                 android:textColor="@color/grayer"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -96,8 +96,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
                     android:text="课时时长"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp" />
+                    android:textColor="@color/grayer"
+                    android:textSize="12sp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -111,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:text="1.8"
                         android:textColor="@color/theme_color"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_length_study_task_item"
@@ -119,14 +119,14 @@
                         android:layout_height="wrap_content"
                         android:text="/10"
                         android:textColor="@android:color/darker_gray"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="（小时）"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="14sp" />
+                        android:textColor="@color/grayer"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -144,7 +144,7 @@
             android:paddingTop="2dp"
             android:text="去学习"
             android:textColor="@color/theme_color"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
     </RelativeLayout>
 
 </LinearLayout>

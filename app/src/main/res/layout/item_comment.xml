@@ -40,9 +40,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="张强"
-                    android:textColor="#3f87e8"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textColor="#4186E7"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_comment_date"
@@ -50,8 +49,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="2018-5-25 12:46"
-                    android:textColor="#666666"
-                    android:textSize="14sp" />
+                    android:textColor="@color/grayer"
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <cn.carbs.android.expandabletextview.library.ExpandableTextView
@@ -64,7 +63,7 @@
                 android:lineSpacingExtra="8dp"
                 android:text=""
                 android:textColor="@color/text_color"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 app:etv_MaxLinesOnShrink="2"
                 app:etv_ToExpandHintColor="@color/theme_color" />
         </LinearLayout>

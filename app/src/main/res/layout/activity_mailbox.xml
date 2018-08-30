@@ -61,7 +61,7 @@
                 android:paddingLeft="15dp"
                 android:singleLine="true"
                 android:textColor="@color/text_color"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
             android:maxLength="50"
             android:padding="17dp"
             android:textColor="@color/text_color"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
 
         <TextView
             android:layout_width="match_parent"

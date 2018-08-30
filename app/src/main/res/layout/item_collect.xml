@@ -24,8 +24,7 @@
             android:paddingRight="15dp"
             android:text="飞天连雪射白鹿,笑书神侠倚碧鸳---金庸+碧血剑。。。。。。。。。。。。。。。。。。。。。。。。。。"
             android:textColor="@color/text_color"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_cancel_collect_item"

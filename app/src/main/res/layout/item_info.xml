@@ -19,7 +19,7 @@
         android:text="攀上一座高山后，你会发现，还有更多的高山等着你去攀登"
         android:textColor="@color/text_color"
         android:textSize="14sp"
-        android:textStyle="bold" />
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2018-07-26 10:30"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_comment_info_item"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="20评论"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
     <View

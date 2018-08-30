@@ -19,8 +19,7 @@
             android:layout_centerVertical="true"
             android:text="25"
             android:textColor="@color/text_color"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/iv_credit_rank_avatar_item"
@@ -51,8 +50,7 @@
             android:layout_centerVertical="true"
             android:text="260分"
             android:textColor="@color/text_color"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <View

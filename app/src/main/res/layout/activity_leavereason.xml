@@ -53,7 +53,7 @@
             android:maxLength="50"
             android:padding="17dp"
             android:textColor="@color/text_color"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:translationZ="5dp" />
 
         <TextView

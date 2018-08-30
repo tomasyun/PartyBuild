@@ -47,9 +47,10 @@
         android:maxLength="50"
         android:padding="15dp"
         android:text=""
+        android:textStyle="normal"
         android:textColor="@color/text_color"
-        android:textColorHint="#989898"
-        android:textSize="14sp" />
+        android:textColorHint="#999999"
+        android:textSize="13sp" />
 
     <TextView
         android:layout_width="match_parent"

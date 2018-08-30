@@ -19,7 +19,7 @@
         android:text="党委书记初选投票"
         android:textColor="@color/text_color"
         android:textSize="14sp"
-        android:textStyle="bold" />
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,8 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2018-7-31 18:30"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="14sp" />
+            android:textColor="@color/grayer"
+            android:textSize="12sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,16 +40,16 @@
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/tv_date_vote_item"
             android:text="投票日期"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="14sp" />
+            android:textColor="@color/grayer"
+            android:textSize="12sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/tv_population_vote_item"
             android:text="参与人数:"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="14sp" />
+            android:textColor="@color/grayer"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_population_vote_item"
@@ -58,8 +58,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="5dp"
             android:text="100"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="14sp" />
+            android:textColor="@color/grayer"
+            android:textSize="12sp" />
 
     </RelativeLayout>
 </LinearLayout>

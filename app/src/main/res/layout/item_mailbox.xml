@@ -39,7 +39,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:text="6小时前"
-            android:textSize="13sp" />
+            android:textColor="@color/grayer"
+            android:textSize="12sp" />
     </RelativeLayout>
 
     <cn.carbs.android.expandabletextview.library.ExpandableTextView
@@ -54,8 +55,7 @@
         android:paddingRight="15dp"
         android:text=""
         android:textColor="@color/text_color"
-        android:textSize="13sp"
-        android:textStyle="bold"
+        android:textSize="12sp"
         app:etv_MaxLinesOnShrink="2"
         app:etv_ToExpandHintColor="@color/theme_color" />
 

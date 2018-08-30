@@ -21,8 +21,7 @@
             android:lineSpacingExtra="5dp"
             android:text="30 共产党的宗旨是______"
             android:textColor="@color/text_color"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:id="@+id/rg_ls"

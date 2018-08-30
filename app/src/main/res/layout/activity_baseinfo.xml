@@ -57,8 +57,7 @@
                     android:layout_centerVertical="true"
                     android:text="头像"
                     android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/iv_user_head_icon"
@@ -90,7 +89,7 @@
                     android:text="用户名"
                     android:textColor="@color/text_color"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    />
 
                 <TextView
                     android:id="@+id/tv_user_name"
@@ -121,8 +120,7 @@
                     android:layout_centerVertical="true"
                     android:text="姓名"
                     android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_user_real_name"
@@ -154,8 +152,7 @@
                     android:text="党员编号"
                     android:textColor="@color/text_color"
 
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_user_number"
@@ -186,8 +183,7 @@
                     android:layout_centerVertical="true"
                     android:text="出生日期"
                     android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_user_birth"
@@ -218,8 +214,7 @@
                     android:layout_centerVertical="true"
                     android:text="联系电话"
                     android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_user_phone"
@@ -246,8 +241,7 @@
                     android:layout_centerVertical="true"
                     android:text="民族"
                     android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_user_nation"
@@ -277,8 +271,7 @@
                     android:layout_centerVertical="true"
                     android:text="籍贯"
                     android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_user_native_place"
@@ -308,8 +301,7 @@
                     android:layout_centerVertical="true"
                     android:text="最高学历"
                     android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_user_edu"
@@ -340,8 +332,7 @@
                     android:layout_height="wrap_content"
                     android:text="个人简介"
                     android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_user_brief"

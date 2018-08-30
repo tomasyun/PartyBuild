@@ -77,7 +77,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:text="主题"
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/light_grayer"
                             android:textSize="14sp" />
 
                         <TextView
@@ -88,8 +88,7 @@
                             android:layout_weight="8"
                             android:text=""
                             android:textColor="@color/text_color"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <View
@@ -109,7 +108,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:text="时间"
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/light_grayer"
                             android:textSize="14sp" />
 
                         <TextView
@@ -120,8 +119,7 @@
                             android:layout_weight="8"
                             android:text=""
                             android:textColor="@color/text_color"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <View
@@ -141,7 +139,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:text="地点"
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/light_grayer"
                             android:textSize="14sp" />
 
                         <TextView
@@ -156,8 +154,7 @@
                             android:maxLines="2"
                             android:text=""
                             android:textColor="@color/text_color"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <View
@@ -177,7 +174,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:text="主讲人"
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/light_grayer"
                             android:textSize="14sp" />
 
                         <TextView
@@ -188,8 +185,7 @@
                             android:layout_weight="8"
                             android:text=""
                             android:textColor="@color/text_color"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <View
@@ -209,7 +205,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:text="类别"
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/light_grayer"
                             android:textSize="14sp" />
 
                         <TextView
@@ -220,8 +216,7 @@
                             android:layout_weight="8"
                             android:text=""
                             android:textColor="@color/text_color"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -240,7 +235,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="简介"
-                        android:textColor="@color/text_color"
+                        android:textColor="@color/light_grayer"
                         android:textSize="14sp" />
 
                     <cn.carbs.android.expandabletextview.library.ExpandableTextView
@@ -253,7 +248,6 @@
                         android:text=""
                         android:textColor="@color/text_color"
                         android:textSize="14sp"
-                        android:textStyle="bold"
                         app:etv_MaxLinesOnShrink="2"
                         app:etv_ToExpandHintColor="@color/theme_color" />
                 </LinearLayout>
@@ -281,7 +275,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:text="参会人"
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/light_grayer"
                             android:textSize="14sp" />
 
                         <TextView
@@ -292,8 +286,7 @@
                             android:layout_weight="8"
                             android:text="12人"
                             android:textColor="@color/text_color"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <ImageView

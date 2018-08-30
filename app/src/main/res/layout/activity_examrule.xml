@@ -114,16 +114,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="试卷总分"
-                            android:textColor="@color/text_color"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/light_grayer"
+                            android:textSize="14sp" />
                         <!--考试总分-->
                         <TextView
                             android:id="@+id/tv_total_score"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/light_grayer"
                             android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -159,16 +158,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="及格分"
-                            android:textColor="@color/text_color"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/light_grayer"
+                            android:textSize="14sp" />
                         <!--考试合格分数-->
                         <TextView
                             android:id="@+id/tv_standard_score"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/light_grayer"
                             android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -210,16 +208,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="总题数"
-                            android:textColor="@color/text_color"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/light_grayer"
+                            android:textSize="14sp" />
                         <!--考试总体数-->
                         <TextView
                             android:id="@+id/tv_question_total_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/light_grayer"
                             android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -255,16 +252,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="考试时长"
-                            android:textColor="@color/text_color"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/light_grayer"
+                            android:textSize="14sp" />
                         <!--考试时长-->
                         <TextView
                             android:id="@+id/tv_exam_during"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/light_grayer"
                             android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -288,9 +284,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="考试时间"
-                    android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/light_grayer"
+                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -313,16 +308,15 @@
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="5dp"
                         android:text="至"
-                        android:textColor="@color/text_color"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/light_grayer"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_exam_end_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textColor="@color/text_color"
+                        android:textColor="@color/light_grayer"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
