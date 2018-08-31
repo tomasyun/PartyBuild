@@ -51,10 +51,9 @@
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:padding="15dp"
-                    android:text="关于8月份研发部内部团建活动内容投票"
+                    android:text=""
                     android:textColor="@color/text_color"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -70,7 +69,7 @@
                         android:layout_centerVertical="true"
                         android:text="截止时间:"
                         android:textColor="@android:color/darker_gray"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_limit_date_vote_detail"
@@ -81,7 +80,7 @@
                         android:layout_toRightOf="@+id/tv_end_date_vote"
                         android:text="2018-8-15 18:30"
                         android:textColor="@android:color/darker_gray"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_type_vote_detail"
@@ -91,7 +90,7 @@
                         android:layout_centerVertical="true"
                         android:text="单选"
                         android:textColor="@android:color/darker_gray"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -101,7 +100,7 @@
                         android:layout_toLeftOf="@+id/tv_type_vote_detail"
                         android:text="投票类型:"
                         android:textColor="@android:color/darker_gray"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                 </RelativeLayout>
 
                 <TextView
@@ -113,7 +112,7 @@
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:paddingTop="5dp"
-                    android:text="一个人在外要照顾好自己，一定要记得按时喝酒"
+                    android:text=""
                     android:textColor="@color/theme_color"
                     android:textSize="14sp" />
 
@@ -135,7 +134,6 @@
                     android:paddingBottom="15dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
-                    android:translationZ="5dp"
                     android:visibility="gone">
 
                 </LinearLayout>

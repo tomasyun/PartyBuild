@@ -28,12 +28,42 @@
         android:scaleType="fitXY" />
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/iv_sign_in_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_time" />
+
+        <TextView
+            android:id="@+id/tv_sign_in_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/iv_sign_in_date"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="2018年8月1日 13:00"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/rel_sign_in_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:orientation="horizontal"
-        android:padding="15dp">
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <ImageView
             android:id="@+id/iv_sign_in_address"
@@ -57,36 +87,6 @@
             android:text="陕西省西安市高新区丈八一路 汇鑫IBC 1501室"
             android:textColor="@color/theme_color"
             android:textSize="14sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
-
-        <ImageView
-            android:id="@+id/iv_sign_in_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:contentDescription="@null"
-            android:scaleType="fitXY"
-            android:src="@mipmap/img_time" />
-
-        <TextView
-            android:id="@+id/tv_sign_in_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/iv_sign_in_date"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:text="2018年8月1日 13:00"
-            android:textSize="14sp" />
-
     </RelativeLayout>
 
     <RelativeLayout

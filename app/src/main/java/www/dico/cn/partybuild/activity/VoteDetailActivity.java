@@ -45,9 +45,9 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
     TextView tv_des_vote_detail;
     @BindView(R.id.tv_submit_vote_detail)
     TextView tv_submit_vote_detail;
-    private boolean isSelected = false;
     private VoteForm form;
     private List<String> options;
+    private String voteType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -132,13 +132,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (isSelected) {
-                        image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
-                        isSelected = false;
-                    } else {
-                        image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
-                        isSelected = true;
-                    }
+
                 }
             });
         }
@@ -151,7 +145,9 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
             if (null != bean.getData()) {
                 tv_title_vote_detail.setText(bean.getData().getTitle());
                 tv_limit_date_vote_detail.setText(bean.getData().getLimitDate());
-                switch (bean.getData().getVoteType()) {
+                voteType = bean.getData().getVoteType();
+
+                switch (voteType) {
                     case "0":
                         tv_type_vote_detail.setText("单选");
                         break;
@@ -164,6 +160,8 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                 if (null != beans && beans.size() > 0) {
                     lin_options_vote.setVisibility(View.VISIBLE);
                     lin_options_vote.removeAllViews();
+                    final Boolean[] isSelecteds = new Boolean[beans.size()];
+                    final ImageView[] imageViews = new ImageView[beans.size()];
                     for (int i = 0; i < beans.size(); i++) {
                         LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         LinearLayout layout1 = new LinearLayout(this);
@@ -185,6 +183,8 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                         } else {
                             image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_vote_ok));
                         }
+                        isSelecteds[i] = false;
+                        imageViews[i] = image;
                         TextView optionText = new TextView(this);
                         optionText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                         optionText.setText(beans.get(i).getOption());
@@ -211,24 +211,46 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
 
                         final String optionId = beans.get(i).getId();
                         if (form.isVoter.equals("0")) {
-                            image.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    if (isSelected) {
-                                        image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
-                                        isSelected = true;
-                                        for (int i = 0; i < options.size(); i++) {
-                                            if (options.get(i).equals(optionId)) {
-                                                options.remove(i);
+                            image.setEnabled(true);
+                            image.setClickable(true);
+                            final int position = i;
+                            switch (voteType) {
+                                case "0"://单选
+                                    image.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            for (int i = 0; i < isSelecteds.length; i++) {
+                                                if (isSelecteds[i]) {
+
+                                                }
                                             }
                                         }
-                                    } else {
-                                        image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
-                                        isSelected = true;
-                                        options.add(optionId);
-                                    }
-                                }
-                            });
+                                    });
+                                    break;
+                                case "1"://多选
+                                    image.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            if (isSelecteds[position]) {
+                                                image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
+                                                isSelecteds[position] = false;
+                                                for (int i = 0; i < options.size(); i++) {
+                                                    if (options.get(i).equals(optionId)) {
+                                                        options.remove(i);
+                                                    }
+                                                }
+                                            } else {
+                                                image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
+                                                isSelecteds[position] = true;
+                                                options.add(optionId);
+                                            }
+                                        }
+                                    });
+                                    break;
+                            }
+                        } else {
+                            image.setEnabled(false);
+                            image.setClickable(false);
                         }
                     }
                 } else {
@@ -255,6 +277,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
             tv_submit_vote_detail.setText("已投票");
             tv_submit_vote_detail.setEnabled(false);
             tv_submit_vote_detail.setClickable(false);
+            form.isVoter = "1";
             getMvpPresenter().doVoteDetailRequest(form.voteId);
         } else {
             showToast("服务器异常");

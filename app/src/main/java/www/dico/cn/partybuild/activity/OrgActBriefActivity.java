@@ -35,8 +35,6 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
     TextView tv_orgact_brief_date;
     @BindView(R.id.tv_orgact_brief_address)
     TextView tv_orgact_brief_address;
-    @BindView(R.id.tv_orgact_brief_speaker)
-    TextView tv_orgact_brief_speaker;
     @BindView(R.id.tv_orgact_brief_category)
     TextView tv_orgact_brief_category;
     @BindView(R.id.tv_orgact_brief_content)
@@ -99,7 +97,6 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
                 tv_orgact_brief_theme.setText(briefBean.getData().getTheme());
                 tv_orgact_brief_date.setText(briefBean.getData().getStartDate());
                 tv_orgact_brief_address.setText(briefBean.getData().getAddress());
-                tv_orgact_brief_speaker.setText(briefBean.getData().getSpeaker());
                 tv_orgact_brief_category.setText(briefBean.getData().getCategory());
                 tv_orgact_brief_content.setText(briefBean.getData().getBrief());
                 adapter = new ParticipantsAdapter(briefBean.getData().getAttender());

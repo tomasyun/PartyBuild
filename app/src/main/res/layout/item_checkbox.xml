@@ -5,6 +5,7 @@
     android:background="@drawable/rbt_options_selected"
     android:button="@null"
     android:maxLines="1"
+    android:textColor="@color/rbt_txt_color_bg01"
     android:orientation="vertical"
     android:paddingLeft="15dp"
     android:paddingTop="10dp">

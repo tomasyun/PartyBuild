@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/activity_bg_color"
+    android:background="@color/white"
     android:orientation="vertical">
     <!--标题-->
     <RelativeLayout
@@ -38,7 +38,7 @@
         <www.yuntdev.com.bottomnavigationlibrary.referview.NoTouchViewPager
             android:id="@+id/vp_online_survey"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
         </www.yuntdev.com.bottomnavigationlibrary.referview.NoTouchViewPager>
 

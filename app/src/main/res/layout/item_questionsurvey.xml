@@ -5,10 +5,9 @@
     android:layout_marginLeft="15dp"
     android:layout_marginRight="15dp"
     android:layout_marginTop="10dp"
-    android:background="@drawable/edittext_corner10_white_bg"
+    android:background="@color/white"
     android:orientation="vertical"
-    android:padding="15dp"
-    android:translationZ="5dp">
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/tv_title_question_survey_item"

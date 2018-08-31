@@ -126,8 +126,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="三会一课"
-                                android:textColor="@color/white"
-                                android:textStyle="bold" />
+                                android:textColor="@color/white" />
                         </LinearLayout>
                         <!--学习任务-->
                         <LinearLayout
@@ -154,8 +153,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="学习任务"
-                                android:textColor="@color/white"
-                                android:textStyle="bold" />
+                                android:textColor="@color/white" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -189,8 +187,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="活动管理"
-                                android:textColor="@color/white"
-                                android:textStyle="bold" />
+                                android:textColor="@color/white" />
                         </LinearLayout>
                         <!--党费缴纳-->
                         <LinearLayout
@@ -217,8 +214,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="党费缴纳"
-                                android:textColor="@color/white"
-                                android:textStyle="bold" />
+                                android:textColor="@color/white" />
                         </LinearLayout>
                         <!--领导信箱-->
                         <LinearLayout
@@ -245,8 +241,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="领导信箱"
-                                android:textColor="@color/white"
-                                android:textStyle="bold" />
+                                android:textColor="@color/white" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

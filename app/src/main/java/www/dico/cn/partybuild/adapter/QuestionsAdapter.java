@@ -1,6 +1,11 @@
 package www.dico.cn.partybuild.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -52,13 +57,20 @@ public class QuestionsAdapter extends ViewPagerCommonAdapter<QuestionBean.DataBe
          * 单选题
          */
         if (item.getType().equals("单选题")) {
-            holder.setText(R.id.tv_title_question, (position + 1) + "." + item.getContent() + "(单选题)");//标题
+            SpannableString content = new SpannableString((position + 1) + ".  " + item.getContent() + "  "+"(单选题)");
+            content.setSpan(new ForegroundColorSpan(Color.parseColor("#333333")), 0, content.length() - 5, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            content.setSpan(new ForegroundColorSpan(Color.parseColor("#a1a1a1")), content.length() - 5, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            content.setSpan(new AbsoluteSizeSpan(42), content.length() - 5, content.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+            TextView tv_title_question=holder.getView(R.id.tv_title_question);
+            tv_title_question.setText(content);
+            tv_title_question.setTextSize(16);
             RadioGroup group = new RadioGroup(mContext);
             group.setOrientation(LinearLayout.VERTICAL);
             if (item.getQuestionOptionsList().size() > 0) {
                 for (int j = 0; j < item.getQuestionOptionsList().size(); j++) {
                     RadioButton radioBtn = new RadioButton(mContext);
                     radioBtn.setText(item.getQuestionOptionsList().get(j).getName() + "   " + item.getQuestionOptionsList().get(j).getContent());
+                    radioBtn.setTextSize(14);
                     radioBtn.setPadding(SizeUtils.dp2px(AppManager.getManager().curActivity(), 15), SizeUtils.dp2px(AppManager.getManager().curActivity(), 10), 0, SizeUtils.dp2px(AppManager.getManager().curActivity(), 10));
                     radioBtn.setMaxLines(1);
                     radioBtn.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.rbt_options_selected));
@@ -80,11 +92,18 @@ public class QuestionsAdapter extends ViewPagerCommonAdapter<QuestionBean.DataBe
          * 多选题
          */
         else if (item.getType().equals("多选题")) {
-            holder.setText(R.id.tv_title_question, (position + 1) + "." + item.getContent() + "(多选题)");//标题
+            SpannableString content = new SpannableString((position + 1) + ".  " + item.getContent() + "  "+"(多选题)");
+            content.setSpan(new ForegroundColorSpan(Color.parseColor("#333333")), 0, content.length() - 5, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            content.setSpan(new ForegroundColorSpan(Color.parseColor("#a1a1a1")), content.length() - 5, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            content.setSpan(new AbsoluteSizeSpan(42), content.length() - 5, content.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+            TextView tv_title_question=holder.getView(R.id.tv_title_question);
+            tv_title_question.setText(content);
+            tv_title_question.setTextSize(16);
             if (item.getQuestionOptionsList().size() > 0) {
                 for (int k = 0; k < item.getQuestionOptionsList().size(); k++) {
                     CheckBox checkBox = (CheckBox) LayoutInflater.from(mContext).inflate(R.layout.item_checkbox, null);
                     checkBox.setText(item.getQuestionOptionsList().get(k).getName() + "   " + item.getQuestionOptionsList().get(k).getContent());
+                    checkBox.setTextSize(14);
                     checkBox.setPadding(SizeUtils.dp2px(AppManager.getManager().curActivity(), 15), SizeUtils.dp2px(AppManager.getManager().curActivity(), 10), 0, SizeUtils.dp2px(AppManager.getManager().curActivity(), 10));
                     checkBox.setLayoutParams(layoutParams);
                     list.add(checkBox);
