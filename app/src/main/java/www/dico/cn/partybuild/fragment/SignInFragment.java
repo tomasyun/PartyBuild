@@ -21,6 +21,7 @@ import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.route.DistanceResult;
 import com.amap.api.services.route.DistanceSearch;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +29,17 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.SignInBean;
 import www.dico.cn.partybuild.modleview.SignInView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
 import www.dico.cn.partybuild.presenter.SignInPresenter;
+import www.dico.cn.partybuild.utils.GlideUtils;
 import www.dico.cn.partybuild.widget.CountDownButtonHelper;
 import www.dico.cn.partybuild.widget.LoadingDialog;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshListener;
 
 //签到
 @CreatePresenter(SignInPresenter.class)
@@ -58,6 +64,8 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     TextView tv_sign_in_tips;
     @BindView(R.id.rel_sign_in_start)
     RelativeLayout rel_sign_in_start;
+    @BindView(R.id.srl_sign_in)
+    SmartRefreshLayout srl_sign_in;
     private LoadingDialog dialog;
     private GeocodeSearch geocodeSearch;
     private DistanceSearch distanceSearch;
@@ -67,6 +75,7 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     private double destLongitude;
     private double distance;//距离
     private int during = 0;
+    private String signInType="";
     private CountDownButtonHelper helper;
     private Handler mHandler = new Handler() {
         @Override
@@ -109,6 +118,12 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                         .create();
                 dialog.show();
 //                mLocationClient.startLocation();//启动定位
+            }
+        });
+        srl_sign_in.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                getMvpPresenter().doGetSignInConferenceRequest();
             }
         });
         return view;
@@ -246,11 +261,21 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
 
     @Override
     public void resultSuccess(String result) {
-
+        srl_sign_in.finishRefresh();
+        SignInBean bean=new Gson().fromJson(result,SignInBean.class);
+        if (bean.code.equals("0000")){
+            if (bean.getData()!=null){
+                GlideUtils.loadImageSetUpError(getActivity(),bean.getData().getThemeImg(),iv_conference_theme_pic,R.mipmap.img_dico);
+                tv_sign_in_date.setText(bean.getData().getStartDate());
+                tv_sign_in_address.setText(bean.getData().getAddress());
+                signInType=bean.getData().getIs();
+            }
+        }
     }
 
     @Override
     public void resultFailure(String result) {
+        srl_sign_in.finishRefresh();
         showToast(result);
     }
 

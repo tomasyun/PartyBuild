@@ -144,6 +144,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
         if (bean.code.equals("0000")) {
             if (null != bean.getData()) {
                 tv_title_vote_detail.setText(bean.getData().getTitle());
+                tv_title_vote_detail.setTextSize(16);
                 tv_limit_date_vote_detail.setText(bean.getData().getLimitDate());
                 voteType = bean.getData().getVoteType();
 
@@ -188,8 +189,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                         TextView optionText = new TextView(this);
                         optionText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                         optionText.setText(beans.get(i).getOption());
-                        optionText.setTextSize(16);
-                        optionText.setTypeface(Typeface.DEFAULT_BOLD);
+                        optionText.setTextSize(15);
                         optionText.setTextColor(getResources().getColor(R.color.text_color));
                         optionText.setSingleLine(true);
                         optionText.setPadding(SizeUtils.dp2px(this, 10), 0, 0, 0);
@@ -221,8 +221,18 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                                         public void onClick(View view) {
                                             for (int i = 0; i < isSelecteds.length; i++) {
                                                 if (isSelecteds[i]) {
-
+                                                    isSelecteds[i] = !isSelecteds[i];
+                                                    imageViews[i].setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
+                                                    options.clear();
                                                 }
+                                            }
+                                            if (isSelecteds[position]) {
+                                                image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
+                                                isSelecteds[position] = !isSelecteds[position];
+                                            } else {
+                                                image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
+                                                isSelecteds[position] = !isSelecteds[position];
+                                                options.add(optionId);
                                             }
                                         }
                                     });
@@ -233,7 +243,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                                         public void onClick(View view) {
                                             if (isSelecteds[position]) {
                                                 image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
-                                                isSelecteds[position] = false;
+                                                isSelecteds[position] = !isSelecteds[position];
                                                 for (int i = 0; i < options.size(); i++) {
                                                     if (options.get(i).equals(optionId)) {
                                                         options.remove(i);
@@ -241,7 +251,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                                                 }
                                             } else {
                                                 image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
-                                                isSelecteds[position] = true;
+                                                isSelecteds[position] = !isSelecteds[position];
                                                 options.add(optionId);
                                             }
                                         }

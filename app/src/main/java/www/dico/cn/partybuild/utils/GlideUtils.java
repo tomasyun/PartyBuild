@@ -39,7 +39,18 @@ public class GlideUtils {
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(context).load(url).apply(options).into(imageView);
     }
-
+    /*
+     *加载图片(默认)
+     */
+    public static void loadImageSetUpError(Context context, String url, ImageView imageView,int drawableId) {
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(placeholderSoWhite) //占位图
+                .error(drawableId)       //错误图
+                // .priority(Priority.HIGH)
+                .diskCacheStrategy(DiskCacheStrategy.ALL);
+        Glide.with(context).load(url).apply(options).into(imageView);
+    }
     /**
      * 指定图片大小;使用override()方法指定了一个图片的尺寸。
      * Glide现在只会将图片加载成width*height像素的尺寸，而不会管你的ImageView的大小是多少了。
