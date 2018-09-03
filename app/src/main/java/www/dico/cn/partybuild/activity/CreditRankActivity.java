@@ -88,12 +88,12 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
             if (bean.getData() != null) {
                 GlideUtils.loadCircleImage(this, AppConfig.urlFormat("http://47.104.72.111/", bean.getData().getMavatar()), iv_user_icon_rank);
                 SpannableString numContent = new SpannableString(bean.getData().getMrank() + "名");
-                numContent.setSpan(new AbsoluteSizeSpan(40), 0, numContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-                numContent.setSpan(new AbsoluteSizeSpan(28), numContent.length() - 1, numContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+                numContent.setSpan(new AbsoluteSizeSpan(45), 0, numContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+                numContent.setSpan(new AbsoluteSizeSpan(35), numContent.length() - 1, numContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
                 tv_user_rank_num.setText(numContent);
                 SpannableString scoreContent = new SpannableString(bean.getData().getMscore() + "分");
-                scoreContent.setSpan(new AbsoluteSizeSpan(40), 0, scoreContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-                scoreContent.setSpan(new AbsoluteSizeSpan(28), scoreContent.length() - 1, scoreContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+                scoreContent.setSpan(new AbsoluteSizeSpan(45), 0, scoreContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+                scoreContent.setSpan(new AbsoluteSizeSpan(35), scoreContent.length() - 1, scoreContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
                 tv_user_rank_score.setText(scoreContent);
                 List<CreditRankBean.DataBean.CreditInfoListBean> list = bean.getData().getCreditInfoList();
                 if (null != list && list.size() > 0) {

@@ -21,6 +21,7 @@
 
     <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout
         android:id="@+id/srl_sign_in"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -37,7 +38,6 @@
                 android:id="@+id/iv_conference_theme_pic"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:background="@mipmap/img_dico"
                 android:contentDescription="@null"
                 android:scaleType="fitXY" />
 
@@ -65,7 +65,7 @@
                     android:layout_toRightOf="@+id/iv_sign_in_date"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="2018年8月1日 13:00"
+                    android:text=""
                     android:textSize="14sp" />
 
             </RelativeLayout>
@@ -98,7 +98,7 @@
                     android:layout_toRightOf="@+id/iv_sign_in_address"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="陕西省西安市高新区丈八一路 汇鑫IBC 1501室"
+                    android:text=""
                     android:textColor="@color/theme_color"
                     android:textSize="14sp" />
             </RelativeLayout>
@@ -118,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="立即签到"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 

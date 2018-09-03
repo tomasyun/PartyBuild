@@ -52,10 +52,10 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
         ButterKnife.bind(this);
         form = getParam();
         if (form != null) {
-            String examScore = new DecimalFormat("#").format(form.examScore);
+            String examScore = new DecimalFormat("#").format(Double.valueOf(form.examScore));
             tv_score_exam_result.setText(examScore + "分");
             tv_cost_exam_result.setText(form.examCost + "分钟");
-            String limitScore = new DecimalFormat("#").format(form.limitScore);
+            String limitScore = new DecimalFormat("#").format(Double.valueOf(form.limitScore));
             tv_limit_score_exam_result.setText(limitScore);
             if (!form.isPass.equals("")) {
                 switch (form.isPass) {

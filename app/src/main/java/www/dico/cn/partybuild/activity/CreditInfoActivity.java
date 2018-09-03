@@ -47,10 +47,6 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creditinfo);
         ButterKnife.bind(this);
-        SpannableString scoreContent = new SpannableString("0分");
-        scoreContent.setSpan(new AbsoluteSizeSpan(40), 0, scoreContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-        scoreContent.setSpan(new AbsoluteSizeSpan(28), scoreContent.length() - 1, scoreContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-        tv_credit_info_score.setText(scoreContent);
         rg_credit_info.check(R.id.rbt_credit_info_all);
         rg_credit_info.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -102,7 +98,10 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
         CreditInfoBean bean = new Gson().fromJson(result, CreditInfoBean.class);
         if (bean.code.equals("0000")) {
             if (bean.getData() != null) {
-                tv_credit_info_score.setText(bean.getData().getTotalScore());
+                SpannableString scoreContent = new SpannableString(bean.getData().getTotalScore() + "分");
+                scoreContent.setSpan(new AbsoluteSizeSpan(45), 0, scoreContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+                scoreContent.setSpan(new AbsoluteSizeSpan(35), scoreContent.length() - 1, scoreContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+                tv_credit_info_score.setText(scoreContent);
                 List<CreditInfoBean.DataBean.CreditListBean> beans = bean.getData().getCreditList();
                 if (null != beans && beans.size() > 0) {
                     for (int i = 0; i < beans.size(); i++) {
