@@ -690,7 +690,7 @@ public class StringUtils {
      * @param name
      * @return String 后缀名
      */
-    public static String getAfterPrefix(String name) throws Exception {
+    public static String getAfterPrefix(String name) {
         return name.substring(name.lastIndexOf(".") + 1, name.length());
     }
 
@@ -849,7 +849,7 @@ public class StringUtils {
         return newnum + ".";
     }
 
-    public static String[] getStoreArr(String[] arr) throws Exception {
+    public static String[] getStoreArr(String[] arr) {
         String temp;
         for (int i = 0; i < arr.length; i++) {
             for (int j = arr.length - 1; j > i; j--) {

@@ -31,9 +31,9 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
     View mailbox_empty_data;
     @BindView(R.id.mailbox_net_error)
     View mailbox_net_error;
-    private MailboxListAdapter adapter;
     @BindView(R.id.srl_mailbox_list)
     SmartRefreshLayout srl_mailbox_list;
+    private MailboxListAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

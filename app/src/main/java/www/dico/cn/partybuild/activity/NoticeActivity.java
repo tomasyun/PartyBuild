@@ -34,9 +34,9 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
     View notice_empty_data;
     @BindView(R.id.notice_net_error)
     View notice_net_error;
-    private NoticeAdapter adapter;
     @BindView(R.id.srl_notice)
     SmartRefreshLayout srl_notice;
+    private NoticeAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -33,9 +33,9 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
     View meeting_empty_data;
     @BindView(R.id.meeting_net_error)
     View meeting_net_error;
-    private MeetingAdapter adapter;
     @BindView(R.id.srl_meeting)
     SmartRefreshLayout srl_meeting;
+    private MeetingAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

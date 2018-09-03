@@ -70,6 +70,10 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     RelativeLayout rel_sign_in_start;
     @BindView(R.id.srl_sign_in)
     SmartRefreshLayout srl_sign_in;
+    @BindView(R.id.sign_in_empty_data)
+    View sign_in_empty_data;
+    @BindView(R.id.sign_in_net_error)
+    View sign_in_net_error;
     private LoadingDialog dialog;
     private GeocodeSearch geocodeSearch;
     private DistanceSearch distanceSearch;
@@ -80,10 +84,6 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     private double distance;//距离
     private int during = 0;
     private CountDownButtonHelper helper;
-    @BindView(R.id.sign_in_empty_data)
-    View sign_in_empty_data;
-    @BindView(R.id.sign_in_net_error)
-    View sign_in_net_error;
     private String signInType = "";
     private String startDate = "";
     private String address = "";

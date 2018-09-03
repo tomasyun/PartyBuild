@@ -104,10 +104,10 @@ public class DownLoadService extends Service {
         int currProgress = progress;
         if (preProgress < currProgress) {
             builder.setContentText(progress + "%");
-            builder.setProgress(100, (int) progress, false);
+            builder.setProgress(100, progress, false);
             manager.notify(1000, builder.build());
         }
-        preProgress = (int) progress;
+        preProgress = progress;
     }
 
     /**

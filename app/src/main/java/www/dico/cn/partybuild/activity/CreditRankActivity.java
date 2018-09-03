@@ -86,7 +86,7 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
         CreditRankBean bean = new Gson().fromJson(result, CreditRankBean.class);
         if (bean.code.equals("0000")) {
             if (bean.getData() != null) {
-                GlideUtils.loadCircleImage(this, AppConfig.urlFormat("http://47.104.72.111/",bean.getData().getMavatar()) , iv_user_icon_rank);
+                GlideUtils.loadCircleImage(this, AppConfig.urlFormat("http://47.104.72.111/", bean.getData().getMavatar()), iv_user_icon_rank);
                 SpannableString numContent = new SpannableString(bean.getData().getMrank() + "名");
                 numContent.setSpan(new AbsoluteSizeSpan(40), 0, numContent.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
                 numContent.setSpan(new AbsoluteSizeSpan(28), numContent.length() - 1, numContent.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);

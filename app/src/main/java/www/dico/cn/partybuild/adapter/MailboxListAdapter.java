@@ -23,7 +23,7 @@ public class MailboxListAdapter extends CommonAdapter<MailboxListBean.DataBean> 
 
     @Override
     protected void convert(ViewHolder holder, MailboxListBean.DataBean mailboxListBean, int position) {
-        GlideUtils.loadCircleImage(AppManager.getManager().findActivity(MailboxListActivity.class), AppConfig.urlFormat("http://47.104.72.111/",mailboxListBean.getAvatar()), (ImageView) holder.getView(R.id.iv_avatar_mailbox_item));
+        GlideUtils.loadCircleImage(AppManager.getManager().findActivity(MailboxListActivity.class), AppConfig.urlFormat("http://47.104.72.111/", mailboxListBean.getAvatar()), (ImageView) holder.getView(R.id.iv_avatar_mailbox_item));
         holder.setText(R.id.tv_name_mailbox_item, mailboxListBean.getName());
         String submitDate = mailboxListBean.getSubmitDate();
         submitDate = (submitDate == null) ? DateTimeUtils.getNow() : mailboxListBean.getSubmitDate();

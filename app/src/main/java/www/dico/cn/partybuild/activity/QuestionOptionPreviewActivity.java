@@ -59,7 +59,7 @@ public class QuestionOptionPreviewActivity extends AbstractMvpActivity<QuestionO
         QuestionOptionBean bean = new Gson().fromJson(result, QuestionOptionBean.class);
         if (bean.code.equals("0000")) {
             if (bean.getData() != null) {
-                SpannableString content = new SpannableString(form.position+".  " + bean.getData().getContent() + "  "+"(" + bean.getData().getTypeId() + ")");
+                SpannableString content = new SpannableString(form.position + ".  " + bean.getData().getContent() + "  " + "(" + bean.getData().getTypeId() + ")");
                 content.setSpan(new ForegroundColorSpan(Color.parseColor("#333333")), 0, content.length() - 5, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
                 content.setSpan(new ForegroundColorSpan(Color.parseColor("#a1a1a1")), content.length() - 5, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
                 content.setSpan(new AbsoluteSizeSpan(42), content.length() - 5, content.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);

@@ -33,9 +33,9 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
     View org_act_empty_data;
     @BindView(R.id.org_act_net_error)
     View org_act_net_error;
-    private OrgActAdapter adapter;
     @BindView(R.id.srl_org_act)
     SmartRefreshLayout srl_org_act;
+    private OrgActAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

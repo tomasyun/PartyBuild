@@ -31,9 +31,9 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
     View vote_empty_data;
     @BindView(R.id.vote_net_error)
     View vote_net_error;
-    private VoteListAdapter adapter;
     @BindView(R.id.srl_vote)
     SmartRefreshLayout srl_vote;
+    private VoteListAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

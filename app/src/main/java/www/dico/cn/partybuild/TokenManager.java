@@ -70,9 +70,6 @@ public class TokenManager {
     }
 
     public boolean isLogin() {
-        if (getAuthModel() != null && !TextUtils.isEmpty(getAuthModel().getAccessToken())) {
-            return true;
-        }
-        return false;
+        return getAuthModel() != null && !TextUtils.isEmpty(getAuthModel().getAccessToken());
     }
 }

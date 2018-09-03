@@ -100,7 +100,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
         MeetBriefBean briefBean = new Gson().fromJson(result, MeetBriefBean.class);
         if (briefBean.code.equals("0000")) {
             if (briefBean.getData() != null) {
-                GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat("http://47.104.72.111/", briefBean.getData().getThemeImg()), iv_theme_meeting_brief,R.mipmap.img_dico);
+                GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat("http://47.104.72.111/", briefBean.getData().getThemeImg()), iv_theme_meeting_brief, R.mipmap.img_dico);
                 tv_theme_meeting_brief.setText(briefBean.getData().getTheme());
                 tv_date_meeting_brief.setText(briefBean.getData().getStartDate());
                 tv_address_meeting_brief.setText(briefBean.getData().getAddress());

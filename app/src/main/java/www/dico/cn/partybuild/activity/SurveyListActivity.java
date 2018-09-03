@@ -33,9 +33,9 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
     View survey_empty_data;
     @BindView(R.id.survey_net_error)
     View survey_net_error;
-    private QuestionSurveyAdapter adapter;
     @BindView(R.id.srl_question_survey)
     SmartRefreshLayout srl_question_survey;
+    private QuestionSurveyAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

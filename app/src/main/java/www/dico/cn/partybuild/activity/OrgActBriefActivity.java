@@ -94,7 +94,7 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
         OrgActBriefBean briefBean = new Gson().fromJson(result, OrgActBriefBean.class);
         if (briefBean.code.equals("0000")) {
             if (briefBean.getData() != null) {
-                GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat("http://47.104.72.111/", briefBean.getData().getThemeImg()), iv_orgact_brief_theme_pic,R.mipmap.img_dico);
+                GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat("http://47.104.72.111/", briefBean.getData().getThemeImg()), iv_orgact_brief_theme_pic, R.mipmap.img_dico);
                 tv_orgact_brief_theme.setText(briefBean.getData().getTheme());
                 tv_orgact_brief_date.setText(briefBean.getData().getStartDate());
                 tv_orgact_brief_address.setText(briefBean.getData().getAddress());

@@ -45,14 +45,11 @@ public class TokenInterceptor extends BaseExpiredInterceptor {
         apiResult = new Gson().fromJson(bodyString, ApiResult.class);
         if (apiResult != null) {
             int code = apiResult.getCode();
-            if (code == ComParamContact.Code.ACCESS_TOKEN_EXPIRED
+            return code == ComParamContact.Code.ACCESS_TOKEN_EXPIRED
                     || code == ComParamContact.Code.REFRESH_TOKEN_EXPIRED
                     || code == ComParamContact.Code.OTHER_PHONE_LOGINED
                     || code == ComParamContact.Code.ERROR_SIGN
-                    || code == ComParamContact.Code.TIMESTAMP_ERROR
-                    ) {
-                return true;
-            }
+                    || code == ComParamContact.Code.TIMESTAMP_ERROR;
         }
         return false;
     }
@@ -101,7 +98,7 @@ public class TokenInterceptor extends BaseExpiredInterceptor {
     }
 
     //同步请求refreshToken
-    public void refreshToken() throws IOException {
+    public void refreshToken() {
         EasyHttp.post(ComParamContact.Token.PATH)
                 .params(ComParamContact.Common.REFRESH_TOKEN, TokenManager.getInstance().getAuthModel().getRefreshToken())
                 .sign(false)

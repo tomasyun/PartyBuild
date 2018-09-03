@@ -50,11 +50,11 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
          * 单选题
          */
         if (dataBean.getTypeId().equals("1")) {
-            SpannableString content = new SpannableString((position + 1) + ".  " + dataBean.getContent()+"  " + "(单选题)");
+            SpannableString content = new SpannableString((position + 1) + ".  " + dataBean.getContent() + "  " + "(单选题)");
             content.setSpan(new ForegroundColorSpan(Color.parseColor("#333333")), 0, content.length() - 5, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
             content.setSpan(new ForegroundColorSpan(Color.parseColor("#a1a1a1")), content.length() - 5, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
             content.setSpan(new AbsoluteSizeSpan(42), content.length() - 5, content.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-            TextView tv_title_question=holder.getView(R.id.tv_title_question);
+            TextView tv_title_question = holder.getView(R.id.tv_title_question);
             tv_title_question.setText(content);
             tv_title_question.setTextSize(16);
             RadioGroup group = new RadioGroup(mContext);
@@ -86,11 +86,11 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
          * 多选题
          */
         else if (dataBean.getTypeId().equals("2")) {
-            SpannableString content = new SpannableString((position + 1) + ".  " + dataBean.getContent() +"  "+ "(多选题)");
+            SpannableString content = new SpannableString((position + 1) + ".  " + dataBean.getContent() + "  " + "(多选题)");
             content.setSpan(new ForegroundColorSpan(Color.parseColor("#333333")), 0, content.length() - 5, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
             content.setSpan(new ForegroundColorSpan(Color.parseColor("#a1a1a1")), content.length() - 5, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
             content.setSpan(new AbsoluteSizeSpan(42), content.length() - 5, content.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-            TextView tv_title_question=holder.getView(R.id.tv_title_question);
+            TextView tv_title_question = holder.getView(R.id.tv_title_question);
             tv_title_question.setText(content);
             tv_title_question.setTextSize(16);
             if (dataBean.getQuestionOptionsList().size() > 0) {

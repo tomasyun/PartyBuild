@@ -33,9 +33,9 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
     View study_task_empty_data;
     @BindView(R.id.study_task_net_error)
     View study_task_net_error;
-    private StudyTaskAdapter adapter;
     @BindView(R.id.srl_study_task)
     SmartRefreshLayout srl_study_task;
+    private StudyTaskAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
