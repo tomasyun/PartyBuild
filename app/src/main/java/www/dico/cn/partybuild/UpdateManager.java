@@ -27,9 +27,9 @@ public class UpdateManager {
         int nVersion_code = 1;
         if (mVersion_code < nVersion_code) {
             // 显示提示对话
-            WindowManager.LayoutParams lp = mContext.getWindow().getAttributes();
-            lp.alpha = 0.5f;
-            mContext.getWindow().setAttributes(lp);
+//            WindowManager.LayoutParams lp = mContext.getWindow().getAttributes();
+//            lp.alpha = 0.5f;
+//            mContext.getWindow().setAttributes(lp);
         } else {
             if (isToast) {
                 Toast.makeText(mContext, "已经是最新版本", Toast.LENGTH_SHORT).show();
