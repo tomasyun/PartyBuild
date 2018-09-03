@@ -119,7 +119,7 @@ public class DateTimeUtils {
      * @param pattern 日期格式
      * @return
      */
-    private static Date parse(String strDate, String pattern) {
+    public static Date parse(String strDate, String pattern) {
         SimpleDateFormat df = new SimpleDateFormat(pattern, Locale.CHINA);
         try {
             return df.parse(strDate);

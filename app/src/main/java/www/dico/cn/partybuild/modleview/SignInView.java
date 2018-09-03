@@ -10,4 +10,6 @@ public interface SignInView extends BaseMvpView {
     void saveSignInSuccess(String result);
 
     void saveSignInFailure(String result);
+
+    void netWorkUnAvailable();
 }

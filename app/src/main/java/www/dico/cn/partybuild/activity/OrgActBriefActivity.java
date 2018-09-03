@@ -13,6 +13,7 @@ import com.zhy.view.flowlayout.TagFlowLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.carbs.android.expandabletextview.library.ExpandableTextView;
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.ParticipantsAdapter;
 import www.dico.cn.partybuild.bean.BaseProtocol;
@@ -93,7 +94,7 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
         OrgActBriefBean briefBean = new Gson().fromJson(result, OrgActBriefBean.class);
         if (briefBean.code.equals("0000")) {
             if (briefBean.getData() != null) {
-                GlideUtils.loadImage(this, briefBean.getData().getThemeImg(), iv_orgact_brief_theme_pic);
+                GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat("http://47.104.72.111/", briefBean.getData().getThemeImg()), iv_orgact_brief_theme_pic,R.mipmap.img_dico);
                 tv_orgact_brief_theme.setText(briefBean.getData().getTheme());
                 tv_orgact_brief_date.setText(briefBean.getData().getStartDate());
                 tv_orgact_brief_address.setText(briefBean.getData().getAddress());

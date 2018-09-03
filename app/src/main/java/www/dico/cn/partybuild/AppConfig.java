@@ -38,4 +38,13 @@ public class AppConfig {
         if (context != null) return context;
         throw new NullPointerException("u should init first");
     }
+
+    public static String urlFormat(String baseUrl, String url) {
+        String newUrl = "";
+        if (url.substring(0, 1).equals("/")) {
+            newUrl = url.substring(1, url.length());
+            return baseUrl + newUrl;
+        }
+        return baseUrl + url;
+    }
 }

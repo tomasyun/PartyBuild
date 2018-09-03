@@ -13,6 +13,8 @@ import com.google.gson.Gson;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 import butterknife.BindView;
@@ -51,9 +53,11 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
         ButterKnife.bind(this);
         form = getParam();
         if (form != null) {
-            tv_score_exam_result.setText(form.examScore + "分");
+            String examScore=new DecimalFormat("#").format(form.examScore);
+            tv_score_exam_result.setText(examScore + "分");
             tv_cost_exam_result.setText(form.examCost + "分钟");
-            tv_limit_score_exam_result.setText(form.limitScore);
+            String limitScore=new DecimalFormat("#").format(form.limitScore);
+            tv_limit_score_exam_result.setText(limitScore);
             if (!form.isPass.equals("")) {
                 switch (form.isPass) {
                     case "0":

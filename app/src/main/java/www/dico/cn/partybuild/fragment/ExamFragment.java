@@ -126,7 +126,9 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                         ExamResultForm form=new ExamResultForm();
                         form.examId = bean.getData().get(position).getId();
                         form.state = "1";//0：待考 1：已考
-                        form.isPass=bean.getData().get(position).getIsPass();
+                        String isPass=bean.getData().get(position).getIsPass();
+                        isPass=(isPass==null)?"":bean.getData().get(position).getIsPass();
+                        form.isPass=isPass;
                         form.examScore=bean.getData().get(position).getExamScore();
                         goTo(ExamRuleActivity.class, form);
                     }

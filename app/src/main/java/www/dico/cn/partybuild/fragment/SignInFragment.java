@@ -16,6 +16,7 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.geocoder.GeocodeQuery;
 import com.amap.api.services.geocoder.GeocodeResult;
 import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeResult;
@@ -24,16 +25,19 @@ import com.amap.api.services.route.DistanceSearch;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.bean.SignInBean;
 import www.dico.cn.partybuild.modleview.SignInView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
 import www.dico.cn.partybuild.presenter.SignInPresenter;
+import www.dico.cn.partybuild.utils.DateTimeUtils;
 import www.dico.cn.partybuild.utils.GlideUtils;
 import www.dico.cn.partybuild.widget.CountDownButtonHelper;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -75,8 +79,15 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     private double destLongitude;
     private double distance;//距离
     private int during = 0;
-    private String signInType="";
     private CountDownButtonHelper helper;
+    @BindView(R.id.sign_in_empty_data)
+    View sign_in_empty_data;
+    @BindView(R.id.sign_in_net_error)
+    View sign_in_net_error;
+    private String signInType = "";
+    private String startDate = "";
+    private String address = "";
+    private String id = "";
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -103,21 +114,35 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
         View view = inflater.inflate(R.layout.fragment_signin, null);
         ButterKnife.bind(this, view);
         tv_sign_in_count_down.setText("00:00:00");
-//        initLocationClient();
-//        initGeocodeSearch();
-//        initDistanceSearch();
+        initLocationClient();
+        initGeocodeSearch();
+        initDistanceSearch();
         //立即签到
         rel_sign_in_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog = new LoadingDialog.Builder(getActivity())
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("定位中..")
-                        .setShowMessage(true)
-                        .create();
-                dialog.show();
-//                mLocationClient.startLocation();//启动定位
+                if (!startDate.equals("")) {
+                    Date curDate = new Date();
+                    long time = DateTimeUtils.parse(startDate, "yyyy-MM-dd HH:mm:ss").getTime() - curDate.getTime();
+                    if (time > 60000) {
+                        showToast("抱歉,未到签到时间");
+                    } else {
+                        if (!address.equals("")) {
+                            dialog = new LoadingDialog.Builder(getActivity())
+                                    .setCancelable(true)
+                                    .setCancelOutside(true)
+                                    .setMessage("定位中..")
+                                    .setShowMessage(true)
+                                    .create();
+                            dialog.show();
+                            mLocationClient.startLocation();//启动定位
+                        } else {
+                            showToast("未获取到签到地址");
+                        }
+                    }
+                } else {
+                    showToast("未获取到开始时间");
+                }
             }
         });
         srl_sign_in.setOnRefreshListener(new OnRefreshListener() {
@@ -194,8 +219,8 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
             if (aMapLocation.getErrorCode() == 0) {//定位成功
                 startLatitude = aMapLocation.getLatitude();
                 startLongitude = aMapLocation.getLongitude();
-//                GeocodeQuery query = new GeocodeQuery(address, "");
-//                geocodeSearch.getFromLocationNameAsyn(query);
+                GeocodeQuery query = new GeocodeQuery(address, "");
+                geocodeSearch.getFromLocationNameAsyn(query);
             }
         }
     }
@@ -250,10 +275,13 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     @Override
     public void onDistanceSearched(DistanceResult distanceResult, int errorCode) {
         if (errorCode == 1000) {
-            dialog.dismiss();
+            if (dialog != null && dialog.isShowing())
+                dialog.dismiss();
             distance = distanceResult.getDistanceResults().get(0).getDistance();
             if (distance < 100) {//设置签到距离100m
+                getMvpPresenter().doSaveSignIn(id, signInType);
             } else {
+                showToast("未到达指定签到地点,暂不能签到");
             }
             Log.i("####", distance + "");
         }
@@ -262,13 +290,23 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     @Override
     public void resultSuccess(String result) {
         srl_sign_in.finishRefresh();
-        SignInBean bean=new Gson().fromJson(result,SignInBean.class);
-        if (bean.code.equals("0000")){
-            if (bean.getData()!=null){
-                GlideUtils.loadImageSetUpError(getActivity(),bean.getData().getThemeImg(),iv_conference_theme_pic,R.mipmap.img_dico);
+        SignInBean bean = new Gson().fromJson(result, SignInBean.class);
+        if (bean.code.equals("0000")) {
+            if (bean.getData() != null) {
+                srl_sign_in.setVisibility(View.VISIBLE);
+                sign_in_empty_data.setVisibility(View.GONE);
+                sign_in_net_error.setVisibility(View.GONE);
+                GlideUtils.loadImageSetUpError(getActivity(), bean.getData().getThemeImg(), iv_conference_theme_pic, R.mipmap.img_dico);
                 tv_sign_in_date.setText(bean.getData().getStartDate());
                 tv_sign_in_address.setText(bean.getData().getAddress());
-                signInType=bean.getData().getIs();
+                id = bean.getData().getId();
+                signInType = bean.getData().getIs();
+                startDate = bean.getData().getStartDate();
+                address = bean.getData().getAddress();//签到地址
+            } else {
+                srl_sign_in.setVisibility(View.GONE);
+                sign_in_empty_data.setVisibility(View.VISIBLE);
+                sign_in_net_error.setVisibility(View.GONE);
             }
         }
     }
@@ -281,12 +319,30 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
 
     @Override
     public void saveSignInSuccess(String result) {
-
+        BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
+        if (protocol.code.equals("0000")) {
+            showToast(protocol.msg);
+        } else {
+            showToast(protocol.msg);
+        }
     }
 
     @Override
     public void saveSignInFailure(String result) {
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        srl_sign_in.setVisibility(View.GONE);
+        sign_in_empty_data.setVisibility(View.GONE);
+        sign_in_net_error.setVisibility(View.VISIBLE);
+        sign_in_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getMvpPresenter().doGetSignInConferenceRequest();
+            }
+        });
     }
 
     @Override

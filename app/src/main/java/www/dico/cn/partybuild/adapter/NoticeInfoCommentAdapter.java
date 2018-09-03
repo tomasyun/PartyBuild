@@ -11,10 +11,12 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.carbs.android.expandabletextview.library.ExpandableTextView;
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.NoticeInfoActivity;
 import www.dico.cn.partybuild.bean.NoticeInfoBean;
+import www.dico.cn.partybuild.utils.GlideUtils;
 
 public class NoticeInfoCommentAdapter extends RecyclerView.Adapter<NoticeInfoCommentAdapter.NoticeInfoCommentHolder> {
     public static final int TYPE_FOOTER = 0;
@@ -41,6 +43,7 @@ public class NoticeInfoCommentAdapter extends RecyclerView.Adapter<NoticeInfoCom
 //        final int pos = getRealPosition(commentHolder);
         if (position < mDatas.size()) {
             if (commentHolder instanceof NoticeInfoCommentHolder) {
+                GlideUtils.loadCircleImage(AppManager.getManager().curActivity(), AppConfig.urlFormat("http://47.104.72.111/", mDatas.get(position).getAvatar()), commentHolder.iv_comment_user_avatar);
                 commentHolder.tv_comment_user_name.setText(mDatas.get(position).getName());
                 commentHolder.tv_comment_user_content.setText(mDatas.get(position).getCommitContent());
                 commentHolder.tv_comment_date.setText(mDatas.get(position).getCommitDate());

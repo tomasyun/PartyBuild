@@ -56,7 +56,7 @@ public class PersonalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_personal, null);
         ButterKnife.bind(this, view);
-        GlideUtils.loadCircleImage(getActivity(), AppConfig.getSpUtils().getString("avatar"), iv_user_avatar_personal);
+        GlideUtils.loadCircleImage(getActivity(), AppConfig.urlFormat("http://47.104.72.111/", AppConfig.getSpUtils().getString("avatar")), iv_user_avatar_personal);
         tv_name_personal.setText(AppConfig.getSpUtils().getString(""));
         tv_position_personal.setText(AppConfig.getSpUtils().getString("position"));
         if (!AppConfig.getSpUtils().getBoolean("isManager")) {
