@@ -132,7 +132,7 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
                 mHandler.sendEmptyMessageDelayed(0, 2000);
             } else {
                 Log.e("####", "exit application");
-                AppManager.getManager().finishAllActivity();
+//                AppManager.getManager().finishAllActivity();
                 this.finish();
             }
             return true;

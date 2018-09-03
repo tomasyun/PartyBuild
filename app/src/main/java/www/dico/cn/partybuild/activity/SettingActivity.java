@@ -7,6 +7,7 @@ import android.view.View;
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.UpdateManager;
 import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;
 
 //设置
@@ -44,7 +45,7 @@ public class SettingActivity extends BaseActivity {
 
     //版本更新
     public void checkUpdate(View view) {
-
+        new UpdateManager(this).checkUpdate(true);
     }
 
     //密码更新
