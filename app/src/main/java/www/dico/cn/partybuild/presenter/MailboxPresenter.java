@@ -19,7 +19,7 @@ public class MailboxPresenter extends BaseMvpPresenter<MailboxView> {
         IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(MailboxActivity.class))
+                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
                         .setCancelable(true)
                         .setCancelOutside(true)
                         .setMessage("获取中..")
