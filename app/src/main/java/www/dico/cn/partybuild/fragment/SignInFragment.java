@@ -301,6 +301,15 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                 tv_sign_in_address.setText(bean.getData().getAddress());
                 id = bean.getData().getId();
                 signInType = bean.getData().getIs();
+                switch (signInType){
+                    case "0":
+                        tv_sign_in_enable.setText("会议签到");
+                        break;
+                    case "1":
+                        tv_sign_in_enable.setText("活动签到");
+                        break;
+
+                }
                 startDate = bean.getData().getStartDate();
                 address = bean.getData().getAddress();//签到地址
             } else {

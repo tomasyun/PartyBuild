@@ -3,66 +3,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/img_login_bg"
     android:orientation="vertical"
     tools:context=".activity.LoginActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="80dp"
-        android:contentDescription="@null"
-        android:scaleType="fitXY"
-        android:src="@mipmap/img_flag" />
-
-    <EditText
-        android:id="@+id/et_name_login"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/edittext_corner20_white_bg"
-        android:hint="请输入用户名"
-        android:inputType="text"
-        android:maxLength="15"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:singleLine="true"
-        android:textColor="@color/text_color"
-        android:textSize="14sp"
-        android:translationZ="5dp" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/et_password_login"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edittext_corner20_white_bg"
-        android:hint="请输入密码"
-        android:inputType="textPassword"
-        android:maxLength="15"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:singleLine="true"
-        android:textColor="@color/text_color"
-        android:textSize="14sp"
-        android:translationZ="5dp" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:contentDescription="@null"
+            android:scaleType="fitXY"
+            android:src="@mipmap/splash_bg" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/button_corner20_red_bg"
-        android:gravity="center"
-        android:onClick="login"
-        android:text="登录"
-        android:textColor="@color/white"
-        android:translationZ="5dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:contentDescription="@null"
+                android:scaleType="fitXY"
+                android:src="@mipmap/img_flag" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="甘肃省电力设计院"
+                android:textColor="@color/text_color"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_name_login"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/edittext_corner20_white_bg"
+                android:hint="请输入用户名"
+                android:inputType="text"
+                android:maxLength="15"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:singleLine="true"
+                android:textColor="@color/text_color"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_password_login"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_corner20_white_bg"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:maxLength="15"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:singleLine="true"
+                android:textColor="@color/text_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_corner20_red_bg"
+                android:gravity="center"
+                android:onClick="login"
+                android:text="立即登录"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </FrameLayout>
 </LinearLayout>

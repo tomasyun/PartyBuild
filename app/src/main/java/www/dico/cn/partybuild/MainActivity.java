@@ -70,7 +70,6 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
                 .addItem(tabItem(R.mipmap.img_info_on, R.mipmap.img_info_ok, "资讯"))
                 .addItem(tabItem(R.mipmap.img_signin_on, R.mipmap.img_signin_ok, "签到"))
                 .addItem(tabItem(R.mipmap.img_exam_on, R.mipmap.img_exam_ok, "考试"))
-//                .addItem(tabItem(R.mipmap.img_dues_on, R.mipmap.img_dues_ok, "党费缴纳"))
                 .addItem(tabItem(R.mipmap.img_mine_on, R.mipmap.img_mine_ok, "我的"))
                 .build();
         setUp();

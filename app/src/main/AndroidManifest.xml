@@ -39,7 +39,8 @@
         <!--登录-->
         <activity
             android:name=".activity.LoginActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:theme="@style/Login" />
 
         <activity
             android:name=".MainActivity"

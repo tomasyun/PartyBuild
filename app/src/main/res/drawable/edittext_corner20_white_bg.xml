@@ -7,4 +7,6 @@
         android:bottomRightRadius="20dp"
         android:topLeftRadius="20dp"
         android:topRightRadius="20dp" />
+    <stroke android:width="0.5dp"
+        android:color="@color/light_gray"/>
 </shape>

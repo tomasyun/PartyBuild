@@ -43,7 +43,7 @@ public class DownLoadService extends Service {
 
     public void loadFile() {
         setUp();
-        String url = "http://txt.99dushuzu.com/download-txt/3/21068.txt";
+        String url = "";
         EasyHttp.downLoad(url)
                 .savePath(destFileDir)
                 .saveName(FileUtils.getFileName(url))

@@ -21,9 +21,9 @@
 
     <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout
         android:id="@+id/srl_sign_in"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.header.ClassicsHeader
             android:layout_width="match_parent"
@@ -118,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text=""
+                    android:text="会议签到"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 
