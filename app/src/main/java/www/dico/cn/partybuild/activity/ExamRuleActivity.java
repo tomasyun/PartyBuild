@@ -23,6 +23,8 @@ import www.dico.cn.partybuild.presenter.ExamRulePresenter;
 //考试规则
 @CreatePresenter(ExamRulePresenter.class)
 public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRulePresenter> implements ExamRuleView {
+    @BindView(R.id.tv_exam_name)
+    TextView tv_exam_name;
     @BindView(R.id.tv_total_score)
     TextView tv_total_score;//总分数
     @BindView(R.id.tv_standard_score)
@@ -80,6 +82,7 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
             if (null != bean.getData()) {
                 tv_start_exam.setEnabled(true);
                 tv_start_exam.setClickable(true);
+                tv_exam_name.setText(bean.getData().getTitle());
                 NumberFormat nf = new DecimalFormat("#");
                 tv_total_score.setText(nf.format(Double.valueOf(bean.getData().getTotalScore())) + "分");
                 tv_standard_score.setText(nf.format(Double.valueOf(bean.getData().getLimitScore())) + "分");
