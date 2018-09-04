@@ -52,7 +52,7 @@ public class SplashActivity extends BaseActivity implements MPermission.Permissi
         if (MPermission.hasPermissions(this, perms)) {//检查是否已经授权
             mHandler.sendEmptyMessageDelayed(0, 3000);
         } else {
-            MPermission.requestPermissions(this, "###", PERMISSION, perms);//请求获取权限
+            MPermission.requestPermissions(this, "是否获取应用权限?", PERMISSION, perms);//请求获取权限
         }
     }
 
