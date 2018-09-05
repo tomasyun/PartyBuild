@@ -33,7 +33,6 @@ public class SettingActivity extends BaseActivity {
                         goTo(SplashActivity.class, null);
                         finish();
                         AppConfig.getSpUtils().clear();
-                        AppManager.getManager().finishAllActivity();
                     }
                 }).setNegativeButton("取消", new View.OnClickListener() {
             @Override

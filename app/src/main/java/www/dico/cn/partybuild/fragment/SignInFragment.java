@@ -39,6 +39,7 @@ import www.dico.cn.partybuild.mvp.view.AbstractFragment;
 import www.dico.cn.partybuild.presenter.SignInPresenter;
 import www.dico.cn.partybuild.utils.DateTimeUtils;
 import www.dico.cn.partybuild.utils.GlideUtils;
+import www.dico.cn.partybuild.utils.StringUtils;
 import www.dico.cn.partybuild.widget.CountDownButtonHelper;
 import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
@@ -58,6 +59,10 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     TextView tv_sign_in_address;//地址
     @BindView(R.id.tv_sign_in_date)
     TextView tv_sign_in_date;//日期
+    @BindView(R.id.tv_sign_in_week)
+    TextView tv_sign_in_week;
+    @BindView(R.id.tv_sign_in_time)
+    TextView tv_sign_in_time;
     @BindView(R.id.tv_sign_in_enable)
     TextView tv_sign_in_enable;//立即签到
     @BindView(R.id.tv_sign_in_count_down)
@@ -296,12 +301,18 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                 srl_sign_in.setVisibility(View.VISIBLE);
                 sign_in_empty_data.setVisibility(View.GONE);
                 sign_in_net_error.setVisibility(View.GONE);
-                GlideUtils.loadImageSetUpError(getActivity(), bean.getData().getThemeImg(), iv_conference_theme_pic, R.mipmap.img_dico);
-                tv_sign_in_date.setText(bean.getData().getStartDate());
+                GlideUtils.loadImageSetUpError(getActivity(), bean.getData().getThemeImg(), iv_conference_theme_pic, R.mipmap.img_empty_data);
+                String startDate = bean.getData().getStartDate();
+                if (!StringUtils.isEmpty(startDate)) {
+                    String[] split = startDate.split(" ");
+                    tv_sign_in_date.setText(split[0]);
+                    tv_sign_in_week.setText(DateTimeUtils.getWeekOfDate(startDate));
+                    tv_sign_in_time.setText(split[1]);
+                }
                 tv_sign_in_address.setText(bean.getData().getAddress());
                 id = bean.getData().getId();
                 signInType = bean.getData().getIs();
-                switch (signInType){
+                switch (signInType) {
                     case "0":
                         tv_sign_in_enable.setText("会议签到");
                         break;
@@ -310,7 +321,6 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                         break;
 
                 }
-                startDate = bean.getData().getStartDate();
                 address = bean.getData().getAddress();//签到地址
             } else {
                 srl_sign_in.setVisibility(View.GONE);

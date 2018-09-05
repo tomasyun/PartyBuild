@@ -79,11 +79,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="15dp"
                         android:gravity="center"
-                        android:singleLine="true"
                         android:textColor="@color/text_color"
-                        android:textSize="14sp">
-
-                    </www.dico.cn.partybuild.widget.CustomTextView>
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <View

@@ -23,7 +23,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
-import www.dico.cn.partybuild.UpdateManager;
 import www.dico.cn.partybuild.activity.ActivityMrgActivity;
 import www.dico.cn.partybuild.activity.MailboxActivity;
 import www.dico.cn.partybuild.activity.MeetingActivity;
@@ -82,6 +81,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         content.setSpan(style, 0, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         tv_gongshi_home.setText(content);
 
+        tv_notice_home.setText("");
         tv_notice_home.init(getActivity().getWindowManager());
 
         lin_meeting_home.setOnClickListener(this);
@@ -125,6 +125,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 if (bean.getData().getAnnouncement() != null) {
                     String content = bean.getData().getAnnouncement().getContent();
                     tv_notice_home.setText(content);
+                    tv_notice_home.init(getActivity().getWindowManager());
                     tv_notice_home.startScroll();
                     tv_notice_home.setEnabled(false);
                 }

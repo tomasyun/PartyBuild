@@ -36,8 +36,6 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
     TextView tv_orgact_brief_date;
     @BindView(R.id.tv_orgact_brief_address)
     TextView tv_orgact_brief_address;
-    @BindView(R.id.tv_orgact_brief_category)
-    TextView tv_orgact_brief_category;
     @BindView(R.id.tv_orgact_brief_content)
     ExpandableTextView tv_orgact_brief_content;
     @BindView(R.id.tv_orgact_brief_participants)
@@ -94,11 +92,10 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
         OrgActBriefBean briefBean = new Gson().fromJson(result, OrgActBriefBean.class);
         if (briefBean.code.equals("0000")) {
             if (briefBean.getData() != null) {
-                GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat("http://47.104.72.111/", briefBean.getData().getThemeImg()), iv_orgact_brief_theme_pic, R.mipmap.img_dico);
+                GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat("http://47.104.72.111/", briefBean.getData().getThemeImg()), iv_orgact_brief_theme_pic, R.mipmap.img_empty_data);
                 tv_orgact_brief_theme.setText(briefBean.getData().getTheme());
                 tv_orgact_brief_date.setText(briefBean.getData().getStartDate());
                 tv_orgact_brief_address.setText(briefBean.getData().getAddress());
-                tv_orgact_brief_category.setText(briefBean.getData().getCategory());
                 tv_orgact_brief_content.setText(briefBean.getData().getBrief());
                 adapter = new ParticipantsAdapter(briefBean.getData().getAttender());
                 tv_orgact_brief_participants.setText(briefBean.getData().getAttendNum());

@@ -50,7 +50,7 @@
                     android:id="@+id/iv_theme_meeting_brief"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:background="@mipmap/img_dico"
+                    android:background="@color/white"
                     android:contentDescription="@null"
                     android:scaleType="fitXY"
                     android:visibility="visible" />

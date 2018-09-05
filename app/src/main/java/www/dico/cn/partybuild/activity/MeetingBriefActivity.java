@@ -100,12 +100,28 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
         MeetBriefBean briefBean = new Gson().fromJson(result, MeetBriefBean.class);
         if (briefBean.code.equals("0000")) {
             if (briefBean.getData() != null) {
-                GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat("http://47.104.72.111/", briefBean.getData().getThemeImg()), iv_theme_meeting_brief, R.mipmap.img_dico);
+                GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat("http://47.104.72.111/", briefBean.getData().getThemeImg()), iv_theme_meeting_brief, R.mipmap.img_empty_data);
                 tv_theme_meeting_brief.setText(briefBean.getData().getTheme());
                 tv_date_meeting_brief.setText(briefBean.getData().getStartDate());
                 tv_address_meeting_brief.setText(briefBean.getData().getAddress());
                 tv_speaker_meeting_brief.setText(briefBean.getData().getSpeaker());
-                tv_type_meeting_brief.setText(briefBean.getData().getCategory());
+                String category = briefBean.getData().getCategory();
+                if (category != null && !category.equals("")) {
+                    switch (category) {
+                        case "0":
+                            tv_type_meeting_brief.setText("支部党员大会");
+                            break;
+                        case "1":
+                            tv_type_meeting_brief.setText("支部委员会");
+                            break;
+                        case "2":
+                            tv_type_meeting_brief.setText("党小组会");
+                            break;
+                        case "3":
+                            tv_type_meeting_brief.setText("党课");
+                            break;
+                    }
+                }
                 tv_brief_meeting_brief.setText(briefBean.getData().getBrief());
                 adapter = new ParticipantsAdapter(briefBean.getData().getAttender());
                 tv_participants_meeting_brief.setText(briefBean.getData().getAttendNum());

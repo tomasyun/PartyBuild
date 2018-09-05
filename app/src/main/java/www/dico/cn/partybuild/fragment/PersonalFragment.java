@@ -57,7 +57,7 @@ public class PersonalFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_personal, null);
         ButterKnife.bind(this, view);
         GlideUtils.loadCircleImage(getActivity(), AppConfig.urlFormat("http://47.104.72.111/", AppConfig.getSpUtils().getString("avatar")), iv_user_avatar_personal);
-        tv_name_personal.setText(AppConfig.getSpUtils().getString(""));
+        tv_name_personal.setText(AppConfig.getSpUtils().getString("username"));
         tv_position_personal.setText(AppConfig.getSpUtils().getString("position"));
         if (!AppConfig.getSpUtils().getBoolean("isManager")) {
             rel_mailbox_personal.setVisibility(View.GONE);

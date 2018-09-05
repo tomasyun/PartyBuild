@@ -129,7 +129,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                 String publishDate = bean.getData().getPublishDate();
                 publishDate = (null == publishDate) ? "" : publishDate;
                 tv_date_notice_info.setText(publishDate);
-                tv_content_notice_info.setText(bean.getData().getContent());
+                tv_content_notice_info.setText("\u3000\u3000"+bean.getData().getContent());
                 List<NoticeInfoBean.DataBean.CommitListBean> list = bean.getData().getCommitList();
                 if (null != list && list.size() > 0) {
                     adapter = new NoticeInfoCommentAdapter(list);

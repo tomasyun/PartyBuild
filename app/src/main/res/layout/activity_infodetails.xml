@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                       android:textColor="@color/text_color" />
 
                     <LinearLayout
                         android:id="@+id/lin_info_detail_desc"

@@ -26,6 +26,7 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
     EditText et_name_login;
     @BindView(R.id.et_password_login)
     EditText et_password_login;
+    private String login_name="";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
     }
 
     public void login(View view) {
-        String login_name = et_name_login.getText().toString().trim();
+        login_name = et_name_login.getText().toString().trim();
         String password = et_password_login.getText().toString().trim();
         if (TextUtils.isEmpty(login_name)) {
             showToast("用户名不能为空");
@@ -59,6 +60,7 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
                 String userId = bean.getData().getUserId();//用户id
                 String avatar = bean.getData().getAvatar();//头像
                 boolean isManager = bean.getData().isManager();//是否为管理员
+                AppConfig.getSpUtils().put("username", login_name);
                 partyPosition = (null == partyPosition) ? "" : partyPosition;
                 AppConfig.getSpUtils().put("partyBranchPost", partyPosition);
                 position = (null == position) ? "" : position;

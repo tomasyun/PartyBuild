@@ -390,4 +390,50 @@ public class DateTimeUtils {
         }
         return null;
     }
+
+    /**
+     * 根据日期获得星期
+     * @param date
+     * @return
+     */
+
+    public static String getWeekOfDate(String date) {
+        if (StringUtils.isEmpty(date)) {
+            return "";
+        }
+        String[] weekDaysName = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date dt1;
+        try {
+            dt1 = df.parse(date);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dt1);
+            int intWeek = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+            return weekDaysName[intWeek];
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    /**
+     * 根据日期字符串获得时分秒
+     */
+
+    public static String getHourMinuteSecond(String date) {
+        if (StringUtils.isEmpty(date)) {
+            return "";
+        }
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat df1 = new SimpleDateFormat("HH:mm:ss");
+        Date dt1;
+        try {
+            dt1 = df.parse(date);
+            String result = df1.format(dt1);
+            return result;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }

@@ -38,6 +38,7 @@
                 android:id="@+id/iv_conference_theme_pic"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
+                android:background="@color/white"
                 android:contentDescription="@null"
                 android:scaleType="fitXY" />
 
@@ -68,6 +69,29 @@
                     android:text=""
                     android:textSize="14sp" />
 
+                <TextView
+                    android:id="@+id/tv_sign_in_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/tv_sign_in_date"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_sign_in_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/tv_sign_in_week"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textSize="14sp" />
             </RelativeLayout>
 
             <RelativeLayout
