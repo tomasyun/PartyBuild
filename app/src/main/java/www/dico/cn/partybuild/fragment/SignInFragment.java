@@ -301,7 +301,7 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                 srl_sign_in.setVisibility(View.VISIBLE);
                 sign_in_empty_data.setVisibility(View.GONE);
                 sign_in_net_error.setVisibility(View.GONE);
-                GlideUtils.loadImageSetUpError(getActivity(), bean.getData().getThemeImg(), iv_conference_theme_pic, R.mipmap.img_empty_data);
+                GlideUtils.loadImage(getActivity(), bean.getData().getThemeImg(), iv_conference_theme_pic);
                 String startDate = bean.getData().getStartDate();
                 if (!StringUtils.isEmpty(startDate)) {
                     String[] split = startDate.split(" ");
