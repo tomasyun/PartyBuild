@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg_color"
+    android:orientation="vertical">
+    <!--标题-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/theme_color">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:clickable="true"
+            android:contentDescription="@null"
+            android:onClick="goBackIntegrityBuild"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="廉政建设"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+        <!--廉政教育-->
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rbt_selector02_white_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="廉政教育"
+            android:textColor="@color/rbt_txt_color_bg01"
+            android:textSize="14sp" />
+
+        <!--监督预防-->
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rbt_selector02_white_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="监督预防"
+            android:textColor="@color/rbt_txt_color_bg01"
+            android:textSize="14sp" />
+        <!--案例-->
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rbt_selector02_white_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="案例"
+            android:textColor="@color/rbt_txt_color_bg01"
+            android:textSize="14sp" />
+    </RadioGroup>
+</LinearLayout>

@@ -31,6 +31,7 @@ import www.dico.cn.partybuild.modleview.MainView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.MainPresenter;
+import www.dico.cn.partybuild.service.RefreshNoticeService;
 import www.dico.cn.partybuild.widget.NoScrollViewPager;
 import www.yuntdev.com.bottomnavigationlibrary.adapter.MyViewPagerAdapter;
 import www.yuntdev.com.bottomnavigationlibrary.controller.NavigationController;
@@ -64,6 +65,8 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+//        Intent intent = new Intent(this, RefreshNoticeService.class);
+//        startService(intent);//启动定时任务
         controller = tab_main
                 .custom()
                 .addItem(tabItem(R.mipmap.img_home_on, R.mipmap.img_home_ok, "首页"))
@@ -80,7 +83,6 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
         controller.setupWithViewPager(vp_main);
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
         manager.registerReceiver(new SkipReceiver(), new IntentFilter("cn.diconet.www"));
-
         getMvpPresenter().doVersionUpdateRequest();
     }
 

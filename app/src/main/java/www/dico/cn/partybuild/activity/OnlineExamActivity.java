@@ -212,4 +212,13 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
         String requestParams = new Gson().toJson(answerBean);
         getMvpPresenter().doSaveExamAnswer(requestParams);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (helper != null) {
+            helper.cancel();
+            helper = null;
+        }
+    }
 }

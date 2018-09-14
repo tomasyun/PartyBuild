@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -24,10 +24,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.ActivityMrgActivity;
+import www.dico.cn.partybuild.activity.IntegrityBuildActivity;
 import www.dico.cn.partybuild.activity.MailboxActivity;
 import www.dico.cn.partybuild.activity.MeetingActivity;
+import www.dico.cn.partybuild.activity.MissionParksActivity;
 import www.dico.cn.partybuild.activity.PayDuesActivity;
 import www.dico.cn.partybuild.activity.StudyTaskActivity;
+import www.dico.cn.partybuild.activity.UnionWorkActivity;
 import www.dico.cn.partybuild.bean.AdvertiseImgM;
 import www.dico.cn.partybuild.bean.HomeBean;
 import www.dico.cn.partybuild.modleview.HomeView;
@@ -51,16 +54,22 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
     TextView tv_gongshi_home;
     @BindView(R.id.tv_notice_home)
     CustomTextView tv_notice_home;
-    @BindView(R.id.lin_meeting_home)
-    LinearLayout lin_meeting_home;
-    @BindView(R.id.lin_studies_home)
-    LinearLayout lin_studies_home;
-    @BindView(R.id.lin_activity_home)
-    LinearLayout lin_activity_home;
-    @BindView(R.id.lin_dues_home)
-    LinearLayout lin_dues_home;
-    @BindView(R.id.lin_mailbox_home)
-    LinearLayout lin_mailbox_home;
+    @BindView(R.id.rel_meeting_home)
+    RelativeLayout rel_meeting_home;
+    @BindView(R.id.rel_studies_home)
+    RelativeLayout rel_studies_home;
+    @BindView(R.id.rel_activity_home)
+    RelativeLayout rel_activity_home;
+    @BindView(R.id.rel_dues_home)
+    RelativeLayout rel_dues_home;
+    @BindView(R.id.rel_mailbox_home)
+    RelativeLayout rel_mailbox_home;
+    @BindView(R.id.rel_mission_home)
+    RelativeLayout rel_mission_home;
+    @BindView(R.id.rel_union_home)
+    RelativeLayout rel_union_home;
+    @BindView(R.id.rel_integrity_home)
+    RelativeLayout rel_integrity_home;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -84,12 +93,14 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         tv_notice_home.setText("");
         tv_notice_home.init(getActivity().getWindowManager());
 
-        lin_meeting_home.setOnClickListener(this);
-        lin_studies_home.setOnClickListener(this);
-        lin_activity_home.setOnClickListener(this);
-        lin_dues_home.setOnClickListener(this);
-        lin_mailbox_home.setOnClickListener(this);
-
+        rel_meeting_home.setOnClickListener(this);
+        rel_studies_home.setOnClickListener(this);
+        rel_activity_home.setOnClickListener(this);
+        rel_dues_home.setOnClickListener(this);
+        rel_mailbox_home.setOnClickListener(this);
+        rel_mission_home.setOnClickListener(this);
+        rel_union_home.setOnClickListener(this);
+        rel_integrity_home.setOnClickListener(this);
 //        List<AdvertiseImgM> urls = new ArrayList<>();
 //        AdvertiseImgM advertise = new AdvertiseImgM();
 //        advertise.setPoster("http://pic.5tu.cn/uploads/allimg/1606/pic_5tu_big_201606272309319893.jpg");
@@ -146,7 +157,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 xbanner.loadImage(new XBanner.XBannerAdapter() {
                     @Override
                     public void loadBanner(XBanner banner, Object model, View view, int position) {
-                        GlideUtils.loadImage(getActivity(), ((AdvertiseImgM) model).getPoster(), (ImageView) view);
+                        GlideUtils.loadImageSetUpError(getActivity(), ((AdvertiseImgM) model).getPoster(), (ImageView) view, R.mipmap.img_dico);
                     }
                 });
                 xbanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
@@ -176,20 +187,29 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.lin_meeting_home://三会一课
+            case R.id.rel_meeting_home://三会一课
                 goTo(MeetingActivity.class, null);
                 break;
-            case R.id.lin_studies_home://学习任务
+            case R.id.rel_studies_home://学习任务
                 goTo(StudyTaskActivity.class, null);
                 break;
-            case R.id.lin_activity_home://活动管理
+            case R.id.rel_activity_home://活动管理
                 goTo(ActivityMrgActivity.class, null);
                 break;
-            case R.id.lin_dues_home://党费缴纳
+            case R.id.rel_dues_home://党费缴纳
                 goTo(PayDuesActivity.class, null);
                 break;
-            case R.id.lin_mailbox_home://领导信箱
+            case R.id.rel_mailbox_home://领导信箱
                 goTo(MailboxActivity.class, null);
+                break;
+            case R.id.rel_mission_home://团青园地
+                goTo(MissionParksActivity.class, null);
+                break;
+            case R.id.rel_union_home://工会工作
+                goTo(UnionWorkActivity.class, null);
+                break;
+            case R.id.rel_integrity_home://廉政建设
+                goTo(IntegrityBuildActivity.class, null);
                 break;
         }
     }

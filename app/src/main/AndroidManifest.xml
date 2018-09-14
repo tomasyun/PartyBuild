@@ -189,6 +189,26 @@
         <activity
             android:name=".activity.LeaveSuccessActivity"
             android:launchMode="singleTask" />
+        <!--团青园地-->
+        <activity
+            android:name=".activity.MissionParksActivity"
+            android:launchMode="singleTask" />
+        <!--工会工作-->
+        <activity
+            android:name=".activity.UnionWorkActivity"
+            android:launchMode="singleTask" />
+        <!--廉政建设-->
+        <activity
+            android:name=".activity.IntegrityBuildActivity"
+            android:launchMode="singleTask" />
+        <!--支部园地-->
+        <activity
+            android:name=".activity.BranchParksActivity"
+            android:launchMode="singleTask" />
+        <!--公开承诺-->
+        <activity
+            android:name=".activity.PublicPromiseActivity"
+            android:launchMode="singleTask" />
         <!--通知详情-->
         <!--使用高德api所申请的key-->
         <meta-data

@@ -62,7 +62,10 @@
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="15dp">
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp">
                     <!--系统公告-->
                     <TextView
                         android:id="@+id/tv_gongshi_home"
@@ -78,7 +81,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="15dp"
-                        android:gravity="center"
                         android:textColor="@color/text_color"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -100,20 +102,21 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
                         <!--三会一课-->
-                        <LinearLayout
-                            android:id="@+id/lin_meeting_home"
+                        <RelativeLayout
+                            android:id="@+id/rel_meeting_home"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/home_meeting_corner10_bg"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:paddingBottom="60dp"
-                            android:paddingTop="60dp">
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/corner10_org_act_bg"
+                            android:clickable="true"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="15dp">
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
                                 android:contentDescription="@null"
                                 android:scaleType="fitXY"
                                 android:src="@mipmap/img_meeting_home" />
@@ -121,26 +124,29 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
                                 android:text="三会一课"
-                                android:textColor="@color/white" />
-                        </LinearLayout>
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
                         <!--学习任务-->
-                        <LinearLayout
-                            android:id="@+id/lin_studies_home"
+                        <RelativeLayout
+                            android:id="@+id/rel_studies_home"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/home_studies_corner10_bg"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:paddingBottom="60dp"
-                            android:paddingTop="60dp">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/corner10_vote_mrg_bg"
+                            android:clickable="true"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="15dp">
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
                                 android:contentDescription="@null"
                                 android:scaleType="fitXY"
                                 android:src="@mipmap/img_studies_home" />
@@ -148,10 +154,72 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
                                 android:text="学习任务"
-                                android:textColor="@color/white" />
-                        </LinearLayout>
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
+                        <!--廉政建设-->
+                        <RelativeLayout
+                            android:id="@+id/rel_integrity_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/corner10_org_act_bg"
+                            android:clickable="true"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="15dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:contentDescription="@null"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/img_integrity_build" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:text="廉政建设"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
+                        <!--团青园地-->
+                        <RelativeLayout
+                            android:id="@+id/rel_mission_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/corner10_question_sur_bg"
+                            android:clickable="true"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="15dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:contentDescription="@null"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/img_mission_parks" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:text="团青园地"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -161,20 +229,21 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
                         <!--活动管理-->
-                        <LinearLayout
-                            android:id="@+id/lin_activity_home"
+                        <RelativeLayout
+                            android:id="@+id/rel_activity_home"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/home_activity_corner10_bg"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:paddingBottom="30dp"
-                            android:paddingTop="30dp">
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/home_studies_corner10_bg"
+                            android:clickable="true"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="15dp">
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
                                 android:contentDescription="@null"
                                 android:scaleType="fitXY"
                                 android:src="@mipmap/img_activity_home" />
@@ -182,26 +251,29 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
                                 android:text="活动管理"
-                                android:textColor="@color/white" />
-                        </LinearLayout>
+                                android:textColor="@color/white"
+                                android:textSize="14sp"/>
+                        </RelativeLayout>
                         <!--党费缴纳-->
-                        <LinearLayout
-                            android:id="@+id/lin_dues_home"
+                        <RelativeLayout
+                            android:id="@+id/rel_dues_home"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/home_dues_corner10_bg"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:paddingBottom="30dp"
-                            android:paddingTop="30dp">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/corner10_question_sur_bg"
+                            android:clickable="true"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="15dp">
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
                                 android:contentDescription="@null"
                                 android:scaleType="fitXY"
                                 android:src="@mipmap/img_dues_home" />
@@ -209,26 +281,59 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
                                 android:text="党费缴纳"
-                                android:textColor="@color/white" />
-                        </LinearLayout>
-                        <!--领导信箱-->
-                        <LinearLayout
-                            android:id="@+id/lin_mailbox_home"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"/>
+                        </RelativeLayout>
+                        <!--工会工作-->
+                        <RelativeLayout
+                            android:id="@+id/rel_union_home"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/home_mailbox_corner10_bg"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:paddingBottom="30dp"
-                            android:paddingTop="30dp">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/home_studies_corner10_bg"
+                            android:clickable="true"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="15dp">
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:contentDescription="@null"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/img_union_work" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:text="工会工作"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
+                        <!--领导信箱-->
+                        <RelativeLayout
+                            android:id="@+id/rel_mailbox_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/corner10_vote_mrg_bg"
+                            android:clickable="true"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="15dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
                                 android:contentDescription="@null"
                                 android:scaleType="fitXY"
                                 android:src="@mipmap/img_mailbox_home" />
@@ -236,10 +341,12 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
                                 android:text="领导信箱"
-                                android:textColor="@color/white" />
-                        </LinearLayout>
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+                        </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

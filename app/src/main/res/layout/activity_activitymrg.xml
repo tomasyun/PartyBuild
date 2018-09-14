@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_bg_color"
@@ -47,200 +46,242 @@
                 android:id="@+id/rel_org_act_org_mrg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
                 android:background="@drawable/corner10_org_act_bg"
                 android:clickable="true"
                 android:onClick="gotoOrgAct"
-                android:paddingBottom="25dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="25dp"
-                android:translationZ="5dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:orientation="horizontal">
-
-                    <www.dico.cn.partybuild.widget.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="组"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        app:endColor="#369bf2"
-                        app:startColor="@color/white" />
-
-                    <www.dico.cn.partybuild.widget.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="织"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        app:endColor="#369bf2"
-                        app:startColor="@color/white" />
-
-                    <www.dico.cn.partybuild.widget.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="活"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        app:endColor="#369bf2"
-                        app:startColor="@color/white" />
-
-                    <www.dico.cn.partybuild.widget.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="动"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        app:endColor="#369bf2"
-                        app:startColor="@color/white" />
-                </LinearLayout>
+                android:paddingBottom="10dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:contentDescription="@null"
                     android:scaleType="fitXY"
                     android:src="@mipmap/img_org_act" />
-            </RelativeLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="组织活动"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
             <!--投票管理-->
             <RelativeLayout
                 android:id="@+id/rel_vote_mrg_org_mrg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/corner10_vote_mrg_bg"
                 android:clickable="true"
                 android:onClick="gotoVoteMrg"
-                android:paddingBottom="25dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="25dp"
-                android:translationZ="5dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:orientation="horizontal">
-
-                    <www.dico.cn.partybuild.widget.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="投"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        app:endColor="#feaa00"
-                        app:startColor="@color/white" />
-
-                    <www.dico.cn.partybuild.widget.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="票"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        app:endColor="#feaa00"
-                        app:startColor="@color/white" />
-
-                    <www.dico.cn.partybuild.widget.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="管"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        app:endColor="#feaa00"
-                        app:startColor="@color/white" />
-
-                    <www.dico.cn.partybuild.widget.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="理"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        app:endColor="#feaa00"
-                        app:startColor="@color/white" />
-                </LinearLayout>
+                android:paddingBottom="10dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:contentDescription="@null"
                     android:scaleType="fitXY"
                     android:src="@mipmap/img_vote_mrg" />
-            </RelativeLayout>
 
-            <!--问卷调查-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="投票管理"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <!--调查问卷-->
             <RelativeLayout
                 android:id="@+id/rel_question_sur_org_mrg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/corner10_question_sur_bg"
                 android:clickable="true"
                 android:onClick="gotoQuestionSur"
-                android:paddingBottom="25dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="25dp"
-                android:translationZ="5dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:orientation="horizontal">
-
-                    <www.dico.cn.partybuild.widget.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="问"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        app:endColor="#fa4e0f"
-                        app:startColor="@color/white" />
-
-                    <www.dico.cn.partybuild.widget.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="卷"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        app:endColor="#fa4e0f"
-                        app:startColor="@color/white" />
-
-                    <www.dico.cn.partybuild.widget.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="调"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        app:endColor="#fa4e0f"
-                        app:startColor="@color/white" />
-
-                    <www.dico.cn.partybuild.widget.GradientTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="查"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        app:endColor="#fa4e0f"
-                        app:startColor="@color/white" />
-                </LinearLayout>
+                android:paddingBottom="10dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:contentDescription="@null"
                     android:scaleType="fitXY"
                     android:src="@mipmap/img_question_sur" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="调查问卷"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <!--党员园地-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/home_studies_corner10_bg"
+                android:clickable="true"
+                android:onClick="gotoPartyParks"
+                android:paddingBottom="10dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_party_parks" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="党员园地"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <!--支部园地-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/corner10_org_act_bg"
+                android:clickable="true"
+                android:onClick="gotoBranchParks"
+                android:paddingBottom="10dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_branch_parks" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="支部园地"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <!--培训园地-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/corner10_vote_mrg_bg"
+                android:clickable="true"
+                android:onClick="gotoTrainingParks"
+                android:paddingBottom="10dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_training_parks" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="培训园地"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <!--组织机构-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/corner10_question_sur_bg"
+                android:clickable="true"
+                android:onClick="gotoOrgSituation"
+                android:paddingBottom="10dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_org_situation" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="组织机构"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <!--公开承诺-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/corner10_org_act_bg"
+                android:clickable="true"
+                android:onClick="gotoPublicPromise"
+                android:paddingBottom="10dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_public_promise" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="公开承诺"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

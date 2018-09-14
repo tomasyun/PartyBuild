@@ -14,4 +14,5 @@
     <color name="light_gray">#aaa</color>
     <color name="green">#64be50</color>
     <color name="light_grayer">#666666</color>
+    <color name="black">#000000</color>
 </resources>

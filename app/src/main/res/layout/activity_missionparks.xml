@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg_color"
+    android:orientation="vertical">
+    <!--标题-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/theme_color">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:clickable="true"
+            android:contentDescription="@null"
+            android:onClick="goBackmissionParks"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="团青园地"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+            <!--公告通知-->
+            <RelativeLayout
+                android:id="@+id/rel_notice_announce_mission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/corner10_org_act_bg"
+                android:clickable="true"
+                android:onClick="gotoNoticeAnnounce"
+                android:paddingBottom="10dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_notice_announce" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="公告通知"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <!--支部园地-->
+            <RelativeLayout
+                android:id="@+id/rel_branch_parks_mission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/corner10_vote_mrg_bg"
+                android:clickable="true"
+                android:onClick="gotoBranchParks"
+                android:paddingBottom="10dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_branch_parks" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="支部园地"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <!--团员园地-->
+            <RelativeLayout
+                android:id="@+id/rel_garden_parks_mission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/corner10_question_sur_bg"
+                android:clickable="true"
+                android:onClick="gotoGardenParks"
+                android:paddingBottom="10dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_garden_parks" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="团员园地"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <!--规章制度-->
+            <RelativeLayout
+                android:id="@+id/rel_regulation_mission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/home_studies_corner10_bg"
+                android:clickable="true"
+                android:onClick="gotoRegulation"
+                android:paddingBottom="10dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_regulation" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="规章制度"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <!--组织机构-->
+            <RelativeLayout
+                android:id="@+id/rel_org_situation_mission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/corner10_org_act_bg"
+                android:clickable="true"
+                android:onClick="gotoOrgSituation"
+                android:paddingBottom="10dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="10dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_org_situation" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="组织机构"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
