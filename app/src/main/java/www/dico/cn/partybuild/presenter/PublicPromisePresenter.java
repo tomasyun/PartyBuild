@@ -28,11 +28,11 @@ public class PublicPromisePresenter extends BaseMvpPresenter<PublicPromiseView> 
         return dialog;
     }
 
-    public void doPublicPromiseRequest(String articleType,String childrenType ,String draw, int start, int length) {
+    public void doPublicPromiseRequest(String articleType, String childrenType, String draw, int start, int length) {
         EasyHttp.post("findArticle")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("articleType", articleType)
-                .params("childrenType",childrenType)
+                .params("childrenType", childrenType)
                 .params("draw", draw)
                 .params("start", String.valueOf(start))
                 .params("length", String.valueOf(length))
@@ -45,7 +45,10 @@ public class PublicPromisePresenter extends BaseMvpPresenter<PublicPromiseView> 
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().resultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }

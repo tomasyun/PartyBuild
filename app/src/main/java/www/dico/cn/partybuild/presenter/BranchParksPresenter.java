@@ -45,7 +45,10 @@ public class BranchParksPresenter extends BaseMvpPresenter<BranchParksView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().resultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }

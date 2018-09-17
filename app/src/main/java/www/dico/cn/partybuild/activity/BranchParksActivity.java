@@ -38,6 +38,10 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
     private int position = 0;
     private List<InfoBean.DataBeanX.DataBean> list;
     private InfoAdapter adapter;
+    @BindView(R.id.branch_parks_empty_data)
+    View branch_parks_empty_data;
+    @BindView(R.id.branch_parks_net_error)
+    View branch_parks_net_error;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -131,6 +135,9 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                 if (start == 0) {
                     list = bean.getData().getData();
                     if (null != list && list.size() > 0) {
+                        srl_branch_parks.setVisibility(View.VISIBLE);
+                        branch_parks_empty_data.setVisibility(View.GONE);
+                        branch_parks_net_error.setVisibility(View.GONE);
                         adapter = new InfoAdapter(this, R.layout.item_info, list);
                         rv_branch_parks.setAdapter(adapter);
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -140,6 +147,9 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                             }
                         });
                     } else {
+                        srl_branch_parks.setVisibility(View.GONE);
+                        branch_parks_empty_data.setVisibility(View.VISIBLE);
+                        branch_parks_net_error.setVisibility(View.GONE);
                     }
                 } else {
                     List<InfoBean.DataBeanX.DataBean> list = bean.getData().getData();
@@ -167,5 +177,31 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
         srl_branch_parks.finishLoadmore();
         srl_branch_parks.finishRefresh();
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        srl_branch_parks.setVisibility(View.GONE);
+        branch_parks_empty_data.setVisibility(View.GONE);
+        branch_parks_net_error.setVisibility(View.VISIBLE);
+        branch_parks_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (position) {
+                    case 0:
+                        getMvpPresenter().doBranchParksRequest("31", "", "0", start, length);
+                        break;
+                    case 1:
+                        getMvpPresenter().doBranchParksRequest("32", "", "0", start, length);
+                        break;
+                    case 2:
+                        getMvpPresenter().doBranchParksRequest("33", "", "0", start, length);
+                        break;
+                    case 3:
+                        getMvpPresenter().doBranchParksRequest("34", "", "0", start, length);
+                        break;
+                }
+            }
+        });
     }
 }

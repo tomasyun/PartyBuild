@@ -38,6 +38,10 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
     private int position = 0;
     private List<InfoBean.DataBeanX.DataBean> list;
     private InfoAdapter adapter;
+    @BindView(R.id.public_promise_empty_data)
+    View public_promise_empty_data;
+    @BindView(R.id.public_promise_net_error)
+    View public_promise_net_error;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,6 +124,9 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                 if (start == 0) {
                     list = bean.getData().getData();
                     if (null != list && list.size() > 0) {
+                        srl_public_promise.setVisibility(View.VISIBLE);
+                        public_promise_empty_data.setVisibility(View.GONE);
+                        public_promise_net_error.setVisibility(View.GONE);
                         adapter = new InfoAdapter(this, R.layout.item_info, list);
                         rv_public_promise.setAdapter(adapter);
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -129,6 +136,9 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                             }
                         });
                     } else {
+                        srl_public_promise.setVisibility(View.GONE);
+                        public_promise_empty_data.setVisibility(View.VISIBLE);
+                        public_promise_net_error.setVisibility(View.GONE);
                     }
                 } else {
                     List<InfoBean.DataBeanX.DataBean> list = bean.getData().getData();
@@ -156,5 +166,28 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
         showToast(result);
         srl_public_promise.finishLoadmore();
         srl_public_promise.finishRefresh();
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        srl_public_promise.setVisibility(View.GONE);
+        public_promise_empty_data.setVisibility(View.GONE);
+        public_promise_net_error.setVisibility(View.VISIBLE);
+        public_promise_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (position) {
+                    case 0:
+                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        break;
+                    case 1:
+                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        break;
+                    case 2:
+                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        break;
+                }
+            }
+        });
     }
 }

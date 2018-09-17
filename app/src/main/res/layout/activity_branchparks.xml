@@ -122,4 +122,14 @@
 
         </android.support.v7.widget.RecyclerView>
     </www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout>
+
+    <include
+        android:id="@+id/branch_parks_empty_data"
+        layout="@layout/empty_data"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/branch_parks_net_error"
+        layout="@layout/net_error"
+        android:visibility="gone" />
 </LinearLayout>

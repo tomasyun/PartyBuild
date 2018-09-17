@@ -4,7 +4,6 @@ import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.activity.IntegrityBuildActivity;
 import www.dico.cn.partybuild.modleview.IntegrityBuildView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -29,11 +28,11 @@ public class IntegrityBuildPresenter extends BaseMvpPresenter<IntegrityBuildView
         return dialog;
     }
 
-    public void doIntegrityBuildRequest(String articleType,String childrenType ,String draw, int start, int length) {
+    public void doIntegrityBuildRequest(String articleType, String childrenType, String draw, int start, int length) {
         EasyHttp.post("findArticle")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("articleType", articleType)
-                .params("childrenType",childrenType)
+                .params("childrenType", childrenType)
                 .params("draw", draw)
                 .params("start", String.valueOf(start))
                 .params("length", String.valueOf(length))
@@ -46,7 +45,10 @@ public class IntegrityBuildPresenter extends BaseMvpPresenter<IntegrityBuildView
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        getMvpView().resultFailure(e.getMessage());
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().resultFailure(e.getMessage());
                     }
                 });
     }

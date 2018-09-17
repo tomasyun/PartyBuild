@@ -38,6 +38,10 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
     RecyclerView rv_integrity_build;
     @BindView(R.id.srl_integrity_build)
     SmartRefreshLayout srl_integrity_build;
+    @BindView(R.id.integrity_build_empty_data)
+    View integrity_build_empty_data;
+    @BindView(R.id.integrity_build_net_error)
+    View integrity_build_net_error;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,6 +124,9 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
                 if (start == 0) {
                     list = bean.getData().getData();
                     if (null != list && list.size() > 0) {
+                        srl_integrity_build.setVisibility(View.VISIBLE);
+                        integrity_build_empty_data.setVisibility(View.GONE);
+                        integrity_build_net_error.setVisibility(View.GONE);
                         adapter = new InfoAdapter(this, R.layout.item_info, list);
                         rv_integrity_build.setAdapter(adapter);
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
@@ -129,6 +136,9 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
                             }
                         });
                     } else {
+                        integrity_build_empty_data.setVisibility(View.VISIBLE);
+                        integrity_build_net_error.setVisibility(View.GONE);
+                        srl_integrity_build.setVisibility(View.GONE);
                     }
                 } else {
                     List<InfoBean.DataBeanX.DataBean> list = bean.getData().getData();
@@ -156,5 +166,28 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
         srl_integrity_build.finishLoadmore();
         srl_integrity_build.finishRefresh();
         showToast(result);
+    }
+
+    @Override
+    public void netWorkUnAvailable() {
+        integrity_build_empty_data.setVisibility(View.GONE);
+        integrity_build_net_error.setVisibility(View.VISIBLE);
+        srl_integrity_build.setVisibility(View.GONE);
+        integrity_build_net_error.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (position) {
+                    case 0:
+                        getMvpPresenter().doIntegrityBuildRequest("9", "", "0", start, length);
+                        break;
+                    case 1:
+                        getMvpPresenter().doIntegrityBuildRequest("10", "", "0", start, length);
+                        break;
+                    case 2:
+                        getMvpPresenter().doIntegrityBuildRequest("11", "", "0", start, length);
+                        break;
+                }
+            }
+        });
     }
 }
