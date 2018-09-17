@@ -65,8 +65,8 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-//        Intent intent = new Intent(this, RefreshNoticeService.class);
-//        startService(intent);//启动定时任务
+        Intent intent = new Intent(this, RefreshNoticeService.class);
+        startService(intent);//启动定时任务
         controller = tab_main
                 .custom()
                 .addItem(tabItem(R.mipmap.img_home_on, R.mipmap.img_home_ok, "首页"))

@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.InfoAdapter;
 import www.dico.cn.partybuild.bean.InfoBean;
+import www.dico.cn.partybuild.bean.InfodetailForm;
 import www.dico.cn.partybuild.bean.SkipForm;
 import www.dico.cn.partybuild.modleview.CommonView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
@@ -210,7 +211,9 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-
+                                InfodetailForm form = new InfodetailForm();
+                                form.infoId = list.get(position).getId();
+                                goTo(InfodetailsActivity.class, form);
                             }
                         });
                     } else {
@@ -226,7 +229,9 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-
+                                InfodetailForm form = new InfodetailForm();
+                                form.infoId = CommonActivity.this.list.get(position).getId();
+                                goTo(InfodetailsActivity.class, form);
                             }
                         });
                     } else {

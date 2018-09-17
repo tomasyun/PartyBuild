@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.InfoAdapter;
 import www.dico.cn.partybuild.bean.InfoBean;
+import www.dico.cn.partybuild.bean.InfodetailForm;
 import www.dico.cn.partybuild.modleview.PublicPromiseView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -132,7 +133,9 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-
+                                InfodetailForm form = new InfodetailForm();
+                                form.infoId = list.get(position).getId();
+                                goTo(InfodetailsActivity.class, form);
                             }
                         });
                     } else {
@@ -148,7 +151,9 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-
+                                InfodetailForm form = new InfodetailForm();
+                                form.infoId = PublicPromiseActivity.this.list.get(position).getId();
+                                goTo(InfodetailsActivity.class, form);
                             }
                         });
                     } else {

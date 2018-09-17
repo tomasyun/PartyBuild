@@ -16,6 +16,8 @@ import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.InfoAdapter;
 import www.dico.cn.partybuild.bean.InfoBean;
+import www.dico.cn.partybuild.bean.InfodetailForm;
+import www.dico.cn.partybuild.fragment.InfoFragment;
 import www.dico.cn.partybuild.modleview.BranchParksView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -143,7 +145,9 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-
+                                InfodetailForm form = new InfodetailForm();
+                                form.infoId = list.get(position).getId();
+                                goTo(InfodetailsActivity.class, form);
                             }
                         });
                     } else {
@@ -159,7 +163,9 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-
+                                InfodetailForm form = new InfodetailForm();
+                                form.infoId = BranchParksActivity.this.list.get(position).getId();
+                                goTo(InfodetailsActivity.class, form);
                             }
                         });
                     } else {
