@@ -315,7 +315,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
         if (protocol.code.equals("0000")) {
             SkipForm form = new SkipForm();
-            form.skipType = "0";
+            form.skip = 0;
             goTo(SignUpSuccessActivity.class, form);
         } else {
             showToast(protocol.msg);

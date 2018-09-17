@@ -56,17 +56,17 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                     case R.id.rbt_master_public_promise://党委承诺
                         position = 0;
                         start = 0;
-                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        getMvpPresenter().doPublicPromiseRequest("", "43", "0", start, length);
                         break;
                     case R.id.rbt_branch_public_promise://支部承诺
                         position = 1;
                         start = 0;
-                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        getMvpPresenter().doPublicPromiseRequest("", "44", "0", start, length);
                         break;
                     case R.id.rbt_member_public_promise://党员承诺
                         position = 2;
                         start = 0;
-                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        getMvpPresenter().doPublicPromiseRequest("", "45", "0", start, length);
                         break;
                 }
             }
@@ -79,13 +79,13 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                 start = start + length;
                 switch (position) {
                     case 0:
-                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        getMvpPresenter().doPublicPromiseRequest("", "43", "0", start, length);
                         break;
                     case 1:
-                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        getMvpPresenter().doPublicPromiseRequest("", "44", "0", start, length);
                         break;
                     case 2:
-                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        getMvpPresenter().doPublicPromiseRequest("", "45", "0", start, length);
                         break;
                 }
             }
@@ -95,19 +95,19 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                 start = 0;
                 switch (position) {
                     case 0:
-                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        getMvpPresenter().doPublicPromiseRequest("", "43", "0", start, length);
                         break;
                     case 1:
-                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        getMvpPresenter().doPublicPromiseRequest("", "44", "0", start, length);
                         break;
                     case 2:
-                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        getMvpPresenter().doPublicPromiseRequest("", "45", "0", start, length);
                         break;
                 }
             }
         });
 
-        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+        getMvpPresenter().doPublicPromiseRequest("", "43", "0", start, length);
     }
 
     public void goBackPublicPromise(View view) {
@@ -178,13 +178,13 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
             public void onClick(View view) {
                 switch (position) {
                     case 0:
-                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        getMvpPresenter().doPublicPromiseRequest("43", "", "0", start, length);
                         break;
                     case 1:
-                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        getMvpPresenter().doPublicPromiseRequest("44", "", "0", start, length);
                         break;
                     case 2:
-                        getMvpPresenter().doPublicPromiseRequest("", "", "0", start, length);
+                        getMvpPresenter().doPublicPromiseRequest("45", "", "0", start, length);
                         break;
                 }
             }

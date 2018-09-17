@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.bean.SkipForm;
 
 public class ActivityMrgActivity extends BaseActivity {
     @Override
@@ -35,18 +36,30 @@ public class ActivityMrgActivity extends BaseActivity {
 
     public void gotoPartyParks(View view) {
         //TODO 党员园地
+        SkipForm form=new SkipForm();
+        form.skip=0;
+        goTo(CommonActivity.class,form);
     }
 
     public void gotoBranchParks(View view) {
         //TODO 支部园地
+        SkipForm form=new SkipForm();
+        form.skip=1;
+        goTo(CommonActivity.class,form);
     }
 
     public void gotoTrainingParks(View view) {
         //TODO 培训园地
+        SkipForm form=new SkipForm();
+        form.skip=2;
+        goTo(CommonActivity.class,form);
     }
 
     public void gotoOrgSituation(View view) {
         //TODO 组织机构
+        SkipForm form=new SkipForm();
+        form.skip=3;
+        goTo(CommonActivity.class,form);
     }
 
     public void gotoPublicPromise(View view) {

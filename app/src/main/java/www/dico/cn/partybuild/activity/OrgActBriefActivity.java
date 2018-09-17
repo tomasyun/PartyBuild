@@ -166,7 +166,7 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
         if (protocol.code.equals("0000")) {
             SkipForm form = new SkipForm();
-            form.skipType = "1";
+            form.skip = 1;
             goTo(SignUpSuccessActivity.class, form);
         } else {
             showToast("服务器异常");

@@ -18,7 +18,7 @@ public class CommonPresenter extends BaseMvpPresenter<CommonView> {
         IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(BaseInfoActivity.class))
+                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
                         .setCancelable(true)
                         .setCancelOutside(true)
                         .setMessage("获取中..")
