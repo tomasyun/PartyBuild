@@ -36,20 +36,24 @@ public class ActivityMrgActivity extends BaseActivity {
     public void gotoPartyParks(View view) {
 
     }
+
     //支部园地
-    public void gotoBranchParks(View view){
+    public void gotoBranchParks(View view) {
 
     }
+
     //培训园地
-    public void gotoTrainingParks(View view){
+    public void gotoTrainingParks(View view) {
 
     }
+
     //组织机构
-    public void gotoOrgSituation(View view){
+    public void gotoOrgSituation(View view) {
 
     }
-    //公开承诺
-    public void gotoPublicPromise(View view){
 
+    //公开承诺
+    public void gotoPublicPromise(View view) {
+        goTo(PublicPromiseActivity.class, null);
     }
 }

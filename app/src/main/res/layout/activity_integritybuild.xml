@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_bg_color"
@@ -32,12 +33,14 @@
     </RelativeLayout>
 
     <RadioGroup
+        android:id="@+id/rg_integrity_build"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal">
         <!--廉政教育-->
         <RadioButton
+            android:id="@+id/rbt_edu_integrity_build"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -52,6 +55,7 @@
 
         <!--监督预防-->
         <RadioButton
+            android:id="@+id/rbt_prevent_integrity_build"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -65,6 +69,7 @@
             android:textSize="14sp" />
         <!--案例-->
         <RadioButton
+            android:id="@+id/rbt_case_integrity_build"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -77,4 +82,29 @@
             android:textColor="@color/rbt_txt_color_bg01"
             android:textSize="14sp" />
     </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="#ddd" />
+
+    <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout
+        android:id="@+id/srl_integrity_build"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlAccentColor="@android:color/white"
+        app:srlEnablePreviewInEditMode="true">
+
+        <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_integrity_build"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+        </android.support.v7.widget.RecyclerView>
+    </www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout>
 </LinearLayout>

@@ -26,7 +26,7 @@ public class MissionParksActivity extends BaseActivity {
 
     //支部园地
     public void gotoBranchParks(View view) {
-
+        goTo(BranchParksActivity.class, null);
     }
 
     //团员园地

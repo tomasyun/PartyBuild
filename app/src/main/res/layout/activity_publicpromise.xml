@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/activity_bg_color"
     android:orientation="vertical">
     <!--标题-->
@@ -30,4 +31,80 @@
             android:textColor="@color/white"
             android:textSize="16sp" />
     </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_integrity_build"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+        <!--党委承诺-->
+        <RadioButton
+            android:id="@+id/rbt_master_public_promise"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rbt_selector02_white_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="党委承诺"
+            android:textColor="@color/rbt_txt_color_bg01"
+            android:textSize="14sp" />
+
+        <!--支部承诺-->
+        <RadioButton
+            android:id="@+id/rbt_branch_public_promise"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rbt_selector02_white_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="支部承诺"
+            android:textColor="@color/rbt_txt_color_bg01"
+            android:textSize="14sp" />
+        <!--党员承诺-->
+        <RadioButton
+            android:id="@+id/rbt_member_public_promise"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rbt_selector02_white_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="党员承诺"
+            android:textColor="@color/rbt_txt_color_bg01"
+            android:textSize="14sp" />
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="#ddd" />
+
+    <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout
+        android:id="@+id/srl_public_promise"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlAccentColor="@android:color/white"
+        app:srlEnablePreviewInEditMode="true">
+
+        <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_public_promise"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+        </android.support.v7.widget.RecyclerView>
+    </www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout>
 </LinearLayout>
