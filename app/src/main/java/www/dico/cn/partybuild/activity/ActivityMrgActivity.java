@@ -19,41 +19,38 @@ public class ActivityMrgActivity extends BaseActivity {
 
     //组织活动
     public void gotoOrgAct(View view) {
+        // TODO 组织活动
         goTo(OrgActActivity.class, null);
     }
 
-    //投票管理
     public void gotoVoteMrg(View view) {
+        //TODO 投票管理
         goTo(VoteManagerActivity.class, null);
     }
 
-    //问卷调查
     public void gotoQuestionSur(View view) {
+        //TODO 问卷调查
         goTo(SurveyListActivity.class, null);
     }
 
-    //党员园地
     public void gotoPartyParks(View view) {
-
+        //TODO 党员园地
     }
 
-    //支部园地
     public void gotoBranchParks(View view) {
-
+        //TODO 支部园地
     }
 
-    //培训园地
     public void gotoTrainingParks(View view) {
-
+        //TODO 培训园地
     }
 
-    //组织机构
     public void gotoOrgSituation(View view) {
-
+        //TODO 组织机构
     }
 
-    //公开承诺
     public void gotoPublicPromise(View view) {
+        //TODO 公开承诺
         goTo(PublicPromiseActivity.class, null);
     }
 }

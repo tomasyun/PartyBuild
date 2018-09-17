@@ -19,28 +19,24 @@ public class MissionParksActivity extends BaseActivity {
         this.finish();
     }
 
-    //公告通知
     public void gotoNoticeAnnounce(View view) {
-
+        //TODO 公告通知
     }
 
-    //支部园地
     public void gotoBranchParks(View view) {
+        //TODO 支部园地
         goTo(BranchParksActivity.class, null);
     }
 
-    //团员园地
     public void gotoGardenParks(View view) {
-
+        //TODO 团员园地
     }
 
-    //规章制度
     public void gotoRegulation(View view) {
-
+        //TODO 规章制度
     }
 
-    //组织机构
     public void gotoOrgSituation(View view) {
-
+        //TODO 组织机构
     }
 }
