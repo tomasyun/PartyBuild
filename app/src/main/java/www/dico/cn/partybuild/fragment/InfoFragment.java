@@ -96,39 +96,13 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 start = start + length;
-                switch (position) {
-                    case 0:
-                        getMvpPresenter().doGetInfoRequest("0", "0", start, length);
-                        break;
-                    case 1:
-                        getMvpPresenter().doGetInfoRequest("1", "0", start, length);
-                        break;
-                    case 2:
-                        getMvpPresenter().doGetInfoRequest("2", "0", start, length);
-                        break;
-                    case 3:
-                        getMvpPresenter().doGetInfoRequest("3", "0", start, length);
-                        break;
-                }
+                createRequest(position,start,length);
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 start = 0;
-                switch (position) {
-                    case 0:
-                        getMvpPresenter().doGetInfoRequest("0", "0", start, length);
-                        break;
-                    case 1:
-                        getMvpPresenter().doGetInfoRequest("1", "0", start, length);
-                        break;
-                    case 2:
-                        getMvpPresenter().doGetInfoRequest("2", "0", start, length);
-                        break;
-                    case 3:
-                        getMvpPresenter().doGetInfoRequest("3", "0", start, length);
-                        break;
-                }
+                createRequest(position,start,length);
             }
         });
         rv_info.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -201,20 +175,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
         info_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (position) {
-                    case 0:
-                        getMvpPresenter().doGetInfoRequest("0", "0", start, length);
-                        break;
-                    case 1:
-                        getMvpPresenter().doGetInfoRequest("1", "0", start, length);
-                        break;
-                    case 2:
-                        getMvpPresenter().doGetInfoRequest("2", "0", start, length);
-                        break;
-                    case 3:
-                        getMvpPresenter().doGetInfoRequest("3", "0", start, length);
-                        break;
-                }
+                createRequest(position,start,length);
             }
         });
     }
@@ -223,25 +184,15 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     public void preventPreLoad() {
         super.preventPreLoad();
         start = 0;
-        switch (position) {
-            case 0:
-                getMvpPresenter().doGetInfoRequest("0", "0", start, length);
-                break;
-            case 1:
-                getMvpPresenter().doGetInfoRequest("1", "0", start, length);
-                break;
-            case 2:
-                getMvpPresenter().doGetInfoRequest("2", "0", start, length);
-                break;
-            case 3:
-                getMvpPresenter().doGetInfoRequest("3", "0", start, length);
-                break;
-        }
+        createRequest(position,start,length);
     }
 
     @Override
     public void Refresh() {
         start = 0;
+        createRequest(position,start,length);
+    }
+    public void createRequest(int position,int start,int length){
         switch (position) {
             case 0:
                 getMvpPresenter().doGetInfoRequest("0", "0", start, length);
