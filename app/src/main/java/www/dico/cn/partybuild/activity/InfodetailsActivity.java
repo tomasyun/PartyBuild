@@ -16,6 +16,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -59,6 +60,10 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     private InfodetailForm form;
     private InfoCommentAdapter adapter;
     private EditText et_reply_comment;
+    @BindView(R.id.rel_attachment_info)
+    RelativeLayout rel_attachment_info;
+    @BindView(R.id.view_info)
+    View view_info;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,8 +71,16 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
         setContentView(R.layout.activity_infodetails);
         ButterKnife.bind(this);
         form = getParam();
-        if (form != null)
-            getMvpPresenter().infoDetailsRequest(form.infoId);
+        if (form != null) {
+            switch (form.type) {
+                case 0://资讯
+                    getMvpPresenter().infoDetailsRequest(form.id);
+                    break;
+                case 1://文章
+                    getMvpPresenter().infoArticleRequest(form.id);
+                    break;
+            }
+        }
         tv_info_detail_title.post(new Runnable() {
             @Override
             public void run() {
@@ -101,7 +114,15 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                 HtmlImageGetter imageGetter = new HtmlImageGetter(this, tv_info_detail_content);
                 Spanned spanned = Html.fromHtml(bean.getData().getContent(), imageGetter, null);
                 tv_info_detail_content.setText(spanned);
-
+                if (bean.getData().getAttachment() != null && !bean.getData().getAttachment().equals("")) {
+                    rel_attachment_info.setVisibility(View.VISIBLE);
+                    view_info.setVisibility(View.VISIBLE);
+                    TextView tv_attachment_info = rel_attachment_info.findViewById(R.id.tv_attachment_info);
+                    tv_attachment_info.setText(bean.getData().getAttachment());
+                } else {
+                    rel_attachment_info.setVisibility(View.GONE);
+                    view_info.setVisibility(View.GONE);
+                }
                 et_reply_comment = info_detail_reply_comment.findViewById(R.id.et_reply_comment);
                 TextView tv_reply_comment = info_detail_reply_comment.findViewById(R.id.tv_reply_comment);
                 ImageView iv_reply_comment = info_detail_reply_comment.findViewById(R.id.iv_reply_comment);
@@ -170,7 +191,14 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
         et_reply_comment.setText("");
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
         if (protocol.code.equals("0000")) {
-            getMvpPresenter().infoDetailsRequest(form.infoId);
+            switch (form.type) {
+                case 0://资讯
+                    getMvpPresenter().infoDetailsRequest(form.id);
+                    break;
+                case 1://文章
+                    getMvpPresenter().infoArticleRequest(form.id);
+                    break;
+            }
             sv_info_detail.scrollTo(0, lin_info_detail.getMeasuredHeight() - sv_info_detail.getHeight());
         } else {
             showToast("服务器异常");

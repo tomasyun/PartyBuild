@@ -319,7 +319,6 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                     case "1":
                         tv_sign_in_enable.setText("活动签到");
                         break;
-
                 }
                 address = bean.getData().getAddress();//签到地址
             } else {

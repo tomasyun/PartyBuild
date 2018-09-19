@@ -67,7 +67,7 @@ public class CustomTextView extends TextView implements View.OnClickListener {
         step = textLength;
         temp_view_plus_text_length = viewWidth + textLength;
         temp_view_plus_two_text_length = viewWidth + textLength * 2;
-        y = getHeight()-10;
+        y = getHeight()-15;
     }
 
     @Override

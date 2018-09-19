@@ -51,6 +51,27 @@ public class InfodetailsPresenter extends BaseMvpPresenter<InfodetailsView> {
                 });
     }
 
+    public void infoArticleRequest(String id) {
+        EasyHttp.post("articleDetail")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
+                .params("id", id)
+                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                    @Override
+                    public void onSuccess(String result) {
+                        getMvpView().resultSuccess(result);
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        super.onError(e);
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().resultFailure(e.getMessage());
+                    }
+                });
+    }
+
     public void doSubmitCommentRequest(String isFlag, String id, String content) {
         EasyHttp.post("saveComment")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))

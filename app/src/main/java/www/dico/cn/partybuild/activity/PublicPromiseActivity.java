@@ -88,7 +88,7 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
             }
         });
 
-        getMvpPresenter().doPublicPromiseRequest("", "43", "0", start, length);
+        getMvpPresenter().doPublicPromiseRequest("13", "44", "0", start, length);
     }
 
     public void goBackPublicPromise(View view) {
@@ -114,7 +114,8 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
-                                form.infoId = list.get(position).getId();
+                                form.id = list.get(position).getId();
+                                form.type=1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -132,7 +133,8 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
-                                form.infoId = PublicPromiseActivity.this.list.get(position).getId();
+                                form.id = PublicPromiseActivity.this.list.get(position).getId();
+                                form.type=1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });

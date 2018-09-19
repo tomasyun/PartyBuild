@@ -94,7 +94,7 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
             }
         });
 
-        getMvpPresenter().doBranchParksRequest("31", "", "0", start, length);
+        getMvpPresenter().doBranchParksRequest("6", "31", "0", start, length);
     }
 
     public void goBackBranchParks(View view) {
@@ -120,7 +120,8 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
-                                form.infoId = list.get(position).getId();
+                                form.id = list.get(position).getId();
+                                form.type=1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -138,7 +139,8 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
-                                form.infoId = BranchParksActivity.this.list.get(position).getId();
+                                form.id = BranchParksActivity.this.list.get(position).getId();
+                                form.type=1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });

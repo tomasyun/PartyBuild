@@ -19,6 +19,7 @@ public class InfodetailBean extends BaseProtocol {
         private String publicUnit;
         private String publishDate;
         private String content;
+        private String attachment;
         private List<CommitListBean> commitList;
 
         public String getId() {
@@ -59,6 +60,14 @@ public class InfodetailBean extends BaseProtocol {
 
         public void setContent(String content) {
             this.content = content;
+        }
+
+        public String getAttachment() {
+            return attachment;
+        }
+
+        public void setAttachment(String attachment) {
+            this.attachment = attachment;
         }
 
         public List<CommitListBean> getCommitList() {

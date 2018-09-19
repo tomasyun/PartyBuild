@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/activity_bg_color"
+    android:background="@color/white"
     android:orientation="vertical">
     <!--标题-->
     <RelativeLayout
@@ -58,10 +58,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textSize="16sp"
-                       android:textColor="@color/text_color" />
+                        android:textColor="@color/text_color"
+                        android:textSize="16sp" />
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:id="@+id/lin_info_detail_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -69,31 +69,54 @@
                         android:gravity="center_horizontal"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="来源:"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp" />
+                            android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tv_info_detail_source"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:text=""
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="来源:"
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="13sp" />
 
-                        <TextView
-                            android:id="@+id/tv_info_detail_date"
+                            <TextView
+                                android:id="@+id/tv_info_detail_source"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:maxLength="10"
+                                android:text=""
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
                             android:layout_marginLeft="10dp"
-                            android:text=""
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp" />
-                    </LinearLayout>
+                            android:gravity="right"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="发布日期:"
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:id="@+id/tv_info_detail_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text=""
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
 
                     <TextView
                         android:id="@+id/tv_info_detail_content"
@@ -106,11 +129,53 @@
                         android:textColor="@color/text_color"
                         android:textSize="14sp" />
 
-                    <View
+                    <RelativeLayout
+                        android:id="@+id/rel_attachment_info"
                         android:layout_width="match_parent"
-                        android:layout_height="0.3dp"
-                        android:layout_marginTop="20dp"
-                        android:background="#ddd" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edittext_corner5_gray_stroke_white_bg"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/iv_attachment_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:contentDescription="@null"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/img_attachment" />
+
+                        <TextView
+                            android:id="@+id/tv_attachment_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/iv_attachment_info"
+                            android:text="会议纪要.pdf"
+                            android:textColor="@color/text_color"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:background="@mipmap/img_arrow_right"
+                            android:contentDescription="@null"
+                            android:scaleType="fitXY" />
+                    </RelativeLayout>
+
+                    <View
+                        android:id="@+id/view_info"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp" />
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_info_detail"

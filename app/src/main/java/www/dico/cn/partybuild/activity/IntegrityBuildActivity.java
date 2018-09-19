@@ -115,7 +115,8 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
-                                form.infoId = list.get(position).getId();
+                                form.id = list.get(position).getId();
+                                form.type=1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -133,7 +134,8 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
-                                form.infoId = IntegrityBuildActivity.this.list.get(position).getId();
+                                form.id = IntegrityBuildActivity.this.list.get(position).getId();
+                                form.type=1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });

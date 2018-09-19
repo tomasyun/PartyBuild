@@ -212,7 +212,8 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
-                                form.infoId = list.get(position).getId();
+                                form.id = list.get(position).getId();
+                                form.type=1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -230,7 +231,8 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                             @Override
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
-                                form.infoId = CommonActivity.this.list.get(position).getId();
+                                form.id = CommonActivity.this.list.get(position).getId();
+                                form.type=1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
