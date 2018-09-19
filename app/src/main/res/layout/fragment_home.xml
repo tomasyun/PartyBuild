@@ -62,10 +62,10 @@
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
                     android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp">
+                    android:paddingRight="15dp">
                     <!--系统公告-->
                     <TextView
                         android:id="@+id/tv_gongshi_home"
@@ -79,7 +79,6 @@
                         android:id="@+id/tv_notice_home"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginLeft="15dp"
                         android:textColor="@color/text_color"
                         android:textSize="14sp" />
@@ -255,7 +254,7 @@
                                 android:layout_centerVertical="true"
                                 android:text="活动管理"
                                 android:textColor="@color/white"
-                                android:textSize="14sp"/>
+                                android:textSize="14sp" />
                         </RelativeLayout>
                         <!--党费缴纳-->
                         <RelativeLayout
@@ -285,7 +284,7 @@
                                 android:layout_centerVertical="true"
                                 android:text="党费缴纳"
                                 android:textColor="@color/white"
-                                android:textSize="14sp"/>
+                                android:textSize="14sp" />
                         </RelativeLayout>
                         <!--工会工作-->
                         <RelativeLayout
