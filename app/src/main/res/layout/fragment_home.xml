@@ -78,8 +78,9 @@
                     <www.dico.cn.partybuild.widget.CustomTextView
                         android:id="@+id/tv_notice_home"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="15dp"
+                        android:gravity="center_vertical"
                         android:textColor="@color/text_color"
                         android:textSize="14sp" />
                 </LinearLayout>
