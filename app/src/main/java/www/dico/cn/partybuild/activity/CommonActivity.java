@@ -59,7 +59,7 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                     break;
                 case 1://支部园地
                     tv_title_common.setText("支部园地");
-                    getMvpPresenter().doCommonArticleRequest("15", "", "0", start, length);
+                    getMvpPresenter().doCommonArticleRequest("6", "", "0", start, length);
                     break;
                 case 2://培训园地
                     tv_title_common.setText("培训园地");
@@ -278,7 +278,7 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                 getMvpPresenter().doCommonArticleRequest("14", "", "0", start, length);
                 break;
             case 1://支部园地
-                getMvpPresenter().doCommonArticleRequest("15", "", "0", start, length);
+                getMvpPresenter().doCommonArticleRequest("6", "", "0", start, length);
                 break;
             case 2://培训园地
                 getMvpPresenter().doCommonArticleRequest("16", "", "0", start, length);

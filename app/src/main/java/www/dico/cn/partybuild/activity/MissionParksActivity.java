@@ -28,7 +28,7 @@ public class MissionParksActivity extends BaseActivity {
     public void gotoBranchParks(View view) {
         //TODO 支部园地
         SkipForm form=new SkipForm();
-        form.skip=0;
+        form.skip=1;
         goTo(CommonActivity.class,form);
     }
 
