@@ -218,6 +218,9 @@
         <activity
             android:name=".activity.CommonActivity"
             android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.MeetingSummaryActivity"
+            android:launchMode="singleTask" />
         <!-- TBS预览文件界面 -->
         <activity android:name=".activity.DisplayFileActivity" />
         <!--通知详情-->

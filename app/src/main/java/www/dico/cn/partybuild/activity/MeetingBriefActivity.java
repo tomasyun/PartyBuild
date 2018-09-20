@@ -21,6 +21,7 @@ import www.dico.cn.partybuild.adapter.ParticipantsAdapter;
 import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.bean.MeetBriefBean;
 import www.dico.cn.partybuild.bean.MeetingForm;
+import www.dico.cn.partybuild.bean.MeetingSummaryForm;
 import www.dico.cn.partybuild.bean.SkipForm;
 import www.dico.cn.partybuild.modleview.MeetingBriefView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
@@ -97,7 +98,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
 
     @Override
     public void resultSuccess(String result) {
-        MeetBriefBean briefBean = new Gson().fromJson(result, MeetBriefBean.class);
+        final MeetBriefBean briefBean = new Gson().fromJson(result, MeetBriefBean.class);
         if (briefBean.code.equals("0000")) {
             if (briefBean.getData() != null) {
                 GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat("http://47.104.72.111/", briefBean.getData().getThemeImg()), iv_theme_meeting_brief,R.mipmap.img_dico);
@@ -295,6 +296,10 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                         tv_sign_up.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                MeetingSummaryForm form =new MeetingSummaryForm();
+                                form.id=briefBean.getData().getId();
+                                goTo(MeetingSummaryActivity.class,form);
+                                finish();
                             }
                         });
                         break;

@@ -17,7 +17,7 @@
             android:layout_marginLeft="15dp"
             android:clickable="true"
             android:contentDescription="@null"
-            android:onClick="goBackInfodetail"
+            android:onClick="goBackMeetdetail"
             android:padding="5dp"
             android:scaleType="fitXY"
             android:src="@mipmap/img_back" />
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="详情"
+            android:text="会议纪要详情"
             android:textColor="@color/white"
             android:textSize="16sp" />
     </RelativeLayout>
@@ -41,13 +41,12 @@
             android:orientation="vertical">
             <!--内容-->
             <ScrollView
-                android:id="@+id/sv_info_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none">
 
                 <LinearLayout
-                    android:id="@+id/lin_info_detail"
+                    android:id="@+id/lin_meet_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -57,7 +56,7 @@
                     android:paddingTop="15dp">
 
                     <TextView
-                        android:id="@+id/tv_info_detail_title"
+                        android:id="@+id/tv_title_meet_summary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -65,40 +64,44 @@
                         android:textSize="16sp" />
 
                     <LinearLayout
-                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_category_meet_summary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="来源:"
-                            android:textColor="@android:color/darker_gray"
+                            android:background="#FFA800"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:text="######"
+                            android:textColor="@color/white"
                             android:textSize="13sp" />
 
                         <TextView
-                            android:id="@+id/tv_info_detail_source"
+                            android:id="@+id/tv_speaker_meet_summary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:maxLength="5"
-                            android:text=""
+                            android:text="###"
                             android:textColor="@android:color/darker_gray"
                             android:textSize="13sp" />
 
                         <TextView
-                            android:id="@+id/tv_info_detail_date"
+                            android:id="@+id/tv_date_meet_summary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
-                            android:text="2018-8-15"
+                            android:text="2018-8-15 12:30:30"
                             android:textColor="@android:color/darker_gray"
                             android:textSize="13sp" />
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/tv_info_detail_content"
+                        android:id="@+id/tv_content_meet_summary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
@@ -109,7 +112,7 @@
                         android:textSize="14sp" />
 
                     <RelativeLayout
-                        android:id="@+id/rel_attachment_info"
+                        android:id="@+id/rel_attachment_meet_summary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
@@ -119,7 +122,7 @@
                         android:visibility="gone">
 
                         <ImageView
-                            android:id="@+id/iv_attachment_info"
+                            android:id="@+id/iv_attachment_meet_summary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -129,13 +132,13 @@
                             android:src="@mipmap/img_attachment" />
 
                         <TextView
-                            android:id="@+id/tv_attachment_info"
+                            android:id="@+id/tv_attachment_meet_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_toRightOf="@+id/iv_attachment_info"
+                            android:layout_toRightOf="@+id/iv_attachment_meet_summary"
                             android:ellipsize="end"
                             android:maxLength="2"
                             android:text="#####.pdf"
@@ -152,21 +155,8 @@
                             android:contentDescription="@null"
                             android:scaleType="fitXY" />
                     </RelativeLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_info_detail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:scrollbars="none">
-
-                    </android.support.v7.widget.RecyclerView>
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
-
-        <include
-            android:id="@+id/info_detail_reply_comment"
-            layout="@layout/include_reply_comment" />
     </FrameLayout>
 </LinearLayout>

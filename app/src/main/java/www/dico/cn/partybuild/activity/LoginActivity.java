@@ -26,7 +26,7 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
     EditText et_name_login;
     @BindView(R.id.et_password_login)
     EditText et_password_login;
-    private String login_name="";
+    private String login_name = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,7 +74,7 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
                 finish();
             }
         } else {
-            showToast("服务器异常");
+            showToast(bean.getMsg());
         }
     }
 
