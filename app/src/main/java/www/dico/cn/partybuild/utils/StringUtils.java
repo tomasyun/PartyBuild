@@ -1170,4 +1170,27 @@ public class StringUtils {
         }
         return encode_content;
     }
+
+    // 1.截取不带后缀的文件名
+    public static String getFileName1(String resourceName) {
+        if (StringUtils.isEmpty(resourceName) && resourceName.length() > 0) {
+            int dot = resourceName.lastIndexOf('.');
+            if ((dot > -1) && (dot < (resourceName.length()))) {
+                return resourceName.substring(0, dot);
+            }
+        }
+        return resourceName;
+    }
+
+//2.截取文件后缀名
+
+    public static String getExtensionName(String filename) {
+        if ((filename != null) && (filename.length() > 0)) {
+            int dot = filename.lastIndexOf('.');
+            if ((dot > -1) && (dot < (filename.length() - 1))) {
+                return filename.substring(dot + 1);
+            }
+        }
+        return filename;
+    }
 }

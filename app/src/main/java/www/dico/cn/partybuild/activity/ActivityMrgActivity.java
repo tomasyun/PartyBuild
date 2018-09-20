@@ -36,9 +36,7 @@ public class ActivityMrgActivity extends BaseActivity {
 
     public void gotoPartyParks(View view) {
         //TODO 党员园地
-        SkipForm form=new SkipForm();
-        form.skip=0;
-        goTo(CommonActivity.class,form);
+        goTo(BranchParksActivity.class, null);
     }
 
     public void gotoBranchParks(View view) {

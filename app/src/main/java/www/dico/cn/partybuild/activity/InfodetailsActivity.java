@@ -21,6 +21,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.tencent.smtt.sdk.QbSdk;
 
 import java.util.List;
 
@@ -36,6 +37,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.InfodetailsPresenter;
 import www.dico.cn.partybuild.utils.SizeUtils;
+import www.dico.cn.partybuild.utils.StringUtils;
 import www.dico.cn.partybuild.widget.HtmlImageGetter;
 
 //资讯详情
@@ -62,14 +64,13 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     private EditText et_reply_comment;
     @BindView(R.id.rel_attachment_info)
     RelativeLayout rel_attachment_info;
-    @BindView(R.id.view_info)
-    View view_info;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infodetails);
         ButterKnife.bind(this);
+        QbSdk.initX5Environment(this, null);
         form = getParam();
         if (form != null) {
             switch (form.type) {
@@ -107,22 +108,31 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
             if (bean.getData() != null) {
                 tv_info_detail_title.setText(bean.getData().getTitle());
                 String source = bean.getData().getPublicUnit();
-                source = (source == null) ? "新华网" : bean.getData().getPublicUnit();
+                source = (source == null || source.equals("")) ? "新华网" : bean.getData().getPublicUnit();
                 tv_info_detail_source.setText(source);
                 tv_info_detail_date.setText(bean.getData().getPublishDate());
 //                tv_info_content.setText(StringUtils.delHtmlTag(bean.getData().getContent()));
                 HtmlImageGetter imageGetter = new HtmlImageGetter(this, tv_info_detail_content);
                 Spanned spanned = Html.fromHtml(bean.getData().getContent(), imageGetter, null);
                 tv_info_detail_content.setText(spanned);
+
                 if (bean.getData().getAttachment() != null && !bean.getData().getAttachment().equals("")) {
+                    //TODO 附件处理
                     rel_attachment_info.setVisibility(View.VISIBLE);
-                    view_info.setVisibility(View.VISIBLE);
                     TextView tv_attachment_info = rel_attachment_info.findViewById(R.id.tv_attachment_info);
                     tv_attachment_info.setText(bean.getData().getAttachment());
+                    rel_attachment_info.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {//文件预览
+                            String filePath = bean.getData().getAttachment();
+                            String fileName =filePath.trim().substring(filePath.lastIndexOf("/")+1);
+                            DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, filePath, fileName);
+                        }
+                    });
                 } else {
                     rel_attachment_info.setVisibility(View.GONE);
-                    view_info.setVisibility(View.GONE);
                 }
+
                 et_reply_comment = info_detail_reply_comment.findViewById(R.id.et_reply_comment);
                 TextView tv_reply_comment = info_detail_reply_comment.findViewById(R.id.tv_reply_comment);
                 ImageView iv_reply_comment = info_detail_reply_comment.findViewById(R.id.iv_reply_comment);
