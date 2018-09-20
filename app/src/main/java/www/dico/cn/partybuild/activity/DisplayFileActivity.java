@@ -72,7 +72,7 @@ public class DisplayFileActivity extends AppCompatActivity {
                         Log.e(TAG, "{accept}granted=" + granted);//执行顺序——1【多个权限的情况，只有所有的权限均允许的情况下granted==true】
                         if (granted) { // 在android 6.0之前会默认返回true
                             // 已经获取权限
-                            Toast.makeText(DisplayFileActivity.this, "已经获取权限", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(DisplayFileActivity.this, "已经获取权限", Toast.LENGTH_SHORT).show();
                         } else {
                             // 未获取权限
                             Toast.makeText(DisplayFileActivity.this, "您没有授权该权限，请在设置中打开授权", Toast.LENGTH_SHORT).show();

@@ -124,6 +124,5 @@
         android:paddingTop="15dp"
         android:text="退出登录"
         android:textColor="@color/text_color"
-        android:textSize="15sp"
-        android:translationZ="5dp" />
+        android:textSize="15sp" />
 </LinearLayout>
