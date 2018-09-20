@@ -80,6 +80,9 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                 case 1://文章
                     getMvpPresenter().infoArticleRequest(form.id);
                     break;
+                case 2:
+                    getMvpPresenter().infoDetailsRequest(form.id);
+                    break;
             }
         }
         tv_info_detail_title.post(new Runnable() {
@@ -96,9 +99,22 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     }
 
     public void goBackInfodetail(View view) {
-        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
-        manager.sendBroadcast(new Intent("cn.diconet.www").putExtra("skip", "1"));
-        this.finish();
+        switch (form.type){
+            case 0:
+                LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
+                manager.sendBroadcast(new Intent("cn.diconet.www").putExtra("skip", "1"));
+                this.finish();
+                break;
+            case 1:
+                this.finish();
+                break;
+            case 2:
+                LocalBroadcastManager manager1 = LocalBroadcastManager.getInstance(this);
+                manager1.sendBroadcast(new Intent("cn.diconet.www").putExtra("skip", "0"));
+                this.finish();
+                break;
+        }
+
     }
 
     @Override

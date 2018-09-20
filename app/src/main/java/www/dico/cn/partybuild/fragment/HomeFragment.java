@@ -24,6 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.ActivityMrgActivity;
+import www.dico.cn.partybuild.activity.InfodetailsActivity;
 import www.dico.cn.partybuild.activity.IntegrityBuildActivity;
 import www.dico.cn.partybuild.activity.MailboxActivity;
 import www.dico.cn.partybuild.activity.MeetingActivity;
@@ -33,6 +34,7 @@ import www.dico.cn.partybuild.activity.StudyTaskActivity;
 import www.dico.cn.partybuild.activity.UnionWorkActivity;
 import www.dico.cn.partybuild.bean.AdvertiseImgM;
 import www.dico.cn.partybuild.bean.HomeBean;
+import www.dico.cn.partybuild.bean.InfodetailForm;
 import www.dico.cn.partybuild.modleview.HomeView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
@@ -142,7 +144,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 }
                 List<AdvertiseImgM> urls = new ArrayList<>();
                 List<String> titles = new ArrayList<>();
-                List<HomeBean.DataBean.AdvertisementBean> list = bean.getData().getAdvertisement();
+                final List<HomeBean.DataBean.AdvertisementBean> list = bean.getData().getAdvertisement();
                 if (null != list && list.size() > 0) {
                     for (int i = 0; i < list.size(); i++) {
                         AdvertiseImgM advertise = new AdvertiseImgM();
@@ -163,7 +165,10 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 xbanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
                     @Override
                     public void onItemClick(XBanner banner, Object model, int position) {
-
+                        InfodetailForm form=new InfodetailForm();
+                        form.type=2;
+                        form.id=list.get(position).getId();
+                        goTo(InfodetailsActivity.class,form);
                     }
                 });
             }

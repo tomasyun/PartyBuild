@@ -64,62 +64,95 @@
                         android:textColor="@color/text_color"
                         android:textSize="16sp" />
 
-                    <RelativeLayout
-                        android:id="@+id/lin_info_detail_desc"
+                    <LinearLayout
+                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:gravity="center_horizontal"
                         android:orientation="horizontal">
 
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:text="来源:"
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="13sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="来源:"
-                                android:textColor="@android:color/darker_gray"
-                                android:textSize="13sp" />
-
-                            <TextView
-                                android:id="@+id/tv_info_detail_source"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:maxLength="10"
-                                android:text=""
-                                android:textColor="@android:color/darker_gray"
-                                android:textSize="13sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/tv_info_detail_source"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
                             android:layout_marginLeft="10dp"
-                            android:gravity="right"
-                            android:orientation="horizontal">
+                            android:maxLength="5"
+                            android:text=""
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="13sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="发布日期:"
-                                android:textColor="@android:color/darker_gray"
-                                android:textSize="13sp" />
+                        <TextView
+                            android:id="@+id/tv_info_detail_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:text="2018-8-15"
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="13sp" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/tv_info_detail_date"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text=""
-                                android:textColor="@android:color/darker_gray"
-                                android:textSize="13sp" />
-                        </LinearLayout>
-                    </RelativeLayout>
+                    <!--<RelativeLayout-->
+                    <!--android:id="@+id/lin_info_detail_desc"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="20dp"-->
+                    <!--android:gravity="center_horizontal"-->
+                    <!--android:orientation="horizontal">-->
+
+                    <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal">-->
+
+                    <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="来源:"-->
+                    <!--android:textColor="@android:color/darker_gray"-->
+                    <!--android:textSize="13sp" />-->
+
+                    <!--<TextView-->
+                    <!--android:id="@+id/tv_info_detail_source"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:maxLength="5"-->
+                    <!--android:text=""-->
+                    <!--android:textColor="@android:color/darker_gray"-->
+                    <!--android:textSize="13sp" />-->
+                    <!--</LinearLayout>-->
+
+                    <!--<LinearLayout-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:gravity="right"-->
+                    <!--android:orientation="horizontal">-->
+
+                    <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="发布日期:"-->
+                    <!--android:textColor="@android:color/darker_gray"-->
+                    <!--android:textSize="13sp" />-->
+
+                    <!--<TextView-->
+                    <!--android:id="@+id/tv_info_detail_date"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:text=""-->
+                    <!--android:textColor="@android:color/darker_gray"-->
+                    <!--android:textSize="13sp" />-->
+                    <!--</LinearLayout>-->
+                    <!--</RelativeLayout>-->
 
                     <TextView
                         android:id="@+id/tv_info_detail_content"
