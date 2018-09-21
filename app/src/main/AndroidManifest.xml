@@ -222,7 +222,8 @@
             android:name=".activity.MeetingSummaryActivity"
             android:launchMode="singleTask" />
         <!-- TBS预览文件界面 -->
-        <activity android:name=".activity.DisplayFileActivity" />
+        <activity android:name=".activity.DisplayFileActivity"
+            android:launchMode="singleTask"/>
         <!--通知详情-->
         <!--使用高德api所申请的key-->
         <meta-data

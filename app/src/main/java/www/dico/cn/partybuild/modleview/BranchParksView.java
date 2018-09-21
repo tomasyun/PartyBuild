@@ -7,5 +7,9 @@ public interface BranchParksView extends BaseMvpView {
 
     void resultFailure(String result);
 
+    void getNoticeSuccess(String result);
+
+    void getNoticeFailure(String result);
+
     void netWorkUnAvailable();
 }

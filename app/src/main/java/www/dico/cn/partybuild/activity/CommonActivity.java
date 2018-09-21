@@ -15,8 +15,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.InfoAdapter;
+import www.dico.cn.partybuild.adapter.NoticeAdapter;
 import www.dico.cn.partybuild.bean.InfoBean;
 import www.dico.cn.partybuild.bean.InfodetailForm;
+import www.dico.cn.partybuild.bean.NoticeBean;
+import www.dico.cn.partybuild.bean.NoticeForm;
 import www.dico.cn.partybuild.bean.SkipForm;
 import www.dico.cn.partybuild.modleview.CommonView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
@@ -44,6 +47,7 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
     private SkipForm form;
     private List<InfoBean.DataBeanX.DataBean> list;
     private InfoAdapter adapter;
+    private NoticeAdapter noticeAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,7 +75,7 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                     break;
                 case 4://公告通知
                     tv_title_common.setText("公告通知");
-                    getMvpPresenter().doCommonArticleRequest("5", "", "0", start, length);
+                    getMvpPresenter().doNoticeRequest("2", "0", start, length);
                     break;
                 case 5://团员园地
                     tv_title_common.setText("团员园地");
@@ -213,7 +217,7 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
                                 form.id = list.get(position).getId();
-                                form.type=1;
+                                form.type = 1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -232,7 +236,7 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
                                 form.id = CommonActivity.this.list.get(position).getId();
-                                form.type=1;
+                                form.type = 1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -268,6 +272,46 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
         });
     }
 
+    @Override
+    public void getNoticeSuccess(String result) {
+        srl_common.finishRefresh();
+        srl_common.finishLoadmore();
+        NoticeBean bean = new Gson().fromJson(result, NoticeBean.class);
+        if (bean.code.equals("0000")) {
+            final List<NoticeBean.DataBean> list = bean.getData();
+            if (null != list && list.size() > 0) {
+                srl_common.setVisibility(View.VISIBLE);
+                common_empty_data.setVisibility(View.GONE);
+                common_net_error.setVisibility(View.GONE);
+                noticeAdapter = new NoticeAdapter(this, R.layout.item_notice, bean.getData());
+                rv_common.setAdapter(noticeAdapter);
+                noticeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                        NoticeForm form = new NoticeForm();
+                        form.id = list.get(position).getId();
+                        form.isReply = list.get(position).getIsReply();
+                        goTo(NoticeInfoActivity.class, form);
+                    }
+                });
+            } else {
+                //空白页面
+                srl_common.setVisibility(View.GONE);
+                common_empty_data.setVisibility(View.VISIBLE);
+                common_net_error.setVisibility(View.GONE);
+            }
+        } else {
+            showToast("服务器异常");
+        }
+    }
+
+    @Override
+    public void getNoticeFailure(String result) {
+        srl_common.finishRefresh();
+        srl_common.finishLoadmore();
+        showToast(result);
+    }
+
     public void goBackCommon(View view) {
         this.finish();
     }
@@ -287,7 +331,7 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                 getMvpPresenter().doCommonArticleRequest("17", "", "0", start, length);
                 break;
             case 4://公告通知
-                getMvpPresenter().doCommonArticleRequest("5", "", "0", start, length);
+                getMvpPresenter().doNoticeRequest("2", "0", start, length);
                 break;
             case 5://团员园地
                 getMvpPresenter().doCommonArticleRequest("7", "", "0", start, length);

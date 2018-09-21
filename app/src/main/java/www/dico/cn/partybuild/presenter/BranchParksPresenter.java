@@ -52,4 +52,28 @@ public class BranchParksPresenter extends BaseMvpPresenter<BranchParksView> {
                     }
                 });
     }
+
+    public void doBranchParksNoticeRequest(String title, String draw, int start, int length) {
+        EasyHttp.post("noticeByType")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
+                .params("title", title)
+                .params("draw", draw)
+                .params("start", String.valueOf(start))
+                .params("length", String.valueOf(length))
+                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                    @Override
+                    public void onSuccess(String s) {
+                        getMvpView().getNoticeSuccess(s);
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        super.onError(e);
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().getNoticeFailure(e.getMessage());
+                    }
+                });
+    }
 }

@@ -43,7 +43,7 @@ public class NoticeInfoCommentAdapter extends RecyclerView.Adapter<NoticeInfoCom
 //        final int pos = getRealPosition(commentHolder);
         if (position < mDatas.size()) {
             if (commentHolder instanceof NoticeInfoCommentHolder) {
-                GlideUtils.loadCircleImage(AppManager.getManager().curActivity(), AppConfig.urlFormat("http://47.104.72.111/", mDatas.get(position).getAvatar()), commentHolder.iv_comment_user_avatar);
+                GlideUtils.loadCircleImage(AppManager.getManager().curActivity(), AppConfig.urlFormat(mDatas.get(position).getAvatar()), commentHolder.iv_comment_user_avatar);
                 commentHolder.tv_comment_user_name.setText(mDatas.get(position).getName());
                 commentHolder.tv_comment_user_content.setText(mDatas.get(position).getCommitContent());
                 commentHolder.tv_comment_date.setText(mDatas.get(position).getCommitDate());

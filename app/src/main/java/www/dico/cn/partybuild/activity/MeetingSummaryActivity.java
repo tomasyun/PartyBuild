@@ -14,6 +14,7 @@ import com.tencent.smtt.sdk.QbSdk;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.bean.MeetSummaryBean;
 import www.dico.cn.partybuild.bean.MeetingSummaryForm;
@@ -102,7 +103,7 @@ public class MeetingSummaryActivity extends AbstractMvpActivity<MeetingSummaryVi
                     rel_attachment_meet_summary.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {//文件预览
-                            String filePath = bean.getData().getAttachment();
+                            String filePath = AppConfig.urlFormat(bean.getData().getAttachment()) ;
                             String fileName = filePath.trim().substring(filePath.lastIndexOf("/") + 1);
                             DisplayFileActivity.openDispalyFileActivity(MeetingSummaryActivity.this, filePath, fileName);
                         }

@@ -15,9 +15,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.InfoAdapter;
+import www.dico.cn.partybuild.adapter.NoticeAdapter;
 import www.dico.cn.partybuild.bean.InfoBean;
 import www.dico.cn.partybuild.bean.InfodetailForm;
-import www.dico.cn.partybuild.fragment.InfoFragment;
+import www.dico.cn.partybuild.bean.NoticeBean;
+import www.dico.cn.partybuild.bean.NoticeForm;
 import www.dico.cn.partybuild.modleview.BranchParksView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -44,6 +46,7 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
     View branch_parks_empty_data;
     @BindView(R.id.branch_parks_net_error)
     View branch_parks_net_error;
+    private NoticeAdapter noticeAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,9 +59,7 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 switch (checkedId) {
                     case R.id.rbt_notice_branch_parks://通知公告
-                        position = 0;
-                        start = 0;
-                        getMvpPresenter().doBranchParksRequest("15", "31", "0", start, length);
+                        getMvpPresenter().doBranchParksNoticeRequest("3", "0", start, length);
                         break;
                     case R.id.rbt_activity_branch_parks://支部活动
                         position = 1;
@@ -84,17 +85,17 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 start = start + length;
-                createRequest(position,start,length);
+                createRequest(position, start, length);
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 start = 0;
-                createRequest(position,start,length);
+                createRequest(position, start, length);
             }
         });
 
-        getMvpPresenter().doBranchParksRequest("6", "31", "0", start, length);
+        getMvpPresenter().doBranchParksNoticeRequest("3", "0", start, length);
     }
 
     public void goBackBranchParks(View view) {
@@ -121,7 +122,7 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
                                 form.id = list.get(position).getId();
-                                form.type=1;
+                                form.type = 1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -140,7 +141,7 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
                                 form.id = BranchParksActivity.this.list.get(position).getId();
-                                form.type=1;
+                                form.type = 1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -162,6 +163,46 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
     }
 
     @Override
+    public void getNoticeSuccess(String result) {
+        srl_branch_parks.finishRefresh();
+        srl_branch_parks.finishLoadmore();
+        NoticeBean bean = new Gson().fromJson(result, NoticeBean.class);
+        if (bean.code.equals("0000")) {
+            final List<NoticeBean.DataBean> noticeList = bean.getData();
+            if (noticeList != null && noticeList.size() > 0) {
+                srl_branch_parks.setVisibility(View.VISIBLE);
+                branch_parks_empty_data.setVisibility(View.GONE);
+                branch_parks_net_error.setVisibility(View.GONE);
+                noticeAdapter = new NoticeAdapter(this, R.layout.item_notice, noticeList);
+                rv_branch_parks.setAdapter(noticeAdapter);
+                noticeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                        NoticeForm form = new NoticeForm();
+                        form.id = noticeList.get(position).getId();
+                        form.isReply = noticeList.get(position).getIsReply();
+                        goTo(NoticeInfoActivity.class, form);
+                    }
+                });
+            } else {
+                //空白页面
+                srl_branch_parks.setVisibility(View.GONE);
+                branch_parks_empty_data.setVisibility(View.VISIBLE);
+                branch_parks_net_error.setVisibility(View.GONE);
+            }
+        } else {
+            showToast("服务器异常");
+        }
+    }
+
+    @Override
+    public void getNoticeFailure(String result) {
+        srl_branch_parks.finishRefresh();
+        srl_branch_parks.finishLoadmore();
+        showToast(result);
+    }
+
+    @Override
     public void netWorkUnAvailable() {
         srl_branch_parks.setVisibility(View.GONE);
         branch_parks_empty_data.setVisibility(View.GONE);
@@ -169,14 +210,15 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
         branch_parks_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              createRequest(position,start,length);
+                createRequest(position, start, length);
             }
         });
     }
-    public void createRequest(int position,int start ,int length){
+
+    public void createRequest(int position, int start, int length) {
         switch (position) {
             case 0:
-                getMvpPresenter().doBranchParksRequest("15", "31", "0", start, length);
+                getMvpPresenter().doBranchParksNoticeRequest("3", "0", start, length);
                 break;
             case 1:
                 getMvpPresenter().doBranchParksRequest("15", "32", "0", start, length);

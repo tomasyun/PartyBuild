@@ -89,10 +89,11 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     private double distance;//距离
     private int during = 0;
     private CountDownButtonHelper helper;
-    private String signInType = "";
-    private String startDate = "";
-    private String address = "";
-    private String id = "";
+    private String signInType;
+    private String startDate;
+    private String address;
+    private String id;
+    private long time;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -104,7 +105,11 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                         helper.setOnFinishListener(new CountDownButtonHelper.OnFinishListener() {
                             @Override
                             public void finish() {
-
+                                srl_sign_in.setVisibility(View.GONE);
+                                sign_in_empty_data.setVisibility(View.VISIBLE);
+                                sign_in_net_error.setVisibility(View.GONE);
+                                TextView tv_empty = sign_in_empty_data.findViewById(R.id.tv_empty);
+                                tv_empty.setText("暂无签到");
                             }
                         });
                         helper.start();
@@ -126,27 +131,21 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
         rel_sign_in_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!startDate.equals("")) {
-                    Date curDate = new Date();
-                    long time = DateTimeUtils.parse(startDate, "yyyy-MM-dd HH:mm:ss").getTime() - curDate.getTime();
-                    if (time > 60000) {
-                        showToast("抱歉,未到签到时间");
-                    } else {
-                        if (!address.equals("")) {
-                            dialog = new LoadingDialog.Builder(getActivity())
-                                    .setCancelable(true)
-                                    .setCancelOutside(true)
-                                    .setMessage("定位中..")
-                                    .setShowMessage(true)
-                                    .create();
-                            dialog.show();
-                            mLocationClient.startLocation();//启动定位
-                        } else {
-                            showToast("未获取到签到地址");
-                        }
-                    }
+                if (time > 600000) {
+                    showToast("抱歉,未到签到时间");
                 } else {
-                    showToast("未获取到开始时间");
+                    if (!address.equals("")) {
+                        dialog = new LoadingDialog.Builder(getActivity())
+                                .setCancelable(true)
+                                .setCancelOutside(true)
+                                .setMessage("定位中..")
+                                .setShowMessage(true)
+                                .create();
+                        dialog.show();
+                        mLocationClient.startLocation();//启动定位
+                    } else {
+                        showToast("未获取到签到地址");
+                    }
                 }
             }
         });
@@ -280,8 +279,7 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     @Override
     public void onDistanceSearched(DistanceResult distanceResult, int errorCode) {
         if (errorCode == 1000) {
-            if (dialog != null && dialog.isShowing())
-                dialog.dismiss();
+            dialog.dismiss();
             distance = distanceResult.getDistanceResults().get(0).getDistance();
             if (distance < 100) {//设置签到距离100m
                 getMvpPresenter().doSaveSignIn(id, signInType);
@@ -301,13 +299,19 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                 srl_sign_in.setVisibility(View.VISIBLE);
                 sign_in_empty_data.setVisibility(View.GONE);
                 sign_in_net_error.setVisibility(View.GONE);
-                GlideUtils.loadImageSetUpError(getActivity(), bean.getData().getThemeImg(), iv_conference_theme_pic,R.mipmap.img_dico);
-                String startDate = bean.getData().getStartDate();
+                GlideUtils.loadImageSetUpError(getActivity(), bean.getData().getThemeImg(), iv_conference_theme_pic, R.mipmap.img_dico);
+                startDate = bean.getData().getStartDate();
                 if (!StringUtils.isEmpty(startDate)) {
+                    //TODO 处理会议、活动开始时间
                     String[] split = startDate.split(" ");
                     tv_sign_in_date.setText(split[0]);
                     tv_sign_in_week.setText(DateTimeUtils.getWeekOfDate(startDate));
                     tv_sign_in_time.setText(split[1]);
+                    Date curDate = new Date();
+                    time = DateTimeUtils.parse(startDate, "yyyy-MM-dd HH:mm:ss").getTime() - curDate.getTime();
+                    int minutes = (int) time / 1000;
+                    during = minutes / 60;
+                    mHandler.sendEmptyMessage(0);
                 }
                 tv_sign_in_address.setText(bean.getData().getAddress());
                 id = bean.getData().getId();
@@ -369,5 +373,12 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     public void preventPreLoad() {
         super.preventPreLoad();
         getMvpPresenter().doGetSignInConferenceRequest();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (helper != null)
+            helper.cancel();
     }
 }

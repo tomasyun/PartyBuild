@@ -10,13 +10,35 @@ android {
         multiDexEnabled true
         //引用tbsplus
         ndk { abiFilters "armeabi" }
+        flavorDimensions "versionCode"
     }
+    productFlavors {
+        partybuild {
+
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            //混淆
+            minifyEnabled true
+            //是否压缩对齐
             zipAlignEnabled true
-            shrinkResources false
+            //清除不用的资源
+            shrinkResources true
+            //混淆脚本路径
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            //自定义打包时apk名称
+            applicationVariants.all { variant ->
+                variant.outputs.all { output ->// each 改为 all
+                    def fileName = "${variant.productFlavors[0].name}-release.apk"
+                    def outFile = output.outputFile
+                    if (outFile != null && outFile.name.endsWith('.apk')) {
+                        outputFileName = fileName // output.outputFile 改为 outputFileName
+                    }
+                }
+            }
 
             lintOptions {
                 checkReleaseBuilds false

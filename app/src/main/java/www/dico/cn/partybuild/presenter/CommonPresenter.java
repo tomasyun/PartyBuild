@@ -4,7 +4,6 @@ import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.activity.BaseInfoActivity;
 import www.dico.cn.partybuild.modleview.CommonView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -50,6 +49,30 @@ public class CommonPresenter extends BaseMvpPresenter<CommonView> {
                             getMvpView().netWorkUnAvailable();
                         else
                             getMvpView().resultFailure(e.getMessage());
+                    }
+                });
+    }
+
+    public void doNoticeRequest(String title, String draw, int start, int length) {
+        EasyHttp.post("noticeByType")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
+                .params("title", title)
+                .params("draw", draw)
+                .params("start", String.valueOf(start))
+                .params("length", String.valueOf(length))
+                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                    @Override
+                    public void onSuccess(String s) {
+                        getMvpView().getNoticeSuccess(s);
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        super.onError(e);
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                            getMvpView().netWorkUnAvailable();
+                        else
+                            getMvpView().getNoticeFailure(e.getMessage());
                     }
                 });
     }

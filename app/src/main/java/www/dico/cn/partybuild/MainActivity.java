@@ -154,7 +154,11 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
     public void resultSuccess(String result) {
         VersionBean bean = new Gson().fromJson(result, VersionBean.class);
         if (bean.code.equals("0000")) {
-
+            String versionCode = bean.getData().getVersionCode();
+            if (versionCode != null && !versionCode.equals(""))
+                AppConfig.nVersionCode = versionCode;
+            AppConfig.content = bean.getData().getContent();
+            AppConfig.updateUrl = bean.getData().getNewUrl();
         } else {
             //
         }

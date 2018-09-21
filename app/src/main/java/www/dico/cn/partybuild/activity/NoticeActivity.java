@@ -73,7 +73,7 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
                     @Override
                     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                         NoticeForm form = new NoticeForm();
-                        form.noticeId = list.get(position).getId();
+                        form.id = list.get(position).getId();
                         form.isReply = list.get(position).getIsReply();
                         goTo(NoticeInfoActivity.class, form);
                     }

@@ -22,6 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.ActivityMrgActivity;
 import www.dico.cn.partybuild.activity.InfodetailsActivity;

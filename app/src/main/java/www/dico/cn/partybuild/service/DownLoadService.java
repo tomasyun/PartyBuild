@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import www.dico.cn.partybuild.AppConfig;
+import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.utils.FileUtils;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.DownloadProgressCallBack;
@@ -43,7 +45,7 @@ public class DownLoadService extends Service {
 
     public void loadFile() {
         setUp();
-        String url = "";
+        String url = AppConfig.resBaseUrl;
         EasyHttp.downLoad(url)
                 .savePath(destFileDir)
                 .saveName(FileUtils.getFileName(url))
@@ -92,7 +94,7 @@ public class DownLoadService extends Service {
 
     public void setUp() {
         builder = new NotificationCompat.Builder(mContext)
-//                .setSmallIcon(R.mipmap.img_regime)
+                .setSmallIcon(R.mipmap.img_desk_icon)
                 .setContentText("0%")
                 .setContentTitle("智慧党建应用更新")
                 .setProgress(100, 0, false);

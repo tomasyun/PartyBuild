@@ -8,4 +8,8 @@ public interface CommonView extends BaseMvpView{
     void resultFailure(String result);
 
     void netWorkUnAvailable();
+
+    void getNoticeSuccess(String result);
+
+    void getNoticeFailure(String result);
 }

@@ -27,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.InfoCommentAdapter;
 import www.dico.cn.partybuild.bean.BaseProtocol;
@@ -37,7 +38,6 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.InfodetailsPresenter;
 import www.dico.cn.partybuild.utils.SizeUtils;
-import www.dico.cn.partybuild.utils.StringUtils;
 import www.dico.cn.partybuild.widget.HtmlImageGetter;
 
 //资讯详情
@@ -99,7 +99,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     }
 
     public void goBackInfodetail(View view) {
-        switch (form.type){
+        switch (form.type) {
             case 0:
                 LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
                 manager.sendBroadcast(new Intent("cn.diconet.www").putExtra("skip", "1"));
@@ -140,8 +140,8 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                     rel_attachment_info.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {//文件预览
-                            String filePath = bean.getData().getAttachment();
-                            String fileName =filePath.trim().substring(filePath.lastIndexOf("/")+1);
+                            String filePath = AppConfig.urlFormat(bean.getData().getAttachment());
+                            String fileName = filePath.trim().substring(filePath.lastIndexOf("/") + 1);
                             DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, filePath, fileName);
                         }
                     });

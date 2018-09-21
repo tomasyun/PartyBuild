@@ -9,10 +9,15 @@ public class AppConfig {
     public static final String ACTION = "cn.diconet.www";
     private static Context context = null;
     private static SPUtils spUtils;
+    public static final String resBaseUrl = "http://47.104.72.111/";
 
     public static SPUtils getSpUtils() {
         return spUtils;
     }
+
+    public static String nVersionCode = "";
+    public static String content = "";
+    public static String updateUrl = "";
 
     /**
      * 初始化工具类
@@ -39,12 +44,12 @@ public class AppConfig {
         throw new NullPointerException("u should init first");
     }
 
-    public static String urlFormat(String baseUrl, String url) {
+    public static String urlFormat(String url) {
         String newUrl = "";
         if (url.substring(0, 1).equals("/")) {
             newUrl = url.substring(1, url.length());
-            return baseUrl + newUrl;
+            return resBaseUrl + newUrl;
         }
-        return baseUrl + url;
+        return resBaseUrl + url;
     }
 }

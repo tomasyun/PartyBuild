@@ -59,15 +59,8 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noticeinfo);
         ButterKnife.bind(this);
-        form = getParam();
-        if (form != null)
-            getMvpPresenter().doNoticeInfoRequest(form.noticeId);
         rv_notice_info.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+        form = getParam();
         if (form != null) {
             switch (form.isReply) {
                 case "0"://不需要回复
@@ -84,7 +77,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                             if (et_reply_comment.getText().toString().trim().equals("")) {
                                 showToast("请填写回复内容");
                             } else {
-                                getMvpPresenter().doSubmitCommentRequest("1", form.noticeId, et_reply_comment.getText().toString().trim());
+                                getMvpPresenter().doSubmitCommentRequest("1", form.id, et_reply_comment.getText().toString().trim());
                             }
                         }
                     });
@@ -96,7 +89,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                                 if (et_reply_comment.getText().toString().trim().equals("")) {
                                     showToast("请填写回复内容");
                                 } else {
-                                    getMvpPresenter().doSubmitCommentRequest("1", form.noticeId, et_reply_comment.getText().toString().trim());
+                                    getMvpPresenter().doSubmitCommentRequest("1", form.id, et_reply_comment.getText().toString().trim());
                                     return true;
                                 }
                             }
@@ -113,6 +106,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                     break;
             }
         }
+        getMvpPresenter().doNoticeInfoRequest(form.id);
     }
 
     public void goBackNoticeInfo(View view) {
@@ -129,7 +123,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                 String publishDate = bean.getData().getPublishDate();
                 publishDate = (null == publishDate) ? "" : publishDate;
                 tv_date_notice_info.setText(publishDate);
-                tv_content_notice_info.setText("\u3000\u3000"+bean.getData().getContent());
+                tv_content_notice_info.setText("\u3000\u3000" + bean.getData().getContent());
                 List<NoticeInfoBean.DataBean.CommitListBean> list = bean.getData().getCommitList();
                 if (null != list && list.size() > 0) {
                     adapter = new NoticeInfoCommentAdapter(list);
@@ -162,7 +156,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
         et_reply_comment.setText("");
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
         if (protocol.code.equals("0000")) {
-            getMvpPresenter().doNoticeInfoRequest(form.noticeId);
+            getMvpPresenter().doNoticeInfoRequest(form.id);
             sv_notice_info.scrollTo(0, lin_notice_info.getMeasuredHeight() - sv_notice_info.getHeight());
         } else {
             showToast("服务器异常");
