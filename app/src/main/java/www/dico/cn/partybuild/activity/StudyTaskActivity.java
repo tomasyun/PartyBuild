@@ -66,7 +66,7 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
     @Override
     public void resultSuccess(String result) {
         srl_study_task.finishRefresh();
-        StudyTaskBean bean = new Gson().fromJson(result, StudyTaskBean.class);
+        final StudyTaskBean bean = new Gson().fromJson(result, StudyTaskBean.class);
         if (bean.code.equals("0000")) {
             if (bean.getData() != null) {
                 final List<StudyTaskBean.DataBean> beans = bean.getData();
@@ -81,6 +81,7 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
                         public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                             StudyTaskForm form = new StudyTaskForm();
                             form.taskId = beans.get(position).getId();
+                            form.taskState=beans.get(position).getTaskState();
                             goTo(TaskBriefActivity.class, form);
                         }
                     });

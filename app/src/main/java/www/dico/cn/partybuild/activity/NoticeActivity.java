@@ -37,7 +37,8 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
     @BindView(R.id.srl_notice)
     SmartRefreshLayout srl_notice;
     private NoticeAdapter adapter;
-
+    private int start = 0;
+    private int length = 10;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +48,10 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
         srl_notice.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().noticeRequest();
+                getMvpPresenter().noticeRequest("1", "0", start, length);
             }
         });
-        getMvpPresenter().noticeRequest();
+        getMvpPresenter().noticeRequest("1", "0", start, length);
     }
 
     public void goBackNotice(View view) {
@@ -103,7 +104,7 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
         notice_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getMvpPresenter().noticeRequest();
+                getMvpPresenter().noticeRequest("1", "0", start, length);
             }
         });
     }

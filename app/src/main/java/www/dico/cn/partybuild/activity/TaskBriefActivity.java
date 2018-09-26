@@ -73,7 +73,19 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
     }
 
     public void studyResult(View view) {
-        getMvpPresenter().verifyOpenStudyResult(form.taskId);
+        if (form.taskState != null && !form.taskState.equals("")) {
+            switch (form.taskState) {
+                case "0":
+                    getMvpPresenter().verifyOpenStudyResult(form.taskId);
+                    break;
+                case "1":
+                    showToast("该任务已完成");
+                    break;
+                case "2":
+                    showToast("任务已过期");
+                    break;
+            }
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

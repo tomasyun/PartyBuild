@@ -54,6 +54,11 @@ public class StudyTaskAdapter extends CommonAdapter<StudyTaskBean.DataBean> {
                 tv_state_study_task_item.setTextColor(AppManager.getManager().curActivity().getResources().getColor(R.color.white));
                 tv_state_study_task_item.setBackgroundDrawable(AppManager.getManager().curActivity().getResources().getDrawable(R.drawable.textview_corner20_grayer_bg));
                 break;
+            case "2":
+                tv_state_study_task_item.setText("已过期");
+                tv_state_study_task_item.setTextColor(AppManager.getManager().curActivity().getResources().getColor(R.color.white));
+                tv_state_study_task_item.setBackgroundDrawable(AppManager.getManager().curActivity().getResources().getDrawable(R.drawable.textview_corner20_grayer_bg));
+                break;
         }
     }
 }

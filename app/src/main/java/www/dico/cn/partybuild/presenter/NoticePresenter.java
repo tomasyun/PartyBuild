@@ -29,9 +29,13 @@ public class NoticePresenter extends BaseMvpPresenter<NoticeView> {
         return dialog;
     }
 
-    public void noticeRequest() {
-        EasyHttp.post("noticeList")
+    public void noticeRequest(String title, String draw, int start, int length) {
+        EasyHttp.post("noticeByType")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
+                .params("title", title)
+                .params("draw", draw)
+                .params("start", String.valueOf(start))
+                .params("length", String.valueOf(length))
                 .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
                     @Override
                     public void onSuccess(String result) {
