@@ -309,9 +309,11 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                     tv_sign_in_time.setText(split[1]);
                     Date curDate = new Date();
                     time = DateTimeUtils.parse(startDate, "yyyy-MM-dd HH:mm:ss").getTime() - curDate.getTime();
-                    int minutes = (int) time / 1000;
-                    during = minutes / 60;
-                    mHandler.sendEmptyMessage(0);
+                    if (time < 600000) {
+                        int minutes = (int) time / 1000;
+                        during = minutes / 60;
+                        mHandler.sendEmptyMessage(0);
+                    }
                 }
                 tv_sign_in_address.setText(bean.getData().getAddress());
                 id = bean.getData().getId();

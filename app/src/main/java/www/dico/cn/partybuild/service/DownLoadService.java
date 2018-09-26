@@ -29,7 +29,7 @@ public class DownLoadService extends Service {
     private NotificationCompat.Builder builder;
     private NotificationManager manager;
     private int preProgress = 0;
-
+    private String destFileName = "update.apk";
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         mContext = this;
@@ -48,24 +48,28 @@ public class DownLoadService extends Service {
         String url = AppConfig.urlFormat1(AppConfig.updateUrl);
         EasyHttp.downLoad(url)
                 .savePath(destFileDir)
-                .saveName(FileUtils.getFileName(url))
+                .saveName(destFileName)
                 .execute(new DownloadProgressCallBack<String>() {
                     @Override
                     public void update(long bytesRead, long contentLength, boolean done) {
                         int progress = (int) (bytesRead * 100 / contentLength);
                         HttpLog.e(progress + "% ");
                         DownLoadService.this.update(progress);
+                        if (done){
+                            cancel();
+                        }
                     }
 
                     @Override
                     public void onStart() {
                         HttpLog.i("======" + Thread.currentThread().getName());
-                        setUp();
                     }
 
                     @Override
                     public void onComplete(String path) {
-                        installApk(new File(path));
+                        HttpLog.e("文件保存路径：" + path);
+                        File file=new File(path);
+                        installApk(file);
                     }
 
                     @Override
@@ -79,8 +83,8 @@ public class DownLoadService extends Service {
     private void installApk(File file) {
         Intent install = new Intent(Intent.ACTION_VIEW);
         install.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Uri apkUri = FileProvider.getUriForFile(mContext, "cn.diconet.www.partybuild", file);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//www.dico.cn.partybuild
+            Uri apkUri = FileProvider.getUriForFile(mContext, "www.dico.cn.partybuild", file);
             //添加这一句表示对目标应用临时授权该Uri所代表的文件
             install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             install.setDataAndType(apkUri, "application/vnd.android.package-archive");

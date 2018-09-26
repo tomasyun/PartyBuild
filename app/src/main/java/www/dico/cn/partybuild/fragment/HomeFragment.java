@@ -174,7 +174,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                     }
                 });
             }
-            new UpdateManager(getActivity()).checkUpdate(false);//版本检测
+//            new UpdateManager(getActivity()).checkUpdate(false);//版本检测
         } else {
             showToast(bean.msg);
         }

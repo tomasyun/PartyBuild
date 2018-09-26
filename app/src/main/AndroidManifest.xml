@@ -222,8 +222,9 @@
             android:name=".activity.MeetingSummaryActivity"
             android:launchMode="singleTask" />
         <!-- TBS预览文件界面 -->
-        <activity android:name=".activity.DisplayFileActivity"
-            android:launchMode="singleTask"/>
+        <activity
+            android:name=".activity.DisplayFileActivity"
+            android:launchMode="singleTask" />
         <!--通知详情-->
         <!--使用高德api所申请的key-->
         <meta-data
@@ -239,5 +240,16 @@
         <service android:name=".service.RefreshNoticeService" />
 
         <receiver android:name=".receiver.AlarmReceiver" />
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="www.dico.cn.partybuild"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+
     </application>
 </manifest>

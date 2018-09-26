@@ -59,6 +59,8 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 switch (checkedId) {
                     case R.id.rbt_notice_branch_parks://通知公告
+                        position = 0;
+                        start = 0;
                         getMvpPresenter().doBranchParksNoticeRequest("3", "0", start, length);
                         break;
                     case R.id.rbt_activity_branch_parks://支部活动
