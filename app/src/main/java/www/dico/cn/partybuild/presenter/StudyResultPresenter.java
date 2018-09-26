@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.activity.StudyResultActivity;
 import www.dico.cn.partybuild.modleview.StudyResultView;
@@ -38,7 +39,8 @@ public class StudyResultPresenter extends BaseMvpPresenter<StudyResultView> {
         map.put("id", id);
         map.put("result", result);
         String json = new Gson().toJson(map);
-        EasyHttp.post("")
+        EasyHttp.post("studyObtain")
+                .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .upJson(json)
                 .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
                     @Override

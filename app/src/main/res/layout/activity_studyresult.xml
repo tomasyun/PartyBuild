@@ -47,22 +47,20 @@
         android:lineSpacingExtra="8dp"
         android:maxLength="50"
         android:padding="15dp"
-        android:text=""
+        android:text="111"
         android:textColor="@color/text_color"
         android:textColorHint="#989898"
         android:textSize="14sp" />
 
     <TextView
+        android:id="@+id/btn_result_submit"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="45dp"
         android:background="@drawable/button_corner20_red_bg"
-        android:clickable="true"
         android:gravity="center"
-        android:onClick="submitStudyResult"
         android:text="提交"
-        android:textColor="@color/white"
-        android:translationZ="5dp" />
+        android:textColor="@color/white" />
 </LinearLayout>
