@@ -133,7 +133,6 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
                 mHandler.sendEmptyMessageDelayed(0, 2000);
             } else {
                 Log.e("####", "exit application");
-//                AppManager.getManager().finishAllActivity();
                 this.finish();
             }
             return true;
@@ -161,6 +160,7 @@ public class MainActivity extends AbstractMvpActivity<MainView, MainPresenter> i
             AppConfig.updateUrl = bean.getData().getNewUrl();
         } else {
             //
+            showToast(bean.msg);
         }
     }
 

@@ -45,7 +45,7 @@ public class DownLoadService extends Service {
 
     public void loadFile() {
         setUp();
-        String url = AppConfig.resBaseUrl;
+        String url = AppConfig.urlFormat1(AppConfig.updateUrl);
         EasyHttp.downLoad(url)
                 .savePath(destFileDir)
                 .saveName(FileUtils.getFileName(url))

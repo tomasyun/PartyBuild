@@ -10,6 +10,7 @@ public class AppConfig {
     private static Context context = null;
     private static SPUtils spUtils;
     public static final String resBaseUrl = "http://47.104.72.111/";
+    public static final String resBaseUrl1= "http://47.104.72.111:8080/";
 
     public static SPUtils getSpUtils() {
         return spUtils;
@@ -51,5 +52,13 @@ public class AppConfig {
             return resBaseUrl + newUrl;
         }
         return resBaseUrl + url;
+    }
+    public static String urlFormat1(String url) {
+        String newUrl = "";
+        if (url.substring(0, 1).equals("/")) {
+            newUrl = url.substring(1, url.length());
+            return resBaseUrl1 + newUrl;
+        }
+        return resBaseUrl1 + url;
     }
 }
