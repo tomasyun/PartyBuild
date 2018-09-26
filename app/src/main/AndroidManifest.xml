@@ -26,6 +26,9 @@
     <!-- ======================TBS的预览文件功能========================== -->
     <!-- 允许程序读取外部存储文件 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- Android 8.0 系统请求安装apk -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
     <application
         android:name=".DicoApplication"
         android:allowBackup="true"
@@ -240,16 +243,15 @@
         <service android:name=".service.RefreshNoticeService" />
 
         <receiver android:name=".receiver.AlarmReceiver" />
+         <!--com.dafangya.app.pro.fileprovider-->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="www.dico.cn.partybuild"
+            android:authorities="www.dico.cn.partybuild.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
-
     </application>
 </manifest>

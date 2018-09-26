@@ -1,14 +1,17 @@
 package www.dico.cn.partybuild.service;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
 import android.widget.Toast;
@@ -17,7 +20,6 @@ import java.io.File;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.R;
-import www.dico.cn.partybuild.utils.FileUtils;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.DownloadProgressCallBack;
 import www.yuntdev.com.library.exception.ApiException;
@@ -30,6 +32,7 @@ public class DownLoadService extends Service {
     private NotificationManager manager;
     private int preProgress = 0;
     private String destFileName = "update.apk";
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         mContext = this;
@@ -55,7 +58,7 @@ public class DownLoadService extends Service {
                         int progress = (int) (bytesRead * 100 / contentLength);
                         HttpLog.e(progress + "% ");
                         DownLoadService.this.update(progress);
-                        if (done){
+                        if (done) {
                             cancel();
                         }
                     }
@@ -68,7 +71,7 @@ public class DownLoadService extends Service {
                     @Override
                     public void onComplete(String path) {
                         HttpLog.e("文件保存路径：" + path);
-                        File file=new File(path);
+                        File file = new File(path);
                         installApk(file);
                     }
 
@@ -83,8 +86,8 @@ public class DownLoadService extends Service {
     private void installApk(File file) {
         Intent install = new Intent(Intent.ACTION_VIEW);
         install.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//www.dico.cn.partybuild
-            Uri apkUri = FileProvider.getUriForFile(mContext, "www.dico.cn.partybuild", file);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//www.dico.cn.partybuild--包名
+            Uri apkUri = FileProvider.getUriForFile(mContext, "www.dico.cn.partybuild.fileprovider", file);
             //添加这一句表示对目标应用临时授权该Uri所代表的文件
             install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             install.setDataAndType(apkUri, "application/vnd.android.package-archive");
@@ -97,13 +100,32 @@ public class DownLoadService extends Service {
     }
 
     public void setUp() {
-        builder = new NotificationCompat.Builder(mContext)
-                .setSmallIcon(R.mipmap.img_desk_icon)
-                .setContentText("0%")
-                .setContentTitle("智慧党建应用更新")
-                .setProgress(100, 0, false);
-        manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(1000, builder.build());
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O) {//8.0
+            manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationChannel channel = new NotificationChannel("1",
+                    "Channel", NotificationManager.IMPORTANCE_DEFAULT);
+            channel.enableLights(true);
+            channel.setLightColor(Color.GREEN);
+            channel.setShowBadge(true);
+            manager.createNotificationChannel(channel);
+
+            int notificationId = 1000;
+            builder = new NotificationCompat.Builder(mContext, "1");
+            builder.setSmallIcon(R.mipmap.img_desk_icon)
+                    .setContentText("0%")
+                    .setContentTitle("智慧党建应用更新")
+                    .setProgress(100, 0, false)
+                    .setOnlyAlertOnce(true);//提醒声仅一次
+            manager.notify(notificationId, builder.build());
+        } else {
+            builder = new NotificationCompat.Builder(mContext)
+                    .setSmallIcon(R.mipmap.img_desk_icon)
+                    .setContentText("0%")
+                    .setContentTitle("智慧党建应用更新")
+                    .setProgress(100, 0, false);
+            manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+            manager.notify(1000, builder.build());
+        }
     }
 
     public void update(int progress) {
@@ -121,5 +143,10 @@ public class DownLoadService extends Service {
      */
     public void cancel() {
         manager.cancel(1000);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void showChannelNotification(Context context) {
+
     }
 }
