@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
 import android.widget.Toast;
@@ -71,8 +70,7 @@ public class DownLoadService extends Service {
                     @Override
                     public void onComplete(String path) {
                         HttpLog.e("文件保存路径：" + path);
-                        File file = new File(path);
-                        installApk(file);
+                        installApk(new File(path));
                     }
 
                     @Override
@@ -103,20 +101,18 @@ public class DownLoadService extends Service {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O) {//8.0
             manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationChannel channel = new NotificationChannel("1",
-                    "Channel", NotificationManager.IMPORTANCE_DEFAULT);
+                    "channel", NotificationManager.IMPORTANCE_DEFAULT);
             channel.enableLights(true);
             channel.setLightColor(Color.GREEN);
             channel.setShowBadge(true);
             manager.createNotificationChannel(channel);
-
-            int notificationId = 1000;
             builder = new NotificationCompat.Builder(mContext, "1");
             builder.setSmallIcon(R.mipmap.img_desk_icon)
                     .setContentText("0%")
                     .setContentTitle("智慧党建应用更新")
                     .setProgress(100, 0, false)
                     .setOnlyAlertOnce(true);//提醒声仅一次
-            manager.notify(notificationId, builder.build());
+            manager.notify(1000, builder.build());
         } else {
             builder = new NotificationCompat.Builder(mContext)
                     .setSmallIcon(R.mipmap.img_desk_icon)
@@ -145,8 +141,4 @@ public class DownLoadService extends Service {
         manager.cancel(1000);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void showChannelNotification(Context context) {
-
-    }
 }

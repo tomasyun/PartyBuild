@@ -28,7 +28,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- Android 8.0 系统请求安装apk -->
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <application
         android:name=".DicoApplication"
         android:allowBackup="true"
@@ -232,9 +232,7 @@
         <!--使用高德api所申请的key-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="baf0f66c87c1bddf219266db02172e9a">
-
-        </meta-data>
+            android:value="baf0f66c87c1bddf219266db02172e9a" />
         <!--高德定位服务-->
         <service android:name="com.amap.api.location.APSService" />
         <!--下载服务-->
@@ -243,7 +241,7 @@
         <service android:name=".service.RefreshNoticeService" />
 
         <receiver android:name=".receiver.AlarmReceiver" />
-         <!--com.dafangya.app.pro.fileprovider-->
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="www.dico.cn.partybuild.fileprovider"
