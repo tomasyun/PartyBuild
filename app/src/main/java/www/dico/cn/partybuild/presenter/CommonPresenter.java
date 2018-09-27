@@ -53,10 +53,11 @@ public class CommonPresenter extends BaseMvpPresenter<CommonView> {
                 });
     }
 
-    public void doNoticeRequest(String title, String draw, int start, int length) {
+    public void doNoticeRequest(String title,String type, String draw, int start, int length) {
         EasyHttp.post("noticeByType")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("title", title)
+                .params("type",type)
                 .params("draw", draw)
                 .params("start", String.valueOf(start))
                 .params("length", String.valueOf(length))

@@ -48,6 +48,10 @@
 
         </android.support.v7.widget.RecyclerView>
 
+        <www.yuntdev.com.refreshlayoutlibrary.refreshlayout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout>
 
     <include

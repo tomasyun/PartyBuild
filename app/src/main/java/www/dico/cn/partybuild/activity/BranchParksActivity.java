@@ -41,6 +41,7 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
     private int length = 10;
     private int position = 0;
     private List<InfoBean.DataBeanX.DataBean> list;
+    private List<NoticeBean.DataBean> noticeList;
     private InfoAdapter adapter;
     @BindView(R.id.branch_parks_empty_data)
     View branch_parks_empty_data;
@@ -61,7 +62,7 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                     case R.id.rbt_notice_branch_parks://通知公告
                         position = 0;
                         start = 0;
-                        getMvpPresenter().doBranchParksNoticeRequest("3", "0", start, length);
+                        getMvpPresenter().doBranchParksNoticeRequest("", "3", "0", start, length);
                         break;
                     case R.id.rbt_activity_branch_parks://支部活动
                         position = 1;
@@ -87,17 +88,25 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 start = start + length;
-                createRequest(position, start, length);
+                if (position == 0) {
+                    getMvpPresenter().doBranchParksNoticeRequest("", "3", "0", start, length);
+                }else {
+                    createRequest(position, start, length);
+                }
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 start = 0;
-                createRequest(position, start, length);
+                if (position == 0) {
+                    getMvpPresenter().doBranchParksNoticeRequest("", "3", "0", start, length);
+                }else {
+                    createRequest(position, start, length);
+                }
             }
         });
 
-        getMvpPresenter().doBranchParksNoticeRequest("3", "0", start, length);
+        getMvpPresenter().doBranchParksNoticeRequest("", "3", "0", start, length);
     }
 
     public void goBackBranchParks(View view) {
@@ -166,31 +175,50 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
 
     @Override
     public void getNoticeSuccess(String result) {
-        srl_branch_parks.finishRefresh();
         srl_branch_parks.finishLoadmore();
+        srl_branch_parks.finishRefresh();
         NoticeBean bean = new Gson().fromJson(result, NoticeBean.class);
         if (bean.code.equals("0000")) {
-            final List<NoticeBean.DataBean> noticeList = bean.getData();
-            if (noticeList != null && noticeList.size() > 0) {
-                srl_branch_parks.setVisibility(View.VISIBLE);
-                branch_parks_empty_data.setVisibility(View.GONE);
-                branch_parks_net_error.setVisibility(View.GONE);
-                noticeAdapter = new NoticeAdapter(this, R.layout.item_notice, noticeList);
-                rv_branch_parks.setAdapter(noticeAdapter);
-                noticeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        NoticeForm form = new NoticeForm();
-                        form.id = noticeList.get(position).getId();
-                        form.isReply = noticeList.get(position).getIsReply();
-                        goTo(NoticeInfoActivity.class, form);
-                    }
-                });
+            if (start == 0) {
+                noticeList = bean.getData();
+                if (noticeList != null && noticeList.size() > 0) {
+                    srl_branch_parks.setVisibility(View.VISIBLE);
+                    branch_parks_empty_data.setVisibility(View.GONE);
+                    branch_parks_net_error.setVisibility(View.GONE);
+                    noticeAdapter = new NoticeAdapter(this, R.layout.item_notice, noticeList);
+                    rv_branch_parks.setAdapter(noticeAdapter);
+                    noticeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                            NoticeForm form = new NoticeForm();
+                            form.id = noticeList.get(position).getId();
+                            form.isReply = noticeList.get(position).getIsReply();
+                            goTo(NoticeInfoActivity.class, form);
+                        }
+                    });
+                } else {
+                    //空白页面
+                    srl_branch_parks.setVisibility(View.GONE);
+                    branch_parks_empty_data.setVisibility(View.VISIBLE);
+                    branch_parks_net_error.setVisibility(View.GONE);
+                }
             } else {
-                //空白页面
-                srl_branch_parks.setVisibility(View.GONE);
-                branch_parks_empty_data.setVisibility(View.VISIBLE);
-                branch_parks_net_error.setVisibility(View.GONE);
+                List<NoticeBean.DataBean> list = bean.getData();
+                if (list != null && list.size() > 0) {
+                    this.noticeList.addAll(list);
+                    adapter.notifyDataSetChanged();
+                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                            NoticeForm form = new NoticeForm();
+                            form.id = BranchParksActivity.this.noticeList.get(position).getId();
+                            form.isReply = BranchParksActivity.this.noticeList.get(position).getIsReply();
+                            goTo(NoticeInfoActivity.class, form);
+                        }
+                    });
+                } else {
+
+                }
             }
         } else {
             showToast("服务器异常");
@@ -220,7 +248,7 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
     public void createRequest(int position, int start, int length) {
         switch (position) {
             case 0:
-                getMvpPresenter().doBranchParksNoticeRequest("3", "0", start, length);
+                getMvpPresenter().doBranchParksNoticeRequest("", "3", "0", start, length);
                 break;
             case 1:
                 getMvpPresenter().doBranchParksRequest("15", "32", "0", start, length);

@@ -46,6 +46,7 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
     private int length = 10;
     private SkipForm form;
     private List<InfoBean.DataBeanX.DataBean> list;
+    private List<NoticeBean.DataBean> noticeList;
     private InfoAdapter adapter;
     private NoticeAdapter noticeAdapter;
 
@@ -75,7 +76,7 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                     break;
                 case 4://公告通知
                     tv_title_common.setText("公告通知");
-                    getMvpPresenter().doNoticeRequest("2", "0", start, length);
+                    getMvpPresenter().doNoticeRequest("", "2", "0", start, length);
                     break;
                 case 5://团员园地
                     tv_title_common.setText("团员园地");
@@ -184,15 +185,21 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 start = start + length;
-                length = 10;
-                createData(start, length, form.skip);
+                if (form.skip == 4) {
+                    getMvpPresenter().doNoticeRequest("", "2", "0", start, length);
+                } else {
+                    createData(start, length, form.skip);
+                }
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 start = 0;
-                length = 10;
-                createData(start, length, form.skip);
+                if (form.skip == 4) {
+                    getMvpPresenter().doNoticeRequest("", "2", "0", start, length);
+                } else {
+                    createData(start, length, form.skip);
+                }
             }
         });
     }
@@ -274,31 +281,50 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
 
     @Override
     public void getNoticeSuccess(String result) {
-        srl_common.finishRefresh();
         srl_common.finishLoadmore();
+        srl_common.finishRefresh();
         NoticeBean bean = new Gson().fromJson(result, NoticeBean.class);
         if (bean.code.equals("0000")) {
-            final List<NoticeBean.DataBean> list = bean.getData();
-            if (null != list && list.size() > 0) {
-                srl_common.setVisibility(View.VISIBLE);
-                common_empty_data.setVisibility(View.GONE);
-                common_net_error.setVisibility(View.GONE);
-                noticeAdapter = new NoticeAdapter(this, R.layout.item_notice, bean.getData());
-                rv_common.setAdapter(noticeAdapter);
-                noticeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        NoticeForm form = new NoticeForm();
-                        form.id = list.get(position).getId();
-                        form.isReply = list.get(position).getIsReply();
-                        goTo(NoticeInfoActivity.class, form);
-                    }
-                });
+            if (start == 0) {
+                noticeList = bean.getData();
+                if (noticeList != null && noticeList.size() > 0) {
+                    srl_common.setVisibility(View.VISIBLE);
+                    common_empty_data.setVisibility(View.GONE);
+                    common_net_error.setVisibility(View.GONE);
+                    noticeAdapter = new NoticeAdapter(this, R.layout.item_notice, noticeList);
+                    rv_common.setAdapter(noticeAdapter);
+                    noticeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                            NoticeForm form = new NoticeForm();
+                            form.id = noticeList.get(position).getId();
+                            form.isReply = noticeList.get(position).getIsReply();
+                            goTo(NoticeInfoActivity.class, form);
+                        }
+                    });
+                } else {
+                    //空白页面
+                    srl_common.setVisibility(View.GONE);
+                    common_empty_data.setVisibility(View.VISIBLE);
+                    common_net_error.setVisibility(View.GONE);
+                }
             } else {
-                //空白页面
-                srl_common.setVisibility(View.GONE);
-                common_empty_data.setVisibility(View.VISIBLE);
-                common_net_error.setVisibility(View.GONE);
+                List<NoticeBean.DataBean> list = bean.getData();
+                if (list != null && list.size() > 0) {
+                    this.noticeList.addAll(list);
+                    adapter.notifyDataSetChanged();
+                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                            NoticeForm form = new NoticeForm();
+                            form.id = CommonActivity.this.noticeList.get(position).getId();
+                            form.isReply = CommonActivity.this.noticeList.get(position).getIsReply();
+                            goTo(NoticeInfoActivity.class, form);
+                        }
+                    });
+                } else {
+
+                }
             }
         } else {
             showToast("服务器异常");
@@ -331,7 +357,7 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                 getMvpPresenter().doCommonArticleRequest("17", "", "0", start, length);
                 break;
             case 4://公告通知
-                getMvpPresenter().doNoticeRequest("2", "0", start, length);
+                getMvpPresenter().doNoticeRequest("", "2", "0", start, length);
                 break;
             case 5://团员园地
                 getMvpPresenter().doCommonArticleRequest("7", "", "0", start, length);

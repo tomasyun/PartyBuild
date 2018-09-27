@@ -23,7 +23,7 @@ import www.dico.cn.partybuild.presenter.NoticePresenter;
 import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
-import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshListener;
+import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshLoadmoreListener;
 
 //通知
 @CreatePresenter(NoticePresenter.class)
@@ -39,19 +39,29 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
     private NoticeAdapter adapter;
     private int start = 0;
     private int length = 10;
+    private List<NoticeBean.DataBean> noticeList;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
         ButterKnife.bind(this);
         rv_notice.setLayoutManager(new LinearLayoutManager(this));
-        srl_notice.setOnRefreshListener(new OnRefreshListener() {
+        start = 0;
+        getMvpPresenter().noticeRequest("", "1", "0", start, length);
+        srl_notice.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                start = start + length;
+                getMvpPresenter().noticeRequest("", "1", "0", start, length);
+            }
+
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().noticeRequest("1", "0", start, length);
+                start = 0;
+                getMvpPresenter().noticeRequest("", "1", "0", start, length);
             }
         });
-        getMvpPresenter().noticeRequest("1", "0", start, length);
     }
 
     public void goBackNotice(View view) {
@@ -60,30 +70,50 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
 
     @Override
     public void resultSuccess(String result) {
+        srl_notice.finishLoadmore();
         srl_notice.finishRefresh();
         NoticeBean bean = new Gson().fromJson(result, NoticeBean.class);
         if (bean.code.equals("0000")) {
-            final List<NoticeBean.DataBean> list = bean.getData();
-            if (null != list && list.size() > 0) {
-                srl_notice.setVisibility(View.VISIBLE);
-                notice_empty_data.setVisibility(View.GONE);
-                notice_net_error.setVisibility(View.GONE);
-                adapter = new NoticeAdapter(this, R.layout.item_notice, bean.getData());
-                rv_notice.setAdapter(adapter);
-                adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        NoticeForm form = new NoticeForm();
-                        form.id = list.get(position).getId();
-                        form.isReply = list.get(position).getIsReply();
-                        goTo(NoticeInfoActivity.class, form);
-                    }
-                });
+            if (start == 0) {
+                noticeList = bean.getData();
+                if (noticeList != null && noticeList.size() > 0) {
+                    srl_notice.setVisibility(View.VISIBLE);
+                    notice_empty_data.setVisibility(View.GONE);
+                    notice_net_error.setVisibility(View.GONE);
+                    adapter = new NoticeAdapter(this, R.layout.item_notice, noticeList);
+                    rv_notice.setAdapter(adapter);
+                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                            NoticeForm form = new NoticeForm();
+                            form.id = noticeList.get(position).getId();
+                            form.isReply = noticeList.get(position).getIsReply();
+                            goTo(NoticeInfoActivity.class, form);
+                        }
+                    });
+                } else {
+                    //空白页面
+                    srl_notice.setVisibility(View.GONE);
+                    notice_empty_data.setVisibility(View.VISIBLE);
+                    notice_net_error.setVisibility(View.GONE);
+                }
             } else {
-                //空白页面
-                srl_notice.setVisibility(View.GONE);
-                notice_empty_data.setVisibility(View.VISIBLE);
-                notice_net_error.setVisibility(View.GONE);
+                List<NoticeBean.DataBean> list = bean.getData();
+                if (list != null && list.size() > 0) {
+                    this.noticeList.addAll(list);
+                    adapter.notifyDataSetChanged();
+                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                            NoticeForm form = new NoticeForm();
+                            form.id = NoticeActivity.this.noticeList.get(position).getId();
+                            form.isReply = NoticeActivity.this.noticeList.get(position).getIsReply();
+                            goTo(NoticeInfoActivity.class, form);
+                        }
+                    });
+                } else {
+
+                }
             }
         } else {
             showToast("服务器异常");
@@ -92,6 +122,7 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
 
     @Override
     public void resultFailure(String result) {
+        srl_notice.finishLoadmore();
         srl_notice.finishRefresh();
         showToast(result);
     }
@@ -104,7 +135,8 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
         notice_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getMvpPresenter().noticeRequest("1", "0", start, length);
+                start = 0;
+                getMvpPresenter().noticeRequest("", "1", "0", start, length);
             }
         });
     }

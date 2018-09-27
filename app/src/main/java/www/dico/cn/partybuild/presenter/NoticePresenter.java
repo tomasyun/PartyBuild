@@ -29,10 +29,11 @@ public class NoticePresenter extends BaseMvpPresenter<NoticeView> {
         return dialog;
     }
 
-    public void noticeRequest(String title, String draw, int start, int length) {
+    public void noticeRequest(String title,String type, String draw, int start, int length) {
         EasyHttp.post("noticeByType")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("title", title)
+                .params("type",type)
                 .params("draw", draw)
                 .params("start", String.valueOf(start))
                 .params("length", String.valueOf(length))

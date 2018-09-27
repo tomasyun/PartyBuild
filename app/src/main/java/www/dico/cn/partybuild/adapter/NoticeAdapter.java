@@ -37,17 +37,15 @@ public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
         int minutes = Integer.valueOf(DateTimeUtils.getMinutes(publishDate, DateTimeUtils.getNow()));
         if (minutes < 60) {
             holder.setText(R.id.tv_date_notice_item, minutes + "分钟前");
-        } else if (minutes > 60 && minutes <= 24 * 60) {
-            holder.setText(R.id.tv_date_notice_item, minutes + "小时前");
+        } else if (minutes > 60 && minutes /60<= 24) {
+            holder.setText(R.id.tv_date_notice_item, minutes/60 + "小时前");
         } else {
             holder.setText(R.id.tv_date_notice_item, minutes / (24 * 60) + "天前");
         }
         ExpandLongTextView tv_content_notice_item = holder.getView(R.id.tv_content_notice_item);
         tv_content_notice_item.setExpand(false);
         tv_content_notice_item.initWidth(ScreenUtils.getScreenWidth(AppManager.getManager().
-
                 curActivity()) - SizeUtils.dp2px(AppManager.getManager().
-
                 curActivity(), 100));
         tv_content_notice_item.setMaxLines(3);
         tv_content_notice_item.setExpandText(noticeBean.getContent());
