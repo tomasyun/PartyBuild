@@ -1,13 +1,11 @@
 package www.dico.cn.partybuild.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.UpdateManager;
 import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;

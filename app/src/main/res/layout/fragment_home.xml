@@ -63,9 +63,9 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
                     android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp">
                     <!--系统公告-->
                     <TextView
                         android:id="@+id/tv_gongshi_home"

@@ -43,7 +43,7 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
         } else if (TextUtils.isEmpty(password)) {
             showToast("密码不能为空");
         } else {
-            getMvpPresenter().clickRequest(dialog,et_name_login.getText().toString().trim(), et_password_login.getText().toString().trim());
+            getMvpPresenter().clickRequest(dialog, et_name_login.getText().toString().trim(), et_password_login.getText().toString().trim());
         }
     }
 

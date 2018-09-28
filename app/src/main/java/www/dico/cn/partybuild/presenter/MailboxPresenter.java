@@ -1,13 +1,8 @@
 package www.dico.cn.partybuild.presenter;
 
-import android.app.Dialog;
-
 import www.dico.cn.partybuild.AppConfig;
-import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.activity.MailboxActivity;
 import www.dico.cn.partybuild.modleview.MailboxView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
 import www.yuntdev.com.library.exception.ApiException;
@@ -35,7 +30,7 @@ public class MailboxPresenter extends BaseMvpPresenter<MailboxView> {
                 });
     }
 
-    public void submitMailboxRequest(IProgressDialog dialog,String id, String content) {
+    public void submitMailboxRequest(IProgressDialog dialog, String id, String content) {
         EasyHttp.post("leaderMailbox")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)

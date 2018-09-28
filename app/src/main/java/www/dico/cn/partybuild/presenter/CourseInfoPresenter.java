@@ -1,13 +1,8 @@
 package www.dico.cn.partybuild.presenter;
 
-import android.app.Dialog;
-
 import www.dico.cn.partybuild.AppConfig;
-import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.activity.CourseInfoActivity;
 import www.dico.cn.partybuild.modleview.CourseInfoView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
 import www.yuntdev.com.library.exception.ApiException;
@@ -15,7 +10,7 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class CourseInfoPresenter extends BaseMvpPresenter<CourseInfoView> {
     //课件详情
-    public void doGetIntoCourseInfoRequest(IProgressDialog dialog,String id, String taskId, String flag) {
+    public void doGetIntoCourseInfoRequest(IProgressDialog dialog, String id, String taskId, String flag) {
         EasyHttp.post("courseInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
@@ -38,7 +33,7 @@ public class CourseInfoPresenter extends BaseMvpPresenter<CourseInfoView> {
                 });
     }
 
-    public void doGetOutCourseInfoRequest(IProgressDialog dialog,String id, String taskId, String flag) {
+    public void doGetOutCourseInfoRequest(IProgressDialog dialog, String id, String taskId, String flag) {
         EasyHttp.post("courseInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)

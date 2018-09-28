@@ -30,10 +30,6 @@ import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshLoad
 public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildView, IntegrityBuildPresenter> implements IntegrityBuildView {
     @BindView(R.id.rg_integrity_build)
     RadioGroup rg_integrity_build;
-    private int position = 0;
-    private int start = 0;
-    private List<InfoBean.DataBeanX.DataBean> list;
-    private InfoAdapter adapter;
     @BindView(R.id.rv_integrity_build)
     RecyclerView rv_integrity_build;
     @BindView(R.id.srl_integrity_build)
@@ -42,6 +38,10 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
     View integrity_build_empty_data;
     @BindView(R.id.integrity_build_net_error)
     View integrity_build_net_error;
+    private int position = 0;
+    private int start = 0;
+    private List<InfoBean.DataBeanX.DataBean> list;
+    private InfoAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

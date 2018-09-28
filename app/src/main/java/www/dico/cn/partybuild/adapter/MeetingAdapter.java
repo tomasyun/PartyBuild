@@ -19,7 +19,7 @@ public class MeetingAdapter extends CommonAdapter<MeetingBean.DataBean> {
     @Override
     protected void convert(ViewHolder holder, MeetingBean.DataBean meetingBean, int position) {
         TextView tv_state_meeting_item = holder.getView(R.id.tv_state_meeting_item);
-        TextView tv_flag_meeting_item=holder.getView(R.id.tv_flag_meeting_item);
+        TextView tv_flag_meeting_item = holder.getView(R.id.tv_flag_meeting_item);
         switch (meetingBean.getState()) {
             case "0"://未开始
                 tv_state_meeting_item.setBackgroundColor(AppManager.getManager().curActivity().getResources().getColor(R.color.theme_color));

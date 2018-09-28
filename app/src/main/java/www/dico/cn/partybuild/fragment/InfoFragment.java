@@ -71,22 +71,22 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                     case R.id.rbt_news_info://党建要闻
                         position = 0;
                         start = 0;
-                        createRequest(position,start);
+                        createRequest(position, start);
                         break;
                     case R.id.rbt_talk_info://习总讲话
                         position = 1;
                         start = 0;
-                        createRequest(position,start);
+                        createRequest(position, start);
                         break;
                     case R.id.rbt_history_info://国史党史
                         position = 2;
                         start = 0;
-                        createRequest(position,start);
+                        createRequest(position, start);
                         break;
                     case R.id.tv_vanguard_info://时代先锋
                         position = 3;
                         start = 0;
-                        createRequest(position,start);
+                        createRequest(position, start);
                         break;
                 }
             }
@@ -96,13 +96,13 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 start = start + 10;
-                createRequest(position,start);
+                createRequest(position, start);
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 start = 0;
-                createRequest(position,start);
+                createRequest(position, start);
             }
         });
         return view;
@@ -128,7 +128,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
                                 form.id = list.get(position).getId();
-                                form.type=0;
+                                form.type = 0;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -147,7 +147,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
                                 form.id = InfoFragment.this.list.get(position).getId();
-                                form.type=0;
+                                form.type = 0;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -176,7 +176,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
         info_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createRequest(position,start);
+                createRequest(position, start);
             }
         });
     }
@@ -184,14 +184,15 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     @Override
     public void preventPreLoad() {
         super.preventPreLoad();
-        createRequest(position,start);
+        createRequest(position, start);
     }
 
     @Override
     public void Refresh() {
-        createRequest(position,start);
+        createRequest(position, start);
     }
-    public void createRequest(int position,int start){
+
+    public void createRequest(int position, int start) {
         switch (position) {
             case 0:
                 getMvpPresenter().doGetInfoRequest("0", "0", start, 10);

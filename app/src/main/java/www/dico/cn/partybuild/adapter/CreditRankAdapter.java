@@ -24,7 +24,7 @@ public class CreditRankAdapter extends CommonAdapter<CreditRankBean.DataBean.Cre
     @Override
     protected void convert(ViewHolder holder, CreditRankBean.DataBean.CreditInfoListBean creditRankBean, int position) {
         holder.setText(R.id.tv_credit_rank_num_item, creditRankBean.getRank());
-        GlideUtils.loadCircleImage(AppManager.getManager().curActivity(), AppConfig.urlFormat( creditRankBean.getAvatar()), (ImageView) holder.getView(R.id.iv_credit_rank_avatar_item));
+        GlideUtils.loadCircleImage(AppManager.getManager().curActivity(), AppConfig.urlFormat(creditRankBean.getAvatar()), (ImageView) holder.getView(R.id.iv_credit_rank_avatar_item));
         holder.setText(R.id.tv_name_credit_rank_item, creditRankBean.getName());
         SpannableString score = new SpannableString(creditRankBean.getScore() + "分");
         score.setSpan(new AbsoluteSizeSpan(40), 0, score.length() - 1, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);

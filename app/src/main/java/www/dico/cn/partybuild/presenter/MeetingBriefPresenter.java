@@ -1,13 +1,8 @@
 package www.dico.cn.partybuild.presenter;
 
-import android.app.Dialog;
-
 import www.dico.cn.partybuild.AppConfig;
-import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.activity.MeetingBriefActivity;
 import www.dico.cn.partybuild.modleview.MeetingBriefView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
 import www.yuntdev.com.library.exception.ApiException;
@@ -15,7 +10,7 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
     //会议摘要
-    public void doMeetingBriefRequest(IProgressDialog dialog,String id) {
+    public void doMeetingBriefRequest(IProgressDialog dialog, String id) {
         EasyHttp.post("conferenceBrief")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
@@ -36,7 +31,7 @@ public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
                 });
     }
 
-    public void doSignUpRequest(IProgressDialog dialog,String id) {
+    public void doSignUpRequest(IProgressDialog dialog, String id) {
         EasyHttp.post("signUp")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
@@ -57,7 +52,7 @@ public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
                 });
     }
 
-    public void doLeaveRequest(IProgressDialog dialog,String id) {
+    public void doLeaveRequest(IProgressDialog dialog, String id) {
         EasyHttp.post("leave")
                 .params("id", id)
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {

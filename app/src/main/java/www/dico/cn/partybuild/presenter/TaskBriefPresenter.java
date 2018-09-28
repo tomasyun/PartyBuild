@@ -1,13 +1,8 @@
 package www.dico.cn.partybuild.presenter;
 
-import android.app.Dialog;
-
 import www.dico.cn.partybuild.AppConfig;
-import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.activity.TaskBriefActivity;
 import www.dico.cn.partybuild.modleview.TaskBriefView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
 import www.yuntdev.com.library.exception.ApiException;
@@ -15,7 +10,7 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
     //任务摘要
-    public void doTaskBriefRequest(IProgressDialog dialog,String id) {
+    public void doTaskBriefRequest(IProgressDialog dialog, String id) {
         EasyHttp.post("studyTaskInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
@@ -37,7 +32,7 @@ public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
     }
 
     //校验是否可以添加学习成果
-    public void verifyOpenStudyResult(IProgressDialog dialog,String id) {
+    public void verifyOpenStudyResult(IProgressDialog dialog, String id) {
         EasyHttp.post("isCompleteTask")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)

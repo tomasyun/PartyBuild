@@ -2,14 +2,8 @@ package www.dico.cn.partybuild;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -38,7 +32,7 @@ public class UpdateManager {
 //        String version_info = "更新内容\n" + "    1. 底部导航\n" + "    2. 增加视频学习资料\n" + "    ";
         String version_info = "";
         int mVersion_code = DeviceUtils.getVersionCode(mContext);// 当前的版本号
-        int nVersion_code =Integer.parseInt(AppConfig.nVersionCode) ;
+        int nVersion_code = Integer.parseInt(AppConfig.nVersionCode);
         if (mVersion_code < nVersion_code) {
 //             显示提示对话
             showNoticeDialog(AppConfig.content);

@@ -1,13 +1,8 @@
 package www.dico.cn.partybuild.presenter;
 
-import android.app.Dialog;
-
 import www.dico.cn.partybuild.AppConfig;
-import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.activity.NoticeInfoActivity;
 import www.dico.cn.partybuild.modleview.NoticeInfoView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
 import www.yuntdev.com.library.exception.ApiException;
@@ -15,7 +10,7 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class NoticeInfoPresenter extends BaseMvpPresenter<NoticeInfoView> {
     //通知详情
-    public void doNoticeInfoRequest(IProgressDialog dialog,String id) {
+    public void doNoticeInfoRequest(IProgressDialog dialog, String id) {
         EasyHttp.post("noticeInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
@@ -36,7 +31,7 @@ public class NoticeInfoPresenter extends BaseMvpPresenter<NoticeInfoView> {
                 });
     }
 
-    public void doSubmitCommentRequest(IProgressDialog dialog,String isFlag, String id, String content) {
+    public void doSubmitCommentRequest(IProgressDialog dialog, String isFlag, String id, String content) {
         EasyHttp.post("saveComment")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("isFlag", isFlag)

@@ -59,11 +59,11 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     ScrollView sv_info_detail;
     @BindView(R.id.lin_info_detail)
     LinearLayout lin_info_detail;
+    @BindView(R.id.rel_attachment_info)
+    RelativeLayout rel_attachment_info;
     private InfodetailForm form;
     private InfoCommentAdapter adapter;
     private EditText et_reply_comment;
-    @BindView(R.id.rel_attachment_info)
-    RelativeLayout rel_attachment_info;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

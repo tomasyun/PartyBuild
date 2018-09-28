@@ -79,7 +79,7 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
                         public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                             StudyTaskForm form = new StudyTaskForm();
                             form.taskId = beans.get(position).getId();
-                            form.taskState=beans.get(position).getTaskState();
+                            form.taskState = beans.get(position).getTaskState();
                             goTo(TaskBriefActivity.class, form);
                         }
                     });

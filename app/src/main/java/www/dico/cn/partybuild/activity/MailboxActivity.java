@@ -56,7 +56,7 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
         } else if (TextUtils.isEmpty(content)) {
             showToast("请填写您要发送内容");
         } else {
-            getMvpPresenter().submitMailboxRequest(dialog,leaderId, content);
+            getMvpPresenter().submitMailboxRequest(dialog, leaderId, content);
         }
     }
 

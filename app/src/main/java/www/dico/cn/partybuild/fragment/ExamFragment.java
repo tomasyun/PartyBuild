@@ -171,7 +171,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
         createRequest(position);
     }
 
-    public void createRequest(int position){
+    public void createRequest(int position) {
         switch (position) {
             case 0:
                 getMvpPresenter().examsOnRequest("0");

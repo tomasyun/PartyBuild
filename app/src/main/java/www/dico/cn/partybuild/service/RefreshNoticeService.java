@@ -7,16 +7,8 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
-import java.util.Date;
-
-import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.receiver.AlarmReceiver;
-import www.yuntdev.com.library.EasyHttp;
-import www.yuntdev.com.library.callback.CallBack;
-import www.yuntdev.com.library.callback.SimpleCallBack;
-import www.yuntdev.com.library.exception.ApiException;
 
 //消息实时更新
 public class RefreshNoticeService extends Service {

@@ -46,7 +46,7 @@ public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, Le
                     .setPositiveButton("确定", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            getMvpPresenter().doLeaveRequest(dialog,content);
+                            getMvpPresenter().doLeaveRequest(dialog, content);
                         }
                     }).setNegativeButton("取消", new View.OnClickListener() {
                 @Override

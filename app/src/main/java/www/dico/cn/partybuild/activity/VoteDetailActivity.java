@@ -65,7 +65,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                 tv_submit_vote_detail.setEnabled(false);
                 tv_submit_vote_detail.setClickable(false);
             }
-            getMvpPresenter().doVoteDetailRequest(dialog,form.voteId);
+            getMvpPresenter().doVoteDetailRequest(dialog, form.voteId);
         }
     }
 
@@ -80,7 +80,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
             map.put("id", form.voteId);
             map.put("optionIds", options);
             String json = new Gson().toJson(map);
-            getMvpPresenter().doSubmitVoteResultRequest(dialog,json);
+            getMvpPresenter().doSubmitVoteResultRequest(dialog, json);
         } else {
             showToast("请选择");
         }
@@ -288,7 +288,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
             tv_submit_vote_detail.setEnabled(false);
             tv_submit_vote_detail.setClickable(false);
             form.isVoter = "1";
-            getMvpPresenter().doVoteDetailRequest(dialog,form.voteId);
+            getMvpPresenter().doVoteDetailRequest(dialog, form.voteId);
         } else {
             showToast("服务器异常");
         }

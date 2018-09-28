@@ -311,94 +311,94 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
     public void createData(int start, int skip) {
         switch (skip) {
             case 0://党员园地
-                getMvpPresenter().doCommonArticleRequest(dialog,"14", "", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "14", "", "0", start, 10);
                 break;
             case 1://支部园地
-                getMvpPresenter().doCommonArticleRequest(dialog,"6", "", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "6", "", "0", start, 10);
                 break;
             case 2://培训园地
-                getMvpPresenter().doCommonArticleRequest(dialog,"16", "", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "16", "", "0", start, 10);
                 break;
             case 3://组织机构
-                getMvpPresenter().doCommonArticleRequest(dialog,"17", "", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "17", "", "0", start, 10);
                 break;
             case 4://公告通知
-                getMvpPresenter().doNoticeRequest(dialog,"", "2", "0", start, 10);
+                getMvpPresenter().doNoticeRequest(dialog, "", "2", "0", start, 10);
                 break;
             case 5://团员园地
-                getMvpPresenter().doCommonArticleRequest(dialog,"7", "", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "7", "", "0", start, 10);
                 break;
             case 6://规章制度
-                getMvpPresenter().doCommonArticleRequest(dialog,"8", "", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "8", "", "0", start, 10);
                 break;
             case 7://组织机构
-                getMvpPresenter().doCommonArticleRequest(dialog,"9", "", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "9", "", "0", start, 10);
                 break;
             case 8://分工会
-                getMvpPresenter().doCommonArticleRequest(dialog,"1", "36", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "1", "36", "0", start, 10);
                 break;
             case 9://工会委员会
-                getMvpPresenter().doCommonArticleRequest(dialog,"1", "35", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "1", "35", "0", start, 10);
                 break;
             case 10://女工委员会
-                getMvpPresenter().doCommonArticleRequest(dialog,"1", "37", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "1", "37", "0", start, 10);
                 break;
             case 11://相关制度
-                getMvpPresenter().doCommonArticleRequest(dialog,"2", "42", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "2", "42", "0", start, 10);
                 break;
             case 12://公开信息
-                getMvpPresenter().doCommonArticleRequest(dialog,"2", "43", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "2", "43", "0", start, 10);
                 break;
             case 13://十届一次职代会
-                getMvpPresenter().doCommonArticleRequest(dialog,"3", "38", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "3", "38", "0", start, 10);
                 break;
             case 14://十届二次职代会
-                getMvpPresenter().doCommonArticleRequest(dialog,"3", "39", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "3", "39", "0", start, 10);
                 break;
             case 15://十届三次职代会
-                getMvpPresenter().doCommonArticleRequest(dialog,"3", "40", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "3", "40", "0", start, 10);
                 break;
             case 16://十届四次职代会
-                getMvpPresenter().doCommonArticleRequest(dialog,"3", "41", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "3", "41", "0", start, 10);
                 break;
             case 17://棋牌协会
-                getMvpPresenter().doCommonArticleRequest(dialog,"4", "26", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "4", "26", "0", start, 10);
                 break;
             case 18://舞蹈、瑜伽协会
-                getMvpPresenter().doCommonArticleRequest(dialog,"4", "24", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "4", "24", "0", start, 10);
                 break;
             case 19://台球、乒乓球协会
-                getMvpPresenter().doCommonArticleRequest(dialog,"4", "25", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "4", "25", "0", start, 10);
                 break;
             case 20://篮球协会
-                getMvpPresenter().doCommonArticleRequest(dialog,"4", "27", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "4", "27", "0", start, 10);
                 break;
             case 21://摄影协会
-                getMvpPresenter().doCommonArticleRequest(dialog,"4", "28", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "4", "28", "0", start, 10);
                 break;
             case 22://网球、羽毛球协会
-                getMvpPresenter().doCommonArticleRequest(dialog,"4", "30", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "4", "30", "0", start, 10);
                 break;
             case 23://游泳协会
-                getMvpPresenter().doCommonArticleRequest(dialog,"4", "29", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "4", "29", "0", start, 10);
                 break;
             case 24://第一分工会
-                getMvpPresenter().doCommonArticleRequest(dialog,"0", "18", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "0", "18", "0", start, 10);
                 break;
             case 25://第二分工会
-                getMvpPresenter().doCommonArticleRequest(dialog,"0", "19", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "0", "19", "0", start, 10);
                 break;
             case 26://第三分工会
-                getMvpPresenter().doCommonArticleRequest(dialog,"0", "20", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "0", "20", "0", start, 10);
                 break;
             case 27://第四分工会
-                getMvpPresenter().doCommonArticleRequest(dialog,"0", "21", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "0", "21", "0", start, 10);
                 break;
             case 28://第五分工会
-                getMvpPresenter().doCommonArticleRequest(dialog,"0", "22", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "0", "22", "0", start, 10);
                 break;
             case 29://第六分工会
-                getMvpPresenter().doCommonArticleRequest(dialog,"0", "23", "0", start, 10);
+                getMvpPresenter().doCommonArticleRequest(dialog, "0", "23", "0", start, 10);
                 break;
         }
     }

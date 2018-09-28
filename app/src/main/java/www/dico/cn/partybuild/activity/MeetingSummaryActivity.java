@@ -26,7 +26,6 @@ import www.dico.cn.partybuild.widget.HtmlImageGetter;
 
 @CreatePresenter(MeetingSummaryPresenter.class)
 public class MeetingSummaryActivity extends AbstractMvpActivity<MeetingSummaryView, MeetingSummaryPresenter> implements MeetingSummaryView {
-    private MeetingSummaryForm form;
     @BindView(R.id.tv_title_meet_summary)
     TextView tv_title_meet_summary;
     @BindView(R.id.tv_category_meet_summary)
@@ -39,7 +38,7 @@ public class MeetingSummaryActivity extends AbstractMvpActivity<MeetingSummaryVi
     TextView tv_content_meet_summary;
     @BindView(R.id.rel_attachment_meet_summary)
     RelativeLayout rel_attachment_meet_summary;
-
+    private MeetingSummaryForm form;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

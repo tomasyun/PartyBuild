@@ -1,10 +1,8 @@
 package www.dico.cn.partybuild.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.view.View;
 import android.widget.ImageView;
 
 import java.util.List;
@@ -12,7 +10,6 @@ import java.util.List;
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.R;
-import www.dico.cn.partybuild.activity.NoticeInfoActivity;
 import www.dico.cn.partybuild.bean.NoticeBean;
 import www.dico.cn.partybuild.utils.DateTimeUtils;
 import www.dico.cn.partybuild.utils.GlideUtils;
@@ -37,8 +34,8 @@ public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
         int minutes = Integer.valueOf(DateTimeUtils.getMinutes(publishDate, DateTimeUtils.getNow()));
         if (minutes < 60) {
             holder.setText(R.id.tv_date_notice_item, minutes + "分钟前");
-        } else if (minutes > 60 && minutes /60<= 24) {
-            holder.setText(R.id.tv_date_notice_item, minutes/60 + "小时前");
+        } else if (minutes > 60 && minutes / 60 <= 24) {
+            holder.setText(R.id.tv_date_notice_item, minutes / 60 + "小时前");
         } else {
             holder.setText(R.id.tv_date_notice_item, minutes / (24 * 60) + "天前");
         }

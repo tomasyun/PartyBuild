@@ -18,6 +18,17 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class BaseActivity extends FragmentActivity {
     public Activity mActivity;
+    public IProgressDialog dialog = new IProgressDialog() {
+        @Override
+        public Dialog getDialog() {
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(BaseActivity.this)
+                    .setCancelable(true)
+                    .setCancelOutside(true)
+                    .setMessage("获取中..")
+                    .setShowMessage(true);
+            return builder.create();
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -106,16 +117,4 @@ public class BaseActivity extends FragmentActivity {
         }
         return temp;
     }
-
-   public IProgressDialog dialog = new IProgressDialog() {
-        @Override
-        public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(BaseActivity.this)
-                    .setCancelable(true)
-                    .setCancelOutside(true)
-                    .setMessage("获取中..")
-                    .setShowMessage(true);
-            return builder.create();
-        }
-    };
 }

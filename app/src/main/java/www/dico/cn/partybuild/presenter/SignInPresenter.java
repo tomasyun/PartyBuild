@@ -46,8 +46,8 @@ public class SignInPresenter extends BaseMvpPresenter<SignInView> {
                     }
                 });
     }
-    //签到
 
+    //签到
     public void doSaveSignIn(String id, String is) {
         EasyHttp.post("signIn")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))

@@ -37,15 +37,15 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
     SmartRefreshLayout srl_branch_parks;
     @BindView(R.id.rv_branch_parks)
     RecyclerView rv_branch_parks;
+    @BindView(R.id.branch_parks_empty_data)
+    View branch_parks_empty_data;
+    @BindView(R.id.branch_parks_net_error)
+    View branch_parks_net_error;
     private int start = 0;
     private int position = 0;
     private List<InfoBean.DataBeanX.DataBean> list;
     private List<NoticeBean.DataBean> noticeList;
     private InfoAdapter adapter;
-    @BindView(R.id.branch_parks_empty_data)
-    View branch_parks_empty_data;
-    @BindView(R.id.branch_parks_net_error)
-    View branch_parks_net_error;
     private NoticeAdapter noticeAdapter;
 
     @Override

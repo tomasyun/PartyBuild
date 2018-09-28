@@ -7,18 +7,17 @@ import www.dico.cn.partybuild.utils.SPUtils;
 public class AppConfig {
     public static final boolean DEBUG = Boolean.parseBoolean("true");
     public static final String ACTION = "cn.diconet.www";
+    public static final String resBaseUrl = "http://47.104.72.111/";
+    public static final String resBaseUrl1 = "http://47.104.72.111:8080/";
+    public static String nVersionCode = "";
+    public static String content = "";
+    public static String updateUrl = "";
     private static Context context = null;
     private static SPUtils spUtils;
-    public static final String resBaseUrl = "http://47.104.72.111/";
-    public static final String resBaseUrl1= "http://47.104.72.111:8080/";
 
     public static SPUtils getSpUtils() {
         return spUtils;
     }
-
-    public static String nVersionCode = "";
-    public static String content = "";
-    public static String updateUrl = "";
 
     /**
      * 初始化工具类
@@ -53,6 +52,7 @@ public class AppConfig {
         }
         return resBaseUrl + url;
     }
+
     public static String urlFormat1(String url) {
         String newUrl = "";
         if (url.substring(0, 1).equals("/")) {

@@ -22,7 +22,7 @@ public class SignUpSuccessActivity extends BaseActivity {
         ButterKnife.bind(this);
         form = getParam();
         if (form != null) {
-            if (form.skip==0) {
+            if (form.skip == 0) {
                 tv_sign_up_success_desc.setText("注意开会时间和地点,千万不要迟到哦~~");
             } else {
                 tv_sign_up_success_desc.setText("注意活动时间和地点,千万不要迟到哦~~");

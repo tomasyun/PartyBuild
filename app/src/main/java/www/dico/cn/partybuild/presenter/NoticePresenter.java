@@ -1,19 +1,15 @@
 package www.dico.cn.partybuild.presenter;
 
-import android.app.Dialog;
-
 import www.dico.cn.partybuild.AppConfig;
-import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.modleview.NoticeView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
-import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.ProgressDialogCallBack;
 import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class NoticePresenter extends BaseMvpPresenter<NoticeView> {
-    public void noticeRequest(IProgressDialog dialog,String title, String type, String draw, int start, int length) {
+    public void noticeRequest(IProgressDialog dialog, String title, String type, String draw, int start, int length) {
         EasyHttp.post("noticeByType")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("title", title)

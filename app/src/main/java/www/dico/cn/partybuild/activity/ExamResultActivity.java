@@ -71,7 +71,7 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
                         break;
                 }
             }
-            getMvpPresenter().doExamResultPreviewRequest(dialog,form.examId);
+            getMvpPresenter().doExamResultPreviewRequest(dialog, form.examId);
         }
     }
 

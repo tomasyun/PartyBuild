@@ -36,9 +36,9 @@ public class ActivityMrgActivity extends BaseActivity {
 
     public void gotoPartyParks(View view) {
         //TODO 党员园地
-        SkipForm form=new SkipForm();
-        form.skip=0;
-        goTo(CommonActivity.class,form);
+        SkipForm form = new SkipForm();
+        form.skip = 0;
+        goTo(CommonActivity.class, form);
     }
 
     public void gotoBranchParks(View view) {
@@ -48,16 +48,16 @@ public class ActivityMrgActivity extends BaseActivity {
 
     public void gotoTrainingParks(View view) {
         //TODO 培训园地
-        SkipForm form=new SkipForm();
-        form.skip=2;
-        goTo(CommonActivity.class,form);
+        SkipForm form = new SkipForm();
+        form.skip = 2;
+        goTo(CommonActivity.class, form);
     }
 
     public void gotoOrgSituation(View view) {
         //TODO 组织机构
-        SkipForm form=new SkipForm();
-        form.skip=3;
-        goTo(CommonActivity.class,form);
+        SkipForm form = new SkipForm();
+        form.skip = 3;
+        goTo(CommonActivity.class, form);
     }
 
     public void gotoPublicPromise(View view) {

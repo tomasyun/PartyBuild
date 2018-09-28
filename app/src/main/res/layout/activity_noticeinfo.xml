@@ -55,8 +55,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text=""
-                    android:textSize="16sp"
-                   android:textColor="@color/text_color" />
+                    android:textColor="@color/text_color"
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:id="@+id/lin_desc_notice_info"

@@ -22,7 +22,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.UpdateManager;
 import www.dico.cn.partybuild.activity.ActivityMrgActivity;
@@ -145,10 +144,10 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 xbanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
                     @Override
                     public void onItemClick(XBanner banner, Object model, int position) {
-                        InfodetailForm form=new InfodetailForm();
-                        form.type=2;
-                        form.id=list.get(position).getId();
-                        goTo(InfodetailsActivity.class,form);
+                        InfodetailForm form = new InfodetailForm();
+                        form.type = 2;
+                        form.id = list.get(position).getId();
+                        goTo(InfodetailsActivity.class, form);
                     }
                 });
             }

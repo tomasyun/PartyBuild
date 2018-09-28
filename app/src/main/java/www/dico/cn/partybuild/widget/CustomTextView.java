@@ -16,14 +16,13 @@ import android.widget.TextView;
 @SuppressLint("AppCompatCustomView")
 public class CustomTextView extends TextView implements View.OnClickListener {
     public final static String TAG = CustomTextView.class.getSimpleName();
-
+    public boolean isStarting = false;//是否开始滚动
     private float textLength = 0f;//文本长度
     private float viewWidth = 0f;
     private float step = 0f;//文字的横坐标
     private float y = 0f;//文字的纵坐标
     private float temp_view_plus_text_length = 0.0f;//用于计算的临时变量
     private float temp_view_plus_two_text_length = 0.0f;//用于计算的临时变量
-    public boolean isStarting = false;//是否开始滚动
     private Paint paint = null;//绘图样式
     private String text = "";//文本内容
 
@@ -67,7 +66,7 @@ public class CustomTextView extends TextView implements View.OnClickListener {
         step = textLength;
         temp_view_plus_text_length = viewWidth + textLength;
         temp_view_plus_two_text_length = viewWidth + textLength * 2;
-        y = getHeight()-15;
+        y = getHeight() - 15;
     }
 
     @Override
@@ -96,45 +95,6 @@ public class CustomTextView extends TextView implements View.OnClickListener {
 
     }
 
-    public static class SavedState extends BaseSavedState {
-        public boolean isStarting = false;
-        public float step = 0.0f;
-
-        SavedState(Parcelable superState) {
-            super(superState);
-        }
-
-        @Override
-        public void writeToParcel(Parcel out, int flags) {
-            super.writeToParcel(out, flags);
-            out.writeBooleanArray(new boolean[]{isStarting});
-            out.writeFloat(step);
-        }
-
-
-        public static final Parcelable.Creator<SavedState> CREATOR
-                = new Parcelable.Creator<SavedState>() {
-
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-
-            @Override
-            public SavedState createFromParcel(Parcel in) {
-                return new SavedState(in);
-            }
-        };
-
-        private SavedState(Parcel in) {
-            super(in);
-            boolean[] b = null;
-            in.readBooleanArray(b);
-            if (b != null && b.length > 0)
-                isStarting = b[0];
-            step = in.readFloat();
-        }
-    }
-
     /**
      * 开始滚动
      */
@@ -150,7 +110,6 @@ public class CustomTextView extends TextView implements View.OnClickListener {
         isStarting = false;
         invalidate();
     }
-
 
     @Override
     public void onDraw(Canvas canvas) {
@@ -175,5 +134,43 @@ public class CustomTextView extends TextView implements View.OnClickListener {
             stopScroll();
         else
             startScroll();
+    }
+
+    public static class SavedState extends BaseSavedState {
+        public static final Parcelable.Creator<SavedState> CREATOR
+                = new Parcelable.Creator<SavedState>() {
+
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+
+            @Override
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
+        };
+        public boolean isStarting = false;
+        public float step = 0.0f;
+
+        SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+
+        private SavedState(Parcel in) {
+            super(in);
+            boolean[] b = null;
+            in.readBooleanArray(b);
+            if (b != null && b.length > 0)
+                isStarting = b[0];
+            step = in.readFloat();
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+            out.writeBooleanArray(new boolean[]{isStarting});
+            out.writeFloat(step);
+        }
     }
 }

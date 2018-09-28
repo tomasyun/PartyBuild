@@ -47,7 +47,7 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
         setContentView(R.layout.activity_examrule);
         ButterKnife.bind(this);
         form = getParam();
-        getMvpPresenter().examRuleRequest(dialog,form.examId);
+        getMvpPresenter().examRuleRequest(dialog, form.examId);
         if (form.state.equals("1")) {
             tv_start_exam.setText("查看考试结果");
             tv_start_exam.setEnabled(false);

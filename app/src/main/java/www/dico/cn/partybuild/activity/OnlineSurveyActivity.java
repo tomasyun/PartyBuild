@@ -41,7 +41,7 @@ public class OnlineSurveyActivity extends AbstractMvpActivity<OnlineSurveyView, 
         answers = new ArrayList<>();
         form = getParam();
         if (form != null)
-            getMvpPresenter().doGetSurveyQuestionRequest(dialog,form.surveyId);
+            getMvpPresenter().doGetSurveyQuestionRequest(dialog, form.surveyId);
     }
 
     public void goBackOnlineSurvey(View view) {
@@ -139,6 +139,6 @@ public class OnlineSurveyActivity extends AbstractMvpActivity<OnlineSurveyView, 
         answers.add(bean);
         answerBean.setAnswers(answers);
         String json = new Gson().toJson(answerBean);
-        getMvpPresenter().doSubmitSurveyQuestionAnswerRequest(dialog,json);
+        getMvpPresenter().doSubmitSurveyQuestionAnswerRequest(dialog, json);
     }
 }

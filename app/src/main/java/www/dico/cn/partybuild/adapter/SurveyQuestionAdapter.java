@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import www.dico.cn.partybuild.AppConfig;
@@ -132,7 +131,7 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
                                 String str = "";
                                 for (CheckBox checkBox : list) {
                                     if (checkBox.isChecked()) {
-                                        str += checkBox.getText().toString().trim()+"|";
+                                        str += checkBox.getText().toString().trim() + "|";
                                     }
                                 }
                                 if (str.equals("")) {
@@ -141,7 +140,7 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
 //                                    char[] c = str.toCharArray();//将字符串转换成char数组
 //                                    Arrays.sort(c);//对数组进行排序
 //                                    String sortAnswer = new String(c);
-                                    String answer=str.substring(0,str.length()-1);
+                                    String answer = str.substring(0, str.length() - 1);
                                     handleInterface.nextStep(dataBean.getId(), String.valueOf(position + 1), answer);
                                 }
                             }
@@ -159,7 +158,7 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
                                 String str = "";
                                 for (CheckBox checkBox : list) {
                                     if (checkBox.isChecked()) {
-                                        str += checkBox.getText().toString().trim()+"|";
+                                        str += checkBox.getText().toString().trim() + "|";
                                     }
                                 }
                                 if (str.equals("")) {
@@ -168,7 +167,7 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
 //                                    char[] c = str.toCharArray();//将字符串转换成char数组
 //                                    Arrays.sort(c);//对数组进行排序
 //                                    String sortAnswer = new String(c);
-                                    String answer=str.substring(0,str.length()-1);
+                                    String answer = str.substring(0, str.length() - 1);
                                     handleInterface.submit(dataBean.getId(), String.valueOf(position + 1), answer);
                                 }
                             }

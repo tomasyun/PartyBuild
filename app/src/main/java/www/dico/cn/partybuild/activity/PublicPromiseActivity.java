@@ -34,14 +34,14 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
     SmartRefreshLayout srl_public_promise;
     @BindView(R.id.rv_public_promise)
     RecyclerView rv_public_promise;
-    private int start = 0;
-    private int position = 0;
-    private List<InfoBean.DataBeanX.DataBean> list;
-    private InfoAdapter adapter;
     @BindView(R.id.public_promise_empty_data)
     View public_promise_empty_data;
     @BindView(R.id.public_promise_net_error)
     View public_promise_net_error;
+    private int start = 0;
+    private int position = 0;
+    private List<InfoBean.DataBeanX.DataBean> list;
+    private InfoAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -173,13 +173,13 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
     public void createRequest(int position, int start) {
         switch (position) {
             case 0:
-                getMvpPresenter().doPublicPromiseRequest(dialog,"13", "44", "0", start, 10);
+                getMvpPresenter().doPublicPromiseRequest(dialog, "13", "44", "0", start, 10);
                 break;
             case 1:
-                getMvpPresenter().doPublicPromiseRequest(dialog,"13", "45", "0", start, 10);
+                getMvpPresenter().doPublicPromiseRequest(dialog, "13", "45", "0", start, 10);
                 break;
             case 2:
-                getMvpPresenter().doPublicPromiseRequest(dialog,"13", "46", "0", start, 10);
+                getMvpPresenter().doPublicPromiseRequest(dialog, "13", "46", "0", start, 10);
                 break;
         }
     }
