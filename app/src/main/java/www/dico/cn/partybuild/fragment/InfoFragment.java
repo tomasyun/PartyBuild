@@ -47,7 +47,6 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     private InfoAdapter adapter;
     private int position = 0;
     private int start = 0;
-    private int length = 10;
     private List<InfoBean.DataBeanX.DataBean> list;
     private MainActivity activity;
 
@@ -63,6 +62,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_info, null);
         ButterKnife.bind(this, view);
+        rv_info.setLayoutManager(new LinearLayoutManager(getActivity()));
         rg_info.check(R.id.rbt_news_info);
         rg_info.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -71,22 +71,22 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                     case R.id.rbt_news_info://党建要闻
                         position = 0;
                         start = 0;
-                        getMvpPresenter().doGetInfoRequest("0", "0", start, length);
+                        createRequest(position,start);
                         break;
                     case R.id.rbt_talk_info://习总讲话
                         position = 1;
                         start = 0;
-                        getMvpPresenter().doGetInfoRequest("1", "0", start, length);
+                        createRequest(position,start);
                         break;
                     case R.id.rbt_history_info://国史党史
                         position = 2;
                         start = 0;
-                        getMvpPresenter().doGetInfoRequest("2", "0", start, length);
+                        createRequest(position,start);
                         break;
                     case R.id.tv_vanguard_info://时代先锋
                         position = 3;
                         start = 0;
-                        getMvpPresenter().doGetInfoRequest("3", "0", start, length);
+                        createRequest(position,start);
                         break;
                 }
             }
@@ -95,17 +95,16 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
         srl_info.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                start = start + length;
-                createRequest(position,start,length);
+                start = start + 10;
+                createRequest(position,start);
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 start = 0;
-                createRequest(position,start,length);
+                createRequest(position,start);
             }
         });
-        rv_info.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
     }
 
@@ -177,7 +176,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
         info_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createRequest(position,start,length);
+                createRequest(position,start);
             }
         });
     }
@@ -185,28 +184,26 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     @Override
     public void preventPreLoad() {
         super.preventPreLoad();
-        start = 0;
-        createRequest(position,start,length);
+        createRequest(position,start);
     }
 
     @Override
     public void Refresh() {
-        start = 0;
-        createRequest(position,start,length);
+        createRequest(position,start);
     }
-    public void createRequest(int position,int start,int length){
+    public void createRequest(int position,int start){
         switch (position) {
             case 0:
-                getMvpPresenter().doGetInfoRequest("0", "0", start, length);
+                getMvpPresenter().doGetInfoRequest("0", "0", start, 10);
                 break;
             case 1:
-                getMvpPresenter().doGetInfoRequest("1", "0", start, length);
+                getMvpPresenter().doGetInfoRequest("1", "0", start, 10);
                 break;
             case 2:
-                getMvpPresenter().doGetInfoRequest("2", "0", start, length);
+                getMvpPresenter().doGetInfoRequest("2", "0", start, 10);
                 break;
             case 3:
-                getMvpPresenter().doGetInfoRequest("3", "0", start, length);
+                getMvpPresenter().doGetInfoRequest("3", "0", start, 10);
                 break;
         }
     }

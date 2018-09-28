@@ -1,6 +1,5 @@
 package www.dico.cn.partybuild.activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -101,7 +100,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
         final MeetBriefBean briefBean = new Gson().fromJson(result, MeetBriefBean.class);
         if (briefBean.code.equals("0000")) {
             if (briefBean.getData() != null) {
-                GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat(briefBean.getData().getThemeImg()), iv_theme_meeting_brief,R.mipmap.img_dico);
+                GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat(briefBean.getData().getThemeImg()), iv_theme_meeting_brief, R.mipmap.img_dico);
                 tv_theme_meeting_brief.setText(briefBean.getData().getTheme());
                 tv_date_meeting_brief.setText(briefBean.getData().getStartDate());
                 tv_address_meeting_brief.setText(briefBean.getData().getAddress());
@@ -188,7 +187,6 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                                         TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
                                         tv_sign_up.setText("已请假");
                                         tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                                        tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
                                     }
                                 } else {//已报名
                                     lin_leave_and_sign_up.setVisibility(View.GONE);
@@ -196,7 +194,6 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                                     TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
                                     tv_sign_up.setText("已报名");
                                     tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                                    tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
                                 }
                                 break;
                             case "H"://报名和请假时间已过
@@ -247,14 +244,12 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                                         TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
                                         tv_sign_up.setText("会议进行中");
                                         tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                                        tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
                                     } else {//已请假
                                         lin_leave_and_sign_up.setVisibility(View.GONE);
                                         sign_up.setVisibility(View.VISIBLE);
                                         TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
                                         tv_sign_up.setText("已请假");
                                         tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                                        tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
                                     }
                                 } else {//已报名
                                     lin_leave_and_sign_up.setVisibility(View.GONE);
@@ -262,7 +257,6 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                                     TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
                                     tv_sign_up.setText("已报名");
                                     tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                                    tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
                                 }
                                 break;
                             case "H"://报名和请假时间已过
@@ -289,16 +283,14 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                         lin_leave_and_sign_up.setVisibility(View.GONE);
                         sign_up.setVisibility(View.VISIBLE);
                         TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
-//                        tv_sign_up.setText("查看会议记录");
-                        tv_sign_up.setText("会议已结束");
+                        tv_sign_up.setText("查看会议记录");
                         tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                        tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
                         tv_sign_up.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                MeetingSummaryForm form =new MeetingSummaryForm();
-                                form.id=briefBean.getData().getId();
-                                goTo(MeetingSummaryActivity.class,form);
+                                MeetingSummaryForm form = new MeetingSummaryForm();
+                                form.id = briefBean.getData().getId();
+                                goTo(MeetingSummaryActivity.class, form);
                                 finish();
                             }
                         });

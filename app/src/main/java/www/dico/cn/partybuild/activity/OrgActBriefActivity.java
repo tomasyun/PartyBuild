@@ -46,8 +46,6 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
     TagFlowLayout tfl_orgact_brief_participants;
     @BindView(R.id.rel_orgact_brief_participants)
     RelativeLayout rel_orgact_brief_participants;
-    //    @BindView(R.id.sign_up_orgact_brief)
-//    View sign_up_orgact_brief;
     private OrgActForm form;
     private boolean isHide = true;
     private ParticipantsAdapter adapter;
@@ -92,7 +90,7 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
         OrgActBriefBean briefBean = new Gson().fromJson(result, OrgActBriefBean.class);
         if (briefBean.code.equals("0000")) {
             if (briefBean.getData() != null) {
-                GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat(briefBean.getData().getThemeImg()), iv_orgact_brief_theme_pic,R.mipmap.img_dico);
+                GlideUtils.loadImageSetUpError(this, AppConfig.urlFormat(briefBean.getData().getThemeImg()), iv_orgact_brief_theme_pic, R.mipmap.img_dico);
                 tv_orgact_brief_theme.setText(briefBean.getData().getTheme());
                 tv_orgact_brief_date.setText(briefBean.getData().getStartDate());
                 tv_orgact_brief_address.setText(briefBean.getData().getAddress());
@@ -107,49 +105,6 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
                     rel_orgact_brief_participants.setClickable(true);
                 }
                 tfl_orgact_brief_participants.setAdapter(adapter);
-//                String conferenceState = briefBean.getData().getConferenceState();
-//                String signUpState = briefBean.getData().getSignUpState();
-//                switch (conferenceState) {
-//                    case "0"://未开始
-//                        if (signUpState != null && !signUpState.equals("")) {
-//                            if (signUpState.equals("0")) {//未报名
-//                                TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
-//                                tv_sign_up.setOnClickListener(new View.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(View view) {
-//                                        getMvpPresenter().doSignUpRequest(form.orgActId);
-//                                    }
-//                                });
-//                            } else {//已报名
-//                                TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
-//                                tv_sign_up.setText("已报名");
-//                                tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-//                                tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-//                            }
-//                        }
-//                        break;
-//                    case "1"://进行中
-//                        if (signUpState != null && !signUpState.equals("")) {
-//                            if (signUpState.equals("0")) {//未报名
-//                                TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
-//                                tv_sign_up.setText("会议进行中");
-//                                tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-//                                tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-//                            } else {//已报名
-//                                TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
-//                                tv_sign_up.setText("已报名");
-//                                tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-//                                tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-//                            }
-//                        }
-//                        break;
-//                    case "2"://已结束
-//                        TextView tv_sign_up = sign_up_orgact_brief.findViewById(R.id.tv_sign_up);
-//                        tv_sign_up.setText("查看会议记录");
-//                        tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-//                        tv_sign_up.setTextColor(Color.parseColor("#febfb5"));
-//                        break;
-//                }
             }
         } else {
             showToast("服务器异常");

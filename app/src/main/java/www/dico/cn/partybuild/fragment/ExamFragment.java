@@ -53,6 +53,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exam, null);
         ButterKnife.bind(this, view);
+        rv_exam.setLayoutManager(new LinearLayoutManager(getActivity()));
         rg_exam.check(R.id.rbt_exam_on);
         rg_exam.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -61,17 +62,16 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                     case R.id.rbt_exam_on:
                         //待考
                         position = 0;
-                        getMvpPresenter().examsOnRequest("0");
+                        createRequest(position);
                         break;
                     case R.id.rbt_exam_ok:
                         //已考
                         position = 1;
-                        getMvpPresenter().examsOkRequest("1");
+                        createRequest(position);
                         break;
                 }
             }
         });
-        rv_exam.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
     }
 
@@ -155,14 +155,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
         exam_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (position) {
-                    case 0:
-                        getMvpPresenter().examsOnRequest("0");
-                        break;
-                    case 1:
-                        getMvpPresenter().examsOkRequest("1");
-                        break;
-                }
+                createRequest(position);
             }
         });
     }
@@ -170,18 +163,15 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     @Override
     public void preventPreLoad() {
         super.preventPreLoad();
-        switch (position) {
-            case 0:
-                getMvpPresenter().examsOnRequest("0");
-                break;
-            case 1:
-                getMvpPresenter().examsOkRequest("1");
-                break;
-        }
+        createRequest(position);
     }
 
     @Override
     public void Refresh() {
+        createRequest(position);
+    }
+
+    public void createRequest(int position){
         switch (position) {
             case 0:
                 getMvpPresenter().examsOnRequest("0");

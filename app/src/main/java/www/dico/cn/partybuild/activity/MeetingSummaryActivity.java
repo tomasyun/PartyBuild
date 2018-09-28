@@ -48,9 +48,6 @@ public class MeetingSummaryActivity extends AbstractMvpActivity<MeetingSummaryVi
         ButterKnife.bind(this);
         QbSdk.initX5Environment(this, null);
         form = getParam();
-        if (form != null)
-            getMvpPresenter().doMeetingSummaryRequest(form.id);
-
         tv_title_meet_summary.post(new Runnable() {
             @Override
             public void run() {
@@ -61,7 +58,13 @@ public class MeetingSummaryActivity extends AbstractMvpActivity<MeetingSummaryVi
                 }
             }
         });
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (form != null)
+            getMvpPresenter().doMeetingSummaryRequest(form.id);
     }
 
     public void goBackMeetdetail(View view) {
@@ -103,7 +106,7 @@ public class MeetingSummaryActivity extends AbstractMvpActivity<MeetingSummaryVi
                     rel_attachment_meet_summary.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {//文件预览
-                            String filePath = AppConfig.urlFormat(bean.getData().getAttachment()) ;
+                            String filePath = AppConfig.urlFormat(bean.getData().getAttachment());
                             String fileName = filePath.trim().substring(filePath.lastIndexOf("/") + 1);
                             DisplayFileActivity.openDispalyFileActivity(MeetingSummaryActivity.this, filePath, fileName);
                         }

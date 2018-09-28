@@ -47,14 +47,13 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
                 getMvpPresenter().doVoteManagerRequest();
             }
         });
-        getMvpPresenter().doVoteManagerRequest();
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        getMvpPresenter().doVoteManagerRequest();
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getMvpPresenter().doVoteManagerRequest();
+    }
 
     public void goBackVoteManager(View view) {
         this.finish();

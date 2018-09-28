@@ -35,7 +35,6 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
     @BindView(R.id.rv_public_promise)
     RecyclerView rv_public_promise;
     private int start = 0;
-    private int length = 10;
     private int position = 0;
     private List<InfoBean.DataBeanX.DataBean> list;
     private InfoAdapter adapter;
@@ -49,6 +48,7 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publicpromise);
         ButterKnife.bind(this);
+        rv_public_promise.setLayoutManager(new LinearLayoutManager(this));
         rg_integrity_build.check(R.id.rbt_master_public_promise);
         rg_integrity_build.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -57,38 +57,40 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                     case R.id.rbt_master_public_promise://党委承诺
                         position = 0;
                         start = 0;
-                        getMvpPresenter().doPublicPromiseRequest("13", "44", "0", start, length);
+                        createRequest(position, start);
                         break;
                     case R.id.rbt_branch_public_promise://支部承诺
                         position = 1;
                         start = 0;
-                        getMvpPresenter().doPublicPromiseRequest("13", "45", "0", start, length);
+                        createRequest(position, start);
                         break;
                     case R.id.rbt_member_public_promise://党员承诺
                         position = 2;
                         start = 0;
-                        getMvpPresenter().doPublicPromiseRequest("13", "46", "0", start, length);
+                        createRequest(position, start);
                         break;
                 }
             }
         });
-        rv_public_promise.setLayoutManager(new LinearLayoutManager(this));
-
         srl_public_promise.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                start = start + length;
-                createRequest(position,start,length);
+                start = start + 10;
+                createRequest(position, start);
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 start = 0;
-                createRequest(position,start,length);
+                createRequest(position, start);
             }
         });
+    }
 
-        getMvpPresenter().doPublicPromiseRequest("13", "44", "0", start, length);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        createRequest(position, start);
     }
 
     public void goBackPublicPromise(View view) {
@@ -115,7 +117,7 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
                                 form.id = list.get(position).getId();
-                                form.type=1;
+                                form.type = 1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -134,7 +136,7 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
                                 form.id = PublicPromiseActivity.this.list.get(position).getId();
-                                form.type=1;
+                                form.type = 1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -163,21 +165,21 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
         public_promise_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createRequest(position,start,length);
+                createRequest(position, start);
             }
         });
     }
 
-    public void createRequest(int position,int start,int length){
+    public void createRequest(int position, int start) {
         switch (position) {
             case 0:
-                getMvpPresenter().doPublicPromiseRequest("13", "44", "0", start, length);
+                getMvpPresenter().doPublicPromiseRequest("13", "44", "0", start, 10);
                 break;
             case 1:
-                getMvpPresenter().doPublicPromiseRequest("13", "45", "0", start, length);
+                getMvpPresenter().doPublicPromiseRequest("13", "45", "0", start, 10);
                 break;
             case 2:
-                getMvpPresenter().doPublicPromiseRequest("13", "46", "0", start, length);
+                getMvpPresenter().doPublicPromiseRequest("13", "46", "0", start, 10);
                 break;
         }
     }

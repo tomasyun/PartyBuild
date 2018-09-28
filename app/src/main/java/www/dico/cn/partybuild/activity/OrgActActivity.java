@@ -49,14 +49,13 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
                 getMvpPresenter().doOrgActRequest();
             }
         });
-        getMvpPresenter().doOrgActRequest();
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        getMvpPresenter().doOrgActRequest();
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getMvpPresenter().doOrgActRequest();
+    }
 
     public void goBackOrgAct(View view) {
         this.finish();

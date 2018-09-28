@@ -105,28 +105,6 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         rel_mission_home.setOnClickListener(this);
         rel_union_home.setOnClickListener(this);
         rel_integrity_home.setOnClickListener(this);
-//        List<AdvertiseImgM> urls = new ArrayList<>();
-//        AdvertiseImgM advertise = new AdvertiseImgM();
-//        advertise.setPoster("http://pic.5tu.cn/uploads/allimg/1606/pic_5tu_big_201606272309319893.jpg");
-//        urls.add(advertise);
-//        AdvertiseImgM advertise2 = new AdvertiseImgM();
-//        advertise2.setPoster("http://pic.5tu.cn/uploads/allimg/1607/pic_5tu_big_2016070102141153200.jpg");
-//        urls.add(advertise2);
-//        AdvertiseImgM advertise3 = new AdvertiseImgM();
-//        advertise3.setPoster("http://pic.5tu.cn/uploads/allimg/1607/pic_5tu_big_201607091531527229.jpg");
-//        urls.add(advertise3);
-//        List<String> titles = new ArrayList<>();
-//        titles.add("飞屋环游记");
-//        titles.add("蓝色科技");
-//        titles.add("运动会");
-//        xbanner.setAutoPlayAble(urls.size() > 1);
-//        xbanner.setData(urls, titles);
-//        xbanner.loadImage(new XBanner.XBannerAdapter() {
-//            @Override
-//            public void loadBanner(XBanner banner, Object model, View view, int position) {
-//                GlideUtils.loadImage(getActivity(), ((AdvertiseImgM) model).getPoster(), (ImageView) view);
-//            }
-//        });
         getMvpPresenter().homeDataRequest();
         return view;
     }

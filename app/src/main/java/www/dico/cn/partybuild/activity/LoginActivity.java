@@ -33,8 +33,6 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-//        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/fangzheng.ttf");
-//        tv_login_ok.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
     }
 
     public void login(View view) {

@@ -38,7 +38,6 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
     @BindView(R.id.rv_branch_parks)
     RecyclerView rv_branch_parks;
     private int start = 0;
-    private int length = 10;
     private int position = 0;
     private List<InfoBean.DataBeanX.DataBean> list;
     private List<NoticeBean.DataBean> noticeList;
@@ -54,6 +53,7 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_branchparks);
         ButterKnife.bind(this);
+        rv_branch_parks.setLayoutManager(new LinearLayoutManager(this));
         rg_branch_parks.check(R.id.rbt_notice_branch_parks);
         rg_branch_parks.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -62,51 +62,45 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                     case R.id.rbt_notice_branch_parks://通知公告
                         position = 0;
                         start = 0;
-                        getMvpPresenter().doBranchParksNoticeRequest("", "3", "0", start, length);
+                        createRequest(position, start);
                         break;
                     case R.id.rbt_activity_branch_parks://支部活动
                         position = 1;
                         start = 0;
-                        getMvpPresenter().doBranchParksRequest("15", "32", "0", start, length);
+                        createRequest(position, start);
                         break;
                     case R.id.rbt_develop_branch_parks://发展党员
                         position = 2;
                         start = 0;
-                        getMvpPresenter().doBranchParksRequest("15", "33", "0", start, length);
+                        createRequest(position, start);
                         break;
                     case R.id.rbt_logbook_branch_parks://各种台账
                         position = 3;
                         start = 0;
-                        getMvpPresenter().doBranchParksRequest("15", "34", "0", start, length);
+                        createRequest(position, start);
                         break;
                 }
             }
         });
-        rv_branch_parks.setLayoutManager(new LinearLayoutManager(this));
-
         srl_branch_parks.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                start = start + length;
-                if (position == 0) {
-                    getMvpPresenter().doBranchParksNoticeRequest("", "3", "0", start, length);
-                }else {
-                    createRequest(position, start, length);
-                }
+                start = start + 10;
+                createRequest(position, start);
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 start = 0;
-                if (position == 0) {
-                    getMvpPresenter().doBranchParksNoticeRequest("", "3", "0", start, length);
-                }else {
-                    createRequest(position, start, length);
-                }
+                createRequest(position, start);
             }
         });
+    }
 
-        getMvpPresenter().doBranchParksNoticeRequest("", "3", "0", start, length);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        createRequest(position, start);
     }
 
     public void goBackBranchParks(View view) {
@@ -240,24 +234,24 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
         branch_parks_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createRequest(position, start, length);
+                createRequest(position, start);
             }
         });
     }
 
-    public void createRequest(int position, int start, int length) {
+    public void createRequest(int position, int start) {
         switch (position) {
             case 0:
-                getMvpPresenter().doBranchParksNoticeRequest("", "3", "0", start, length);
+                getMvpPresenter().doBranchParksNoticeRequest("", "3", "0", start, 10);
                 break;
             case 1:
-                getMvpPresenter().doBranchParksRequest("15", "32", "0", start, length);
+                getMvpPresenter().doBranchParksRequest("15", "32", "0", start, 10);
                 break;
             case 2:
-                getMvpPresenter().doBranchParksRequest("15", "33", "0", start, length);
+                getMvpPresenter().doBranchParksRequest("15", "33", "0", start, 10);
                 break;
             case 3:
-                getMvpPresenter().doBranchParksRequest("15", "34", "0", start, length);
+                getMvpPresenter().doBranchParksRequest("15", "34", "0", start, 10);
                 break;
         }
     }

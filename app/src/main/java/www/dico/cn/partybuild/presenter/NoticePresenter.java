@@ -4,7 +4,6 @@ import android.app.Dialog;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
-import www.dico.cn.partybuild.activity.NoticeActivity;
 import www.dico.cn.partybuild.modleview.NoticeView;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.widget.LoadingDialog;
@@ -18,7 +17,7 @@ public class NoticePresenter extends BaseMvpPresenter<NoticeView> {
         IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(NoticeActivity.class))
+                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
                         .setCancelable(true)
                         .setCancelOutside(true)
                         .setMessage("获取中..")
@@ -29,11 +28,11 @@ public class NoticePresenter extends BaseMvpPresenter<NoticeView> {
         return dialog;
     }
 
-    public void noticeRequest(String title,String type, String draw, int start, int length) {
+    public void noticeRequest(String title, String type, String draw, int start, int length) {
         EasyHttp.post("noticeByType")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("title", title)
-                .params("type",type)
+                .params("type", type)
                 .params("draw", draw)
                 .params("start", String.valueOf(start))
                 .params("length", String.valueOf(length))

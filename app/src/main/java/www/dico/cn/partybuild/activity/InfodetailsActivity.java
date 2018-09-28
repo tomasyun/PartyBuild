@@ -80,7 +80,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                 case 1://文章
                     getMvpPresenter().infoArticleRequest(form.id);
                     break;
-                case 2:
+                case 2://广告
                     getMvpPresenter().infoDetailsRequest(form.id);
                     break;
             }
@@ -223,6 +223,9 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                     break;
                 case 1://文章
                     getMvpPresenter().infoArticleRequest(form.id);
+                    break;
+                case 2://广告
+                    getMvpPresenter().infoDetailsRequest(form.id);
                     break;
             }
             sv_info_detail.scrollTo(0, lin_info_detail.getMeasuredHeight() - sv_info_detail.getHeight());

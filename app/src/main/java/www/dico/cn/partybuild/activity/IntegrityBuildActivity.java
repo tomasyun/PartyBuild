@@ -17,7 +17,6 @@ import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.InfoAdapter;
 import www.dico.cn.partybuild.bean.InfoBean;
 import www.dico.cn.partybuild.bean.InfodetailForm;
-import www.dico.cn.partybuild.fragment.InfoFragment;
 import www.dico.cn.partybuild.modleview.IntegrityBuildView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -31,9 +30,8 @@ import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshLoad
 public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildView, IntegrityBuildPresenter> implements IntegrityBuildView {
     @BindView(R.id.rg_integrity_build)
     RadioGroup rg_integrity_build;
-    private int start = 0;
-    private int length = 10;
     private int position = 0;
+    private int start = 0;
     private List<InfoBean.DataBeanX.DataBean> list;
     private InfoAdapter adapter;
     @BindView(R.id.rv_integrity_build)
@@ -50,6 +48,7 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_integritybuild);
         ButterKnife.bind(this);
+        rv_integrity_build.setLayoutManager(new LinearLayoutManager(this));
         rg_integrity_build.check(R.id.rbt_edu_integrity_build);
         rg_integrity_build.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -58,38 +57,40 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
                     case R.id.rbt_edu_integrity_build://廉政教育
                         position = 0;
                         start = 0;
-                        getMvpPresenter().doIntegrityBuildRequest("10", "", "0", start, length);
+                        createRequest(position,start);
                         break;
                     case R.id.rbt_prevent_integrity_build://监督预防
                         position = 1;
                         start = 0;
-                        getMvpPresenter().doIntegrityBuildRequest("11", "", "0", start, length);
+                        createRequest(position,start);
                         break;
                     case R.id.rbt_case_integrity_build://案例
                         position = 2;
                         start = 0;
-                        getMvpPresenter().doIntegrityBuildRequest("12", "", "0", start, length);
+                        createRequest(position,start);
                         break;
                 }
             }
         });
-        rv_integrity_build.setLayoutManager(new LinearLayoutManager(this));
-
         srl_integrity_build.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                start = start + length;
-                createRequest(position,start,length);
+                start = start + 10;
+                createRequest(position,start);
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 start = 0;
-                createRequest(position,start,length);
+                createRequest(position,start);
             }
         });
+    }
 
-        getMvpPresenter().doIntegrityBuildRequest("10", "", "0", start, length);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        createRequest(position,start);
     }
 
     public void goBackIntegrityBuild(View view) {
@@ -164,20 +165,20 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
         integrity_build_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               createRequest(position,start,length);
+               createRequest(position,start);
             }
         });
     }
-    public void createRequest(int position,int start,int length){
+    public void createRequest(int position,int start){
         switch (position) {
             case 0:
-                getMvpPresenter().doIntegrityBuildRequest("10", "", "0", start, length);
+                getMvpPresenter().doIntegrityBuildRequest("10", "", "0", start, 10);
                 break;
             case 1:
-                getMvpPresenter().doIntegrityBuildRequest("11", "", "0", start, length);
+                getMvpPresenter().doIntegrityBuildRequest("11", "", "0", start, 10);
                 break;
             case 2:
-                getMvpPresenter().doIntegrityBuildRequest("12", "", "0", start, length);
+                getMvpPresenter().doIntegrityBuildRequest("12", "", "0", start, 10);
                 break;
         }
     }

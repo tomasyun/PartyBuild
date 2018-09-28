@@ -19,7 +19,7 @@ public class StudyTaskPresenter extends BaseMvpPresenter<StudyTaskView> {
         IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(StudyTaskActivity.class))
+                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
                         .setCancelable(true)
                         .setCancelOutside(true)
                         .setMessage("获取中..")

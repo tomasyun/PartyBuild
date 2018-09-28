@@ -18,7 +18,7 @@ public class HomePresenter extends BaseMvpPresenter<HomeView> {
         IProgressDialog dialog = new IProgressDialog() {
             @Override
             public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
+                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(MainActivity.class))
                         .setCancelable(true)
                         .setCancelOutside(true)
                         .setMessage("获取中..")

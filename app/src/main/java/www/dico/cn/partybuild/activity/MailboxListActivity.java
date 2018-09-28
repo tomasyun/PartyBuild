@@ -51,12 +51,6 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
         getMvpPresenter().doMailboxListRequest();
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        getMvpPresenter().doMailboxListRequest();
-//    }
-
     public void goBackMailboxList(View view) {
         this.finish();
     }

@@ -38,7 +38,6 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
     SmartRefreshLayout srl_notice;
     private NoticeAdapter adapter;
     private int start = 0;
-    private int length = 10;
     private List<NoticeBean.DataBean> noticeList;
 
     @Override
@@ -47,21 +46,25 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
         setContentView(R.layout.activity_notice);
         ButterKnife.bind(this);
         rv_notice.setLayoutManager(new LinearLayoutManager(this));
-        start = 0;
-        getMvpPresenter().noticeRequest("", "1", "0", start, length);
         srl_notice.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                start = start + length;
-                getMvpPresenter().noticeRequest("", "1", "0", start, length);
+                start = start + 10;
+                getMvpPresenter().noticeRequest("", "1", "0", start, 10);
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 start = 0;
-                getMvpPresenter().noticeRequest("", "1", "0", start, length);
+                getMvpPresenter().noticeRequest("", "1", "0", start, 10);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getMvpPresenter().noticeRequest("", "1", "0", start, 10);
     }
 
     public void goBackNotice(View view) {
@@ -135,8 +138,7 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
         notice_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                start = 0;
-                getMvpPresenter().noticeRequest("", "1", "0", start, length);
+                getMvpPresenter().noticeRequest("", "1", "0", start, 10);
             }
         });
     }

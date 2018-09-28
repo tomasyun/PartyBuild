@@ -49,15 +49,13 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
                 getMvpPresenter().doStudyTaskRequest();
             }
         });
-        getMvpPresenter().doStudyTaskRequest();
-
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        getMvpPresenter().doStudyTaskRequest();
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getMvpPresenter().doStudyTaskRequest();
+    }
 
     public void goBackStudyTask(View view) {
         this.finish();

@@ -49,14 +49,13 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
                 getMvpPresenter().doMeetingRequest();
             }
         });
-        getMvpPresenter().doMeetingRequest();
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        getMvpPresenter().doMeetingRequest();
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getMvpPresenter().doMeetingRequest();
+    }
 
     public void goBackMeeting(View view) {
         this.finish();

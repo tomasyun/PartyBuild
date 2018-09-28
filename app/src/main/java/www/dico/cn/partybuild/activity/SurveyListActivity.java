@@ -49,14 +49,13 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
                 getMvpPresenter().doQuestionSurveyRequest();
             }
         });
-        getMvpPresenter().doQuestionSurveyRequest();
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        getMvpPresenter().doQuestionSurveyRequest();
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getMvpPresenter().doQuestionSurveyRequest();
+    }
 
     public void goBackQuestionSurvey(View view) {
         this.finish();
