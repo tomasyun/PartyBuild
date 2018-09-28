@@ -38,7 +38,7 @@ public class StudyResultActivity extends AbstractMvpActivity<StudyResultView, St
                     showToast("请填写学习成果");
                 } else {
                     if (form != null)
-                        getMvpPresenter().doSubmitStudyResultRequest(form.taskId, content);
+                        getMvpPresenter().doSubmitStudyResultRequest(dialog,form.taskId, content);
                 }
             }
         });

@@ -44,7 +44,7 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
         srl_vote.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doVoteManagerRequest();
+                getMvpPresenter().doVoteManagerRequest(dialog);
             }
         });
     }
@@ -52,7 +52,7 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
     @Override
     protected void onResume() {
         super.onResume();
-        getMvpPresenter().doVoteManagerRequest();
+        getMvpPresenter().doVoteManagerRequest(dialog);
     }
 
     public void goBackVoteManager(View view) {
@@ -103,7 +103,7 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
         vote_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getMvpPresenter().doVoteManagerRequest();
+                getMvpPresenter().doVoteManagerRequest(dialog);
             }
         });
     }

@@ -46,7 +46,7 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
         srl_question_survey.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doQuestionSurveyRequest();
+                getMvpPresenter().doQuestionSurveyRequest(dialog);
             }
         });
     }
@@ -54,7 +54,7 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
     @Override
     protected void onResume() {
         super.onResume();
-        getMvpPresenter().doQuestionSurveyRequest();
+        getMvpPresenter().doQuestionSurveyRequest(dialog);
     }
 
     public void goBackQuestionSurvey(View view) {
@@ -107,7 +107,7 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
         survey_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getMvpPresenter().doQuestionSurveyRequest();
+                getMvpPresenter().doQuestionSurveyRequest(dialog);
             }
         });
     }

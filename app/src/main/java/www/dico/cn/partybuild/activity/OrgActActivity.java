@@ -46,7 +46,7 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
         srl_org_act.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doOrgActRequest();
+                getMvpPresenter().doOrgActRequest(dialog);
             }
         });
     }
@@ -54,7 +54,7 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
     @Override
     protected void onResume() {
         super.onResume();
-        getMvpPresenter().doOrgActRequest();
+        getMvpPresenter().doOrgActRequest(dialog);
     }
 
     public void goBackOrgAct(View view) {
@@ -107,7 +107,7 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
         org_act_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getMvpPresenter().doOrgActRequest();
+                getMvpPresenter().doOrgActRequest(dialog);
             }
         });
     }

@@ -51,7 +51,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
     protected void onResume() {
         super.onResume();
         if (form != null)
-            getMvpPresenter().doTaskBriefRequest(form.taskId);
+            getMvpPresenter().doTaskBriefRequest(dialog,form.taskId);
     }
 
     public void goBackTaskBrief(View view) {
@@ -76,7 +76,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
         if (form.taskState != null && !form.taskState.equals("")) {
             switch (form.taskState) {
                 case "0":
-                    getMvpPresenter().verifyOpenStudyResult(form.taskId);
+                    getMvpPresenter().verifyOpenStudyResult(dialog,form.taskId);
                     break;
                 case "1":
                     showToast("该任务已完成");

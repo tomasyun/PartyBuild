@@ -54,7 +54,7 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
     @Override
     protected void onResume() {
         super.onResume();
-        getMvpPresenter().creditRankRequest();
+        getMvpPresenter().creditRankRequest(dialog);
     }
 
     public void goBackRank(View view) {
@@ -107,7 +107,7 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
         credit_rank_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getMvpPresenter().creditRankRequest();
+                getMvpPresenter().creditRankRequest(dialog);
             }
         });
     }

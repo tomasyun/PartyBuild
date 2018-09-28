@@ -13,22 +13,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class CommonPresenter extends BaseMvpPresenter<CommonView> {
-    public IProgressDialog getDialog() {
-        IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("获取中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
-        return dialog;
-    }
-
-    public void doCommonArticleRequest(String articleType, String childrenType, String draw, int start, int length) {
+    public void doCommonArticleRequest(IProgressDialog dialog,String articleType, String childrenType, String draw, int start, int length) {
         EasyHttp.post("findArticle")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("articleType", articleType)
@@ -36,7 +21,7 @@ public class CommonPresenter extends BaseMvpPresenter<CommonView> {
                 .params("draw", draw)
                 .params("start", String.valueOf(start))
                 .params("length", String.valueOf(length))
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String s) {
                         getMvpView().resultSuccess(s);
@@ -53,7 +38,7 @@ public class CommonPresenter extends BaseMvpPresenter<CommonView> {
                 });
     }
 
-    public void doNoticeRequest(String title,String type, String draw, int start, int length) {
+    public void doNoticeRequest(IProgressDialog dialog,String title,String type, String draw, int start, int length) {
         EasyHttp.post("noticeByType")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("title", title)
@@ -61,7 +46,7 @@ public class CommonPresenter extends BaseMvpPresenter<CommonView> {
                 .params("draw", draw)
                 .params("start", String.valueOf(start))
                 .params("length", String.valueOf(length))
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String s) {
                         getMvpView().getNoticeSuccess(s);

@@ -45,10 +45,10 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
         srl_mailbox_list.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doMailboxListRequest();
+                getMvpPresenter().doMailboxListRequest(dialog);
             }
         });
-        getMvpPresenter().doMailboxListRequest();
+        getMvpPresenter().doMailboxListRequest(dialog);
     }
 
     public void goBackMailboxList(View view) {
@@ -94,7 +94,7 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
         mailbox_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getMvpPresenter().doMailboxListRequest();
+                getMvpPresenter().doMailboxListRequest(dialog);
             }
         });
     }

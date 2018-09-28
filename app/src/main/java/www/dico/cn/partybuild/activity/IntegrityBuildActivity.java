@@ -57,17 +57,17 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
                     case R.id.rbt_edu_integrity_build://廉政教育
                         position = 0;
                         start = 0;
-                        createRequest(position,start);
+                        createRequest(position, start);
                         break;
                     case R.id.rbt_prevent_integrity_build://监督预防
                         position = 1;
                         start = 0;
-                        createRequest(position,start);
+                        createRequest(position, start);
                         break;
                     case R.id.rbt_case_integrity_build://案例
                         position = 2;
                         start = 0;
-                        createRequest(position,start);
+                        createRequest(position, start);
                         break;
                 }
             }
@@ -76,13 +76,13 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 start = start + 10;
-                createRequest(position,start);
+                createRequest(position, start);
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 start = 0;
-                createRequest(position,start);
+                createRequest(position, start);
             }
         });
     }
@@ -90,7 +90,7 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
     @Override
     protected void onResume() {
         super.onResume();
-        createRequest(position,start);
+        createRequest(position, start);
     }
 
     public void goBackIntegrityBuild(View view) {
@@ -117,7 +117,7 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
                                 form.id = list.get(position).getId();
-                                form.type=1;
+                                form.type = 1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -136,7 +136,7 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
                             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                                 InfodetailForm form = new InfodetailForm();
                                 form.id = IntegrityBuildActivity.this.list.get(position).getId();
-                                form.type=1;
+                                form.type = 1;
                                 goTo(InfodetailsActivity.class, form);
                             }
                         });
@@ -165,20 +165,21 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
         integrity_build_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               createRequest(position,start);
+                createRequest(position, start);
             }
         });
     }
-    public void createRequest(int position,int start){
+
+    public void createRequest(int position, int start) {
         switch (position) {
             case 0:
-                getMvpPresenter().doIntegrityBuildRequest("10", "", "0", start, 10);
+                getMvpPresenter().doIntegrityBuildRequest(dialog, "10", "", "0", start, 10);
                 break;
             case 1:
-                getMvpPresenter().doIntegrityBuildRequest("11", "", "0", start, 10);
+                getMvpPresenter().doIntegrityBuildRequest(dialog, "11", "", "0", start, 10);
                 break;
             case 2:
-                getMvpPresenter().doIntegrityBuildRequest("12", "", "0", start, 10);
+                getMvpPresenter().doIntegrityBuildRequest(dialog, "12", "", "0", start, 10);
                 break;
         }
     }

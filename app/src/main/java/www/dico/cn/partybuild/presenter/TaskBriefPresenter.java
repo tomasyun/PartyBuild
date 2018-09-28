@@ -15,26 +15,11 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
     //任务摘要
-    public IProgressDialog getDialog() {
-        IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("获取中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
-        return dialog;
-    }
-
-    public void doTaskBriefRequest(String id) {
+    public void doTaskBriefRequest(IProgressDialog dialog,String id) {
         EasyHttp.post("studyTaskInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
                         getMvpView().resultSuccess(result);
@@ -52,11 +37,11 @@ public class TaskBriefPresenter extends BaseMvpPresenter<TaskBriefView> {
     }
 
     //校验是否可以添加学习成果
-    public void verifyOpenStudyResult(String id) {
+    public void verifyOpenStudyResult(IProgressDialog dialog,String id) {
         EasyHttp.post("isCompleteTask")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String s) {
                         getMvpView().verifySuccess(s);

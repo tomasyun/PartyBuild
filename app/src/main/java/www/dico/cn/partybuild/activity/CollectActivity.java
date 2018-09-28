@@ -30,7 +30,7 @@ public class CollectActivity extends AbstractMvpActivity<CollectView, CollectPre
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collect);
         ButterKnife.bind(this);
-        //getMvpPresenter().collectsRequest("");
+        //getMvpPresenter().collectsRequest(dialog,"");
         rv_collect.setLayoutManager(new LinearLayoutManager(this));
     }
 

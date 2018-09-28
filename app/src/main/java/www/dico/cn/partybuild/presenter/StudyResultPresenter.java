@@ -19,22 +19,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class StudyResultPresenter extends BaseMvpPresenter<StudyResultView> {
-    public IProgressDialog getDialog() {
-        IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(StudyResultActivity.class))
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("获取中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
-        return dialog;
-    }
-
-    public void doSubmitStudyResultRequest(String id, String result) {
+    public void doSubmitStudyResultRequest(IProgressDialog dialog,String id, String result) {
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
         map.put("result", result);
@@ -42,7 +27,7 @@ public class StudyResultPresenter extends BaseMvpPresenter<StudyResultView> {
         EasyHttp.post("studyObtain")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .upJson(json)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String s) {
                         getMvpView().resultSuccess(s);

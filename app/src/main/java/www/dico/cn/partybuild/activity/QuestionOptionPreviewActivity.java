@@ -47,7 +47,7 @@ public class QuestionOptionPreviewActivity extends AbstractMvpActivity<QuestionO
         ButterKnife.bind(this);
         form = getParam();
         if (form != null)
-            getMvpPresenter().doQuestionPreviewRequest(form.questionId);
+            getMvpPresenter().doQuestionPreviewRequest(dialog,form.questionId);
     }
 
     public void goBackQuestionOptionPreview(View view) {

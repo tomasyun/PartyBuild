@@ -64,7 +64,7 @@ public class MeetingSummaryActivity extends AbstractMvpActivity<MeetingSummaryVi
     protected void onResume() {
         super.onResume();
         if (form != null)
-            getMvpPresenter().doMeetingSummaryRequest(form.id);
+            getMvpPresenter().doMeetingSummaryRequest(dialog, form.id);
     }
 
     public void goBackMeetdetail(View view) {

@@ -78,7 +78,7 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
     protected void onResume() {
         super.onResume();
         if (form != null)
-            getMvpPresenter().doOrgActBriefRequest(form.orgActId);
+            getMvpPresenter().doOrgActBriefRequest(dialog,form.orgActId);
     }
 
     public void goBackOrgActBrief(View view) {

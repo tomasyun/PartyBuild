@@ -15,26 +15,11 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class OrgActBriefPresenter extends BaseMvpPresenter<OrgActBriefView> {
     //组织活动摘要
-    public IProgressDialog getDialog() {
-        IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(OrgActBriefActivity.class))
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("获取中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
-        return dialog;
-    }
-
-    public void doOrgActBriefRequest(String id) {
+    public void doOrgActBriefRequest(IProgressDialog dialog,String id) {
         EasyHttp.post("orgActBrief")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
                         getMvpView().resultSuccess(result);
@@ -51,11 +36,11 @@ public class OrgActBriefPresenter extends BaseMvpPresenter<OrgActBriefView> {
                 });
     }
 
-    public void doSignUpRequest(String id) {
+    public void doSignUpRequest(IProgressDialog dialog,String id) {
         EasyHttp.post("signUpActivity")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String s) {
                         getMvpView().signUpResultSuccess(s);

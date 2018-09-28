@@ -48,7 +48,7 @@ public class BaseInfoActivity extends AbstractMvpActivity<BaseInfoView, BaseInfo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baseinfo);
         ButterKnife.bind(this);
-        getMvpPresenter().getBaseInfoRequest();
+        getMvpPresenter().getBaseInfoRequest(dialog);
     }
 
     public void goBackBaseInfo(View view) {

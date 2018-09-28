@@ -50,13 +50,13 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 start = start + 10;
-                getMvpPresenter().noticeRequest("", "1", "0", start, 10);
+                getMvpPresenter().noticeRequest(dialog, "", "1", "0", start, 10);
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 start = 0;
-                getMvpPresenter().noticeRequest("", "1", "0", start, 10);
+                getMvpPresenter().noticeRequest(dialog, "", "1", "0", start, 10);
             }
         });
     }
@@ -64,7 +64,7 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
     @Override
     protected void onResume() {
         super.onResume();
-        getMvpPresenter().noticeRequest("", "1", "0", start, 10);
+        getMvpPresenter().noticeRequest(dialog, "", "1", "0", start, 10);
     }
 
     public void goBackNotice(View view) {
@@ -138,7 +138,7 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
         notice_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getMvpPresenter().noticeRequest("", "1", "0", start, 10);
+                getMvpPresenter().noticeRequest(dialog, "", "1", "0", start, 10);
             }
         });
     }

@@ -52,7 +52,7 @@ public class PwdupdateActivity extends AbstractMvpActivity<PwdupdateView, Pwdupd
         } else if (!new_password.equals(confirm_password)) {
             showToast("抱歉!两次密码不一致");
         } else {
-            getMvpPresenter().pwdupdateRequest(old_password, new_password);
+            getMvpPresenter().pwdupdateRequest(dialog,old_password, new_password);
         }
     }
 

@@ -15,28 +15,13 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class CourseInfoPresenter extends BaseMvpPresenter<CourseInfoView> {
     //课件详情
-    public IProgressDialog getDialog() {
-        IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(CourseInfoActivity.class))
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("获取中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
-        return dialog;
-    }
-
-    public void doGetIntoCourseInfoRequest(String id, String taskId, String flag) {
+    public void doGetIntoCourseInfoRequest(IProgressDialog dialog,String id, String taskId, String flag) {
         EasyHttp.post("courseInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
                 .params("taskId", taskId)
                 .params("flag", flag)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
                         getMvpView().intoResultSuccess(result);
@@ -53,13 +38,13 @@ public class CourseInfoPresenter extends BaseMvpPresenter<CourseInfoView> {
                 });
     }
 
-    public void doGetOutCourseInfoRequest(String id, String taskId, String flag) {
+    public void doGetOutCourseInfoRequest(IProgressDialog dialog,String id, String taskId, String flag) {
         EasyHttp.post("courseInfo")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
                 .params("taskId", taskId)
                 .params("flag", flag)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
                         getMvpView().outResultSuccess(result);

@@ -44,7 +44,7 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
 
     //选择发送对象
     public void selectLeader(View view) {
-        getMvpPresenter().doGetLeaderRequest();
+        getMvpPresenter().doGetLeaderRequest(dialog);
     }
 
     //发送
@@ -56,7 +56,7 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
         } else if (TextUtils.isEmpty(content)) {
             showToast("请填写您要发送内容");
         } else {
-            getMvpPresenter().submitMailboxRequest(leaderId, content);
+            getMvpPresenter().submitMailboxRequest(dialog,leaderId, content);
         }
     }
 

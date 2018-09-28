@@ -18,29 +18,14 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class LoginPresenter extends BaseMvpPresenter<LoginView> {
-    public IProgressDialog getDialog() {
-        IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("获取中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
-        return dialog;
-    }
-
-    public void clickRequest(String name, String password) {
+    public void clickRequest(IProgressDialog dialog,String name, String password) {
         Map<String, String> map = new HashMap<>();
         map.put("username", name);
         map.put("password", password);
         String params = new Gson().toJson(map);
         EasyHttp.post("auth/mobileLogin")
                 .upJson(params)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
                         getMvpView().resultSuccess(result);

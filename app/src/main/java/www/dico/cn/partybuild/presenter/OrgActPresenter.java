@@ -15,25 +15,10 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class OrgActPresenter extends BaseMvpPresenter<OrgActView> {
     //组织活动
-    public IProgressDialog getDialog() {
-        IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(OrgActActivity.class))
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("获取中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
-        return dialog;
-    }
-
-    public void doOrgActRequest() {
+    public void doOrgActRequest(IProgressDialog dialog) {
         EasyHttp.post("orgActList")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
                         getMvpView().resultSuccess(result);

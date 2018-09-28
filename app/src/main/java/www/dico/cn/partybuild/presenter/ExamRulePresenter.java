@@ -13,26 +13,11 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class ExamRulePresenter extends BaseMvpPresenter<ExamRuleView> {
-    public IProgressDialog getDialog() {
-        IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("获取中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
-        return dialog;
-    }
-
-    public void examRuleRequest(String examId) {
+    public void examRuleRequest(IProgressDialog dialog,String examId) {
         EasyHttp.post("examRule")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", examId)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
                         getMvpView().resultSuccess(result);

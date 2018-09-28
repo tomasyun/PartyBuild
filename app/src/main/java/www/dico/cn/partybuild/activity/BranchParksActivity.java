@@ -242,16 +242,16 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
     public void createRequest(int position, int start) {
         switch (position) {
             case 0:
-                getMvpPresenter().doBranchParksNoticeRequest("", "3", "0", start, 10);
+                getMvpPresenter().doBranchParksNoticeRequest(dialog, "", "3", "0", start, 10);
                 break;
             case 1:
-                getMvpPresenter().doBranchParksRequest("15", "32", "0", start, 10);
+                getMvpPresenter().doBranchParksRequest(dialog, "15", "32", "0", start, 10);
                 break;
             case 2:
-                getMvpPresenter().doBranchParksRequest("15", "33", "0", start, 10);
+                getMvpPresenter().doBranchParksRequest(dialog, "15", "33", "0", start, 10);
                 break;
             case 3:
-                getMvpPresenter().doBranchParksRequest("15", "34", "0", start, 10);
+                getMvpPresenter().doBranchParksRequest(dialog, "15", "34", "0", start, 10);
                 break;
         }
     }

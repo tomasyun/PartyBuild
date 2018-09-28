@@ -71,7 +71,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
                                 answerBean.setTestAnswers(answers);
                                 answerBean.setLimitScore(form.limitScore);
                                 String requestParams = new Gson().toJson(answerBean);
-                                getMvpPresenter().doSaveExamAnswer(requestParams);
+                                getMvpPresenter().doSaveExamAnswer(dialog, requestParams);
                             }
                         });
                         helper.start();
@@ -89,7 +89,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
         answers = new ArrayList<>();
         form = getParam();
         if (form != null)
-            getMvpPresenter().onlineExamRequest(form.examId);
+            getMvpPresenter().onlineExamRequest(dialog, form.examId);
     }
 
     public void goBackOnlineExam(View view) {
@@ -210,7 +210,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
         answerBean.setTestAnswers(answers);
         answerBean.setLimitScore(form.limitScore);
         String requestParams = new Gson().toJson(answerBean);
-        getMvpPresenter().doSaveExamAnswer(requestParams);
+        getMvpPresenter().doSaveExamAnswer(dialog, requestParams);
     }
 
     @Override

@@ -13,22 +13,7 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class PublicPromisePresenter extends BaseMvpPresenter<PublicPromiseView> {
-    public IProgressDialog getDialog() {
-        IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("获取中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
-        return dialog;
-    }
-
-    public void doPublicPromiseRequest(String articleType, String childrenType, String draw, int start, int length) {
+    public void doPublicPromiseRequest(IProgressDialog dialog,String articleType, String childrenType, String draw, int start, int length) {
         EasyHttp.post("findArticle")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("articleType", articleType)
@@ -36,7 +21,7 @@ public class PublicPromisePresenter extends BaseMvpPresenter<PublicPromiseView> 
                 .params("draw", draw)
                 .params("start", String.valueOf(start))
                 .params("length", String.valueOf(length))
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String s) {
                         getMvpView().resultSuccess(s);

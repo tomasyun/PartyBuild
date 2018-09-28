@@ -38,7 +38,7 @@ public class CourseInfoActivity extends AbstractMvpActivity<CourseInfoView, Cour
         ButterKnife.bind(this);
         form = getParam();
         if (form != null)
-            getMvpPresenter().doGetIntoCourseInfoRequest(form.courseId, form.taskId, "0");
+            getMvpPresenter().doGetIntoCourseInfoRequest(dialog, form.courseId, form.taskId, "0");
         tv_title_course_info.post(new Runnable() {
             @Override
             public void run() {
@@ -53,7 +53,7 @@ public class CourseInfoActivity extends AbstractMvpActivity<CourseInfoView, Cour
 
     public void goBackCourseInfo(View view) {
         if (form != null)
-            getMvpPresenter().doGetOutCourseInfoRequest(form.courseId, form.taskId, "1");
+            getMvpPresenter().doGetOutCourseInfoRequest(dialog, form.courseId, form.taskId, "1");
     }
 
 
@@ -61,7 +61,7 @@ public class CourseInfoActivity extends AbstractMvpActivity<CourseInfoView, Cour
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (form != null) {
-                getMvpPresenter().doGetOutCourseInfoRequest(form.courseId, form.taskId, "1");
+                getMvpPresenter().doGetOutCourseInfoRequest(dialog, form.courseId, form.taskId, "1");
             }
         }
         return false;

@@ -1,6 +1,7 @@
 package www.dico.cn.partybuild.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,8 @@ import java.io.Serializable;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.bean.Form;
 import www.dico.cn.partybuild.widget.CustomToast;
+import www.dico.cn.partybuild.widget.LoadingDialog;
+import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class BaseActivity extends FragmentActivity {
     public Activity mActivity;
@@ -103,4 +106,16 @@ public class BaseActivity extends FragmentActivity {
         }
         return temp;
     }
+
+   public IProgressDialog dialog = new IProgressDialog() {
+        @Override
+        public Dialog getDialog() {
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(BaseActivity.this)
+                    .setCancelable(true)
+                    .setCancelOutside(true)
+                    .setMessage("获取中..")
+                    .setShowMessage(true);
+            return builder.create();
+        }
+    };
 }

@@ -173,13 +173,13 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
     public void createRequest(int position, int start) {
         switch (position) {
             case 0:
-                getMvpPresenter().doPublicPromiseRequest("13", "44", "0", start, 10);
+                getMvpPresenter().doPublicPromiseRequest(dialog,"13", "44", "0", start, 10);
                 break;
             case 1:
-                getMvpPresenter().doPublicPromiseRequest("13", "45", "0", start, 10);
+                getMvpPresenter().doPublicPromiseRequest(dialog,"13", "45", "0", start, 10);
                 break;
             case 2:
-                getMvpPresenter().doPublicPromiseRequest("13", "46", "0", start, 10);
+                getMvpPresenter().doPublicPromiseRequest(dialog,"13", "46", "0", start, 10);
                 break;
         }
     }

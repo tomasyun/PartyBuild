@@ -14,27 +14,12 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
-    public IProgressDialog getDialog() {
-        IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().curActivity())
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("获取中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
-        return dialog;
-    }
-
     //会议摘要
-    public void doMeetingBriefRequest(String id) {
+    public void doMeetingBriefRequest(IProgressDialog dialog,String id) {
         EasyHttp.post("conferenceBrief")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
                         getMvpView().resultSuccess(result);
@@ -51,11 +36,11 @@ public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
                 });
     }
 
-    public void doSignUpRequest(String id) {
+    public void doSignUpRequest(IProgressDialog dialog,String id) {
         EasyHttp.post("signUp")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String s) {
                         getMvpView().signUpResultSuccess(s);
@@ -72,10 +57,10 @@ public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
                 });
     }
 
-    public void doLeaveRequest(String id) {
+    public void doLeaveRequest(IProgressDialog dialog,String id) {
         EasyHttp.post("leave")
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String s) {
                         getMvpView().leaveResultSuccess(s);

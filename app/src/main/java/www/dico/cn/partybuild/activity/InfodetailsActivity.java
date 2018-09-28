@@ -75,13 +75,13 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
         if (form != null) {
             switch (form.type) {
                 case 0://资讯
-                    getMvpPresenter().infoDetailsRequest(form.id);
+                    getMvpPresenter().infoDetailsRequest(dialog, form.id);
                     break;
                 case 1://文章
-                    getMvpPresenter().infoArticleRequest(form.id);
+                    getMvpPresenter().infoArticleRequest(dialog, form.id);
                     break;
                 case 2://广告
-                    getMvpPresenter().infoDetailsRequest(form.id);
+                    getMvpPresenter().infoDetailsRequest(dialog, form.id);
                     break;
             }
         }
@@ -158,7 +158,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                         if (et_reply_comment.getText().toString().trim().equals("")) {
                             showToast("请填写评论内容");
                         } else {
-                            getMvpPresenter().doSubmitCommentRequest("0", bean.getData().getId(), et_reply_comment.getText().toString().trim());
+                            getMvpPresenter().doSubmitCommentRequest(dialog, "0", bean.getData().getId(), et_reply_comment.getText().toString().trim());
                         }
                     }
                 });
@@ -170,7 +170,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                             if (et_reply_comment.getText().toString().trim().equals("")) {
                                 showToast("请填写评论内容");
                             } else {
-                                getMvpPresenter().doSubmitCommentRequest("0", bean.getData().getId(), et_reply_comment.getText().toString().trim());
+                                getMvpPresenter().doSubmitCommentRequest(dialog, "0", bean.getData().getId(), et_reply_comment.getText().toString().trim());
                                 return true;
                             }
                         }
@@ -219,13 +219,13 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
         if (protocol.code.equals("0000")) {
             switch (form.type) {
                 case 0://资讯
-                    getMvpPresenter().infoDetailsRequest(form.id);
+                    getMvpPresenter().infoDetailsRequest(dialog, form.id);
                     break;
                 case 1://文章
-                    getMvpPresenter().infoArticleRequest(form.id);
+                    getMvpPresenter().infoArticleRequest(dialog, form.id);
                     break;
                 case 2://广告
-                    getMvpPresenter().infoDetailsRequest(form.id);
+                    getMvpPresenter().infoDetailsRequest(dialog, form.id);
                     break;
             }
             sv_info_detail.scrollTo(0, lin_info_detail.getMeasuredHeight() - sv_info_detail.getHeight());

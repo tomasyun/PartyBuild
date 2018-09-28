@@ -41,7 +41,7 @@ public class FeedbackActivity extends AbstractMvpActivity<FeedbackView, Feedback
         if (TextUtils.isEmpty(content)) {
             showToast("请填写意见");
         } else {
-            getMvpPresenter().feedBackSubmit(content);
+            getMvpPresenter().feedBackSubmit(dialog,content);
         }
     }
 

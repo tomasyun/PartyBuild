@@ -77,7 +77,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                             if (et_reply_comment.getText().toString().trim().equals("")) {
                                 showToast("请填写回复内容");
                             } else {
-                                getMvpPresenter().doSubmitCommentRequest("1", form.id, et_reply_comment.getText().toString().trim());
+                                getMvpPresenter().doSubmitCommentRequest(dialog,"1", form.id, et_reply_comment.getText().toString().trim());
                             }
                         }
                     });
@@ -89,7 +89,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                                 if (et_reply_comment.getText().toString().trim().equals("")) {
                                     showToast("请填写回复内容");
                                 } else {
-                                    getMvpPresenter().doSubmitCommentRequest("1", form.id, et_reply_comment.getText().toString().trim());
+                                    getMvpPresenter().doSubmitCommentRequest(dialog,"1", form.id, et_reply_comment.getText().toString().trim());
                                     return true;
                                 }
                             }
@@ -106,7 +106,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                     break;
             }
         }
-        getMvpPresenter().doNoticeInfoRequest(form.id);
+        getMvpPresenter().doNoticeInfoRequest(dialog,form.id);
     }
 
     public void goBackNoticeInfo(View view) {
@@ -156,7 +156,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
         et_reply_comment.setText("");
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
         if (protocol.code.equals("0000")) {
-            getMvpPresenter().doNoticeInfoRequest(form.id);
+            getMvpPresenter().doNoticeInfoRequest(dialog,form.id);
             sv_notice_info.scrollTo(0, lin_notice_info.getMeasuredHeight() - sv_notice_info.getHeight());
         } else {
             showToast("服务器异常");

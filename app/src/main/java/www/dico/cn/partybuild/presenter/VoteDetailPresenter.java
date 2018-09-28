@@ -15,26 +15,11 @@ import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class VoteDetailPresenter extends BaseMvpPresenter<VoteDetailView> {
     //投票详情
-    public IProgressDialog getDialog() {
-        IProgressDialog dialog = new IProgressDialog() {
-            @Override
-            public Dialog getDialog() {
-                LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(VoteDetailActivity.class))
-                        .setCancelable(true)
-                        .setCancelOutside(true)
-                        .setMessage("获取中..")
-                        .setShowMessage(true);
-                return builder.create();
-            }
-        };
-        return dialog;
-    }
-
-    public void doVoteDetailRequest(String id) {
+    public void doVoteDetailRequest(IProgressDialog dialog,String id) {
         EasyHttp.post("voteBrief")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
                         getMvpView().resultSuccess(result);
@@ -51,11 +36,11 @@ public class VoteDetailPresenter extends BaseMvpPresenter<VoteDetailView> {
                 });
     }
 
-    public void doSubmitVoteResultRequest(String json) {
+    public void doSubmitVoteResultRequest(IProgressDialog dialog,String json) {
         EasyHttp.post("submitVote")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .upJson(json)
-                .execute(new ProgressDialogCallBack<String>(getDialog(), true, true) {
+                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
                     @Override
                     public void onSuccess(String result) {
                         getMvpView().submitVoteResultSuccess(result);

@@ -92,7 +92,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
     protected void onResume() {
         super.onResume();
         if (form != null)
-            getMvpPresenter().doMeetingBriefRequest(form.meetingId);
+            getMvpPresenter().doMeetingBriefRequest(dialog,form.meetingId);
     }
 
     @Override
@@ -172,13 +172,13 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                                         tv_leave_brief1.setOnClickListener(new View.OnClickListener() {//开始请假
                                             @Override
                                             public void onClick(View view) {
-                                                getMvpPresenter().doLeaveRequest(form.meetingId);
+                                                getMvpPresenter().doLeaveRequest(dialog,form.meetingId);
                                             }
                                         });
                                         tv_sign_up_brief1.setOnClickListener(new View.OnClickListener() {//开始报名
                                             @Override
                                             public void onClick(View view) {
-                                                getMvpPresenter().doSignUpRequest(form.meetingId);
+                                                getMvpPresenter().doSignUpRequest(dialog,form.meetingId);
                                             }
                                         });
                                     } else {//已请假

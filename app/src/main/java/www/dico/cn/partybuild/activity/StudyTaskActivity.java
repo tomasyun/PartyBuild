@@ -46,7 +46,7 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
         srl_study_task.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doStudyTaskRequest();
+                getMvpPresenter().doStudyTaskRequest(dialog);
             }
         });
     }
@@ -54,7 +54,7 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
     @Override
     protected void onResume() {
         super.onResume();
-        getMvpPresenter().doStudyTaskRequest();
+        getMvpPresenter().doStudyTaskRequest(dialog);
     }
 
     public void goBackStudyTask(View view) {
@@ -108,7 +108,7 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
         study_task_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getMvpPresenter().doStudyTaskRequest();
+                getMvpPresenter().doStudyTaskRequest(dialog);
             }
         });
     }

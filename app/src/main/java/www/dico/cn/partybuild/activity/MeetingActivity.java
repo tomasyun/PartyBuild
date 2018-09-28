@@ -46,7 +46,7 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
         srl_meeting.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doMeetingRequest();
+                getMvpPresenter().doMeetingRequest(dialog);
             }
         });
     }
@@ -54,7 +54,7 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
     @Override
     protected void onResume() {
         super.onResume();
-        getMvpPresenter().doMeetingRequest();
+        getMvpPresenter().doMeetingRequest(dialog);
     }
 
     public void goBackMeeting(View view) {
@@ -108,7 +108,7 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
         meeting_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getMvpPresenter().doMeetingRequest();
+                getMvpPresenter().doMeetingRequest(dialog);
             }
         });
     }
