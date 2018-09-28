@@ -62,7 +62,7 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
             if (dataBean.getQuestionOptionsList().size() > 0) {
                 for (int j = 0; j < dataBean.getQuestionOptionsList().size(); j++) {
                     RadioButton radioBtn = new RadioButton(mContext);
-                    radioBtn.setText(dataBean.getQuestionOptionsList().get(j).getName() + "   " + dataBean.getQuestionOptionsList().get(j).getContent());
+                    radioBtn.setText(dataBean.getQuestionOptionsList().get(j).getContent());
                     radioBtn.setTextSize(14);
                     radioBtn.setPadding(SizeUtils.dp2px(AppManager.getManager().curActivity(), 15), SizeUtils.dp2px(AppManager.getManager().curActivity(), 10), 0, SizeUtils.dp2px(AppManager.getManager().curActivity(), 10));
                     radioBtn.setMaxLines(1);
@@ -76,7 +76,7 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
                     @Override
                     public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                         RadioButton radioBtn = radioGroup.findViewById(checkedId);
-                        radioAnswer = radioBtn.getText().toString().trim().substring(0, 1);
+                        radioAnswer = radioBtn.getText().toString().trim();
                     }
                 });
             }
@@ -132,16 +132,17 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
                                 String str = "";
                                 for (CheckBox checkBox : list) {
                                     if (checkBox.isChecked()) {
-                                        str += checkBox.getText().toString().trim().substring(0, 1);
+                                        str += checkBox.getText().toString().trim()+"|";
                                     }
                                 }
                                 if (str.equals("")) {
                                     Toast.makeText(AppConfig.getContext(), "请选择", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    char[] c = str.toCharArray();//将字符串转换成char数组
-                                    Arrays.sort(c);//对数组进行排序
-                                    String sortAnswer = new String(c);
-                                    handleInterface.nextStep(dataBean.getId(), String.valueOf(position + 1), sortAnswer);
+//                                    char[] c = str.toCharArray();//将字符串转换成char数组
+//                                    Arrays.sort(c);//对数组进行排序
+//                                    String sortAnswer = new String(c);
+                                    String answer=str.substring(0,str.length()-1);
+                                    handleInterface.nextStep(dataBean.getId(), String.valueOf(position + 1), answer);
                                 }
                             }
                         }
@@ -158,16 +159,17 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
                                 String str = "";
                                 for (CheckBox checkBox : list) {
                                     if (checkBox.isChecked()) {
-                                        str += checkBox.getText().toString().trim().substring(0, 1);
+                                        str += checkBox.getText().toString().trim()+"|";
                                     }
                                 }
                                 if (str.equals("")) {
                                     Toast.makeText(AppManager.getManager().curActivity(), "请选择", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    char[] c = str.toCharArray();//将字符串转换成char数组
-                                    Arrays.sort(c);//对数组进行排序
-                                    String sortAnswer = new String(c);
-                                    handleInterface.submit(dataBean.getId(), String.valueOf(position + 1), sortAnswer);
+//                                    char[] c = str.toCharArray();//将字符串转换成char数组
+//                                    Arrays.sort(c);//对数组进行排序
+//                                    String sortAnswer = new String(c);
+                                    String answer=str.substring(0,str.length()-1);
+                                    handleInterface.submit(dataBean.getId(), String.valueOf(position + 1), answer);
                                 }
                             }
                         }
