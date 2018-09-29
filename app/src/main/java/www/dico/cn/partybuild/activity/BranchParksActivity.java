@@ -95,11 +95,6 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                 createRequest(position, start);
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         createRequest(position, start);
     }
 

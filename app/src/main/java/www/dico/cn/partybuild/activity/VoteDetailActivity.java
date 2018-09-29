@@ -29,6 +29,7 @@ import www.dico.cn.partybuild.modleview.VoteDetailView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.VoteDetailPresenter;
+import www.dico.cn.partybuild.utils.DateTimeUtils;
 import www.dico.cn.partybuild.utils.SizeUtils;
 
 @CreatePresenter(VoteDetailPresenter.class)
@@ -147,7 +148,6 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                 tv_title_vote_detail.setTextSize(16);
                 tv_limit_date_vote_detail.setText(bean.getData().getLimitDate());
                 voteType = bean.getData().getVoteType();
-
                 switch (voteType) {
                     case "0":
                         tv_type_vote_detail.setText("单选");
@@ -157,6 +157,18 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                         break;
                 }
                 tv_des_vote_detail.setText(bean.getData().getDescription());
+                String limitDate = bean.getData().getLimitDate();
+                if (limitDate != null && !limitDate.equals("")) {
+                    if (DateTimeUtils.isExpired(limitDate)) {
+                        tv_submit_vote_detail.setText("已过期");
+                        tv_submit_vote_detail.setEnabled(false);
+                        tv_submit_vote_detail.setClickable(false);
+                    } else {
+                        tv_submit_vote_detail.setText("提交");
+                        tv_submit_vote_detail.setEnabled(true);
+                        tv_submit_vote_detail.setClickable(true);
+                    }
+                }
                 final List<VoteDetailBean.DataBean.OptionsBean> beans = bean.getData().getOptions();
                 if (null != beans && beans.size() > 0) {
                     lin_options_vote.setVisibility(View.VISIBLE);

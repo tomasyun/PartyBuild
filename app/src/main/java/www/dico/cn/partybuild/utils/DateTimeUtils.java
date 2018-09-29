@@ -437,4 +437,13 @@ public class DateTimeUtils {
         }
         return "";
     }
+
+    public static boolean isExpired(String strDate) {
+        Date fixDate = DateTimeUtils.parse(strDate, DateTimeUtils.FORMAT_LONG);
+        Date nowDate = new Date();
+        if (nowDate.getTime() - fixDate.getTime() > 0) {
+            return true;
+        }
+        return false;
+    }
 }
