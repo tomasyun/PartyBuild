@@ -139,7 +139,8 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 xbanner.loadImage(new XBanner.XBannerAdapter() {
                     @Override
                     public void loadBanner(XBanner banner, Object model, View view, int position) {
-                        GlideUtils.loadImageSetUpError(getActivity(), AppConfig.urlFormat(((AdvertiseImgM) model).getPoster()), (ImageView) view, R.mipmap.img_dico);
+                        if (((AdvertiseImgM) model).getPoster() != null && !((AdvertiseImgM) model).getPoster().equals(""))
+                            GlideUtils.loadImageSetUpError(getActivity(), AppConfig.urlFormat(((AdvertiseImgM) model).getPoster()), (ImageView) view, R.mipmap.img_dico);
                     }
                 });
                 xbanner.setOnItemClickListener(new XBanner.OnItemClickListener() {

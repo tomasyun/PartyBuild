@@ -163,10 +163,12 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                         tv_submit_vote_detail.setText("已过期");
                         tv_submit_vote_detail.setEnabled(false);
                         tv_submit_vote_detail.setClickable(false);
+                        tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
                     } else {
                         tv_submit_vote_detail.setText("提交");
                         tv_submit_vote_detail.setEnabled(true);
                         tv_submit_vote_detail.setClickable(true);
+                        tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_red_bg));
                     }
                 }
                 final List<VoteDetailBean.DataBean.OptionsBean> beans = bean.getData().getOptions();
