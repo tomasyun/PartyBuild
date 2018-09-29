@@ -22,6 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.UpdateManager;
 import www.dico.cn.partybuild.activity.ActivityMrgActivity;
@@ -138,7 +139,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 xbanner.loadImage(new XBanner.XBannerAdapter() {
                     @Override
                     public void loadBanner(XBanner banner, Object model, View view, int position) {
-                        GlideUtils.loadImageSetUpError(getActivity(), ((AdvertiseImgM) model).getPoster(), (ImageView) view, R.mipmap.img_dico);
+                        GlideUtils.loadImageSetUpError(getActivity(), AppConfig.urlFormat(((AdvertiseImgM) model).getPoster()), (ImageView) view, R.mipmap.img_dico);
                     }
                 });
                 xbanner.setOnItemClickListener(new XBanner.OnItemClickListener() {

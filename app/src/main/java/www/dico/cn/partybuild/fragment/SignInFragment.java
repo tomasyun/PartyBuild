@@ -31,6 +31,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.bean.SignInBean;
@@ -300,7 +301,7 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                 srl_sign_in.setVisibility(View.VISIBLE);
                 sign_in_empty_data.setVisibility(View.GONE);
                 sign_in_net_error.setVisibility(View.GONE);
-                GlideUtils.loadImageSetUpError(getActivity(), bean.getData().getThemeImg(), iv_conference_theme_pic, R.mipmap.img_dico);
+                GlideUtils.loadImageSetUpError(getActivity(), AppConfig.urlFormat(bean.getData().getThemeImg()), iv_conference_theme_pic, R.mipmap.img_dico);
                 startDate = bean.getData().getStartDate();
                 if (!StringUtils.isEmpty(startDate)) {
                     //TODO 处理会议、活动开始时间
