@@ -31,6 +31,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.NoticeInfoPresenter;
 import www.dico.cn.partybuild.utils.SizeUtils;
+import www.dico.cn.partybuild.utils.StringUtils;
 
 @CreatePresenter(NoticeInfoPresenter.class)
 public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, NoticeInfoPresenter> implements NoticeInfoView {
@@ -123,7 +124,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                 String publishDate = bean.getData().getPublishDate();
                 publishDate = (null == publishDate) ? "" : publishDate;
                 tv_date_notice_info.setText(publishDate);
-                tv_content_notice_info.setText("\u3000\u3000" + bean.getData().getContent());
+                tv_content_notice_info.setText("\u3000\u3000" + StringUtils.delHtmlTag(bean.getData().getContent()));
                 List<NoticeInfoBean.DataBean.CommitListBean> list = bean.getData().getCommitList();
                 if (null != list && list.size() > 0) {
                     adapter = new NoticeInfoCommentAdapter(list);
