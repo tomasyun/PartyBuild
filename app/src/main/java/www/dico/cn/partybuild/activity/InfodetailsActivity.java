@@ -38,6 +38,7 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.InfodetailsPresenter;
 import www.dico.cn.partybuild.utils.SizeUtils;
+import www.dico.cn.partybuild.utils.StringUtils;
 import www.dico.cn.partybuild.widget.HtmlImageGetter;
 
 //资讯详情
