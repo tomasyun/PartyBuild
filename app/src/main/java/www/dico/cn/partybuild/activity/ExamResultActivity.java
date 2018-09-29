@@ -57,7 +57,7 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
             tv_cost_exam_result.setText(form.examCost + "分钟");
             String limitScore = new DecimalFormat("#").format(Double.valueOf(form.limitScore));
             tv_limit_score_exam_result.setText(limitScore);
-            if (!form.isPass.equals("")) {
+            if (null != form.isPass && !form.isPass.equals("")) {
                 switch (form.isPass) {
                     case "0":
                         rel_exam_result.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_blue_bg));

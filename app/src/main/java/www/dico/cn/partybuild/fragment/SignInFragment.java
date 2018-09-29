@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -281,7 +282,7 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
         if (errorCode == 1000) {
             dialog.dismiss();
             distance = distanceResult.getDistanceResults().get(0).getDistance();
-            if (distance < 100) {//设置签到距离100m
+            if (distance < 1000) {//设置签到距离100m
                 getMvpPresenter().doSaveSignIn(id, signInType);
             } else {
                 showToast("未到达指定签到地点,暂不能签到");
@@ -347,7 +348,10 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     public void saveSignInSuccess(String result) {
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
         if (protocol.code.equals("0000")) {
-            showToast(protocol.msg);
+            WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+            lp.alpha = 0.3f;
+            getActivity().getWindow().setAttributes(lp);
+            getMvpPresenter().signInSuccessfulDialogShow(getActivity(), R.layout.dialog_sign_in_successful);
         } else {
             showToast(protocol.msg);
         }
@@ -369,6 +373,11 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                 getMvpPresenter().doGetSignInConferenceRequest();
             }
         });
+    }
+
+    @Override
+    public void signUpSuccessRefresh() {
+        getMvpPresenter().doGetSignInConferenceRequest();
     }
 
     @Override

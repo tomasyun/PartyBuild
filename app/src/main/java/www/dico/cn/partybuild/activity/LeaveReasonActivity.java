@@ -12,6 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.bean.BaseProtocol;
+import www.dico.cn.partybuild.bean.LeaveForm;
 import www.dico.cn.partybuild.modleview.LeaveReasonView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -22,12 +23,14 @@ import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;
 public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, LeaveReasonPresenter> implements LeaveReasonView {
     @BindView(R.id.et_content_leave_reason)
     EditText et_content_leave_reason;
+    private LeaveForm form;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leavereason);
         ButterKnife.bind(this);
+        form = getParam();
     }
 
     public void goBackLeaveReason(View view) {
@@ -46,7 +49,8 @@ public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, Le
                     .setPositiveButton("确定", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            getMvpPresenter().doLeaveRequest(dialog, content);
+                            if (form != null)
+                                getMvpPresenter().doLeaveRequest(dialog, form.meetingId, content);
                         }
                     }).setNegativeButton("取消", new View.OnClickListener() {
                 @Override

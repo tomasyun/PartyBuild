@@ -200,8 +200,8 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                 List<NoticeBean.DataBean> list = bean.getData();
                 if (list != null && list.size() > 0) {
                     this.noticeList.addAll(list);
-                    adapter.notifyDataSetChanged();
-                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                    noticeAdapter.notifyDataSetChanged();
+                    noticeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                             NoticeForm form = new NoticeForm();

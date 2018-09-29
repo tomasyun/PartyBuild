@@ -18,6 +18,7 @@ import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.ParticipantsAdapter;
 import www.dico.cn.partybuild.bean.BaseProtocol;
+import www.dico.cn.partybuild.bean.LeaveForm;
 import www.dico.cn.partybuild.bean.MeetBriefBean;
 import www.dico.cn.partybuild.bean.MeetingForm;
 import www.dico.cn.partybuild.bean.MeetingSummaryForm;
@@ -172,7 +173,9 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                                         tv_leave_brief1.setOnClickListener(new View.OnClickListener() {//开始请假
                                             @Override
                                             public void onClick(View view) {
-                                                getMvpPresenter().doLeaveRequest(dialog, form.meetingId);
+                                                LeaveForm form = new LeaveForm();
+                                                form.meetingId = MeetingBriefActivity.this.form.meetingId;
+                                                goTo(LeaveReasonActivity.class, form);
                                             }
                                         });
                                         tv_sign_up_brief1.setOnClickListener(new View.OnClickListener() {//开始报名
@@ -321,21 +324,6 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
 
     @Override
     public void signUpResultFailure(String result) {
-        showToast(result);
-    }
-
-    @Override
-    public void leaveResultSuccess(String result) {
-        BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
-        if (protocol.code.equals("0000")) {
-            goTo(LeaveSuccessActivity.class, null);
-        } else {
-            showToast(protocol.msg);
-        }
-    }
-
-    @Override
-    public void leaveResultFailure(String result) {
         showToast(result);
     }
 

@@ -11,9 +11,5 @@ public interface MeetingBriefView extends BaseMvpView {
 
     void signUpResultFailure(String result);
 
-    void leaveResultSuccess(String result);
-
-    void leaveResultFailure(String result);
-
     void netWorkUnAvailable();
 }

@@ -51,24 +51,4 @@ public class MeetingBriefPresenter extends BaseMvpPresenter<MeetingBriefView> {
                     }
                 });
     }
-
-    public void doLeaveRequest(IProgressDialog dialog, String id) {
-        EasyHttp.post("leave")
-                .params("id", id)
-                .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
-                    @Override
-                    public void onSuccess(String s) {
-                        getMvpView().leaveResultSuccess(s);
-                    }
-
-                    @Override
-                    public void onError(ApiException e) {
-                        super.onError(e);
-                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
-                            getMvpView().netWorkUnAvailable();
-                        else
-                            getMvpView().leaveResultFailure(e.getMessage());
-                    }
-                });
-    }
 }
