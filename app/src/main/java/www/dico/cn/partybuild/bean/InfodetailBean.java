@@ -21,7 +21,9 @@ public class InfodetailBean extends BaseProtocol {
         private String browse;
         private String content;
         private String attachment;
+        private String attachmentName;
         private List<CommitListBean> commitList;
+
 
         public String getId() {
             return id;
@@ -77,6 +79,14 @@ public class InfodetailBean extends BaseProtocol {
 
         public void setAttachment(String attachment) {
             this.attachment = attachment;
+        }
+
+        public String getAttachmentName() {
+            return attachmentName;
+        }
+
+        public void setAttachmentName(String attachmentName) {
+            this.attachmentName = attachmentName;
         }
 
         public List<CommitListBean> getCommitList() {

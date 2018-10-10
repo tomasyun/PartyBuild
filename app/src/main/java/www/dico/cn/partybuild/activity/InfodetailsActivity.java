@@ -1,5 +1,6 @@
 package www.dico.cn.partybuild.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -44,6 +45,7 @@ import www.dico.cn.partybuild.presenter.InfodetailsPresenter;
 import www.dico.cn.partybuild.utils.SizeUtils;
 import www.dico.cn.partybuild.utils.StringUtils;
 import www.dico.cn.partybuild.widget.HtmlImageGetter;
+import www.dico.cn.partybuild.widget.LoadingDialog;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.callback.DownloadProgressCallBack;
 import www.yuntdev.com.library.exception.ApiException;
@@ -147,48 +149,79 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                     //TODO 附件处理
                     rel_attachment_info.setVisibility(View.VISIBLE);
                     final String url = AppConfig.urlFormat(bean.getData().getAttachment());
-                    final String fileName = url.trim().substring(url.lastIndexOf("/") + 1);
+                    final String fileName = bean.getData().getAttachmentName();
                     final String downPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
                     Log.i("################", downPath);
                     TextView tv_attachment_info = rel_attachment_info.findViewById(R.id.tv_attachment_info);
-                    if (null != fileName)
+                    if (null != fileName) {
                         tv_attachment_info.setText(fileName);
-                    rel_attachment_info.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {//文件预览
-                            File docFile = new File(downPath + File.separator + fileName, fileName);
-                            if (docFile.exists()) {
-                                DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, downPath, fileName);
-                            } else {
-                                EasyHttp.downLoad(url)
-                                        .savePath(downPath)
-                                        .saveName(fileName)
-                                        .execute(new DownloadProgressCallBack<String>() {
-                                            @Override
-                                            public void update(long bytesRead, long contentLength, boolean done) {
-                                                int progress = (int) (bytesRead * 100 / contentLength);
-                                                HttpLog.e(progress + "% ");
-                                            }
+                        rel_attachment_info.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {//文件预览
+                                File docFile = new File(downPath + File.separator + fileName, fileName);
+                                if (docFile.exists()) {
+                                    DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, downPath, fileName);
+                                } else {
+                                    LoadingDialog.Builder builder = new LoadingDialog.Builder(InfodetailsActivity.this)
+                                            .setCancelable(true)
+                                            .setCancelOutside(true)
+                                            .setMessage("获取中..")
+                                            .setShowMessage(true);
+                                    final Dialog dialog = builder.create();
+                                    EasyHttp.downLoad(url)
+                                            .savePath(downPath)
+                                            .saveName(fileName)
+                                            .execute(new DownloadProgressCallBack<String>() {
+                                                @Override
+                                                public void update(long bytesRead, long contentLength, boolean done) {
+                                                    int progress = (int) (bytesRead * 100 / contentLength);
+                                                    HttpLog.e(progress + "% ");
+                                                }
 
-                                            @Override
-                                            public void onStart() {
-                                                HttpLog.i("======" + Thread.currentThread().getName());
-                                            }
+                                                @Override
+                                                public void onStart() {
+                                                    if (dialog.isShowing()) {
 
-                                            @Override
-                                            public void onComplete(String path) {
-                                                HttpLog.e("文件保存路径：" + path);
-                                                DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, path, fileName);
-                                            }
+                                                    }
+                                                    if (dialog != null) {
+                                                        if (!dialog.isShowing()) {
+                                                            dialog.show();
+                                                        }
+                                                    }
+                                                    HttpLog.i("======" + Thread.currentThread().getName());
+                                                }
 
-                                            @Override
-                                            public void onError(ApiException e) {
-                                                Toast.makeText(InfodetailsActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                                            }
-                                        });
+                                                @Override
+                                                public void onComplete(String path) {
+                                                    HttpLog.e("文件保存路径：" + path);
+                                                    if (!dialog.isShowing()) {
+
+                                                    }
+                                                    if (dialog != null) {
+                                                        if (dialog.isShowing()) {
+                                                            dialog.dismiss();
+                                                        }
+                                                    }
+                                                    DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, path, fileName);
+                                                }
+
+                                                @Override
+                                                public void onError(ApiException e) {
+                                                    if (!dialog.isShowing()) {
+
+                                                    }
+                                                    if (dialog != null) {
+                                                        if (dialog.isShowing()) {
+                                                            dialog.dismiss();
+                                                        }
+                                                    }
+                                                    Toast.makeText(InfodetailsActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                 } else {
                     rel_attachment_info.setVisibility(View.GONE);
                 }
