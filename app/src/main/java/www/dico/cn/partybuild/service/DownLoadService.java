@@ -49,37 +49,37 @@ public class DownLoadService extends Service {
         setUp();
         String url = AppConfig.urlFormat1(AppConfig.updateUrl);
         EasyHttp.downLoad(url)
-                .savePath(destFileDir)
+            .savePath(destFileDir)
                 .saveName(destFileName)
                 .execute(new DownloadProgressCallBack<String>() {
-                    @Override
-                    public void update(long bytesRead, long contentLength, boolean done) {
-                        int progress = (int) (bytesRead * 100 / contentLength);
-                        HttpLog.e(progress + "% ");
-                        DownLoadService.this.update(progress);
-                        if (done) {
-                            cancel();
-                        }
-                    }
+        @Override
+        public void update(long bytesRead, long contentLength, boolean done) {
+            int progress = (int) (bytesRead * 100 / contentLength);
+            HttpLog.e(progress + "% ");
+            DownLoadService.this.update(progress);
+            if (done) {
+                cancel();
+            }
+        }
 
-                    @Override
-                    public void onStart() {
-                        HttpLog.i("======" + Thread.currentThread().getName());
-                    }
+        @Override
+        public void onStart() {
+            HttpLog.i("======" + Thread.currentThread().getName());
+        }
 
-                    @Override
-                    public void onComplete(String path) {
-                        HttpLog.e("文件保存路径：" + path);
-                        installApk(new File(path));
-                    }
+        @Override
+        public void onComplete(String path) {
+            HttpLog.e("文件保存路径：" + path);
+            installApk(new File(path));
+        }
 
-                    @Override
-                    public void onError(ApiException e) {
-                        cancel();
-                        Toast.makeText(DownLoadService.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
-    }
+        @Override
+        public void onError(ApiException e) {
+            cancel();
+            Toast.makeText(DownLoadService.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    });
+}
 
     private void installApk(File file) {
         Intent install = new Intent(Intent.ACTION_VIEW);

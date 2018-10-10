@@ -153,14 +153,16 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@+id/iv_attachment_arrow_right"
                             android:layout_toRightOf="@+id/iv_attachment_info"
                             android:ellipsize="end"
-                            android:maxLength="2"
-                            android:text="#####.pdf"
+                            android:maxLines="2"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="14sp" />
 
                         <ImageView
+                            android:id="@+id/iv_attachment_arrow_right"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"

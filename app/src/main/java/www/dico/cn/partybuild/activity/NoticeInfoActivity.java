@@ -44,8 +44,6 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
     TextView tv_name_notice_info;
     @BindView(R.id.tv_date_notice_info)
     TextView tv_date_notice_info;
-    @BindView(R.id.tv_browse_notice_info)
-    TextView tv_browse_notice_info;
     @BindView(R.id.tv_content_notice_info)
     TextView tv_content_notice_info;
     @BindView(R.id.rv_notice_info)

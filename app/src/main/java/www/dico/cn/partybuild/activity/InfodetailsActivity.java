@@ -2,12 +2,14 @@ package www.dico.cn.partybuild.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,10 +21,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.tencent.smtt.sdk.QbSdk;
 
+import java.io.File;
 import java.util.List;
 
 import butterknife.BindView;
@@ -40,6 +44,10 @@ import www.dico.cn.partybuild.presenter.InfodetailsPresenter;
 import www.dico.cn.partybuild.utils.SizeUtils;
 import www.dico.cn.partybuild.utils.StringUtils;
 import www.dico.cn.partybuild.widget.HtmlImageGetter;
+import www.yuntdev.com.library.EasyHttp;
+import www.yuntdev.com.library.callback.DownloadProgressCallBack;
+import www.yuntdev.com.library.exception.ApiException;
+import www.yuntdev.com.library.utils.HttpLog;
 
 //资讯详情
 @CreatePresenter(InfodetailsPresenter.class)
@@ -73,7 +81,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infodetails);
         ButterKnife.bind(this);
-        QbSdk.initX5Environment(this, null);
+        QbSdk.initX5Environment(InfodetailsActivity.this, null);
         form = getParam();
         if (form != null) {
             switch (form.type) {
@@ -129,6 +137,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                 source = (source == null || source.equals("")) ? "---" : bean.getData().getPublicUnit();
                 tv_info_detail_source.setText(source);
                 tv_info_detail_date.setText(bean.getData().getPublishDate());
+                tv_info_detail_browse.setText(bean.getData().getBrowse());
 //                tv_info_content.setText(StringUtils.delHtmlTag(bean.getData().getContent()));
                 HtmlImageGetter imageGetter = new HtmlImageGetter(this, tv_info_detail_content);
                 Spanned spanned = Html.fromHtml(StringUtils.trimStyle(bean.getData().getContent()), imageGetter, null);
@@ -137,14 +146,47 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                 if (bean.getData().getAttachment() != null && !bean.getData().getAttachment().equals("")) {
                     //TODO 附件处理
                     rel_attachment_info.setVisibility(View.VISIBLE);
+                    final String url = AppConfig.urlFormat(bean.getData().getAttachment());
+                    final String fileName = url.trim().substring(url.lastIndexOf("/") + 1);
+                    final String downPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
+                    Log.i("################", downPath);
                     TextView tv_attachment_info = rel_attachment_info.findViewById(R.id.tv_attachment_info);
-                    tv_attachment_info.setText(bean.getData().getAttachment());
+                    if (null != fileName)
+                        tv_attachment_info.setText(fileName);
                     rel_attachment_info.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {//文件预览
-                            String filePath = AppConfig.urlFormat(bean.getData().getAttachment());
-                            String fileName = filePath.trim().substring(filePath.lastIndexOf("/") + 1);
-                            DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, filePath, fileName);
+                            File docFile = new File(downPath + File.separator + fileName, fileName);
+                            if (docFile.exists()) {
+                                DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, downPath, fileName);
+                            } else {
+                                EasyHttp.downLoad(url)
+                                        .savePath(downPath)
+                                        .saveName(fileName)
+                                        .execute(new DownloadProgressCallBack<String>() {
+                                            @Override
+                                            public void update(long bytesRead, long contentLength, boolean done) {
+                                                int progress = (int) (bytesRead * 100 / contentLength);
+                                                HttpLog.e(progress + "% ");
+                                            }
+
+                                            @Override
+                                            public void onStart() {
+                                                HttpLog.i("======" + Thread.currentThread().getName());
+                                            }
+
+                                            @Override
+                                            public void onComplete(String path) {
+                                                HttpLog.e("文件保存路径：" + path);
+                                                DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, path, fileName);
+                                            }
+
+                                            @Override
+                                            public void onError(ApiException e) {
+                                                Toast.makeText(InfodetailsActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                            }
+                                        });
+                            }
                         }
                     });
                 } else {

@@ -26,7 +26,6 @@
     <!-- ======================TBS的预览文件功能========================== -->
     <!-- 允许程序读取外部存储文件 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <!-- Android 8.0 系统请求安装apk -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <application

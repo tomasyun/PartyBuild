@@ -3,6 +3,7 @@ package www.dico.cn.partybuild.activity;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import com.tencent.smtt.sdk.TbsReaderView;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.utils.SizeUtils;
 
 public class DisplayFileActivity extends AppCompatActivity {
 
@@ -100,7 +102,7 @@ public class DisplayFileActivity extends AppCompatActivity {
     private void displayFile(String filePath, String fileName) {
         Bundle bundle = new Bundle();
         bundle.putString("filePath", filePath);
-        bundle.putString("tempPath", Environment.getExternalStorageDirectory().getPath());
+        bundle.putString("tempPath",  Environment.getExternalStorageDirectory().getPath());
         boolean result = mTbsReaderView.preOpen(parseFormat(fileName), false);
         if (result) {
             mTbsReaderView.openFile(bundle);

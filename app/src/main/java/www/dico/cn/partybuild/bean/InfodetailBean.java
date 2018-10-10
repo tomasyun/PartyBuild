@@ -18,6 +18,7 @@ public class InfodetailBean extends BaseProtocol {
         private String title;
         private String publicUnit;
         private String publishDate;
+        private String browse;
         private String content;
         private String attachment;
         private List<CommitListBean> commitList;
@@ -52,6 +53,14 @@ public class InfodetailBean extends BaseProtocol {
 
         public void setPublishDate(String publishDate) {
             this.publishDate = publishDate;
+        }
+
+        public String getBrowse() {
+            return browse;
+        }
+
+        public void setBrowse(String browse) {
+            this.browse = browse;
         }
 
         public String getContent() {
