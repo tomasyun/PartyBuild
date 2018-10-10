@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -43,6 +44,8 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
     TextView tv_name_notice_info;
     @BindView(R.id.tv_date_notice_info)
     TextView tv_date_notice_info;
+    @BindView(R.id.tv_browse_notice_info)
+    TextView tv_browse_notice_info;
     @BindView(R.id.tv_content_notice_info)
     TextView tv_content_notice_info;
     @BindView(R.id.rv_notice_info)
@@ -124,7 +127,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                 String publishDate = bean.getData().getPublishDate();
                 publishDate = (null == publishDate) ? "" : publishDate;
                 tv_date_notice_info.setText(publishDate);
-                tv_content_notice_info.setText("\u3000\u3000" + StringUtils.delHtmlTag(bean.getData().getContent()));
+                tv_content_notice_info.setText(Html.fromHtml(StringUtils.trimStyle(bean.getData().getContent())));
                 List<NoticeInfoBean.DataBean.CommitListBean> list = bean.getData().getCommitList();
                 if (null != list && list.size() > 0) {
                     adapter = new NoticeInfoCommentAdapter(list);

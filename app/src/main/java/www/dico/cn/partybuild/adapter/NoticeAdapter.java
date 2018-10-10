@@ -3,6 +3,7 @@ package www.dico.cn.partybuild.adapter;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.text.Html;
 import android.widget.ImageView;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import www.dico.cn.partybuild.utils.DateTimeUtils;
 import www.dico.cn.partybuild.utils.GlideUtils;
 import www.dico.cn.partybuild.utils.ScreenUtils;
 import www.dico.cn.partybuild.utils.SizeUtils;
+import www.dico.cn.partybuild.utils.StringUtils;
 import www.dico.cn.partybuild.widget.ExpandLongTextView;
 import www.yuntdev.com.baseadapterlibrary.base.CommonAdapter;
 import www.yuntdev.com.baseadapterlibrary.base.ViewHolder;
@@ -45,6 +47,6 @@ public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
                 curActivity()) - SizeUtils.dp2px(AppManager.getManager().
                 curActivity(), 100));
         tv_content_notice_item.setMaxLines(3);
-        tv_content_notice_item.setExpandText(noticeBean.getContent());
+        tv_content_notice_item.setExpandText(Html.fromHtml(StringUtils.trimStyle(noticeBean.getContent())));
     }
 }

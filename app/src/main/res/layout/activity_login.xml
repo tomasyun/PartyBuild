@@ -36,7 +36,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="甘肃省电力设计院"
+                android:text="中国能源建设集团甘肃省"
+                android:textColor="@color/text_color"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="电力设计院有限公司"
                 android:textColor="@color/text_color"
                 android:textSize="16sp" />
 

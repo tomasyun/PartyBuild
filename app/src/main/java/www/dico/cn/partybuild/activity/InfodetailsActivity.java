@@ -50,6 +50,8 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
     TextView tv_info_detail_source;
     @BindView(R.id.tv_info_detail_date)
     TextView tv_info_detail_date;
+    @BindView(R.id.tv_info_detail_browse)
+    TextView tv_info_detail_browse;
     @BindView(R.id.tv_info_detail_content)
     TextView tv_info_detail_content;
     @BindView(R.id.rv_info_detail)
@@ -115,7 +117,6 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                 this.finish();
                 break;
         }
-
     }
 
     @Override
@@ -130,7 +131,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                 tv_info_detail_date.setText(bean.getData().getPublishDate());
 //                tv_info_content.setText(StringUtils.delHtmlTag(bean.getData().getContent()));
                 HtmlImageGetter imageGetter = new HtmlImageGetter(this, tv_info_detail_content);
-                Spanned spanned = Html.fromHtml(bean.getData().getContent(), imageGetter, null);
+                Spanned spanned = Html.fromHtml(StringUtils.trimStyle(bean.getData().getContent()), imageGetter, null);
                 tv_info_detail_content.setText(spanned);
 
                 if (bean.getData().getAttachment() != null && !bean.getData().getAttachment().equals("")) {

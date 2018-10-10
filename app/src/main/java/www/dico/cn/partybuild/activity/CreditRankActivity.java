@@ -81,6 +81,7 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
                     credit_rank_empty_data.setVisibility(View.GONE);
                     credit_rank_net_error.setVisibility(View.GONE);
                     adapter = new CreditRankAdapter(this, R.layout.item_credit_rank, list);
+                    adapter.setId(bean.getData().getId());
                     rv_rank.setAdapter(adapter);
                 } else {
                     //空白页面

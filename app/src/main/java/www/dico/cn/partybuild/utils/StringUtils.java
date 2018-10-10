@@ -1142,17 +1142,20 @@ public class StringUtils {
         return matcher.matches();
     }
 
-    /**
-     * 去除字符中的html标签
-     *
-     * @param str
-     * @return
-     */
-    public static String delHtmlTag(String str) {
-        String newstr = "";
-        newstr = str.replaceAll("<[.[^>]]*>", "");
-        newstr = newstr.replaceAll(" ", "");
-        return newstr;
+    public static String trimStyle(String content) {
+      //正则匹配表达式变量定义
+        String regEx = "<[\\s]*?style[^>]*?>[\\s\\S]*?<[\\s]*?\\/[\\s]*?style[\\s]*?>";
+       //调用正则表达式对象
+        Pattern p = Pattern.compile(regEx);
+       //匹配，方法trimStyle方法传入的内容
+        Matcher m = p.matcher(content.toLowerCase());
+        String result = content;
+       //如果找到CSS样式定义标签
+        if (m.find()) {
+          //把样式标签清除，即所有的样式失效
+            result = m.replaceAll("");
+        }
+        return result;
     }
 
     /**
