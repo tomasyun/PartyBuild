@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.bean.ExamResultForm;
 import www.dico.cn.partybuild.bean.ExamRuleBean;
+import www.dico.cn.partybuild.bean.ExamRulerForm;
 import www.dico.cn.partybuild.modleview.ExamRuleView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -39,26 +40,25 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
     TextView tv_exam_end_date;//考试结束时间
     @BindView(R.id.tv_start_exam)
     TextView tv_start_exam;
-    private ExamResultForm form;
+    private ExamRulerForm form;
+    private ExamResultForm resultForm;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_examrule);
         ButterKnife.bind(this);
+        tv_start_exam.setEnabled(false);
+        tv_start_exam.setClickable(false);
         form = getParam();
-        getMvpPresenter().examRuleRequest(dialog, form.examId);
         if (form.state.equals("1")) {
             tv_start_exam.setText("查看考试结果");
-            tv_start_exam.setEnabled(false);
-            tv_start_exam.setClickable(false);
             tv_start_exam.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
         } else {
             tv_start_exam.setText("开始答题");
-            tv_start_exam.setEnabled(false);
-            tv_start_exam.setClickable(false);
             tv_start_exam.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_red_bg));
         }
+        getMvpPresenter().examRuleRequest(dialog, form.examId);
     }
 
     //返回
@@ -68,10 +68,14 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
 
     //开始答题
     public void startExam(View view) {
-        if (form.state.equals("1"))
-            goTo(ExamResultActivity.class, form);
-        else
-            goTo(OnlineExamActivity.class, form);
+        switch (form.state) {
+            case "0"://开始答题
+                goTo(OnlineExamActivity.class, resultForm);
+                break;
+            case "1"://查看考试结果
+                goTo(ExamResultActivity.class, resultForm);
+                break;
+        }
         this.finish();
     }
 
@@ -90,8 +94,9 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
                 tv_exam_during.setText(bean.getData().getExamHours() + "分钟");
                 tv_exam_start_date.setText(bean.getData().getExamStartTime());
                 tv_exam_end_date.setText(bean.getData().getExamEndTime());
-                form.limitScore = bean.getData().getLimitScore();
-                form.examCost = bean.getData().getExamHours();
+                resultForm = new ExamResultForm();
+                resultForm.examId = bean.getData().getId();
+                resultForm.limitScore = bean.getData().getLimitScore();
             }
         } else {
             showToast("服务器异常");

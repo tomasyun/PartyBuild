@@ -52,25 +52,6 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
         ButterKnife.bind(this);
         form = getParam();
         if (form != null) {
-            String examScore = new DecimalFormat("#").format(Double.valueOf(form.examScore));
-            tv_score_exam_result.setText(examScore + "分");
-            tv_cost_exam_result.setText(form.examCost + "分钟");
-            String limitScore = new DecimalFormat("#").format(Double.valueOf(form.limitScore));
-            tv_limit_score_exam_result.setText(limitScore);
-            if (null != form.isPass && !form.isPass.equals("")) {
-                switch (form.isPass) {
-                    case "0":
-                        rel_exam_result.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_blue_bg));
-                        tv_desc_exam_result.setText("抱歉,考试未通过");
-                        tv_desc_exam_result.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_pass_on));
-                        break;
-                    case "1":
-                        rel_exam_result.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_yellow_bg));
-                        tv_desc_exam_result.setText("恭喜您,考试通过");
-                        tv_desc_exam_result.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_pass_ok));
-                        break;
-                }
-            }
             getMvpPresenter().doExamResultPreviewRequest(dialog, form.examId);
         }
     }
@@ -85,22 +66,48 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
     public void resultSuccess(String result) {
         ExamReviewBean bean = new Gson().fromJson(result, ExamReviewBean.class);
         if (bean.code.equals("0000")) {
-            final List<ExamReviewBean.DataBean.QuestionIdsBean> idsBeans = bean.getData().getQuestionIds();
-            if (null != idsBeans && idsBeans.size() > 0) {
-                adapter = new ExamResultPreviewAdapter(idsBeans);
-                tfl_exam_result_preview.setAdapter(adapter);
-                tfl_exam_result_preview.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
-                    @Override
-                    public boolean onTagClick(View view, int position, FlowLayout parent) {
-                        QuestionOptionPreviewForm form = new QuestionOptionPreviewForm();
-                        form.position = position + 1;
-                        form.questionId = idsBeans.get(position).getId();
-                        goTo(QuestionOptionPreviewActivity.class, form);
-                        return true;
+            if (null != bean.getData()) {
+                String examScore = bean.getData().getExamScore();
+                examScore = (examScore == null) ? "" : bean.getData().getExamScore();
+                examScore = new DecimalFormat("#").format(Double.valueOf(examScore));
+                tv_score_exam_result.setText(examScore + "分");
+                String examCost = bean.getData().getExamCost();
+                examCost = (examCost == null) ? "" : bean.getData().getExamCost();
+                tv_cost_exam_result.setText(examCost + "分钟");
+                String limitScore = new DecimalFormat("#").format(Double.valueOf(form.limitScore));
+                tv_limit_score_exam_result.setText(limitScore+"分");
+                String isPass = bean.getData().getIsPass();
+                if (null != isPass && !isPass.equals("")) {
+                    switch (isPass) {
+                        case "0":
+                            rel_exam_result.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_blue_bg));
+                            tv_desc_exam_result.setText("抱歉,考试未通过");
+                            tv_desc_exam_result.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_pass_on));
+                            break;
+                        case "1":
+                            rel_exam_result.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_yellow_bg));
+                            tv_desc_exam_result.setText("恭喜您,考试通过");
+                            tv_desc_exam_result.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_pass_ok));
+                            break;
                     }
-                });
-            } else {
-                //空白页面
+                }
+                final List<ExamReviewBean.DataBean.QuestionIdsBean> idsBeans = bean.getData().getQuestionIds();
+                if (null != idsBeans && idsBeans.size() > 0) {
+                    adapter = new ExamResultPreviewAdapter(idsBeans);
+                    tfl_exam_result_preview.setAdapter(adapter);
+                    tfl_exam_result_preview.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+                        @Override
+                        public boolean onTagClick(View view, int position, FlowLayout parent) {
+                            QuestionOptionPreviewForm form = new QuestionOptionPreviewForm();
+                            form.position = position + 1;
+                            form.questionId = idsBeans.get(position).getId();
+                            goTo(QuestionOptionPreviewActivity.class, form);
+                            return true;
+                        }
+                    });
+                } else {
+                    //空白页面
+                }
             }
         } else {
             showToast("服务器异常");

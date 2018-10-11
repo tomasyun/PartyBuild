@@ -18,7 +18,7 @@ import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.activity.ExamRuleActivity;
 import www.dico.cn.partybuild.adapter.ExamOkAdapter;
 import www.dico.cn.partybuild.adapter.ExamOnAdapter;
-import www.dico.cn.partybuild.bean.ExamResultForm;
+import www.dico.cn.partybuild.bean.ExamRulerForm;
 import www.dico.cn.partybuild.bean.ExamsBean;
 import www.dico.cn.partybuild.modleview.ExamView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
@@ -88,11 +88,9 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                 onAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        ExamResultForm form = new ExamResultForm();
+                        ExamRulerForm form = new ExamRulerForm();
                         form.examId = bean.getData().get(position).getId();
                         form.state = "0";//0：待考 1：已考
-                        form.isPass = bean.getData().get(position).getIsPass();
-                        form.examScore = bean.getData().get(position).getExamScore();
                         goTo(ExamRuleActivity.class, form);
                     }
                 });
@@ -123,13 +121,9 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                 okAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        ExamResultForm form = new ExamResultForm();
+                        ExamRulerForm form = new ExamRulerForm();
                         form.examId = bean.getData().get(position).getId();
                         form.state = "1";//0：待考 1：已考
-                        String isPass = bean.getData().get(position).getIsPass();
-                        isPass = (isPass == null) ? "" : bean.getData().get(position).getIsPass();
-                        form.isPass = isPass;
-                        form.examScore = bean.getData().get(position).getExamScore();
                         goTo(ExamRuleActivity.class, form);
                     }
                 });

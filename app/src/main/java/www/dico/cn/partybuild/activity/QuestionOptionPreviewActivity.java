@@ -77,8 +77,6 @@ public class QuestionOptionPreviewActivity extends AbstractMvpActivity<QuestionO
                         params.setMargins(0, 0, 0, SizeUtils.dp2px(this, 15));
                         final ImageView image = new ImageView(this);
                         image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-
                         switch (beans.get(i).getIsTrue()) {
                             case "0":
                                 if (bean.getData().getAnswer().equals(beans.get(i).getName())) {
@@ -94,7 +92,6 @@ public class QuestionOptionPreviewActivity extends AbstractMvpActivity<QuestionO
                                 image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
                                 break;
                         }
-
                         TextView optionText = new TextView(this);
                         optionText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                         optionText.setText(beans.get(i).getName() + ".  " + beans.get(i).getContent());
@@ -103,12 +100,9 @@ public class QuestionOptionPreviewActivity extends AbstractMvpActivity<QuestionO
                         optionText.setSingleLine(true);
                         optionText.setPadding(SizeUtils.dp2px(this, 10), 0, 0, 0);
                         optionText.setEllipsize(TextUtils.TruncateAt.END);
-
                         layout.addView(image);
                         layout.addView(optionText);
-
                         rg_ls_option_preview.addView(layout);
-
                     }
                 }
             }
