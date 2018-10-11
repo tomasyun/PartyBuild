@@ -54,23 +54,19 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
                 switch (checkedId) {
                     case R.id.rbt_credit_info_all:
                         position = 0;
-                        tv_desc_credit_info.setText("全部积分");
-                        getMvpPresenter().creditInfoRequest(dialog, "0");
+                        createRequest(position);
                         break;
                     case R.id.rbt_credit_info_month:
                         position = 1;
-                        tv_desc_credit_info.setText("本月积分");
-                        getMvpPresenter().creditInfoRequest(dialog, "1");
+                        createRequest(position);
                         break;
                     case R.id.rbt_credit_info_week:
                         position = 2;
-                        tv_desc_credit_info.setText("本周积分");
-                        getMvpPresenter().creditInfoRequest(dialog, "2");
+                        createRequest(position);
                         break;
                     case R.id.rbt_credit_info_day:
                         position = 3;
-                        tv_desc_credit_info.setText("本日积分");
-                        getMvpPresenter().creditInfoRequest(dialog, "3");
+                        createRequest(position);
                         break;
                 }
             }
@@ -82,7 +78,7 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
     @Override
     protected void onResume() {
         super.onResume();
-        getMvpPresenter().creditInfoRequest(dialog, "0");
+        createRequest(position);
     }
 
     public void goBackCreditInfo(View view) {
@@ -136,25 +132,29 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
         credit_info_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (position) {
-                    case 0:
-                        tv_desc_credit_info.setText("全部积分");
-                        getMvpPresenter().creditInfoRequest(dialog, "0");
-                        break;
-                    case 1:
-                        tv_desc_credit_info.setText("本月积分");
-                        getMvpPresenter().creditInfoRequest(dialog, "1");
-                        break;
-                    case 2:
-                        tv_desc_credit_info.setText("本周积分");
-                        getMvpPresenter().creditInfoRequest(dialog, "2");
-                        break;
-                    case 3:
-                        tv_desc_credit_info.setText("本日积分");
-                        getMvpPresenter().creditInfoRequest(dialog, "3");
-                        break;
-                }
+                createRequest(position);
             }
         });
+    }
+
+    public void createRequest(int position) {
+        switch (position) {
+            case 0:
+                tv_desc_credit_info.setText("全部积分");
+                getMvpPresenter().creditInfoRequest(dialog, position);
+                break;
+            case 1:
+                tv_desc_credit_info.setText("本月积分");
+                getMvpPresenter().creditInfoRequest(dialog, position);
+                break;
+            case 2:
+                tv_desc_credit_info.setText("本周积分");
+                getMvpPresenter().creditInfoRequest(dialog, position);
+                break;
+            case 3:
+                tv_desc_credit_info.setText("本日积分");
+                getMvpPresenter().creditInfoRequest(dialog, position);
+                break;
+        }
     }
 }
