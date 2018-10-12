@@ -38,7 +38,7 @@
             android:gravity="center"
             android:paddingBottom="15dp"
             android:paddingTop="15dp"
-            android:text="党建要闻"
+            android:text="时政要闻"
             android:textColor="@color/rbt_txt_color_bg01"
             android:textSize="14sp" />
 
@@ -67,7 +67,7 @@
             android:gravity="center"
             android:paddingBottom="15dp"
             android:paddingTop="15dp"
-            android:text="国史党史"
+            android:text="反腐倡廉"
             android:textColor="@color/rbt_txt_color_bg01"
             android:textSize="14sp" />
         <!--时代先锋-->
