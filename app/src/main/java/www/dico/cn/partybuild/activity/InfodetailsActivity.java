@@ -165,7 +165,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                                     LoadingDialog.Builder builder = new LoadingDialog.Builder(InfodetailsActivity.this)
                                             .setCancelable(true)
                                             .setCancelOutside(true)
-                                            .setMessage("获取中..")
+                                            .setMessage("加载中..")
                                             .setShowMessage(true);
                                     final Dialog dialog = builder.create();
                                     EasyHttp.downLoad(url)
@@ -203,7 +203,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                                                         }
                                                     }
                                                     String suffix = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
-                                                    if (suffix.toLowerCase().equals("png") || suffix.toLowerCase().equals("jpg"))
+                                                    if (suffix.toLowerCase().equals("png") || suffix.toLowerCase().equals("jpg")||suffix.toLowerCase().equals("jpeg")||suffix.toLowerCase().equals("bmp"))
                                                         DisplayImgFileActivity.openDisplayImgFileActivity(InfodetailsActivity.this, path);
                                                     else
                                                         DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, path, fileName);
