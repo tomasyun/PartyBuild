@@ -45,7 +45,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     @BindView(R.id.info_net_error)
     View info_net_error;
     private InfoAdapter adapter;
-    private int position = 0;
+    private int position = 1;
     private int start = 0;
     private List<InfoBean.DataBeanX.DataBean> list;
     private MainActivity activity;
@@ -63,7 +63,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
         View view = inflater.inflate(R.layout.fragment_info, null);
         ButterKnife.bind(this, view);
         rv_info.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rg_info.check(R.id.rbt_news_info);
+        rg_info.check(R.id.rbt_talk_info);
         rg_info.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {

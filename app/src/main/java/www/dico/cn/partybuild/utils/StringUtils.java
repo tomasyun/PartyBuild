@@ -1143,16 +1143,16 @@ public class StringUtils {
     }
 
     public static String trimStyle(String content) {
-      //正则匹配表达式变量定义
+        //正则匹配表达式变量定义
         String regEx = "<[\\s]*?style[^>]*?>[\\s\\S]*?<[\\s]*?\\/[\\s]*?style[\\s]*?>";
-       //调用正则表达式对象
+        //调用正则表达式对象
         Pattern p = Pattern.compile(regEx);
-       //匹配，方法trimStyle方法传入的内容
+        //匹配，方法trimStyle方法传入的内容
         Matcher m = p.matcher(content.toLowerCase());
         String result = content;
-       //如果找到CSS样式定义标签
+        //如果找到CSS样式定义标签
         if (m.find()) {
-          //把样式标签清除，即所有的样式失效
+            //把样式标签清除，即所有的样式失效
             result = m.replaceAll("");
         }
         return result;

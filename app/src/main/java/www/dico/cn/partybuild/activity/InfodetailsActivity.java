@@ -202,7 +202,11 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                                                             dialog.dismiss();
                                                         }
                                                     }
-                                                    DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, path, fileName);
+                                                    String suffix = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
+                                                    if (suffix.toLowerCase().equals("png") || suffix.toLowerCase().equals("jpg"))
+                                                        DisplayImgFileActivity.openDisplayImgFileActivity(InfodetailsActivity.this, path);
+                                                    else
+                                                        DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, path, fileName);
                                                 }
 
                                                 @Override

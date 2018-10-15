@@ -27,21 +27,6 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal">
-        <!--党建要闻-->
-        <RadioButton
-            android:id="@+id/rbt_news_info"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/rbt_selector02_white_bg"
-            android:button="@null"
-            android:gravity="center"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp"
-            android:text="时政要闻"
-            android:textColor="@color/rbt_txt_color_bg01"
-            android:textSize="14sp" />
-
         <!--习总讲话-->
         <RadioButton
             android:id="@+id/rbt_talk_info"
@@ -56,6 +41,21 @@
             android:text="习总讲话"
             android:textColor="@color/rbt_txt_color_bg01"
             android:textSize="14sp" />
+        <!--时政要闻-->
+        <RadioButton
+            android:id="@+id/rbt_news_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rbt_selector02_white_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="时政要闻"
+            android:textColor="@color/rbt_txt_color_bg01"
+            android:textSize="14sp" />
+
         <!--国史党史-->
         <RadioButton
             android:id="@+id/rbt_history_info"

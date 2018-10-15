@@ -227,6 +227,9 @@
         <activity
             android:name=".activity.DisplayFileActivity"
             android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.DisplayImgFileActivity"
+            android:launchMode="singleTask" />
         <!--通知详情-->
         <!--使用高德api所申请的key-->
         <meta-data
