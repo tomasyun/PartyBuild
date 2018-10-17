@@ -3,6 +3,7 @@ package www.dico.cn.partybuild.fragment;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -117,7 +118,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
             if (bean.getData() != null) {
                 if (bean.getData().getAnnouncement() != null) {
                     String content = bean.getData().getAnnouncement().getContent();
-                    tv_notice_home.setText(content);
+                    tv_notice_home.setText(Html.fromHtml(content));
                     tv_notice_home.init(getActivity().getWindowManager());
                     tv_notice_home.startScroll();
                     tv_notice_home.setEnabled(false);
