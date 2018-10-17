@@ -1,16 +1,22 @@
 package www.dico.cn.partybuild.activity;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.tencent.smtt.sdk.QbSdk;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +29,11 @@ import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.MeetingSummaryPresenter;
 import www.dico.cn.partybuild.widget.HtmlImageGetter;
+import www.dico.cn.partybuild.widget.LoadingDialog;
+import www.yuntdev.com.library.EasyHttp;
+import www.yuntdev.com.library.callback.DownloadProgressCallBack;
+import www.yuntdev.com.library.exception.ApiException;
+import www.yuntdev.com.library.utils.HttpLog;
 
 @CreatePresenter(MeetingSummaryPresenter.class)
 public class MeetingSummaryActivity extends AbstractMvpActivity<MeetingSummaryView, MeetingSummaryPresenter> implements MeetingSummaryView {
@@ -100,22 +111,90 @@ public class MeetingSummaryActivity extends AbstractMvpActivity<MeetingSummaryVi
                 if (bean.getData().getAttachment() != null && !bean.getData().getAttachment().equals("")) {
                     //TODO 附件处理
                     rel_attachment_meet_summary.setVisibility(View.VISIBLE);
+                    final String url = AppConfig.urlFormat(bean.getData().getAttachment());
+                    final String fileName = bean.getData().getAttachmentName();
+                    final String downPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
+                    Log.i("################", downPath);
                     TextView tv_attachment_meet_info = rel_attachment_meet_summary.findViewById(R.id.tv_attachment_meet_info);
-                    tv_attachment_meet_info.setText(bean.getData().getAttachment());
-                    rel_attachment_meet_summary.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {//文件预览
-                            String filePath = AppConfig.urlFormat(bean.getData().getAttachment());
-                            String fileName = filePath.trim().substring(filePath.lastIndexOf("/") + 1);
-                            DisplayFileActivity.openDispalyFileActivity(MeetingSummaryActivity.this, filePath, fileName);
-                        }
-                    });
+                    if (null != fileName) {
+                        tv_attachment_meet_info.setText(fileName);
+                        rel_attachment_meet_summary.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {//文件预览
+                                File docFile = new File(downPath + File.separator + fileName, fileName);
+                                if (docFile.exists()) {
+                                    DisplayFileActivity.openDispalyFileActivity(MeetingSummaryActivity.this, downPath, fileName);
+                                } else {
+                                    LoadingDialog.Builder builder = new LoadingDialog.Builder(MeetingSummaryActivity.this)
+                                            .setCancelable(true)
+                                            .setCancelOutside(true)
+                                            .setMessage("加载中..")
+                                            .setShowMessage(true);
+                                    final Dialog dialog = builder.create();
+                                    EasyHttp.downLoad(url)
+                                            .savePath(downPath)
+                                            .saveName(fileName)
+                                            .execute(new DownloadProgressCallBack<String>() {
+                                                @Override
+                                                public void update(long bytesRead, long contentLength, boolean done) {
+                                                    int progress = (int) (bytesRead * 100 / contentLength);
+                                                    HttpLog.e(progress + "% ");
+                                                }
+
+                                                @Override
+                                                public void onStart() {
+                                                    if (dialog.isShowing()) {
+
+                                                    }
+                                                    if (dialog != null) {
+                                                        if (!dialog.isShowing()) {
+                                                            dialog.show();
+                                                        }
+                                                    }
+                                                    HttpLog.i("======" + Thread.currentThread().getName());
+                                                }
+
+                                                @Override
+                                                public void onComplete(String path) {
+                                                    HttpLog.e("文件保存路径：" + path);
+                                                    if (!dialog.isShowing()) {
+
+                                                    }
+                                                    if (dialog != null) {
+                                                        if (dialog.isShowing()) {
+                                                            dialog.dismiss();
+                                                        }
+                                                    }
+                                                    String suffix = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
+                                                    if (suffix.toLowerCase().equals("png") || suffix.toLowerCase().equals("jpg") || suffix.toLowerCase().equals("jpeg") || suffix.toLowerCase().equals("bmp"))
+                                                        DisplayImgFileActivity.openDisplayImgFileActivity(MeetingSummaryActivity.this, path);
+                                                    else
+                                                        DisplayFileActivity.openDispalyFileActivity(MeetingSummaryActivity.this, path, fileName);
+                                                }
+
+                                                @Override
+                                                public void onError(ApiException e) {
+                                                    if (!dialog.isShowing()) {
+
+                                                    }
+                                                    if (dialog != null) {
+                                                        if (dialog.isShowing()) {
+                                                            dialog.dismiss();
+                                                        }
+                                                    }
+                                                    Toast.makeText(MeetingSummaryActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+                                }
+                            }
+                        });
+                    }
                 } else {
                     rel_attachment_meet_summary.setVisibility(View.GONE);
                 }
+            } else {
+                showToast(bean.msg);
             }
-        } else {
-            showToast(bean.msg);
         }
     }
 

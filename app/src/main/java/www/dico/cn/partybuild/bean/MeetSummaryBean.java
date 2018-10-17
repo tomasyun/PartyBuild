@@ -21,6 +21,7 @@ public class MeetSummaryBean extends BaseProtocol {
         private String endDate;
         private String summary;
         private String attachment;
+        private String attachmentName;
 
         public String getId() {
             return id;
@@ -76,6 +77,14 @@ public class MeetSummaryBean extends BaseProtocol {
 
         public void setAttachment(String attachment) {
             this.attachment = attachment;
+        }
+
+        public String getAttachmentName() {
+            return attachmentName;
+        }
+
+        public void setAttachmentName(String attachmentName) {
+            this.attachmentName = attachmentName;
         }
     }
 }

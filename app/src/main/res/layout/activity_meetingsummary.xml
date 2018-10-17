@@ -142,7 +142,7 @@
                             android:layout_toRightOf="@+id/iv_attachment_meet_summary"
                             android:ellipsize="end"
                             android:maxLength="2"
-                            android:text="#####.pdf"
+                            android:text=""
                             android:textColor="@color/text_color"
                             android:textSize="14sp" />
 
