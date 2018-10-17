@@ -6,6 +6,7 @@ import android.view.View;
 
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.UpdateManager;
 import www.yuntdev.com.imitationiosdialoglibrary.AlertDialog;
@@ -31,7 +32,9 @@ public class SettingActivity extends BaseActivity {
                     @Override
                     public void onClick(View view) {
                         AppConfig.getSpUtils().clear();
-                        AppManager.getManager().finishAllActivity();
+                        MainActivity mainActivity = (MainActivity) AppManager.getManager().findActivity(MainActivity.class);
+                        if (mainActivity != null)
+                            AppManager.getManager().finishActivity(mainActivity);
                         goTo(SplashActivity.class, null);
                         finish();
                     }

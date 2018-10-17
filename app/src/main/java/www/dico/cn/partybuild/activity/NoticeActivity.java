@@ -27,7 +27,7 @@ import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshLoad
 
 //通知
 @CreatePresenter(NoticePresenter.class)
-public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresenter> implements NoticeView {
+public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresenter> implements NoticeView,NoticeAdapter.SkipNoticeInfoInterface {
     @BindView(R.id.rv_notice)
     RecyclerView rv_notice;
     @BindView(R.id.notice_empty_data)
@@ -46,6 +46,7 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
         setContentView(R.layout.activity_notice);
         ButterKnife.bind(this);
         rv_notice.setLayoutManager(new LinearLayoutManager(this));
+        getMvpPresenter().noticeRequest(dialog, "", "1", "0", start, 10);
         srl_notice.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
@@ -59,12 +60,6 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
                 getMvpPresenter().noticeRequest(dialog, "", "1", "0", start, 10);
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getMvpPresenter().noticeRequest(dialog, "", "1", "0", start, 10);
     }
 
     public void goBackNotice(View view) {
@@ -85,15 +80,16 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
                     notice_net_error.setVisibility(View.GONE);
                     adapter = new NoticeAdapter(this, R.layout.item_notice, noticeList);
                     rv_notice.setAdapter(adapter);
-                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                            NoticeForm form = new NoticeForm();
-                            form.id = noticeList.get(position).getId();
-                            form.isReply = noticeList.get(position).getIsReply();
-                            goTo(NoticeInfoActivity.class, form);
-                        }
-                    });
+                    adapter.setInfoInterface(NoticeActivity.this);
+//                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+//                            NoticeForm form = new NoticeForm();
+//                            form.id = noticeList.get(position).getId();
+//                            form.isReply = noticeList.get(position).getIsReply();
+//                            goTo(NoticeInfoActivity.class, form);
+//                        }
+//                    });
                 } else {
                     //空白页面
                     srl_notice.setVisibility(View.GONE);
@@ -105,15 +101,16 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
                 if (list != null && list.size() > 0) {
                     this.noticeList.addAll(list);
                     adapter.notifyDataSetChanged();
-                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                            NoticeForm form = new NoticeForm();
-                            form.id = NoticeActivity.this.noticeList.get(position).getId();
-                            form.isReply = NoticeActivity.this.noticeList.get(position).getIsReply();
-                            goTo(NoticeInfoActivity.class, form);
-                        }
-                    });
+                    adapter.setInfoInterface(NoticeActivity.this);
+//                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+//                            NoticeForm form = new NoticeForm();
+//                            form.id = NoticeActivity.this.noticeList.get(position).getId();
+//                            form.isReply = NoticeActivity.this.noticeList.get(position).getIsReply();
+//                            goTo(NoticeInfoActivity.class, form);
+//                        }
+//                    });
                 } else {
 
                 }
@@ -141,5 +138,20 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
                 getMvpPresenter().noticeRequest(dialog, "", "1", "0", start, 10);
             }
         });
+    }
+
+    @Override
+    public void skip(int position) {
+        if(start==0){
+            NoticeForm form = new NoticeForm();
+            form.id = noticeList.get(position).getId();
+            form.isReply = noticeList.get(position).getIsReply();
+            goTo(NoticeInfoActivity.class, form);
+        }else {
+            NoticeForm form = new NoticeForm();
+            form.id = NoticeActivity.this.noticeList.get(position).getId();
+            form.isReply = NoticeActivity.this.noticeList.get(position).getIsReply();
+            goTo(NoticeInfoActivity.class, form);
+        }
     }
 }

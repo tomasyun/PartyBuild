@@ -15,6 +15,7 @@ import com.leo618.mpermission.MPermission;
 import java.util.List;
 
 import www.dico.cn.partybuild.AppConfig;
+import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
 

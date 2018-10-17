@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.text.Html;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.util.List;
@@ -22,13 +23,19 @@ import www.yuntdev.com.baseadapterlibrary.base.CommonAdapter;
 import www.yuntdev.com.baseadapterlibrary.base.ViewHolder;
 
 public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
+    public SkipNoticeInfoInterface infoInterface;
+
+    public void setInfoInterface(SkipNoticeInfoInterface infoInterface) {
+        this.infoInterface = infoInterface;
+    }
+
     public NoticeAdapter(Context context, int layoutId, List<NoticeBean.DataBean> datas) {
         super(context, layoutId, datas);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    protected void convert(ViewHolder holder, NoticeBean.DataBean noticeBean, int position) {
+    protected void convert(ViewHolder holder, NoticeBean.DataBean noticeBean, final int position) {
         GlideUtils.loadCircleImage(AppManager.getManager().curActivity(), AppConfig.urlFormat(noticeBean.getAvatar()), (ImageView) holder.getView(R.id.iv_avatar_notice_item));
         holder.setText(R.id.tv_name_notice_item, noticeBean.getName());
         String publishDate = noticeBean.getPublishDate();
@@ -48,5 +55,15 @@ public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
                 curActivity(), 100));
         tv_content_notice_item.setMaxLines(3);
         tv_content_notice_item.setExpandText(Html.fromHtml(StringUtils.trimStyle(noticeBean.getContent())));
+        tv_content_notice_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                infoInterface.skip(position);
+            }
+        });
+    }
+
+    public interface SkipNoticeInfoInterface {
+        void skip(int position);
     }
 }
