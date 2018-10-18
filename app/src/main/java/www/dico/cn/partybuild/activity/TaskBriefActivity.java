@@ -82,7 +82,7 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
                     showToast("该任务已完成");
                     break;
                 case "2":
-                    showToast("任务已过期");
+                    showToast("该任务已过期");
                     break;
             }
         }

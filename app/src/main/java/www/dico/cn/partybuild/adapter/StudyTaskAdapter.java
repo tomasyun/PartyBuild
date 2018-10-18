@@ -35,7 +35,7 @@ public class StudyTaskAdapter extends CommonAdapter<StudyTaskBean.DataBean> {
 
         holder.setText(R.id.tv_title_study_task_item, bean.getTitle());
         holder.setText(R.id.tv_date_study_task_item, bean.getLimitDate());
-        NumberFormat format = new DecimalFormat("#");
+        NumberFormat format = new DecimalFormat("0.00");
         String curHours = bean.getCurHours();
         curHours = (curHours == null) ? "" : format.format(Double.valueOf(bean.getCurHours()));
         holder.setText(R.id.tv_learned_study_task_item, curHours + "");

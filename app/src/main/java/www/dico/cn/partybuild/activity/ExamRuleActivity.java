@@ -88,8 +88,12 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
                 tv_start_exam.setClickable(true);
                 tv_exam_name.setText(bean.getData().getTitle());
                 NumberFormat nf = new DecimalFormat("#");
-                tv_total_score.setText(nf.format(Double.valueOf(bean.getData().getTotalScore())) + "分");
-                tv_standard_score.setText(nf.format(Double.valueOf(bean.getData().getLimitScore())) + "分");
+                String totalScore = bean.getData().getTotalScore();
+                totalScore = (totalScore == null || totalScore.equals("")) ? "100" : bean.getData().getTotalScore();
+                tv_total_score.setText(nf.format(Double.valueOf(totalScore)) + "分");
+                String limitScore = bean.getData().getLimitScore();
+                limitScore = (limitScore == null || limitScore.equals("")) ? "60" : bean.getData().getLimitScore();
+                tv_standard_score.setText(nf.format(Double.valueOf(limitScore)) + "分");
                 tv_question_total_num.setText(bean.getData().getQuestionNum() + "道题");
                 tv_exam_during.setText(bean.getData().getExamHours() + "分钟");
                 tv_exam_start_date.setText(bean.getData().getExamStartTime());
