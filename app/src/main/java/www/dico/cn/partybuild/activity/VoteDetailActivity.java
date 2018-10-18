@@ -58,16 +58,8 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
 //        addOptionsChildView();
         options = new ArrayList<>();
         form = getParam();
-        if (form != null) {
-            if (form.isVoter.equals("1")) {
-                tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                tv_submit_vote_detail.setTextColor(Color.parseColor("#febfb5"));
-                tv_submit_vote_detail.setText("已投票");
-                tv_submit_vote_detail.setEnabled(false);
-                tv_submit_vote_detail.setClickable(false);
-            }
+        if (form != null)
             getMvpPresenter().doVoteDetailRequest(dialog, form.voteId);
-        }
     }
 
     public void goBackVoteDetail(View view) {
@@ -157,18 +149,26 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                         break;
                 }
                 tv_des_vote_detail.setText(bean.getData().getDescription());
-                String limitDate = bean.getData().getLimitDate();
-                if (limitDate != null && !limitDate.equals("")) {
-                    if (DateTimeUtils.isExpired(limitDate)) {
-                        tv_submit_vote_detail.setText("已过期");
-                        tv_submit_vote_detail.setEnabled(false);
-                        tv_submit_vote_detail.setClickable(false);
-                        tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                    } else {
-                        tv_submit_vote_detail.setText("提交");
-                        tv_submit_vote_detail.setEnabled(true);
-                        tv_submit_vote_detail.setClickable(true);
-                        tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_red_bg));
+                if (form.isVoter.equals("1")) {
+                    tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                    tv_submit_vote_detail.setTextColor(Color.parseColor("#febfb5"));
+                    tv_submit_vote_detail.setText("已投票");
+                    tv_submit_vote_detail.setEnabled(false);
+                    tv_submit_vote_detail.setClickable(false);
+                } else {
+                    String limitDate = bean.getData().getLimitDate();
+                    if (limitDate != null && !limitDate.equals("")) {
+                        if (DateTimeUtils.isExpired(limitDate)) {
+                            tv_submit_vote_detail.setText("已过期");
+                            tv_submit_vote_detail.setEnabled(false);
+                            tv_submit_vote_detail.setClickable(false);
+                            tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                        } else {
+                            tv_submit_vote_detail.setText("提交");
+                            tv_submit_vote_detail.setEnabled(true);
+                            tv_submit_vote_detail.setClickable(true);
+                            tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_red_bg));
+                        }
                     }
                 }
                 final List<VoteDetailBean.DataBean.OptionsBean> beans = bean.getData().getOptions();

@@ -51,9 +51,8 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
         setContentView(R.layout.activity_examresult);
         ButterKnife.bind(this);
         form = getParam();
-        if (form != null) {
+        if (form != null)
             getMvpPresenter().doExamResultPreviewRequest(dialog, form.examId);
-        }
     }
 
     public void goBackExamResult(View view) {
