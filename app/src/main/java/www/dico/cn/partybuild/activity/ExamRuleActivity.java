@@ -103,7 +103,7 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
                 resultForm.limitScore = limitScore;
             }
         } else {
-            showToast("服务器异常");
+            showToast(bean.msg);
         }
     }
 
