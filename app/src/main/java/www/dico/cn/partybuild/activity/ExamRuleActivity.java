@@ -40,6 +40,7 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
     TextView tv_exam_end_date;//考试结束时间
     @BindView(R.id.tv_start_exam)
     TextView tv_start_exam;
+    private String isExam;//是否已考
     private ExamRulerForm form;
     private ExamResultForm resultForm;
 
@@ -51,13 +52,6 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
         tv_start_exam.setEnabled(false);
         tv_start_exam.setClickable(false);
         form = getParam();
-        if (form.state.equals("1")) {
-            tv_start_exam.setText("查看考试结果");
-            tv_start_exam.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-        } else {
-            tv_start_exam.setText("开始答题");
-            tv_start_exam.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_red_bg));
-        }
         getMvpPresenter().examRuleRequest(dialog, form.examId);
     }
 
@@ -66,9 +60,8 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
         this.finish();
     }
 
-    //开始答题
     public void startExam(View view) {
-        switch (form.state) {
+        switch (isExam) {
             case "0"://开始答题
                 goTo(OnlineExamActivity.class, resultForm);
                 break;
@@ -84,8 +77,6 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
         ExamRuleBean bean = new Gson().fromJson(result, ExamRuleBean.class);
         if (bean.code.equals("0000")) {
             if (null != bean.getData()) {
-                tv_start_exam.setEnabled(true);
-                tv_start_exam.setClickable(true);
                 tv_exam_name.setText(bean.getData().getTitle());
                 NumberFormat nf = new DecimalFormat("#");
                 String totalScore = bean.getData().getTotalScore();
@@ -98,6 +89,21 @@ public class ExamRuleActivity extends AbstractMvpActivity<ExamRuleView, ExamRule
                 tv_exam_during.setText(bean.getData().getExamHours() + "分钟");
                 tv_exam_start_date.setText(bean.getData().getExamStartTime());
                 tv_exam_end_date.setText(bean.getData().getExamEndTime());
+                isExam = bean.getData().getIsExam();
+                if (isExam != null && !isExam.equals("")) {
+                    tv_start_exam.setEnabled(true);
+                    tv_start_exam.setClickable(true);
+                    switch (isExam) {
+                        case "0"://未考
+                            tv_start_exam.setText("开始答题");
+                            tv_start_exam.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_red_bg));
+                            break;
+                        case "1"://已考
+                            tv_start_exam.setText("查看考试结果");
+                            tv_start_exam.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+                            break;
+                    }
+                }
                 resultForm = new ExamResultForm();
                 resultForm.examId = bean.getData().getId();
                 resultForm.limitScore = limitScore;

@@ -22,6 +22,7 @@ public class ExamRuleBean extends BaseProtocol {
         private String questionNum;
         private String examStartTime;
         private String examEndTime;
+        private String isExam;
 
         public String getId() {
             return id;
@@ -85,6 +86,14 @@ public class ExamRuleBean extends BaseProtocol {
 
         public void setExamEndTime(String examEndTime) {
             this.examEndTime = examEndTime;
+        }
+
+        public String getIsExam() {
+            return isExam;
+        }
+
+        public void setIsExam(String isExam) {
+            this.isExam = isExam;
         }
     }
 }

@@ -90,7 +90,6 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                         ExamRulerForm form = new ExamRulerForm();
                         form.examId = bean.getData().get(position).getId();
-                        form.state = "0";//0：待考 1：已考
                         goTo(ExamRuleActivity.class, form);
                     }
                 });
@@ -123,7 +122,6 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                         ExamRulerForm form = new ExamRulerForm();
                         form.examId = bean.getData().get(position).getId();
-                        form.state = "1";//0：待考 1：已考
                         goTo(ExamRuleActivity.class, form);
                     }
                 });
