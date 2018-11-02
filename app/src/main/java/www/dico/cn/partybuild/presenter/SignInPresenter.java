@@ -24,20 +24,8 @@ import www.yuntdev.com.library.exception.ApiException;
 import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 public class SignInPresenter extends BaseMvpPresenter<SignInView> {
-    IProgressDialog dialog = new IProgressDialog() {
-        @Override
-        public Dialog getDialog() {
-            LoadingDialog.Builder builder = new LoadingDialog.Builder(AppManager.getManager().findActivity(MainActivity.class))
-                    .setCancelable(true)
-                    .setCancelOutside(true)
-                    .setMessage("获取中..")
-                    .setShowMessage(true);
-            return builder.create();
-        }
-    };
-
     //获取需要签到的会议、活动
-    public void doGetSignInConferenceRequest() {
+    public void doGetSignInConferenceRequest(IProgressDialog dialog) {
         EasyHttp.post("getSignIn")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .execute(new ProgressDialogCallBack<String>(dialog, true, true) {
@@ -58,7 +46,7 @@ public class SignInPresenter extends BaseMvpPresenter<SignInView> {
     }
 
     //签到
-    public void doSaveSignIn(String id, String is) {
+    public void doSaveSignIn(IProgressDialog dialog,String id, String is) {
         EasyHttp.post("signIn")
                 .headers("Authorization", AppConfig.getSpUtils().getString("token"))
                 .params("id", id)

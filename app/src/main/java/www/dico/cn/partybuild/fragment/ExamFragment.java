@@ -166,10 +166,10 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
     public void createRequest(int position) {
         switch (position) {
             case 0:
-                getMvpPresenter().examsOnRequest("0");
+                getMvpPresenter().examsOnRequest(dialog, "0");
                 break;
             case 1:
-                getMvpPresenter().examsOkRequest("1");
+                getMvpPresenter().examsOkRequest(dialog, "1");
                 break;
         }
     }

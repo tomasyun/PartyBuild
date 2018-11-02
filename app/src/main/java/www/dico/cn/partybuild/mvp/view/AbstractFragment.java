@@ -1,6 +1,7 @@
 package www.dico.cn.partybuild.mvp.view;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,12 +10,15 @@ import android.support.v4.app.Fragment;
 import java.io.Serializable;
 
 import www.dico.cn.partybuild.AppManager;
+import www.dico.cn.partybuild.activity.BaseActivity;
 import www.dico.cn.partybuild.bean.Form;
 import www.dico.cn.partybuild.mvp.factory.PresenterMvpFactoryImpl;
 import www.dico.cn.partybuild.mvp.presenter.BaseMvpPresenter;
 import www.dico.cn.partybuild.mvp.proxy.BaseMvpProxy;
 import www.dico.cn.partybuild.mvp.proxy.PresenterProxyInterface;
 import www.dico.cn.partybuild.widget.CustomToast;
+import www.dico.cn.partybuild.widget.LoadingDialog;
+import www.yuntdev.com.library.subsciber.IProgressDialog;
 
 /**
  * @Class: AbstractFragment
@@ -23,7 +27,17 @@ import www.dico.cn.partybuild.widget.CustomToast;
  * @Date: 2018\1\29 0029 11:32
  */
 public class AbstractFragment<V extends BaseMvpView, P extends BaseMvpPresenter<V>> extends Fragment implements PresenterProxyInterface<V, P> {
-
+    public IProgressDialog dialog = new IProgressDialog() {
+        @Override
+        public Dialog getDialog() {
+            LoadingDialog.Builder builder = new LoadingDialog.Builder(getActivity())
+                    .setCancelable(true)
+                    .setCancelOutside(true)
+                    .setMessage("获取中..")
+                    .setShowMessage(true);
+            return builder.create();
+        }
+    };
     /**
      * 调用onSaveInstanceState时存入Bundle的key
      */

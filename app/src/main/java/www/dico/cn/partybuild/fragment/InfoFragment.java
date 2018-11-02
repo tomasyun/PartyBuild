@@ -195,16 +195,16 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
     public void createRequest(int position, int start) {
         switch (position) {
             case 0:
-                getMvpPresenter().doGetInfoRequest("0", "0", start, 10);
+                getMvpPresenter().doGetInfoRequest(dialog, "0", "0", start, 10);
                 break;
             case 1:
-                getMvpPresenter().doGetInfoRequest("1", "0", start, 10);
+                getMvpPresenter().doGetInfoRequest(dialog, "1", "0", start, 10);
                 break;
             case 2:
-                getMvpPresenter().doGetInfoRequest("2", "0", start, 10);
+                getMvpPresenter().doGetInfoRequest(dialog, "2", "0", start, 10);
                 break;
             case 3:
-                getMvpPresenter().doGetInfoRequest("3", "0", start, 10);
+                getMvpPresenter().doGetInfoRequest(dialog, "3", "0", start, 10);
                 break;
         }
     }

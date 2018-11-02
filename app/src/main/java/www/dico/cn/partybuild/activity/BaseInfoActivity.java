@@ -30,6 +30,14 @@ public class BaseInfoActivity extends AbstractMvpActivity<BaseInfoView, BaseInfo
     TextView tv_user_real_name;//姓名
     @BindView(R.id.tv_user_number)
     TextView tv_user_number;//党员编号
+    @BindView(R.id.tv_user_belong_branch)
+    TextView tv_user_belong_branch;//所属党支部
+    @BindView(R.id.tv_user_enter_date)
+    TextView tv_user_enter_date;//进入党支部时间
+    @BindView(R.id.tv_user_enter_type)
+    TextView tv_user_enter_type;//所属类型
+    @BindView(R.id.tv_user_company)
+    TextView tv_user_company;//单位
     @BindView(R.id.tv_user_birth)
     TextView tv_user_birth;//出生日期
     @BindView(R.id.tv_user_phone)
@@ -64,6 +72,10 @@ public class BaseInfoActivity extends AbstractMvpActivity<BaseInfoView, BaseInfo
                 tv_user_name.setText(bean.getData().getUsername());
                 tv_user_real_name.setText(bean.getData().getName());
                 tv_user_number.setText(bean.getData().getPartyNo());
+                tv_user_belong_branch.setText(bean.getData().getBelongBranch());
+                tv_user_enter_date.setText(bean.getData().getEnterDate());
+                tv_user_enter_type.setText(bean.getData().getEnterType());
+                tv_user_company.setText(bean.getData().getCompany());
                 tv_user_birth.setText(bean.getData().getBirthday());
                 tv_user_phone.setText(bean.getData().getPhone());
                 tv_user_nation.setText(bean.getData().getEthnic());

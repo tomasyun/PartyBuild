@@ -12,6 +12,7 @@ public class BaseInfoBean extends BaseProtocol {
     }
 
     public static class DataBean {
+
         private String id;
         private String name;
         private String username;
@@ -23,6 +24,10 @@ public class BaseInfoBean extends BaseProtocol {
         private String education;
         private String brief;
         private String avatar;
+        private String company;
+        private String enterDate;
+        private String enterType;
+        private String belongBranch;
 
         public String getId() {
             return id;
@@ -110,6 +115,38 @@ public class BaseInfoBean extends BaseProtocol {
 
         public void setAvatar(String avatar) {
             this.avatar = avatar;
+        }
+
+        public String getCompany() {
+            return company;
+        }
+
+        public void setCompany(String company) {
+            this.company = company;
+        }
+
+        public String getEnterDate() {
+            return enterDate;
+        }
+
+        public void setEnterDate(String enterDate) {
+            this.enterDate = enterDate;
+        }
+
+        public String getEnterType() {
+            return enterType;
+        }
+
+        public void setEnterType(String enterType) {
+            this.enterType = enterType;
+        }
+
+        public String getBelongBranch() {
+            return belongBranch;
+        }
+
+        public void setBelongBranch(String belongBranch) {
+            this.belongBranch = belongBranch;
         }
     }
 }

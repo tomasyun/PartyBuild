@@ -52,7 +52,7 @@
                 android:visibility="visible">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="头像"
@@ -83,7 +83,7 @@
                 android:visibility="visible">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="用户名"
@@ -114,7 +114,7 @@
                 android:visibility="visible">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="姓名"
@@ -145,12 +145,11 @@
                 android:visibility="visible">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="党员编号"
                     android:textColor="@color/text_color"
-
                     android:textSize="14sp" />
 
                 <TextView
@@ -177,7 +176,140 @@
                 android:visibility="visible">
 
                 <TextView
+                    android:id="@+id/belong_branch"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="所属党支部"
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_user_belong_branch"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/belong_branch"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="#ddd" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="15dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="进入党支部时间"
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_user_enter_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:maxLength="2"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="#ddd" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="15dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="所属类型"
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_user_enter_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="#ddd" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="15dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/company"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="单位"
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_user_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/company"
+                    android:maxLines="2"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="#ddd" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="15dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="出生日期"
@@ -208,7 +340,7 @@
                 android:visibility="visible">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="联系电话"
@@ -235,7 +367,7 @@
                 android:padding="15dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="民族"
@@ -265,7 +397,7 @@
                 android:padding="15dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="籍贯"
@@ -295,7 +427,7 @@
                 android:padding="15dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="最高学历"
@@ -327,7 +459,7 @@
 
                 <TextView
                     android:id="@+id/tv_brief"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:text="个人简介"
                     android:textColor="@color/text_color"
@@ -335,7 +467,7 @@
 
                 <TextView
                     android:id="@+id/tv_user_brief"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="15dp"

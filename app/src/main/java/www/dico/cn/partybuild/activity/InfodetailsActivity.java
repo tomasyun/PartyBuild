@@ -98,16 +98,14 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                     break;
             }
         }
-        tv_info_detail_title.post(new Runnable() {
-            @Override
-            public void run() {
-                if (tv_info_detail_title.getLineCount() == 1) {
-                    tv_info_detail_title.setGravity(Gravity.CENTER);
-                } else {
-                    tv_info_detail_title.setGravity(Gravity.LEFT);
-                }
+        tv_info_detail_title.post(() -> {
+            if (tv_info_detail_title.getLineCount() == 1) {
+                tv_info_detail_title.setGravity(Gravity.CENTER);
+            } else {
+                tv_info_detail_title.setGravity(Gravity.LEFT);
             }
         });
+
         rv_info_detail.setLayoutManager(new LinearLayoutManager(this));
     }
 

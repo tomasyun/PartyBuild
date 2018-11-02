@@ -84,7 +84,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         srl_home.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().homeDataRequest();
+                getMvpPresenter().homeDataRequest(dialog);
             }
         });
 
@@ -106,7 +106,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         rel_mission_home.setOnClickListener(this);
         rel_union_home.setOnClickListener(this);
         rel_integrity_home.setOnClickListener(this);
-        getMvpPresenter().homeDataRequest();
+        getMvpPresenter().homeDataRequest(dialog);
         return view;
     }
 
@@ -144,14 +144,11 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                             GlideUtils.loadImageSetUpError(getActivity(), AppConfig.urlFormat(((AdvertiseImgM) model).getPoster()), (ImageView) view, R.mipmap.img_dico);
                     }
                 });
-                xbanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(XBanner banner, Object model, int position) {
-                        InfodetailForm form = new InfodetailForm();
-                        form.type = 2;
-                        form.id = list.get(position).getId();
-                        goTo(InfodetailsActivity.class, form);
-                    }
+                xbanner.setOnItemClickListener((banner, model, position) -> {
+                    InfodetailForm form = new InfodetailForm();
+                    form.type = 2;
+                    form.id = list.get(position).getId();
+                    goTo(InfodetailsActivity.class, form);
                 });
             }
             new UpdateManager(getActivity()).checkUpdate(false);//版本检测

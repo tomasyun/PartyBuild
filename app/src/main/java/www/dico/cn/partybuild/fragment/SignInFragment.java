@@ -81,7 +81,7 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     View sign_in_empty_data;
     @BindView(R.id.sign_in_net_error)
     View sign_in_net_error;
-    private LoadingDialog dialog;
+    private LoadingDialog loadingDialog;
     private GeocodeSearch geocodeSearch;
     private DistanceSearch distanceSearch;
     private double startLatitude;
@@ -137,13 +137,13 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                     showToast("抱歉,未到签到时间");
                 } else {
                     if (!address.equals("")) {
-                        dialog = new LoadingDialog.Builder(getActivity())
+                        loadingDialog = new LoadingDialog.Builder(getActivity())
                                 .setCancelable(true)
                                 .setCancelOutside(true)
                                 .setMessage("定位中..")
                                 .setShowMessage(true)
                                 .create();
-                        dialog.show();
+                        loadingDialog.show();
                         mLocationClient.startLocation();//启动定位
                     } else {
                         showToast("未获取到签到地址");
@@ -154,7 +154,7 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
         srl_sign_in.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doGetSignInConferenceRequest();
+                getMvpPresenter().doGetSignInConferenceRequest(dialog);
             }
         });
         return view;
@@ -281,10 +281,10 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     @Override
     public void onDistanceSearched(DistanceResult distanceResult, int errorCode) {
         if (errorCode == 1000) {
-            dialog.dismiss();
+            loadingDialog.dismiss();
             distance = distanceResult.getDistanceResults().get(0).getDistance();
             if (distance < 1000) {//设置签到距离100m
-                getMvpPresenter().doSaveSignIn(id, signInType);
+                getMvpPresenter().doSaveSignIn(dialog, id, signInType);
             } else {
                 showToast("未到达指定签到地点,暂不能签到");
             }
@@ -371,20 +371,20 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
         sign_in_net_error.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getMvpPresenter().doGetSignInConferenceRequest();
+                getMvpPresenter().doGetSignInConferenceRequest(dialog);
             }
         });
     }
 
     @Override
     public void signUpSuccessRefresh() {
-        getMvpPresenter().doGetSignInConferenceRequest();
+        getMvpPresenter().doGetSignInConferenceRequest(dialog);
     }
 
     @Override
     public void preventPreLoad() {
         super.preventPreLoad();
-        getMvpPresenter().doGetSignInConferenceRequest();
+        getMvpPresenter().doGetSignInConferenceRequest(dialog);
     }
 
     @Override

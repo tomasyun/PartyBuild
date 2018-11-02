@@ -30,18 +30,21 @@ public class UpdateManager {
          */
         // 版本的更新信息
 //        String version_info = "更新内容\n" + "    1. 底部导航\n" + "    2. 增加视频学习资料\n" + "    ";
-        String version_info = "";
         int mVersion_code = DeviceUtils.getVersionCode(mContext);// 当前的版本号
-        int nVersion_code = Integer.parseInt(AppConfig.nVersionCode);
-        if (mVersion_code < nVersion_code) {
+        int nVersion_code = 0;
+        String versionCode = AppConfig.nVersionCode;
+        if (!versionCode.equals("")) {
+            nVersion_code = Integer.parseInt(versionCode);
+            if (mVersion_code < nVersion_code) {
 //             显示提示对话
-            showNoticeDialog(AppConfig.content);
-            WindowManager.LayoutParams lp = mContext.getWindow().getAttributes();
-            lp.alpha = 0.5f;
-            mContext.getWindow().setAttributes(lp);
-        } else {
-            if (isToast) {
-                Toast.makeText(mContext, "已经是最新版本", Toast.LENGTH_SHORT).show();
+                showNoticeDialog(AppConfig.content);
+                WindowManager.LayoutParams lp = mContext.getWindow().getAttributes();
+                lp.alpha = 0.5f;
+                mContext.getWindow().setAttributes(lp);
+            } else {
+                if (isToast) {
+                    Toast.makeText(mContext, "已经是最新版本", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
