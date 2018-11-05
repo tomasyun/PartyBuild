@@ -40,9 +40,9 @@ public class QuestionSurveyAdapter extends CommonAdapter<QuestionSurveyBean.Data
                 @Override
                 public void onClick(View view) {
                     if (isExpired) {
-                        infoInterface.skip(1);
+                        infoInterface.skip(1,position);
                     } else {
-                        infoInterface.skip(0);
+                        infoInterface.skip(0,position);
                     }
                 }
             });
@@ -50,6 +50,6 @@ public class QuestionSurveyAdapter extends CommonAdapter<QuestionSurveyBean.Data
     }
 
     public interface SkipQuestionSurveyInfoInterface {
-        void skip(int position);
+        void skip(int skipId,int position);
     }
 }

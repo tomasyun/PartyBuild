@@ -106,8 +106,8 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
     }
 
     @Override
-    public void skip(int position) {
-        switch (position) {
+    public void skip(int skipId,int position) {
+        switch (skipId) {
             case 0:
                 SurveyForm form = new SurveyForm();
                 form.surveyId = beans.get(position).getId();

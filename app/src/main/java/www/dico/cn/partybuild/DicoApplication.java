@@ -21,7 +21,7 @@ public class DicoApplication extends Application {
         //这里涉及到安全我把url去掉了，demo都是调试通的
 //        String Url = "http://47.104.72.111/";//缔科党建外网
 //        String Url = "http://124.152.247.124:8081/";//兰州电力设计院外网
-        String Url = "http://192.168.0.107:8080/";//内网
+        String Url = "http://192.168.0.35:8080/";//内网
         //设置请求头
         HttpHeaders headers = new HttpHeaders();
 //        headers.put("User-Agent", SystemInfoUtils.getUserAgent(this, ""));
