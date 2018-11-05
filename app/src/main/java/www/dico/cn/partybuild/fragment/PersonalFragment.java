@@ -56,9 +56,6 @@ public class PersonalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_personal, null);
         ButterKnife.bind(this, view);
-        GlideUtils.loadCircleImage(getActivity(), AppConfig.urlFormat(AppConfig.getSpUtils().getString("avatar")), iv_user_avatar_personal);
-        tv_name_personal.setText(AppConfig.getSpUtils().getString("username"));
-        tv_position_personal.setText(AppConfig.getSpUtils().getString("position"));
         if (!AppConfig.getSpUtils().getBoolean("isManager")) {
             rel_mailbox_personal.setVisibility(View.GONE);
             divide.setVisibility(View.GONE);
@@ -131,5 +128,13 @@ public class PersonalFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        GlideUtils.loadCircleImage(getActivity(), AppConfig.urlFormat(AppConfig.getSpUtils().getString("avatar")), iv_user_avatar_personal);
+        tv_name_personal.setText(AppConfig.getSpUtils().getString("username"));
+        tv_position_personal.setText(AppConfig.getSpUtils().getString("position"));
     }
 }

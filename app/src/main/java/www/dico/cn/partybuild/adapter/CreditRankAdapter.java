@@ -1,6 +1,7 @@
 package www.dico.cn.partybuild.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.widget.ImageView;
@@ -35,12 +36,18 @@ public class CreditRankAdapter extends CommonAdapter<CreditRankBean.DataBean.Cre
         TextView tv_score_credit_rank_item = holder.getView(R.id.tv_score_credit_rank_item);
         if (null != id && id.equals(creditRankBean.getId())) {
             tv_credit_rank_num_item.setTextColor(mContext.getResources().getColor(R.color.theme_color));
+            tv_credit_rank_num_item.setTypeface(Typeface.DEFAULT_BOLD);
             tv_name_credit_rank_item.setTextColor(mContext.getResources().getColor(R.color.theme_color));
+            tv_name_credit_rank_item.setTypeface(Typeface.DEFAULT_BOLD);
             tv_score_credit_rank_item.setTextColor(mContext.getResources().getColor(R.color.theme_color));
+            tv_score_credit_rank_item.setTypeface(Typeface.DEFAULT_BOLD);
         } else {
             tv_credit_rank_num_item.setTextColor(mContext.getResources().getColor(R.color.text_color));
+            tv_credit_rank_num_item.setTypeface(Typeface.DEFAULT);
             tv_name_credit_rank_item.setTextColor(mContext.getResources().getColor(R.color.text_color));
+            tv_name_credit_rank_item.setTypeface(Typeface.DEFAULT);
             tv_score_credit_rank_item.setTextColor(mContext.getResources().getColor(R.color.text_color));
+            tv_score_credit_rank_item.setTypeface(Typeface.DEFAULT);
         }
         tv_credit_rank_num_item.setText(creditRankBean.getRank());
         tv_name_credit_rank_item.setText(creditRankBean.getName());

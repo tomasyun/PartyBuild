@@ -149,6 +149,7 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                     tv_title_common.setText("第六分工会");
                     break;
             }
+            createData(start, form.skip);
         }
         srl_common.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
@@ -163,12 +164,6 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                 createData(start, form.skip);
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        createData(start, form.skip);
     }
 
     @Override
