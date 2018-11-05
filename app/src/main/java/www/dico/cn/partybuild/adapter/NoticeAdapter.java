@@ -35,12 +35,12 @@ public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    protected void convert(ViewHolder holder, NoticeBean.DataBean noticeBean, final int position) {
+    protected void convert(ViewHolder holder, NoticeBean.DataBean noticeBean, int position) {
         if (null != noticeBean.getAvatar() && !noticeBean.getAvatar().equals(""))
             GlideUtils.loadCircleImage(AppManager.getManager().curActivity(), AppConfig.urlFormat(noticeBean.getAvatar()), (ImageView) holder.getView(R.id.iv_avatar_notice_item));
         holder.setText(R.id.tv_name_notice_item, noticeBean.getName());
         String publishDate = noticeBean.getPublishDate();
-        publishDate = (null != publishDate && !publishDate.equals("")) ? DateTimeUtils.getNow() : noticeBean.getPublishDate();
+        publishDate = (null == publishDate || publishDate.equals("")) ? DateTimeUtils.getNow() : noticeBean.getPublishDate();
         String diffDate = DateTimeUtils.getMinutes(publishDate, DateTimeUtils.getNow());
         int minutes;
         if (diffDate != null && !diffDate.equals("")) {
@@ -60,12 +60,7 @@ public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
                 curActivity(), 100));
         tv_content_notice_item.setMaxLines(3);
         tv_content_notice_item.setExpandText(Html.fromHtml(StringUtils.trimStyle(noticeBean.getContent())));
-        tv_content_notice_item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                infoInterface.skip(position);
-            }
-        });
+        tv_content_notice_item.setOnClickListener(view -> infoInterface.skip(position));
     }
 
     public interface SkipNoticeInfoInterface {

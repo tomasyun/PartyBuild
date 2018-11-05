@@ -79,8 +79,8 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
                     notice_empty_data.setVisibility(View.GONE);
                     notice_net_error.setVisibility(View.GONE);
                     adapter = new NoticeAdapter(this, R.layout.item_notice, noticeList);
-                    rv_notice.setAdapter(adapter);
                     adapter.setInfoInterface(NoticeActivity.this);
+                    rv_notice.setAdapter(adapter);
 //                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
 //                        @Override
 //                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {

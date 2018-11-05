@@ -31,7 +31,7 @@ import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshLoadmoreListener;
 
 @CreatePresenter(CommonPresenter.class)
-public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresenter> implements CommonView {
+public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresenter> implements CommonView, NoticeAdapter.SkipNoticeInfoInterface {
     @BindView(R.id.tv_title_common)
     TextView tv_title_common;
     @BindView(R.id.srl_common)
@@ -258,16 +258,17 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                     common_empty_data.setVisibility(View.GONE);
                     common_net_error.setVisibility(View.GONE);
                     noticeAdapter = new NoticeAdapter(this, R.layout.item_notice, noticeList);
+                    noticeAdapter.setInfoInterface(CommonActivity.this);
                     rv_common.setAdapter(noticeAdapter);
-                    noticeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                            NoticeForm form = new NoticeForm();
-                            form.id = noticeList.get(position).getId();
-                            form.isReply = noticeList.get(position).getIsReply();
-                            goTo(NoticeInfoActivity.class, form);
-                        }
-                    });
+//                    noticeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+//                            NoticeForm form = new NoticeForm();
+//                            form.id = noticeList.get(position).getId();
+//                            form.isReply = noticeList.get(position).getIsReply();
+//                            goTo(NoticeInfoActivity.class, form);
+//                        }
+//                    });
                 } else {
                     //空白页面
                     srl_common.setVisibility(View.GONE);
@@ -279,15 +280,15 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                 if (list != null && list.size() > 0) {
                     this.noticeList.addAll(list);
                     noticeAdapter.notifyDataSetChanged();
-                    noticeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                            NoticeForm form = new NoticeForm();
-                            form.id = CommonActivity.this.noticeList.get(position).getId();
-                            form.isReply = CommonActivity.this.noticeList.get(position).getIsReply();
-                            goTo(NoticeInfoActivity.class, form);
-                        }
-                    });
+//                    noticeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+//                            NoticeForm form = new NoticeForm();
+//                            form.id = CommonActivity.this.noticeList.get(position).getId();
+//                            form.isReply = CommonActivity.this.noticeList.get(position).getIsReply();
+//                            goTo(NoticeInfoActivity.class, form);
+//                        }
+//                    });
                 } else {
 
                 }
@@ -400,6 +401,21 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
             case 29://第六分工会
                 getMvpPresenter().doCommonArticleRequest(dialog, "0", "23", "0", start, 10);
                 break;
+        }
+    }
+
+    @Override
+    public void skip(int position) {
+        if (start == 0) {
+            NoticeForm form = new NoticeForm();
+            form.id = noticeList.get(position).getId();
+            form.isReply = noticeList.get(position).getIsReply();
+            goTo(NoticeInfoActivity.class, form);
+        } else {
+            NoticeForm form = new NoticeForm();
+            form.id = CommonActivity.this.noticeList.get(position).getId();
+            form.isReply = CommonActivity.this.noticeList.get(position).getIsReply();
+            goTo(NoticeInfoActivity.class, form);
         }
     }
 }

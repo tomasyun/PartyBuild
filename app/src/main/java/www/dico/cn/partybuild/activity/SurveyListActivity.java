@@ -20,13 +20,12 @@ import www.dico.cn.partybuild.modleview.SurveyListView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.SurveyListPresenter;
-import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshListener;
 
 @CreatePresenter(SurveyListPresenter.class)
-public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, SurveyListPresenter> implements SurveyListView {
+public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, SurveyListPresenter> implements SurveyListView, QuestionSurveyAdapter.SkipQuestionSurveyInfoInterface {
     @BindView(R.id.rv_question_survey)
     RecyclerView rv_question_survey;
     @BindView(R.id.survey_empty_data)
@@ -36,6 +35,7 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
     @BindView(R.id.srl_question_survey)
     SmartRefreshLayout srl_question_survey;
     private QuestionSurveyAdapter adapter;
+    private List<QuestionSurveyBean.DataBean> beans;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,21 +67,14 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
         QuestionSurveyBean bean = new Gson().fromJson(result, QuestionSurveyBean.class);
         if (bean.code.equals("0000")) {
             if (null != bean.getData()) {
-                final List<QuestionSurveyBean.DataBean> beans = bean.getData();
+                beans = bean.getData();
                 if (null != beans && beans.size() > 0) {
                     srl_question_survey.setVisibility(View.VISIBLE);
                     survey_empty_data.setVisibility(View.GONE);
                     survey_net_error.setVisibility(View.GONE);
                     adapter = new QuestionSurveyAdapter(this, R.layout.item_questionsurvey, beans);
+                    adapter.setInfoInterface(SurveyListActivity.this);
                     rv_question_survey.setAdapter(adapter);
-                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                            SurveyForm form = new SurveyForm();
-                            form.surveyId = beans.get(position).getId();
-                            goTo(OnlineSurveyActivity.class, form);
-                        }
-                    });
                 } else {
                     srl_question_survey.setVisibility(View.GONE);
                     survey_empty_data.setVisibility(View.VISIBLE);
@@ -110,5 +103,19 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
                 getMvpPresenter().doQuestionSurveyRequest(dialog);
             }
         });
+    }
+
+    @Override
+    public void skip(int position) {
+        switch (position) {
+            case 0:
+                SurveyForm form = new SurveyForm();
+                form.surveyId = beans.get(position).getId();
+                goTo(OnlineSurveyActivity.class, form);
+                break;
+            case 1:
+                showToast("该问卷已过期");
+                break;
+        }
     }
 }
