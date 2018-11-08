@@ -30,7 +30,7 @@ import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshLoadmoreListener;
 
 @CreatePresenter(BranchParksPresenter.class)
-public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, BranchParksPresenter> implements BranchParksView {
+public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, BranchParksPresenter> implements BranchParksView, NoticeAdapter.SkipNoticeInfoInterface {
     @BindView(R.id.rg_branch_parks)
     RadioGroup rg_branch_parks;
     @BindView(R.id.srl_branch_parks)
@@ -175,16 +175,8 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                     branch_parks_empty_data.setVisibility(View.GONE);
                     branch_parks_net_error.setVisibility(View.GONE);
                     noticeAdapter = new NoticeAdapter(this, R.layout.item_notice, noticeList);
+                    noticeAdapter.setInfoInterface(this);
                     rv_branch_parks.setAdapter(noticeAdapter);
-                    noticeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                            NoticeForm form = new NoticeForm();
-                            form.id = noticeList.get(position).getId();
-                            form.isReply = noticeList.get(position).getIsReply();
-                            goTo(NoticeInfoActivity.class, form);
-                        }
-                    });
                 } else {
                     //空白页面
                     srl_branch_parks.setVisibility(View.GONE);
@@ -196,15 +188,6 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                 if (list != null && list.size() > 0) {
                     this.noticeList.addAll(list);
                     noticeAdapter.notifyDataSetChanged();
-                    noticeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                            NoticeForm form = new NoticeForm();
-                            form.id = BranchParksActivity.this.noticeList.get(position).getId();
-                            form.isReply = BranchParksActivity.this.noticeList.get(position).getIsReply();
-                            goTo(NoticeInfoActivity.class, form);
-                        }
-                    });
                 } else {
 
                 }
@@ -248,6 +231,21 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
             case 3:
                 getMvpPresenter().doBranchParksRequest(dialog, "15", "34", "0", start, 10);
                 break;
+        }
+    }
+
+    @Override
+    public void skip(int position) {
+        if (start == 0) {
+            NoticeForm form = new NoticeForm();
+            form.id = noticeList.get(position).getId();
+            form.isReply = noticeList.get(position).getIsReply();
+            goTo(NoticeInfoActivity.class, form);
+        } else {
+            NoticeForm form = new NoticeForm();
+            form.id = BranchParksActivity.this.noticeList.get(position).getId();
+            form.isReply = BranchParksActivity.this.noticeList.get(position).getIsReply();
+            goTo(NoticeInfoActivity.class, form);
         }
     }
 }

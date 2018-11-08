@@ -162,7 +162,7 @@
             android:launchMode="singleTask" />
         <!--报名成功-->
         <activity
-            android:name=".activity.SignUpSuccessActivity"
+            android:name=".activity.SuccessTipsActivity"
             android:launchMode="singleTask" />
         <!--任务摘要-->
         <activity

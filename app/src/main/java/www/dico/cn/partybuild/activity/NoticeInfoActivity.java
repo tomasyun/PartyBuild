@@ -46,8 +46,8 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
     TextView tv_date_notice_info;
     @BindView(R.id.tv_content_notice_info)
     TextView tv_content_notice_info;
-    @BindView(R.id.rv_notice_info)
-    RecyclerView rv_notice_info;
+//    @BindView(R.id.rv_notice_info)
+//    RecyclerView rv_notice_info;
     @BindView(R.id.sv_notice_info)
     ScrollView sv_notice_info;
     @BindView(R.id.lin_notice_info)
@@ -61,7 +61,7 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noticeinfo);
         ButterKnife.bind(this);
-        rv_notice_info.setLayoutManager(new LinearLayoutManager(this));
+//        rv_notice_info.setLayoutManager(new LinearLayoutManager(this));
         form = getParam();
         if (form != null) {
             switch (form.isReply) {
@@ -136,9 +136,9 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                     footerView.setTextColor(getResources().getColor(R.color.light_gray));
                     footerView.setPadding(0, SizeUtils.dp2px(this, 30), 0, SizeUtils.dp2px(this, 120));
                     footerView.setGravity(Gravity.CENTER);
-                    footerView.setTextSize(SizeUtils.sp2px(this, 5));
+                    footerView.setTextSize(13);
                     adapter.setFooterView(footerView);
-                    rv_notice_info.setAdapter(adapter);
+//                    rv_notice_info.setAdapter(adapter);
                 } else {
 
                 }

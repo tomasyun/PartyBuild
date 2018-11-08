@@ -23,6 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.bean.BaseProtocol;
+import www.dico.cn.partybuild.bean.SkipForm;
 import www.dico.cn.partybuild.bean.VoteDetailBean;
 import www.dico.cn.partybuild.bean.VoteForm;
 import www.dico.cn.partybuild.modleview.VoteDetailView;
@@ -295,14 +296,18 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
     public void submitVoteResultSuccess(String result) {
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
         if (protocol.code.equals("0000")) {
-            showToast(protocol.msg);
-            tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-            tv_submit_vote_detail.setTextColor(Color.parseColor("#febfb5"));
-            tv_submit_vote_detail.setText("已投票");
-            tv_submit_vote_detail.setEnabled(false);
-            tv_submit_vote_detail.setClickable(false);
-            form.isVoter = "1";
-            getMvpPresenter().doVoteDetailRequest(dialog, form.voteId);
+            SkipForm form = new SkipForm();
+            form.skip = 3;
+            goTo(SuccessTipsActivity.class, form);
+            this.finish();
+//            showToast(protocol.msg);
+//            tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
+//            tv_submit_vote_detail.setTextColor(Color.parseColor("#febfb5"));
+//            tv_submit_vote_detail.setText("已投票");
+//            tv_submit_vote_detail.setEnabled(false);
+//            tv_submit_vote_detail.setClickable(false);
+//            form.isVoter = "1";
+//            getMvpPresenter().doVoteDetailRequest(dialog, form.voteId);
         } else {
             showToast("服务器异常");
         }

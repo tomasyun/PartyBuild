@@ -6,6 +6,7 @@ import android.support.annotation.RequiresApi;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import java.util.List;
 
@@ -24,7 +25,6 @@ import www.yuntdev.com.baseadapterlibrary.base.ViewHolder;
 
 public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
     public SkipNoticeInfoInterface infoInterface;
-
     public void setInfoInterface(SkipNoticeInfoInterface infoInterface) {
         this.infoInterface = infoInterface;
     }
@@ -60,7 +60,12 @@ public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
                 curActivity(), 100));
         tv_content_notice_item.setMaxLines(3);
         tv_content_notice_item.setExpandText(Html.fromHtml(StringUtils.trimStyle(noticeBean.getContent())));
-        tv_content_notice_item.setOnClickListener(view -> infoInterface.skip(position));
+        tv_content_notice_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                infoInterface.skip(position);
+            }
+        });
     }
 
     public interface SkipNoticeInfoInterface {

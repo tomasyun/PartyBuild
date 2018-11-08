@@ -39,14 +39,11 @@ public class CourseInfoActivity extends AbstractMvpActivity<CourseInfoView, Cour
         form = getParam();
         if (form != null)
             getMvpPresenter().doGetIntoCourseInfoRequest(dialog, form.courseId, form.taskId, "0");
-        tv_title_course_info.post(new Runnable() {
-            @Override
-            public void run() {
-                if (tv_title_course_info.getLineCount() == 1) {
-                    tv_title_course_info.setGravity(Gravity.CENTER);
-                } else {
-                    tv_title_course_info.setGravity(Gravity.LEFT);
-                }
+        tv_title_course_info.post(() -> {
+            if (tv_title_course_info.getLineCount() == 1) {
+                tv_title_course_info.setGravity(Gravity.CENTER);
+            } else {
+                tv_title_course_info.setGravity(Gravity.LEFT);
             }
         });
     }

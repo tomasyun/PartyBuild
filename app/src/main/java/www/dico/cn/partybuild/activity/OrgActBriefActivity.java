@@ -122,7 +122,7 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
         if (protocol.code.equals("0000")) {
             SkipForm form = new SkipForm();
             form.skip = 1;
-            goTo(SignUpSuccessActivity.class, form);
+            goTo(SuccessTipsActivity.class, form);
         } else {
             showToast("服务器异常");
         }

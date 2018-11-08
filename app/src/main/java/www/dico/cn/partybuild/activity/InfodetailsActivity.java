@@ -274,7 +274,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                     footerView.setTextColor(getResources().getColor(R.color.light_gray));
                     footerView.setPadding(0, SizeUtils.dp2px(this, 30), 0, SizeUtils.dp2px(this, 120));
                     footerView.setGravity(Gravity.CENTER);
-                    footerView.setTextSize(SizeUtils.sp2px(this, 5));
+                    footerView.setTextSize(13);
                     adapter.setFooterView(footerView);
                     rv_info_detail.setAdapter(adapter);
                 } else {

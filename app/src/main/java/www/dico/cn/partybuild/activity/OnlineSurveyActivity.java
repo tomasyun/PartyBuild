@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.adapter.SurveyQuestionAdapter;
 import www.dico.cn.partybuild.bean.BaseProtocol;
+import www.dico.cn.partybuild.bean.SkipForm;
 import www.dico.cn.partybuild.bean.SurveyAnswerBean;
 import www.dico.cn.partybuild.bean.SurveyForm;
 import www.dico.cn.partybuild.bean.SurveyQuestionBean;
@@ -108,6 +109,9 @@ public class OnlineSurveyActivity extends AbstractMvpActivity<OnlineSurveyView, 
     public void saveAnswerSuccess(String result) {
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
         if (protocol.code.equals("0000")) {
+            SkipForm form = new SkipForm();
+            form.skip = 4;
+            goTo(SuccessTipsActivity.class, form);
             this.finish();
         } else {
             showToast("服务器异常");

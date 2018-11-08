@@ -79,17 +79,8 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
                     notice_empty_data.setVisibility(View.GONE);
                     notice_net_error.setVisibility(View.GONE);
                     adapter = new NoticeAdapter(this, R.layout.item_notice, noticeList);
-                    adapter.setInfoInterface(NoticeActivity.this);
+                    adapter.setInfoInterface(this);
                     rv_notice.setAdapter(adapter);
-//                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-//                        @Override
-//                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-//                            NoticeForm form = new NoticeForm();
-//                            form.id = noticeList.get(position).getId();
-//                            form.isReply = noticeList.get(position).getIsReply();
-//                            goTo(NoticeInfoActivity.class, form);
-//                        }
-//                    });
                 } else {
                     //空白页面
                     srl_notice.setVisibility(View.GONE);
@@ -101,16 +92,6 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
                 if (list != null && list.size() > 0) {
                     this.noticeList.addAll(list);
                     adapter.notifyDataSetChanged();
-                    adapter.setInfoInterface(NoticeActivity.this);
-//                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-//                        @Override
-//                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-//                            NoticeForm form = new NoticeForm();
-//                            form.id = NoticeActivity.this.noticeList.get(position).getId();
-//                            form.isReply = NoticeActivity.this.noticeList.get(position).getIsReply();
-//                            goTo(NoticeInfoActivity.class, form);
-//                        }
-//                    });
                 } else {
 
                 }

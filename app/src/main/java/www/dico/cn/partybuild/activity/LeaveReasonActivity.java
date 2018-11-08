@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.bean.BaseProtocol;
 import www.dico.cn.partybuild.bean.LeaveForm;
+import www.dico.cn.partybuild.bean.SkipForm;
 import www.dico.cn.partybuild.modleview.LeaveReasonView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
@@ -65,7 +66,10 @@ public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, Le
     public void resultSuccess(String result) {
         BaseProtocol protocol = new Gson().fromJson(result, BaseProtocol.class);
         if (protocol.code.equals("0000")) {
-            goTo(LeaveSuccessActivity.class, null);
+            SkipForm form = new SkipForm();
+            form.skip = 2;
+            goTo(SuccessTipsActivity.class, form);
+            this.finish();
         } else {
             showToast("服务器异常");
         }

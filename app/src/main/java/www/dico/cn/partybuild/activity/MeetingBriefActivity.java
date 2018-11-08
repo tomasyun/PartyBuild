@@ -348,7 +348,7 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
         if (protocol.code.equals("0000")) {
             SkipForm form = new SkipForm();
             form.skip = 0;
-            goTo(SignUpSuccessActivity.class, form);
+            goTo(SuccessTipsActivity.class, form);
         } else {
             showToast(protocol.msg);
         }

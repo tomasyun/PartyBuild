@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:contentDescription="@null"
         android:scaleType="fitXY"
-        android:src="@mipmap/img_signup_ok" />
+        android:src="@mipmap/img_success" />
 
     <TextView
         android:layout_width="wrap_content"

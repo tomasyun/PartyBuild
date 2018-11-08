@@ -17,16 +17,17 @@
             android:layout_marginLeft="15dp"
             android:clickable="true"
             android:contentDescription="@null"
-            android:onClick="goBackSignUpSuccess"
+            android:onClick="goBackSuccessTips"
             android:padding="5dp"
             android:scaleType="fitXY"
             android:src="@mipmap/img_back" />
 
         <TextView
+            android:id="@+id/tv_success_tips_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="报名成功"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="16sp" />
     </RelativeLayout>
@@ -43,18 +44,19 @@
             android:layout_height="wrap_content"
             android:contentDescription="@null"
             android:scaleType="fitXY"
-            android:src="@mipmap/img_signup_ok" />
+            android:src="@mipmap/img_success" />
 
         <TextView
+            android:id="@+id/tv_success_tips_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="恭喜您! 报名成功"
+            android:text=""
             android:textColor="@color/text_color"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tv_sign_up_success_desc"
+            android:id="@+id/tv_success_tips_prompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -72,7 +74,7 @@
             android:background="@drawable/button_corner20_red_bg"
             android:clickable="true"
             android:gravity="center"
-            android:onClick="signUpComplete"
+            android:onClick="complete"
             android:text="完成"
             android:textColor="@color/white"
             android:translationZ="5dp" />
