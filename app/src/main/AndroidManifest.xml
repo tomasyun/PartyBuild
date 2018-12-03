@@ -194,9 +194,6 @@
             android:launchMode="singleTask" />
         <!--会议纪要-->
         <!--请假成功-->
-        <activity
-            android:name=".activity.LeaveSuccessActivity"
-            android:launchMode="singleTask" />
         <!--团青园地-->
         <activity
             android:name=".activity.MissionParksActivity"

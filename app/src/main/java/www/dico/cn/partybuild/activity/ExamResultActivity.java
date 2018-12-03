@@ -74,7 +74,7 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
                 examCost = (examCost == null) ? "" : bean.getData().getExamCost();
                 tv_cost_exam_result.setText(examCost + "分钟");
                 String limitScore = new DecimalFormat("#").format(Double.valueOf(form.limitScore));
-                tv_limit_score_exam_result.setText(limitScore+"分");
+                tv_limit_score_exam_result.setText(limitScore + "分");
                 String isPass = bean.getData().getIsPass();
                 if (null != isPass && !isPass.equals("")) {
                     switch (isPass) {
@@ -133,4 +133,8 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    public int test(int a, int b) {
+        return a > b ? 0 : 1;
+        }
 }

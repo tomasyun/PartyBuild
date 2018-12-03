@@ -52,17 +52,16 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
         LoginBean bean = new Gson().fromJson(result, LoginBean.class);
         if (bean.getCode().equals("0000")) {
             if (null != bean.getData()) {
-                String partyPosition = bean.getData().getPartyBranchPost();//党内职务
-                String position = bean.getData().getPosition();//行政职务
+                String name = bean.getData().getName();
+                String partyPost = bean.getData().getPartyPost();//党内职务
                 String token = bean.getData().getToken();
                 String userId = bean.getData().getUserId();//用户id
                 String avatar = bean.getData().getAvatar();//头像
-                boolean isManager = bean.getData().isManager();//是否为管理员
-                AppConfig.getSpUtils().put("username", login_name);
-                partyPosition = (null == partyPosition) ? "" : partyPosition;
-                AppConfig.getSpUtils().put("partyBranchPost", partyPosition);
-                position = (null == position) ? "" : position;
-                AppConfig.getSpUtils().put("position", position);
+                boolean isManager = bean.getData().IsManager();//是否为管理员
+                name = (null == name) ? "" : bean.getData().getName();
+                AppConfig.getSpUtils().put("name", name);
+                partyPost = (null == partyPost) ? "" : bean.getData().getPartyPost();
+                AppConfig.getSpUtils().put("partyPost", partyPost);
                 AppConfig.getSpUtils().put("token", "Bearer " + token);
                 AppConfig.getSpUtils().put("userId", userId);
                 AppConfig.getSpUtils().put("avatar", avatar);
