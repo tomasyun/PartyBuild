@@ -71,7 +71,7 @@
                 android:id="@+id/tv_name_personal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="席沛锋"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -83,7 +83,7 @@
                 android:ellipsize="end"
                 android:paddingRight="15dp"
                 android:singleLine="true"
-                android:text="研发部经理"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="14sp" />
         </LinearLayout>

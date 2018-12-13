@@ -408,7 +408,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="舞蹈瑜伽协会"
+                            android:text="舞蹈、瑜伽协会"
                             android:textColor="@color/black"
                             android:textSize="11sp" />
                     </LinearLayout>

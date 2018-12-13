@@ -2,13 +2,19 @@ package www.dico.cn.partybuild.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.Editable;
+import android.text.InputType;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextWatcher;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -26,6 +32,7 @@ import www.dico.cn.partybuild.utils.SizeUtils;
 
 public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestionBean.DataBean> {
     String radioAnswer = "";
+    String editAnswer = "";
     List<SurveyQuestionBean.DataBean> mDatas;
     private SurveyQuestionHandleInterface handleInterface;
 
@@ -49,11 +56,11 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
          * 单选题
          */
         if (dataBean.getTypeId().equals("1")) {
+            TextView tv_title_question = holder.getView(R.id.tv_title_question);
             SpannableString content = new SpannableString((position + 1) + ".  " + dataBean.getContent() + "  " + "(单选)");
             content.setSpan(new ForegroundColorSpan(Color.parseColor("#333333")), 0, content.length() - 5, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
             content.setSpan(new ForegroundColorSpan(Color.parseColor("#a1a1a1")), content.length() - 5, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
             content.setSpan(new AbsoluteSizeSpan(35), content.length() - 4, content.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-            TextView tv_title_question = holder.getView(R.id.tv_title_question);
             tv_title_question.setText(content);
             tv_title_question.setTextSize(16);
             RadioGroup group = new RadioGroup(mContext);
@@ -85,11 +92,11 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
          * 多选题
          */
         else if (dataBean.getTypeId().equals("2")) {
+            TextView tv_title_question = holder.getView(R.id.tv_title_question);
             SpannableString content = new SpannableString((position + 1) + ".  " + dataBean.getContent() + "  " + "(多选)");
             content.setSpan(new ForegroundColorSpan(Color.parseColor("#333333")), 0, content.length() - 5, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
             content.setSpan(new ForegroundColorSpan(Color.parseColor("#a1a1a1")), content.length() - 5, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
             content.setSpan(new AbsoluteSizeSpan(35), content.length() - 4, content.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-            TextView tv_title_question = holder.getView(R.id.tv_title_question);
             tv_title_question.setText(content);
             tv_title_question.setTextSize(16);
             if (dataBean.getQuestionOptionsList().size() > 0) {
@@ -105,6 +112,43 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
             }
         }
 
+        /**
+         * 问答题
+         */
+        else if (dataBean.getTypeId().equals("3")) {
+            TextView tv_title_question = holder.getView(R.id.tv_title_question);
+            SpannableString content = new SpannableString((position + 1) + ".  " + dataBean.getContent() + "  " + "(问答)");
+            content.setSpan(new ForegroundColorSpan(Color.parseColor("#333333")), 0, content.length() - 5, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            content.setSpan(new ForegroundColorSpan(Color.parseColor("#a1a1a1")), content.length() - 5, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            content.setSpan(new AbsoluteSizeSpan(35), content.length() - 4, content.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+            tv_title_question.setText(content);
+            tv_title_question.setTextSize(16);
+            EditText editText = new EditText(mContext);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, SizeUtils.dp2px(mContext, 100));
+            editText.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.edittext_corner5_gray_stroke_white_bg));
+            editText.setPadding(SizeUtils.dp2px(mContext, 15), SizeUtils.dp2px(mContext, 10), SizeUtils.dp2px(mContext, 15), SizeUtils.dp2px(mContext, 10));
+            editText.setInputType(InputType.TYPE_CLASS_TEXT);
+            editText.setTextSize(14);
+            editText.setGravity(Gravity.TOP | Gravity.LEFT);
+            editText.setLayoutParams(params);
+            editText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    editAnswer = editText.getText().toString().trim();
+                }
+            });
+            rg_ls.addView(editText);
+        }
 
         /**
          *
@@ -120,7 +164,7 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
                 String content = ((TextView) holder.getView(R.id.tv_next_question)).getText().toString().trim();
                 switch (content) {
                     case "下一题":
-                        if (dataBean.getQuestionOptionsList().size() > 0) {
+                        if (mDatas.size() > 0) {
                             if (dataBean.getTypeId().equals("1")) {
                                 if (radioAnswer.equals("")) {
                                     Toast.makeText(AppManager.getManager().curActivity(), "请选择", Toast.LENGTH_SHORT).show();
@@ -142,6 +186,12 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
 //                                    String sortAnswer = new String(c);
                                     String answer = str.substring(0, str.length() - 1);
                                     handleInterface.nextStep(dataBean.getId(), String.valueOf(position + 1), answer);
+                                }
+                            } else if (dataBean.getTypeId().equals("3")) {
+                                if (editAnswer.equals("")) {
+                                    Toast.makeText(AppManager.getManager().curActivity(), "请输入改题答案", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    handleInterface.nextStep(dataBean.getId(), String.valueOf(position + 1), editAnswer);
                                 }
                             }
                         }
@@ -169,6 +219,12 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
 //                                    String sortAnswer = new String(c);
                                     String answer = str.substring(0, str.length() - 1);
                                     handleInterface.submit(dataBean.getId(), String.valueOf(position + 1), answer);
+                                }
+                            } else if (dataBean.getTypeId().equals("3")) {
+                                if (editAnswer.equals("")) {
+                                    Toast.makeText(AppManager.getManager().curActivity(), "请输入改题答案", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    handleInterface.submit(dataBean.getId(), String.valueOf(position + 1), editAnswer);
                                 }
                             }
                         }

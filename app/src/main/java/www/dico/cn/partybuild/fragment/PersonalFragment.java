@@ -134,7 +134,7 @@ public class PersonalFragment extends Fragment {
     public void onResume() {
         super.onResume();
         GlideUtils.loadCircleImage(getActivity(), AppConfig.urlFormat(AppConfig.getSpUtils().getString("avatar")), iv_user_avatar_personal);
-        tv_name_personal.setText(AppConfig.getSpUtils().getString("username"));
-        tv_position_personal.setText(AppConfig.getSpUtils().getString("position"));
+        tv_name_personal.setText(AppConfig.getSpUtils().getString("name"));
+        tv_position_personal.setText(AppConfig.getSpUtils().getString("partyPost"));
     }
 }

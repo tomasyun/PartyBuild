@@ -6,20 +6,18 @@ import android.support.annotation.RequiresApi;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.List;
 
+import cn.carbs.android.expandabletextview.library.ExpandableTextView;
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.R;
 import www.dico.cn.partybuild.bean.NoticeBean;
 import www.dico.cn.partybuild.utils.DateTimeUtils;
 import www.dico.cn.partybuild.utils.GlideUtils;
-import www.dico.cn.partybuild.utils.ScreenUtils;
-import www.dico.cn.partybuild.utils.SizeUtils;
 import www.dico.cn.partybuild.utils.StringUtils;
-import www.dico.cn.partybuild.widget.ExpandLongTextView;
 import www.yuntdev.com.baseadapterlibrary.base.CommonAdapter;
 import www.yuntdev.com.baseadapterlibrary.base.ViewHolder;
 
@@ -53,13 +51,8 @@ public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
                 holder.setText(R.id.tv_date_notice_item, minutes / (24 * 60) + "天前");
             }
         }
-        ExpandLongTextView tv_content_notice_item = holder.getView(R.id.tv_content_notice_item);
-        tv_content_notice_item.setExpand(false);
-        tv_content_notice_item.initWidth(ScreenUtils.getScreenWidth(AppManager.getManager().
-                curActivity()) - SizeUtils.dp2px(AppManager.getManager().
-                curActivity(), 100));
-        tv_content_notice_item.setMaxLines(3);
-        tv_content_notice_item.setExpandText(Html.fromHtml(StringUtils.trimStyle(noticeBean.getContent())));
+        TextView tv_content_notice_item = holder.getView(R.id.tv_content_notice_item);
+        tv_content_notice_item.setText(Html.fromHtml(StringUtils.trimStyle(noticeBean.getContent())));
         tv_content_notice_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

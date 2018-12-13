@@ -67,8 +67,8 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     TextView tv_sign_in_time;
     @BindView(R.id.tv_sign_in_enable)
     TextView tv_sign_in_enable;//立即签到
-    @BindView(R.id.tv_sign_in_count_down)
-    TextView tv_sign_in_count_down;//倒计时显示
+//    @BindView(R.id.tv_sign_in_count_down)
+//    TextView tv_sign_in_count_down;//倒计时显示
     @BindView(R.id.iv_sign_in_enable)
     ImageView iv_sign_in_enable;//
     @BindView(R.id.tv_sign_in_tips)
@@ -89,43 +89,40 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
     private double destLatitude;
     private double destLongitude;
     private double distance;//距离
-    private int during = 0;
-    private CountDownButtonHelper helper;
+//    private int during = 0;
+//    private CountDownButtonHelper helper;
     private String signInType;
     private String startDate;
     private String address;
     private String id;
-    private long time;
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case 0:
-                    if (tv_sign_in_count_down != null) {
-                        helper = new CountDownButtonHelper(tv_sign_in_count_down, "00:00:00", during * 60, 1, 1);
-                        helper.setOnFinishListener(new CountDownButtonHelper.OnFinishListener() {
-                            @Override
-                            public void finish() {
-                                srl_sign_in.setVisibility(View.GONE);
-                                sign_in_empty_data.setVisibility(View.VISIBLE);
-                                sign_in_net_error.setVisibility(View.GONE);
-                                TextView tv_empty = sign_in_empty_data.findViewById(R.id.tv_empty);
-                                tv_empty.setText("暂无签到");
-                            }
-                        });
-                        helper.start();
-                    }
-                    break;
-            }
-        }
-    };
+//    private long time;
+//    private Handler mHandler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            switch (msg.what) {
+//                case 0:
+//                    if (tv_sign_in_count_down != null) {
+//                        helper = new CountDownButtonHelper(tv_sign_in_count_down, "00:00:00", during * 60, 1, 1);
+//                        helper.setOnFinishListener(() -> {
+//                            srl_sign_in.setVisibility(View.GONE);
+//                            sign_in_empty_data.setVisibility(View.VISIBLE);
+//                            sign_in_net_error.setVisibility(View.GONE);
+//                            TextView tv_empty = sign_in_empty_data.findViewById(R.id.tv_empty);
+//                            tv_empty.setText("暂无签到");
+//                        });
+//                        helper.start();
+//                    }
+//                    break;
+//            }
+//        }
+//    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signin, null);
         ButterKnife.bind(this, view);
-        tv_sign_in_count_down.setText("00:00:00");
+//        tv_sign_in_count_down.setText("00:00:00");
         initLocationClient();
         initGeocodeSearch();
         initDistanceSearch();
@@ -133,9 +130,9 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
         rel_sign_in_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (time > 600000) {
-                    showToast("抱歉,未到签到时间");
-                } else {
+//                if (time > 600000) {
+//                    showToast("抱歉,未到签到时间");
+//                } else {
                     if (!address.equals("")) {
                         loadingDialog = new LoadingDialog.Builder(getActivity())
                                 .setCancelable(true)
@@ -148,7 +145,7 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                     } else {
                         showToast("未获取到签到地址");
                     }
-                }
+//                }
             }
         });
         srl_sign_in.setOnRefreshListener(new OnRefreshListener() {
@@ -306,20 +303,20 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                 if (!StringUtils.isEmpty(startDate)) {
                     //TODO 处理会议、活动开始时间
                     String[] split = startDate.split(" ");
-                    tv_sign_in_date.setText(split[0]);
-                    tv_sign_in_week.setText(DateTimeUtils.getWeekOfDate(startDate));
-                    tv_sign_in_time.setText(split[1]);
-                    Date curDate = new Date();
-                    time = DateTimeUtils.parse(startDate, "yyyy-MM-dd HH:mm:ss").getTime() - curDate.getTime();
-                    if (time < 600000) {
-                        int minutes = (int) time / 1000;
-                        during = minutes / 60;
-                        mHandler.sendEmptyMessage(0);
-                    }
+                    tv_sign_in_date.setText(split[0]);//日期--年月日
+                    tv_sign_in_week.setText(DateTimeUtils.getWeekOfDate(startDate));//星期
+                    tv_sign_in_time.setText(split[1]);//时间--时分秒
+//                    Date curDate = new Date();
+//                    time = DateTimeUtils.parse(startDate, "yyyy-MM-dd HH:mm:ss").getTime() - curDate.getTime();
+//                    if (time < 600000) {
+//                        int minutes = (int) time / 1000;
+//                        during = minutes / 60;
+//                        mHandler.sendEmptyMessage(0);
+//                    }
                 }
                 tv_sign_in_address.setText(bean.getData().getAddress());
                 id = bean.getData().getId();
-                signInType = bean.getData().getIs();
+                signInType = bean.getData().getType();
                 switch (signInType) {
                     case "0":
                         tv_sign_in_enable.setText("会议签到");
@@ -387,10 +384,10 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
         getMvpPresenter().doGetSignInConferenceRequest(dialog);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        if (helper != null)
-            helper.cancel();
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        if (helper != null)
+//            helper.cancel();
+//    }
 }

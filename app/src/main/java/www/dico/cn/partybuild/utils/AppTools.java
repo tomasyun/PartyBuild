@@ -169,7 +169,7 @@ public class AppTools {
      * @return
      */
     public static String getLocalMacAddress(Activity activity) {
-        WifiManager wifi = (WifiManager) activity.getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifi = (WifiManager) activity.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifi.getConnectionInfo();
         String mac = info.getMacAddress();
         return mac;
@@ -184,7 +184,7 @@ public class AppTools {
     public static String getLocalIpAddress(Activity activity) {
         try {
             WifiManager wifi;
-            wifi = (WifiManager) activity.getSystemService(Context.WIFI_SERVICE);
+            wifi = (WifiManager) activity.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
             WifiInfo info = wifi.getConnectionInfo();
             int ipAddress = info.getIpAddress();
             String Ipv4Address = InetAddress
@@ -444,6 +444,4 @@ public class AppTools {
         }
         return null;
     }
-
-
 }

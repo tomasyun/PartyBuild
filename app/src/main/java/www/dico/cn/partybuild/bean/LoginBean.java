@@ -2,6 +2,12 @@ package www.dico.cn.partybuild.bean;
 
 public class LoginBean {
 
+    /**
+     * code : 0000
+     * msg : 登录成功
+     * data : {"name":"Admin","isManager":true,"avatar":"/img/headIcon/c1d134b117d14957bb3f6f4009b27de3.jpg","partyPost":"党委书记","userId":"1","token":"eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJjbXMiLCJzdWIiOiJhZG1pbiIsImF1ZCI6Im1vYmlsZSIsImlhdCI6MTU0MjU5MTQyMCwiZXhwIjoxNTQyNzM1NDIwfQ.iyWiwxCJU6wx8QVycYF_Xw4I6ucMt32dl3fysoiCsV6acFbVyiybXTZnbLibOETQABZWoMZaZVCRN26z2UGouw"}
+     */
+
     private String code;
     private String msg;
     private DataBean data;
@@ -30,46 +36,37 @@ public class LoginBean {
         this.data = data;
     }
 
-    @Override
-    public String toString() {
-        return "LoginBean{" +
-                "code='" + code + '\'' +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
-                '}';
-    }
-
     public static class DataBean {
+        /**
+         * name : Admin
+         * isManager : true
+         * avatar : /img/headIcon/c1d134b117d14957bb3f6f4009b27de3.jpg
+         * partyPost : 党委书记
+         * userId : 1
+         * token : eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJjbXMiLCJzdWIiOiJhZG1pbiIsImF1ZCI6Im1vYmlsZSIsImlhdCI6MTU0MjU5MTQyMCwiZXhwIjoxNTQyNzM1NDIwfQ.iyWiwxCJU6wx8QVycYF_Xw4I6ucMt32dl3fysoiCsV6acFbVyiybXTZnbLibOETQABZWoMZaZVCRN26z2UGouw
+         */
 
-        private String partyBranchPost;
+        private String name;
         private boolean isManager;
-        private String position;
         private String avatar;
+        private String partyPost;
         private String userId;
         private String token;
 
-        public String getPartyBranchPost() {
-            return partyBranchPost;
+        public String getName() {
+            return name;
         }
 
-        public void setPartyBranchPost(String partyBranchPost) {
-            this.partyBranchPost = partyBranchPost;
+        public void setName(String name) {
+            this.name = name;
         }
 
-        public boolean isManager() {
+        public boolean IsManager() {
             return isManager;
         }
 
-        public void setManager(boolean manager) {
-            isManager = manager;
-        }
-
-        public String getPosition() {
-            return position;
-        }
-
-        public void setPosition(String position) {
-            this.position = position;
+        public void setIsManager(boolean isManager) {
+            this.isManager = isManager;
         }
 
         public String getAvatar() {
@@ -78,6 +75,14 @@ public class LoginBean {
 
         public void setAvatar(String avatar) {
             this.avatar = avatar;
+        }
+
+        public String getPartyPost() {
+            return partyPost;
+        }
+
+        public void setPartyPost(String partyPost) {
+            this.partyPost = partyPost;
         }
 
         public String getUserId() {

@@ -145,16 +145,16 @@
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_sign_in_count_down"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginBottom="30dp"
-                    android:text="00:00:00"
-                    android:textColor="#fd9494"
-                    android:textSize="12sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_sign_in_count_down"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:layout_marginBottom="30dp"-->
+                    <!--android:text="00:00:00"-->
+                    <!--android:textColor="#fd9494"-->
+                    <!--android:textSize="12sp" />-->
             </RelativeLayout>
 
             <RelativeLayout

@@ -225,7 +225,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:ellipsize="end"
-                    android:maxLength="2"
+                    android:singleLine="true"
                     android:text=""
                     android:textColor="@color/text_color"
                     android:textSize="14sp" />

@@ -15,11 +15,19 @@ public class QuestionSurveyBean extends BaseProtocol {
     }
 
     public static class DataBean {
+        /**
+         * id : 402880eb671a4cc701671a597ec90008
+         * title : 问卷调查新增问答题测试IV
+         * limitDate : 2018-11-16 11:00:00
+         * participants : 1
+         * isSubmit : 1
+         */
 
         private String id;
         private String title;
         private String limitDate;
-        private String paticipants;
+        private String participants;
+        private String isSubmit;
 
         public String getId() {
             return id;
@@ -45,12 +53,20 @@ public class QuestionSurveyBean extends BaseProtocol {
             this.limitDate = limitDate;
         }
 
-        public String getPaticipants() {
-            return paticipants;
+        public String getParticipants() {
+            return participants;
         }
 
-        public void setPaticipants(String paticipants) {
-            this.paticipants = paticipants;
+        public void setParticipants(String participants) {
+            this.participants = participants;
+        }
+
+        public String getIsSubmit() {
+            return isSubmit;
+        }
+
+        public void setIsSubmit(String isSubmit) {
+            this.isSubmit = isSubmit;
         }
     }
 }

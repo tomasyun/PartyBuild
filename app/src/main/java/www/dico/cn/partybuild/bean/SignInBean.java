@@ -1,6 +1,11 @@
 package www.dico.cn.partybuild.bean;
 
 public class SignInBean extends BaseProtocol {
+
+    /**
+     * data : {"id":"402880a1671a1a4c01671b9ba71a01df","theme":"安卓","themeImg":"/img/94d2187f024542d9889e113d68108e92.png","address":"陕西省西安市雁塔区丈八一路汇鑫IBC","startDate":"2018-11-16 19:01:00","type":"0"}
+     */
+
     private DataBean data;
 
     public DataBean getData() {
@@ -12,13 +17,21 @@ public class SignInBean extends BaseProtocol {
     }
 
     public static class DataBean {
+        /**
+         * id : 402880a1671a1a4c01671b9ba71a01df
+         * theme : 安卓
+         * themeImg : /img/94d2187f024542d9889e113d68108e92.png
+         * address : 陕西省西安市雁塔区丈八一路汇鑫IBC
+         * startDate : 2018-11-16 19:01:00
+         * type : 0
+         */
+
         private String id;
         private String theme;
         private String themeImg;
         private String address;
         private String startDate;
-        private String curDate;
-        private String is;
+        private String type;
 
         public String getId() {
             return id;
@@ -60,20 +73,12 @@ public class SignInBean extends BaseProtocol {
             this.startDate = startDate;
         }
 
-        public String getCurDate() {
-            return curDate;
+        public String getType() {
+            return type;
         }
 
-        public void setCurDate(String curDate) {
-            this.curDate = curDate;
-        }
-
-        public String getIs() {
-            return is;
-        }
-
-        public void setIs(String is) {
-            this.is = is;
+        public void setType(String type) {
+            this.type = type;
         }
     }
 }

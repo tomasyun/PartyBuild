@@ -8,10 +8,12 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -117,11 +119,13 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         if (bean.code.equals("0000")) {
             if (bean.getData() != null) {
                 if (bean.getData().getAnnouncement() != null) {
-                    String content = bean.getData().getAnnouncement().getContent();
-                    tv_notice_home.setText(Html.fromHtml(content));
-                    tv_notice_home.init(getActivity().getWindowManager());
-                    tv_notice_home.startScroll();
-                    tv_notice_home.setEnabled(false);
+                    if (bean.getData().getAnnouncement().getContent() != null) {
+                        String content = bean.getData().getAnnouncement().getContent();
+                        tv_notice_home.setText(Html.fromHtml(content));
+                        tv_notice_home.init(getActivity().getWindowManager());
+                        tv_notice_home.startScroll();
+                        tv_notice_home.setEnabled(false);
+                    }
                 }
                 List<AdvertiseImgM> urls = new ArrayList<>();
                 List<String> titles = new ArrayList<>();

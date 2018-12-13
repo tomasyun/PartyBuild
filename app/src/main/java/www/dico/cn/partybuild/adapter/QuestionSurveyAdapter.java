@@ -3,6 +3,7 @@ package www.dico.cn.partybuild.adapter;
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class QuestionSurveyAdapter extends CommonAdapter<QuestionSurveyBean.Data
         LinearLayout lin_question_survey_root = holder.getView(R.id.lin_question_survey_root);
         holder.setText(R.id.tv_title_question_survey_item, questionSurveyBean.getTitle());
         holder.setText(R.id.tv_date_question_survey_item, questionSurveyBean.getLimitDate());
-        holder.setText(R.id.tv_population_question_survey_item, questionSurveyBean.getPaticipants());
+        holder.setText(R.id.tv_population_question_survey_item, questionSurveyBean.getParticipants());
         if (questionSurveyBean.getLimitDate() != null && !questionSurveyBean.getLimitDate().equals("")) {
             Boolean isExpired = DateTimeUtils.isExpired(questionSurveyBean.getLimitDate());
             if (isExpired) {
@@ -40,9 +41,16 @@ public class QuestionSurveyAdapter extends CommonAdapter<QuestionSurveyBean.Data
                 @Override
                 public void onClick(View view) {
                     if (isExpired) {
-                        infoInterface.skip(1,position);
+                        infoInterface.skip(1, position);
                     } else {
-                        infoInterface.skip(0,position);
+                        switch (questionSurveyBean.getIsSubmit()) {
+                            case "0":
+                                infoInterface.skip(0, position);
+                                break;
+                            case "1":
+                                Toast.makeText(mContext, "改问卷您已参与,不能重复参与", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
                     }
                 }
             });
@@ -50,6 +58,6 @@ public class QuestionSurveyAdapter extends CommonAdapter<QuestionSurveyBean.Data
     }
 
     public interface SkipQuestionSurveyInfoInterface {
-        void skip(int skipId,int position);
+        void skip(int skipId, int position);
     }
 }
