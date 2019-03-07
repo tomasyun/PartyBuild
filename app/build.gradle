@@ -46,10 +46,11 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.all { output ->// each 改为 all
             def fileName = "${variant.productFlavors[0].name}-release.apk"
-            def outFile = output.outputFile
-            if (outFile != null && outFile.name.endsWith('.apk')) {
-                outputFileName = fileName // output.outputFile 改为 outputFileName
-            }
+            outputFileName=fileName
+//            def outFile = output.outputFile
+//            if (outFile != null && outFile.name.endsWith('.apk')) {
+//                outputFileName = fileName // output.outputFile 改为 outputFileName
+//            }
         }
     }
 

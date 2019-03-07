@@ -36,6 +36,7 @@
         android:roundIcon="@mipmap/img_desk_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:replace="android:icon,android:roundIcon">
         <activity android:name=".activity.SplashActivity">
             <intent-filter>

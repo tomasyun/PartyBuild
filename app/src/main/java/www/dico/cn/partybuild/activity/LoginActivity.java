@@ -55,9 +55,10 @@ public class LoginActivity extends AbstractMvpActivity<LoginView, LoginPresenter
                 String name = bean.getData().getName();
                 String partyPost = bean.getData().getPartyPost();//党内职务
                 String token = bean.getData().getToken();
-                String userId = bean.getData().getUserId();//用户id
+                String userId = bean.getData().getUserId( );//用户id
                 String avatar = bean.getData().getAvatar();//头像
                 boolean isManager = bean.getData().IsManager();//是否为管理员
+
                 name = (null == name) ? "" : bean.getData().getName();
                 AppConfig.getSpUtils().put("name", name);
                 partyPost = (null == partyPost) ? "" : bean.getData().getPartyPost();
