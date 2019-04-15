@@ -29,10 +29,13 @@ public class LoginPresenter extends BaseMvpPresenter<LoginView> {
                     @Override
                     public void onError(ApiException e) {
                         super.onError(e);
-                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR)
+                        if (e.getCode() == ApiException.ERROR.NETWORD_ERROR) {
                             getMvpView().netWorkUnAvailable();
-                        else
+                        } else if (e.getCode() == ApiException.UNKNOWN) {
+                            getMvpView().resultFailure("请检查您的网络是否连接");
+                        } else {
                             getMvpView().resultFailure(e.getMessage());
+                        }
                     }
                 });
     }

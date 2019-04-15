@@ -34,12 +34,14 @@ import www.dico.cn.partybuild.activity.IntegrityBuildActivity;
 import www.dico.cn.partybuild.activity.MailboxActivity;
 import www.dico.cn.partybuild.activity.MeetingActivity;
 import www.dico.cn.partybuild.activity.MissionParksActivity;
+import www.dico.cn.partybuild.activity.NoticeInfoActivity;
 import www.dico.cn.partybuild.activity.PayDuesActivity;
 import www.dico.cn.partybuild.activity.StudyTaskActivity;
 import www.dico.cn.partybuild.activity.UnionWorkActivity;
 import www.dico.cn.partybuild.bean.AdvertiseImgM;
 import www.dico.cn.partybuild.bean.HomeBean;
 import www.dico.cn.partybuild.bean.InfodetailForm;
+import www.dico.cn.partybuild.bean.NoticeForm;
 import www.dico.cn.partybuild.modleview.HomeView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractFragment;
@@ -124,7 +126,15 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                         tv_notice_home.setText(Html.fromHtml(content));
                         tv_notice_home.init(getActivity().getWindowManager());
                         tv_notice_home.startScroll();
-                        tv_notice_home.setEnabled(false);
+                        tv_notice_home.setEnabled(true);
+                        tv_notice_home.setOnClickListener(
+                                view -> {
+                                    NoticeForm form = new NoticeForm();
+                                    form.id = bean.getData().getAnnouncement().getId();
+                                    form.isReply = "0";
+                                    goTo(NoticeInfoActivity.class, form);
+                                }
+                        );
                     }
                 }
                 List<AdvertiseImgM> urls = new ArrayList<>();

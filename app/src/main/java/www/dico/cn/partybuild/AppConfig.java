@@ -8,7 +8,7 @@ public class AppConfig {
     public static final boolean DEBUG = Boolean.parseBoolean("true");
     public static final String ACTION = "cn.diconet.www";
     public static final String resUrl = "http://124.152.247.124:8081/";//图片资源路径
-//    public static final String resUrl = "http://47.104.72.111/";//图片资源路径
+    //    public static final String resUrl = "http://47.104.72.111/";//图片资源路径
     public static final String appDownLoadUrl = "http://47.104.72.111/";//安装包下载路径
     public static String nVersionCode = "";
     public static String content = "";
@@ -29,6 +29,9 @@ public class AppConfig {
         AppConfig.context = context;
         spUtils = new SPUtils("dico", context);
         spUtils.put("isLoginOk", 0);//1.登录成功  0.登录失败
+//        spUtils.put("isKeep",false);//true  记住密码  false 忘记密码
+        spUtils.put("username", "");
+        spUtils.put("password", "");
 
         //启动通知消息服务
 //        Intent intent = new Intent(context,RefreshNoticeService.class);

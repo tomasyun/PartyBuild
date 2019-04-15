@@ -31,7 +31,7 @@ public class SettingActivity extends BaseActivity {
                 .setPositiveButton("确定退出", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        AppConfig.getSpUtils().clear();
+                        AppConfig.getSpUtils().put("isLoginOk", 0);
                         MainActivity mainActivity = (MainActivity) AppManager.getManager().findActivity(MainActivity.class);
                         if (mainActivity != null)
                             AppManager.getManager().finishActivity(mainActivity);

@@ -1,6 +1,7 @@
 package www.dico.cn.partybuild.activity
 
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
 import android.view.View
 
@@ -24,6 +25,13 @@ class LoginActivity : AbstractMvpActivity<LoginView, LoginPresenter>(), LoginVie
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        cb_keep_pwd.isChecked = false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        et_name_login.text = Editable.Factory.getInstance().newEditable(AppConfig.getSpUtils().getString("username"))
+        et_password_login.text = Editable.Factory.getInstance().newEditable(AppConfig.getSpUtils().getString("password"))
     }
 
     fun login(view: View) {
@@ -34,6 +42,13 @@ class LoginActivity : AbstractMvpActivity<LoginView, LoginPresenter>(), LoginVie
         } else if (TextUtils.isEmpty(password)) {
             showToast("密码不能为空")
         } else {
+            if (cb_keep_pwd.isChecked) {
+                AppConfig.getSpUtils().put("username", login_name)
+                AppConfig.getSpUtils().put("password", password)
+            } else {
+                AppConfig.getSpUtils().put("username", "")
+                AppConfig.getSpUtils().put("password", "")
+            }
             mvpPresenter.clickRequest(dialog, et_name_login!!.text.toString().trim { it <= ' ' }, et_password_login!!.text.toString().trim { it <= ' ' })
         }
     }
