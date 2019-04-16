@@ -45,7 +45,7 @@ public class GlideUtils {
      */
     public static void loadImageSetUpError(Context context, String url, ImageView imageView, int drawableId) {
         RequestOptions options = new RequestOptions()
-                .centerCrop()
+                .dontTransform()
                 .placeholder(placeholderSoWhite) //占位图
                 .error(drawableId)       //错误图
                 // .priority(Priority.HIGH)

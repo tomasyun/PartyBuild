@@ -40,10 +40,10 @@ public class ExamOkAdapter extends CommonAdapter<ExamsBean.DataBean> {
         if (isPass != null && !isPass.equals("")) {
             switch (isPass) {
                 case "0"://考试不及格
-                    tv_exam_ok_score.setTextColor(AppManager.getManager().curActivity().getColor(R.color.theme_color));
+                    tv_exam_ok_score.setTextColor(AppManager.getManager().curActivity().getResources().getColor(R.color.theme_color));
                     break;
                 case "1"://考试及格
-                    tv_exam_ok_score.setTextColor(AppManager.getManager().curActivity().getColor(R.color.green));
+                    tv_exam_ok_score.setTextColor(AppManager.getManager().curActivity().getResources().getColor(R.color.green));
                     break;
             }
         }

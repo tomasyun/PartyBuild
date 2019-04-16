@@ -8,12 +8,10 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -59,8 +57,8 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
     SmartRefreshLayout srl_home;
     @BindView(R.id.xbanner)
     XBanner xbanner;//轮播
-    @BindView(R.id.tv_gongshi_home)
-    TextView tv_gongshi_home;
+    @BindView(R.id.tv_publicity_home)
+    TextView tv_publicity_home;
     @BindView(R.id.tv_notice_home)
     CustomTextView tv_notice_home;
     @BindView(R.id.rel_meeting_home)
@@ -97,7 +95,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         content.setSpan(new ForegroundColorSpan(Color.RED), 2, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         StyleSpan style = new StyleSpan(Typeface.ITALIC);
         content.setSpan(style, 0, content.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        tv_gongshi_home.setText(content);
+        tv_publicity_home.setText(content);
 
         tv_notice_home.setText("");
         tv_notice_home.init(getActivity().getWindowManager());
@@ -154,8 +152,11 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 xbanner.loadImage(new XBanner.XBannerAdapter() {
                     @Override
                     public void loadBanner(XBanner banner, Object model, View view, int position) {
-                        if (((AdvertiseImgM) model).getPoster() != null && !((AdvertiseImgM) model).getPoster().equals(""))
-                            GlideUtils.loadImageSetUpError(getActivity(), AppConfig.urlFormat(((AdvertiseImgM) model).getPoster()), (ImageView) view, R.mipmap.img_dico);
+                        if (((AdvertiseImgM) model).getPoster() != null && !((AdvertiseImgM) model).getPoster().equals("")) {
+                            ImageView image = (ImageView) view;
+                            image.setScaleType(ImageView.ScaleType.MATRIX);
+                            GlideUtils.loadImageSetUpError(getActivity(), AppConfig.urlFormat(((AdvertiseImgM) model).getPoster()), image, R.mipmap.img_dico);
+                        }
                     }
                 });
                 xbanner.setOnItemClickListener((banner, model, position) -> {

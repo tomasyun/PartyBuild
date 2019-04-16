@@ -2,6 +2,7 @@ package www.dico.cn.partybuild.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
 import www.dico.cn.partybuild.AppConfig;
@@ -32,11 +33,8 @@ public class SettingActivity extends BaseActivity {
                     @Override
                     public void onClick(View view) {
                         AppConfig.getSpUtils().put("isLoginOk", 0);
-                        MainActivity mainActivity = (MainActivity) AppManager.getManager().findActivity(MainActivity.class);
-                        if (mainActivity != null)
-                            AppManager.getManager().finishActivity(mainActivity);
                         goTo(SplashActivity.class, null);
-                        finish();
+                        AppManager.getManager().finishAllActivity();
                     }
                 }).setNegativeButton("取消", new View.OnClickListener() {
             @Override

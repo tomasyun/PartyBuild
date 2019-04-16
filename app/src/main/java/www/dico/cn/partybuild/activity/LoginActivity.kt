@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.view.View
-
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_login.*
-
 import www.dico.cn.partybuild.AppConfig
 import www.dico.cn.partybuild.MainActivity
 import www.dico.cn.partybuild.R
@@ -16,12 +14,13 @@ import www.dico.cn.partybuild.modleview.LoginView
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity
 import www.dico.cn.partybuild.presenter.LoginPresenter
+import www.dico.cn.partybuild.utils.SPUtils
 
 //登录
 @CreatePresenter(LoginPresenter::class)
 class LoginActivity : AbstractMvpActivity<LoginView, LoginPresenter>(), LoginView {
     private var login_name = ""
-
+    private val sp: SPUtils = AppConfig.getSpUtils()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -30,8 +29,11 @@ class LoginActivity : AbstractMvpActivity<LoginView, LoginPresenter>(), LoginVie
 
     override fun onResume() {
         super.onResume()
-        et_name_login.text = Editable.Factory.getInstance().newEditable(AppConfig.getSpUtils().getString("username"))
-        et_password_login.text = Editable.Factory.getInstance().newEditable(AppConfig.getSpUtils().getString("password"))
+
+        if (sp.getString("username") != null && sp.getString("password") != null) {
+            et_name_login.text = Editable.Factory.getInstance().newEditable(sp.getString("username"))
+            et_password_login.text = Editable.Factory.getInstance().newEditable(sp.getString("password"))
+        }
     }
 
     fun login(view: View) {
@@ -43,11 +45,11 @@ class LoginActivity : AbstractMvpActivity<LoginView, LoginPresenter>(), LoginVie
             showToast("密码不能为空")
         } else {
             if (cb_keep_pwd.isChecked) {
-                AppConfig.getSpUtils().put("username", login_name)
-                AppConfig.getSpUtils().put("password", password)
+                sp.put("username", login_name)
+                sp.put("password", password)
             } else {
-                AppConfig.getSpUtils().put("username", "")
-                AppConfig.getSpUtils().put("password", "")
+                sp.put("username", "")
+                sp.put("password", "")
             }
             mvpPresenter.clickRequest(dialog, et_name_login!!.text.toString().trim { it <= ' ' }, et_password_login!!.text.toString().trim { it <= ' ' })
         }
@@ -65,14 +67,14 @@ class LoginActivity : AbstractMvpActivity<LoginView, LoginPresenter>(), LoginVie
                 val isManager = bean.data.IsManager()//是否为管理员
 
                 name = if (null == name) "" else bean.data.name
-                AppConfig.getSpUtils().put("name", name)
+                sp.put("name", name)
                 partyPost = if (null == partyPost) "" else bean.data.partyPost
-                AppConfig.getSpUtils().put("partyPost", partyPost)
-                AppConfig.getSpUtils().put("token", "Bearer $token")
-                AppConfig.getSpUtils().put("userId", userId)
-                AppConfig.getSpUtils().put("avatar", avatar)
-                AppConfig.getSpUtils().put("isManager", isManager)
-                AppConfig.getSpUtils().put("isLoginOk", 1)
+                sp.put("partyPost", partyPost)
+                sp.put("token", "Bearer $token")
+                sp.put("userId", userId)
+                sp.put("avatar", avatar)
+                sp.put("isManager", isManager)
+                sp.put("isLoginOk", 1)
                 goTo(MainActivity::class.java, null)
                 finish()
             }
