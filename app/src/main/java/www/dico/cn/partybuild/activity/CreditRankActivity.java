@@ -105,11 +105,6 @@ public class CreditRankActivity extends AbstractMvpActivity<CreditRankView, Cred
         rv_rank.setVisibility(View.GONE);
         credit_rank_empty_data.setVisibility(View.GONE);
         credit_rank_net_error.setVisibility(View.VISIBLE);
-        credit_rank_net_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getMvpPresenter().creditRankRequest(dialog);
-            }
-        });
+        credit_rank_net_error.setOnClickListener(view -> getMvpPresenter().creditRankRequest(dialog));
     }
 }

@@ -1,6 +1,7 @@
 package www.dico.cn.partybuild.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +23,7 @@ import www.dico.cn.partybuild.R;
 //启动页
 public class SplashActivity extends BaseActivity implements MPermission.PermissionCallbacks {
     private static final int PERMISSION = 123;
+    @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {

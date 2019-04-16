@@ -69,18 +69,15 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
         form = getParam();
         iv_participants_meeting_brief.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_arrow_right));
         tfl_participants_meeting_brief.setVisibility(View.GONE);
-        rel_participants_meeting_brief.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isHide) {
-                    tfl_participants_meeting_brief.setVisibility(View.VISIBLE);
-                    iv_participants_meeting_brief.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_arrow_down));
-                    isHide = false;
-                } else {
-                    tfl_participants_meeting_brief.setVisibility(View.GONE);
-                    iv_participants_meeting_brief.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_arrow_right));
-                    isHide = true;
-                }
+        rel_participants_meeting_brief.setOnClickListener(view -> {
+            if (isHide) {
+                tfl_participants_meeting_brief.setVisibility(View.VISIBLE);
+                iv_participants_meeting_brief.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_arrow_down));
+                isHide = false;
+            } else {
+                tfl_participants_meeting_brief.setVisibility(View.GONE);
+                iv_participants_meeting_brief.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_arrow_right));
+                isHide = true;
             }
         });
     }
@@ -150,18 +147,10 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                                 sign_up.setVisibility(View.GONE);
                                 TextView tv_leave_brief = lin_leave_and_sign_up.findViewById(R.id.tv_leave_brief);
                                 TextView tv_sign_up_brief = lin_leave_and_sign_up.findViewById(R.id.tv_sign_up_brief);
-                                tv_leave_brief.setOnClickListener(new View.OnClickListener() {//开始请假
-                                    @Override
-                                    public void onClick(View view) {
-                                        showToast("当前不能请假");
-                                    }
-                                });
-                                tv_sign_up_brief.setOnClickListener(new View.OnClickListener() {//开始报名
-                                    @Override
-                                    public void onClick(View view) {
-                                        showToast("报名时间未到");
-                                    }
-                                });
+                                //开始请假
+                                tv_leave_brief.setOnClickListener(view -> showToast("当前不能请假"));
+                                //开始报名
+                                tv_sign_up_brief.setOnClickListener(view -> showToast("报名时间未到"));
                                 break;
                             case "O"://可以请假也可以报名
                                 if (signUpState.equals("0")) {//未报名
@@ -170,20 +159,14 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                                         sign_up.setVisibility(View.GONE);
                                         TextView tv_leave_brief1 = lin_leave_and_sign_up.findViewById(R.id.tv_leave_brief);
                                         TextView tv_sign_up_brief1 = lin_leave_and_sign_up.findViewById(R.id.tv_sign_up_brief);
-                                        tv_leave_brief1.setOnClickListener(new View.OnClickListener() {//开始请假
-                                            @Override
-                                            public void onClick(View view) {
-                                                LeaveForm form = new LeaveForm();
-                                                form.meetingId = MeetingBriefActivity.this.form.meetingId;
-                                                goTo(LeaveReasonActivity.class, form);
-                                            }
+                                        //开始请假
+                                        tv_leave_brief1.setOnClickListener(view -> {
+                                            LeaveForm form = new LeaveForm();
+                                            form.meetingId = MeetingBriefActivity.this.form.meetingId;
+                                            goTo(LeaveReasonActivity.class, form);
                                         });
-                                        tv_sign_up_brief1.setOnClickListener(new View.OnClickListener() {//开始报名
-                                            @Override
-                                            public void onClick(View view) {
-                                                getMvpPresenter().doSignUpRequest(dialog, form.meetingId);
-                                            }
-                                        });
+                                        //开始报名
+                                        tv_sign_up_brief1.setOnClickListener(view -> getMvpPresenter().doSignUpRequest(dialog, form.meetingId));
                                     } else {//已请假
                                         lin_leave_and_sign_up.setVisibility(View.GONE);
                                         sign_up.setVisibility(View.VISIBLE);
@@ -206,18 +189,10 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                                         sign_up.setVisibility(View.GONE);
                                         TextView tv_leave_brief2 = lin_leave_and_sign_up.findViewById(R.id.tv_leave_brief);
                                         TextView tv_sign_up_brief2 = lin_leave_and_sign_up.findViewById(R.id.tv_sign_up_brief);
-                                        tv_leave_brief2.setOnClickListener(new View.OnClickListener() {//开始请假
-                                            @Override
-                                            public void onClick(View view) {
-                                                showToast("当前不能请假");
-                                            }
-                                        });
-                                        tv_sign_up_brief2.setOnClickListener(new View.OnClickListener() {//开始报名
-                                            @Override
-                                            public void onClick(View view) {
-                                                showToast("报名时间已结束");
-                                            }
-                                        });
+                                        //开始请假
+                                        tv_leave_brief2.setOnClickListener(view -> showToast("当前不能请假"));
+                                        //开始报名
+                                        tv_sign_up_brief2.setOnClickListener(view -> showToast("报名时间已结束"));
                                     } else {//已请假
                                         lin_leave_and_sign_up.setVisibility(View.GONE);
                                         sign_up.setVisibility(View.VISIBLE);
@@ -242,18 +217,10 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                                 sign_up.setVisibility(View.GONE);
                                 TextView tv_leave_brief = lin_leave_and_sign_up.findViewById(R.id.tv_leave_brief);
                                 TextView tv_sign_up_brief = lin_leave_and_sign_up.findViewById(R.id.tv_sign_up_brief);
-                                tv_leave_brief.setOnClickListener(new View.OnClickListener() {//开始请假
-                                    @Override
-                                    public void onClick(View view) {
-                                        showToast("当前不能请假");
-                                    }
-                                });
-                                tv_sign_up_brief.setOnClickListener(new View.OnClickListener() {//开始报名
-                                    @Override
-                                    public void onClick(View view) {
-                                        showToast("报名时间未到");
-                                    }
-                                });
+                                //开始请假
+                                tv_leave_brief.setOnClickListener(view -> showToast("当前不能请假"));
+                                //开始报名
+                                tv_sign_up_brief.setOnClickListener(view -> showToast("报名时间未到"));
                                 break;
                             case "O"://可以请假也可以报名
                                 if (signUpState.equals("0")) {//未报名
@@ -285,18 +252,10 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                                         sign_up.setVisibility(View.GONE);
                                         TextView tv_leave_brief1 = lin_leave_and_sign_up.findViewById(R.id.tv_leave_brief);
                                         TextView tv_sign_up_brief1 = lin_leave_and_sign_up.findViewById(R.id.tv_sign_up_brief);
-                                        tv_leave_brief1.setOnClickListener(new View.OnClickListener() {//开始请假
-                                            @Override
-                                            public void onClick(View view) {
-                                                showToast("当前不能请假");
-                                            }
-                                        });
-                                        tv_sign_up_brief1.setOnClickListener(new View.OnClickListener() {//开始报名
-                                            @Override
-                                            public void onClick(View view) {
-                                                showToast("报名时间已结束");
-                                            }
-                                        });
+                                        //开始请假
+                                        tv_leave_brief1.setOnClickListener(view -> showToast("当前不能请假"));
+                                        //开始报名
+                                        tv_sign_up_brief1.setOnClickListener(view -> showToast("报名时间已结束"));
                                     } else {//已请假
                                         lin_leave_and_sign_up.setVisibility(View.GONE);
                                         sign_up.setVisibility(View.VISIBLE);
@@ -320,14 +279,11 @@ public class MeetingBriefActivity extends AbstractMvpActivity<MeetingBriefView, 
                         TextView tv_sign_up = sign_up.findViewById(R.id.tv_sign_up);
                         tv_sign_up.setText("查看会议记录");
                         tv_sign_up.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-                        tv_sign_up.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                MeetingSummaryForm form = new MeetingSummaryForm();
-                                form.id = briefBean.getData().getId();
-                                goTo(MeetingSummaryActivity.class, form);
-                                finish();
-                            }
+                        tv_sign_up.setOnClickListener(view -> {
+                            MeetingSummaryForm form = new MeetingSummaryForm();
+                            form.id = briefBean.getData().getId();
+                            goTo(MeetingSummaryActivity.class, form);
+                            finish();
                         });
                         break;
                 }

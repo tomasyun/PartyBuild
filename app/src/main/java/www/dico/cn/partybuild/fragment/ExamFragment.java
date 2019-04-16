@@ -55,21 +55,18 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
         ButterKnife.bind(this, view);
         rv_exam.setLayoutManager(new LinearLayoutManager(getActivity()));
         rg_exam.check(R.id.rbt_exam_on);
-        rg_exam.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rbt_exam_on:
-                        //待考
-                        position = 0;
-                        createRequest(position);
-                        break;
-                    case R.id.rbt_exam_ok:
-                        //已考
-                        position = 1;
-                        createRequest(position);
-                        break;
-                }
+        rg_exam.setOnCheckedChangeListener((radioGroup, checkedId) -> {
+            switch (checkedId) {
+                case R.id.rbt_exam_on:
+                    //待考
+                    position = 0;
+                    createRequest(position);
+                    break;
+                case R.id.rbt_exam_ok:
+                    //已考
+                    position = 1;
+                    createRequest(position);
+                    break;
             }
         });
         return view;
@@ -85,13 +82,10 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                 exam_net_error.setVisibility(View.GONE);
                 onAdapter = new ExamOnAdapter(getActivity(), R.layout.item_exam_on, bean.getData());
                 rv_exam.setAdapter(onAdapter);
-                onAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        ExamRulerForm form = new ExamRulerForm();
-                        form.examId = bean.getData().get(position).getId();
-                        goTo(ExamRuleActivity.class, form);
-                    }
+                onAdapter.setOnItemClickListener((view, holder, position) -> {
+                    ExamRulerForm form = new ExamRulerForm();
+                    form.examId = bean.getData().get(position).getId();
+                    goTo(ExamRuleActivity.class, form);
                 });
             } else {
                 rv_exam.setVisibility(View.GONE);
@@ -117,13 +111,10 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
                 exam_empty_data.setVisibility(View.GONE);
                 okAdapter = new ExamOkAdapter(getActivity(), R.layout.item_exam_ok, bean.getData());
                 rv_exam.setAdapter(okAdapter);
-                okAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        ExamRulerForm form = new ExamRulerForm();
-                        form.examId = bean.getData().get(position).getId();
-                        goTo(ExamRuleActivity.class, form);
-                    }
+                okAdapter.setOnItemClickListener((view, holder, position) -> {
+                    ExamRulerForm form = new ExamRulerForm();
+                    form.examId = bean.getData().get(position).getId();
+                    goTo(ExamRuleActivity.class, form);
                 });
             } else {
                 rv_exam.setVisibility(View.GONE);
@@ -144,12 +135,7 @@ public class ExamFragment extends AbstractFragment<ExamView, ExamPresenter> impl
         rv_exam.setVisibility(View.GONE);
         exam_empty_data.setVisibility(View.GONE);
         exam_net_error.setVisibility(View.VISIBLE);
-        exam_net_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createRequest(position);
-            }
-        });
+        exam_net_error.setOnClickListener(view -> createRequest(position));
     }
 
     @Override

@@ -94,15 +94,12 @@ public class ExamResultActivity extends AbstractMvpActivity<ExamResultView, Exam
                 if (null != idsBeans && idsBeans.size() > 0) {
                     adapter = new ExamResultPreviewAdapter(idsBeans);
                     tfl_exam_result_preview.setAdapter(adapter);
-                    tfl_exam_result_preview.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
-                        @Override
-                        public boolean onTagClick(View view, int position, FlowLayout parent) {
-                            QuestionOptionPreviewForm form = new QuestionOptionPreviewForm();
-                            form.position = position + 1;
-                            form.questionId = idsBeans.get(position).getId();
-                            goTo(QuestionOptionPreviewActivity.class, form);
-                            return true;
-                        }
+                    tfl_exam_result_preview.setOnTagClickListener((view, position, parent) -> {
+                        QuestionOptionPreviewForm form = new QuestionOptionPreviewForm();
+                        form.position = position + 1;
+                        form.questionId = idsBeans.get(position).getId();
+                        goTo(QuestionOptionPreviewActivity.class, form);
+                        return true;
                     });
                 } else {
                     //空白页面

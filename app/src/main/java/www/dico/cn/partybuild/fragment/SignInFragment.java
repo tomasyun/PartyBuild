@@ -127,33 +127,25 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
         initGeocodeSearch();
         initDistanceSearch();
         //立即签到
-        rel_sign_in_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        rel_sign_in_start.setOnClickListener(view1 -> {
 //                if (time > 600000) {
 //                    showToast("抱歉,未到签到时间");
 //                } else {
-                    if (!address.equals("")) {
-                        loadingDialog = new LoadingDialog.Builder(getActivity())
-                                .setCancelable(true)
-                                .setCancelOutside(true)
-                                .setMessage("定位中..")
-                                .setShowMessage(true)
-                                .create();
-                        loadingDialog.show();
-                        mLocationClient.startLocation();//启动定位
-                    } else {
-                        showToast("未获取到签到地址");
-                    }
+                if (!address.equals("")) {
+                    loadingDialog = new LoadingDialog.Builder(getActivity())
+                            .setCancelable(true)
+                            .setCancelOutside(true)
+                            .setMessage("定位中..")
+                            .setShowMessage(true)
+                            .create();
+                    loadingDialog.show();
+                    mLocationClient.startLocation();//启动定位
+                } else {
+                    showToast("未获取到签到地址");
+                }
 //                }
-            }
         });
-        srl_sign_in.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doGetSignInConferenceRequest(dialog);
-            }
-        });
+        srl_sign_in.setOnRefreshListener(relayout -> getMvpPresenter().doGetSignInConferenceRequest(dialog));
         return view;
     }
 
@@ -365,12 +357,7 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
         srl_sign_in.setVisibility(View.GONE);
         sign_in_empty_data.setVisibility(View.GONE);
         sign_in_net_error.setVisibility(View.VISIBLE);
-        sign_in_net_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getMvpPresenter().doGetSignInConferenceRequest(dialog);
-            }
-        });
+        sign_in_net_error.setOnClickListener(view -> getMvpPresenter().doGetSignInConferenceRequest(dialog));
     }
 
     @Override

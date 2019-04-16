@@ -30,16 +30,13 @@ public class StudyResultActivity extends AbstractMvpActivity<StudyResultView, St
         form = getParam();
         btn_result_submit = findViewById(R.id.btn_result_submit);
         et_content_study_result = findViewById(R.id.et_content_study_result);
-        btn_result_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String content = et_content_study_result.getText().toString().trim();
-                if (content.equals("")) {
-                    showToast("请填写学习成果");
-                } else {
-                    if (form != null)
-                        getMvpPresenter().doSubmitStudyResultRequest(dialog, form.taskId, content);
-                }
+        btn_result_submit.setOnClickListener(view -> {
+            String content = et_content_study_result.getText().toString().trim();
+            if (content.equals("")) {
+                showToast("请填写学习成果");
+            } else {
+                if (form != null)
+                    getMvpPresenter().doSubmitStudyResultRequest(dialog, form.taskId, content);
             }
         });
     }
@@ -56,12 +53,7 @@ public class StudyResultActivity extends AbstractMvpActivity<StudyResultView, St
                     .setTitle("提交成功")
                     .setMsg("恭喜您完成了本次学习任务")
                     .setCancelable(false)
-                    .setPositiveButton("确定", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            goTo(StudyTaskActivity.class, null);
-                        }
-                    }).show();
+                    .setPositiveButton("确定", view -> goTo(StudyTaskActivity.class, null)).show();
         } else {
             showToast("服务器异常");
         }

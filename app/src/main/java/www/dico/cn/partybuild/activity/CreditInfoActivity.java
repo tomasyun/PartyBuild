@@ -48,27 +48,24 @@ public class CreditInfoActivity extends AbstractMvpActivity<CreditInfoView, Cred
         setContentView(R.layout.activity_creditinfo);
         ButterKnife.bind(this);
         rg_credit_info.check(R.id.rbt_credit_info_all);
-        rg_credit_info.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rbt_credit_info_all:
-                        position = 0;
-                        createRequest(position);
-                        break;
-                    case R.id.rbt_credit_info_month:
-                        position = 1;
-                        createRequest(position);
-                        break;
-                    case R.id.rbt_credit_info_week:
-                        position = 2;
-                        createRequest(position);
-                        break;
-                    case R.id.rbt_credit_info_day:
-                        position = 3;
-                        createRequest(position);
-                        break;
-                }
+        rg_credit_info.setOnCheckedChangeListener((radioGroup, checkedId) -> {
+            switch (checkedId) {
+                case R.id.rbt_credit_info_all:
+                    position = 0;
+                    createRequest(position);
+                    break;
+                case R.id.rbt_credit_info_month:
+                    position = 1;
+                    createRequest(position);
+                    break;
+                case R.id.rbt_credit_info_week:
+                    position = 2;
+                    createRequest(position);
+                    break;
+                case R.id.rbt_credit_info_day:
+                    position = 3;
+                    createRequest(position);
+                    break;
             }
         });
 

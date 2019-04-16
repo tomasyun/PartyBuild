@@ -47,18 +47,12 @@ public class LeaveReasonActivity extends AbstractMvpActivity<LeaveReasonView, Le
             new AlertDialog(this).builder()
                     .setTitle("确定请假？")
                     .setMsg("请假后您将不能参加此次会议")
-                    .setPositiveButton("确定", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (form != null)
-                                getMvpPresenter().doLeaveRequest(dialog, form.meetingId, content);
-                        }
-                    }).setNegativeButton("取消", new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+                    .setPositiveButton("确定", view1 -> {
+                        if (form != null)
+                            getMvpPresenter().doLeaveRequest(dialog, form.meetingId, content);
+                    }).setNegativeButton("取消", view12 -> {
 
-                }
-            }).show();
+                    }).show();
         }
     }
 

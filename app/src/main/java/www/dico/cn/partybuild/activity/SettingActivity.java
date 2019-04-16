@@ -29,19 +29,13 @@ public class SettingActivity extends BaseActivity {
                 .setCancelable(true)
                 .setTitle("退出登录")
                 .setMsg("退出登录可能会使你现有记录归零，确定退出?")
-                .setPositiveButton("确定退出", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        AppConfig.getSpUtils().put("isLoginOk", 0);
-                        goTo(SplashActivity.class, null);
-                        AppManager.getManager().finishAllActivity();
-                    }
-                }).setNegativeButton("取消", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                .setPositiveButton("确定退出", positive -> {
+                    AppConfig.getSpUtils().put("isLoginOk", 0);
+                    goTo(SplashActivity.class, null);
+                    AppManager.getManager().finishAllActivity();
+                }).setNegativeButton("取消", negative -> {
 
-            }
-        }).show();
+                }).show();
     }
 
     //版本更新

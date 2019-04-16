@@ -68,12 +68,7 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
                     .setTitle("发送成功")
                     .setMsg("请耐心等待领导回复")
                     .setCancelable(false)
-                    .setPositiveButton("知道了", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            MailboxActivity.this.finish();
-                        }
-                    }).show();
+                    .setPositiveButton("知道了", view -> MailboxActivity.this.finish()).show();
         } else {
             showToast("服务器异常");
         }
@@ -96,12 +91,9 @@ public class MailboxActivity extends AbstractMvpActivity<MailboxView, MailboxPre
                 if (list.size() > 0) {
                     for (int i = 0; i < list.size(); i++) {
                         final int position = i;
-                        dialog.addSheetItem(list.get(i).getPosition(), ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-                                tv_name_mail_box.setText(list.get(position).getPosition());
-                                leaderId = list.get(position).getId();
-                            }
+                        dialog.addSheetItem(list.get(i).getPosition(), ActionSheetDialog.SheetItemColor.Blue, which -> {
+                            tv_name_mail_box.setText(list.get(position).getPosition());
+                            leaderId = list.get(position).getId();
                         });
                     }
                     dialog.show();

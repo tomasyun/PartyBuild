@@ -43,12 +43,7 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
         setContentView(R.layout.activity_meeting);
         ButterKnife.bind(this);
         rv_meeting.setLayoutManager(new LinearLayoutManager(this));
-        srl_meeting.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doMeetingRequest(dialog);
-            }
-        });
+        srl_meeting.setOnRefreshListener(relayout -> getMvpPresenter().doMeetingRequest(dialog));
     }
 
     @Override
@@ -73,14 +68,11 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
                 meeting_net_error.setVisibility(View.GONE);
                 adapter = new MeetingAdapter(this, R.layout.item_meeting, bean.getData());
                 rv_meeting.setAdapter(adapter);
-                adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        MeetingForm form = new MeetingForm();
-                        form.meetingId = bean.getData().get(position).getId();
-                        form.state = bean.getData().get(position).getState();
-                        goTo(MeetingBriefActivity.class, form);
-                    }
+                adapter.setOnItemClickListener((view, holder, position) -> {
+                    MeetingForm form = new MeetingForm();
+                    form.meetingId = bean.getData().get(position).getId();
+                    form.state = bean.getData().get(position).getState();
+                    goTo(MeetingBriefActivity.class, form);
                 });
             } else {
                 //空白页面
@@ -105,11 +97,6 @@ public class MeetingActivity extends AbstractMvpActivity<MeetingView, MeetingPre
         srl_meeting.setVisibility(View.GONE);
         meeting_empty_data.setVisibility(View.GONE);
         meeting_net_error.setVisibility(View.VISIBLE);
-        meeting_net_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getMvpPresenter().doMeetingRequest(dialog);
-            }
-        });
+        meeting_net_error.setOnClickListener(view -> getMvpPresenter().doMeetingRequest(dialog));
     }
 }

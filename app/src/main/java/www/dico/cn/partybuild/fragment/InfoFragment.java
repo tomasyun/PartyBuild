@@ -64,31 +64,28 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
         ButterKnife.bind(this, view);
         rv_info.setLayoutManager(new LinearLayoutManager(getActivity()));
         rg_info.check(R.id.rbt_talk_info);
-        rg_info.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rbt_news_info://党建要闻
-                        position = 0;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                    case R.id.rbt_talk_info://习总讲话
-                        position = 1;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                    case R.id.rbt_history_info://国史党史
-                        position = 2;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                    case R.id.tv_vanguard_info://时代先锋
-                        position = 3;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                }
+        rg_info.setOnCheckedChangeListener((radioGroup, checkedId) -> {
+            switch (checkedId) {
+                case R.id.rbt_news_info://党建要闻
+                    position = 0;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
+                case R.id.rbt_talk_info://习总讲话
+                    position = 1;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
+                case R.id.rbt_history_info://国史党史
+                    position = 2;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
+                case R.id.tv_vanguard_info://时代先锋
+                    position = 3;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
             }
         });
 
@@ -123,14 +120,11 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                         info_net_error.setVisibility(View.GONE);
                         adapter = new InfoAdapter(getActivity(), R.layout.item_info, list);
                         rv_info.setAdapter(adapter);
-                        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfodetailForm form = new InfodetailForm();
-                                form.id = list.get(position).getId();
-                                form.type = 0;
-                                goTo(InfodetailsActivity.class, form);
-                            }
+                        adapter.setOnItemClickListener((view, holder, position) -> {
+                            InfodetailForm form = new InfodetailForm();
+                            form.id = list.get(position).getId();
+                            form.type = 0;
+                            goTo(InfodetailsActivity.class, form);
                         });
                     } else {
                         srl_info.setVisibility(View.GONE);
@@ -142,14 +136,11 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
                     if (null != list && list.size() > 0) {
                         this.list.addAll(list);
                         adapter.notifyDataSetChanged();
-                        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfodetailForm form = new InfodetailForm();
-                                form.id = InfoFragment.this.list.get(position).getId();
-                                form.type = 0;
-                                goTo(InfodetailsActivity.class, form);
-                            }
+                        adapter.setOnItemClickListener((view, holder, position) -> {
+                            InfodetailForm form = new InfodetailForm();
+                            form.id = InfoFragment.this.list.get(position).getId();
+                            form.type = 0;
+                            goTo(InfodetailsActivity.class, form);
                         });
                     } else {
 
@@ -173,12 +164,7 @@ public class InfoFragment extends AbstractFragment<InfoView, InfoPresenter> impl
         srl_info.setVisibility(View.GONE);
         info_empty_data.setVisibility(View.GONE);
         info_net_error.setVisibility(View.VISIBLE);
-        info_net_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createRequest(position, start);
-            }
-        });
+        info_net_error.setOnClickListener(view -> createRequest(position, start));
     }
 
     @Override

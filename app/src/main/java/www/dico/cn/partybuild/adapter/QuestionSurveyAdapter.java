@@ -37,20 +37,17 @@ public class QuestionSurveyAdapter extends CommonAdapter<QuestionSurveyBean.Data
             } else {
                 holder.setText(R.id.tv_state_des_survey_item, "调查截止");
             }
-            lin_question_survey_root.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (isExpired) {
-                        infoInterface.skip(1, position);
-                    } else {
-                        switch (questionSurveyBean.getIsSubmit()) {
-                            case "0":
-                                infoInterface.skip(0, position);
-                                break;
-                            case "1":
-                                Toast.makeText(mContext, "改问卷您已参与,不能重复参与", Toast.LENGTH_SHORT).show();
-                                break;
-                        }
+            lin_question_survey_root.setOnClickListener(view -> {
+                if (isExpired) {
+                    infoInterface.skip(1, position);
+                } else {
+                    switch (questionSurveyBean.getIsSubmit()) {
+                        case "0":
+                            infoInterface.skip(0, position);
+                            break;
+                        case "1":
+                            Toast.makeText(mContext, "改问卷您已参与,不能重复参与", Toast.LENGTH_SHORT).show();
+                            break;
                     }
                 }
             });

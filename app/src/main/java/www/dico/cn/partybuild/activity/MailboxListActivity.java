@@ -42,12 +42,7 @@ public class MailboxListActivity extends AbstractMvpActivity<MailboxListView, Ma
         ButterKnife.bind(this);
         rv_mailbox_list.setLayoutManager(new LinearLayoutManager(this));
 
-        srl_mailbox_list.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doMailboxListRequest(dialog);
-            }
-        });
+        srl_mailbox_list.setOnRefreshListener(refresh -> getMvpPresenter().doMailboxListRequest(dialog));
         getMvpPresenter().doMailboxListRequest(dialog);
     }
 

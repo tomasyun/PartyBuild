@@ -78,12 +78,9 @@ public class SurveyQuestionAdapter extends ViewPagerCommonAdapter<SurveyQuestion
 
                 }
                 rg_ls.addView(group);
-                group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                        RadioButton radioBtn = radioGroup.findViewById(checkedId);
-                        radioAnswer = radioBtn.getText().toString().trim();
-                    }
+                group.setOnCheckedChangeListener((radioGroup, checkedId) -> {
+                    RadioButton radioBtn = radioGroup.findViewById(checkedId);
+                    radioAnswer = radioBtn.getText().toString().trim();
                 });
             }
         }

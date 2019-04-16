@@ -73,38 +73,27 @@ public class NoticeInfoActivity extends AbstractMvpActivity<NoticeInfoView, Noti
                     et_reply_comment = notice_info_reply_comment.findViewById(R.id.et_reply_comment);
                     TextView tv_reply_comment = notice_info_reply_comment.findViewById(R.id.tv_reply_comment);
                     ImageView iv_reply_comment = notice_info_reply_comment.findViewById(R.id.iv_reply_comment);
-                    tv_reply_comment.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
+                    tv_reply_comment.setOnClickListener(view -> {
+                        if (et_reply_comment.getText().toString().trim().equals("")) {
+                            showToast("请填写回复内容");
+                        } else {
+                            getMvpPresenter().doSubmitCommentRequest(dialog, "1", form.id, et_reply_comment.getText().toString().trim());
+                        }
+                    });
+
+                    et_reply_comment.setOnEditorActionListener((textView, actionId, keyEvent) -> {
+                        if (actionId == EditorInfo.IME_ACTION_SEND) {
                             if (et_reply_comment.getText().toString().trim().equals("")) {
                                 showToast("请填写回复内容");
                             } else {
                                 getMvpPresenter().doSubmitCommentRequest(dialog, "1", form.id, et_reply_comment.getText().toString().trim());
+                                return true;
                             }
                         }
+                        return false;
                     });
 
-                    et_reply_comment.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                        @Override
-                        public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                            if (actionId == EditorInfo.IME_ACTION_SEND) {
-                                if (et_reply_comment.getText().toString().trim().equals("")) {
-                                    showToast("请填写回复内容");
-                                } else {
-                                    getMvpPresenter().doSubmitCommentRequest(dialog, "1", form.id, et_reply_comment.getText().toString().trim());
-                                    return true;
-                                }
-                            }
-                            return false;
-                        }
-                    });
-
-                    iv_reply_comment.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            showToast("暂未开通");
-                        }
-                    });
+                    iv_reply_comment.setOnClickListener(view -> showToast("暂未开通"));
                     break;
             }
         }

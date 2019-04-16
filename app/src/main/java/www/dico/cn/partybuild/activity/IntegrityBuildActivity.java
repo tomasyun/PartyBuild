@@ -50,26 +50,23 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
         ButterKnife.bind(this);
         rv_integrity_build.setLayoutManager(new LinearLayoutManager(this));
         rg_integrity_build.check(R.id.rbt_edu_integrity_build);
-        rg_integrity_build.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rbt_edu_integrity_build://廉政教育
-                        position = 0;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                    case R.id.rbt_prevent_integrity_build://监督预防
-                        position = 1;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                    case R.id.rbt_case_integrity_build://案例
-                        position = 2;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                }
+        rg_integrity_build.setOnCheckedChangeListener((radioGroup, checkedId) -> {
+            switch (checkedId) {
+                case R.id.rbt_edu_integrity_build://廉政教育
+                    position = 0;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
+                case R.id.rbt_prevent_integrity_build://监督预防
+                    position = 1;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
+                case R.id.rbt_case_integrity_build://案例
+                    position = 2;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
             }
         });
         srl_integrity_build.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
@@ -112,14 +109,11 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
                         integrity_build_net_error.setVisibility(View.GONE);
                         adapter = new InfoAdapter(this, R.layout.item_info, list);
                         rv_integrity_build.setAdapter(adapter);
-                        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfodetailForm form = new InfodetailForm();
-                                form.id = list.get(position).getId();
-                                form.type = 1;
-                                goTo(InfodetailsActivity.class, form);
-                            }
+                        adapter.setOnItemClickListener((view, holder, position) -> {
+                            InfodetailForm form = new InfodetailForm();
+                            form.id = list.get(position).getId();
+                            form.type = 1;
+                            goTo(InfodetailsActivity.class, form);
                         });
                     } else {
                         integrity_build_empty_data.setVisibility(View.VISIBLE);
@@ -131,14 +125,11 @@ public class IntegrityBuildActivity extends AbstractMvpActivity<IntegrityBuildVi
                     if (null != list && list.size() > 0) {
                         this.list.addAll(list);
                         adapter.notifyDataSetChanged();
-                        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfodetailForm form = new InfodetailForm();
-                                form.id = IntegrityBuildActivity.this.list.get(position).getId();
-                                form.type = 1;
-                                goTo(InfodetailsActivity.class, form);
-                            }
+                        adapter.setOnItemClickListener((view, holder, position) -> {
+                            InfodetailForm form = new InfodetailForm();
+                            form.id = IntegrityBuildActivity.this.list.get(position).getId();
+                            form.type = 1;
+                            goTo(InfodetailsActivity.class, form);
                         });
                     } else {
 

@@ -43,12 +43,7 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
         setContentView(R.layout.activity_studytask);
         ButterKnife.bind(this);
         rv_study_task.setLayoutManager(new LinearLayoutManager(this));
-        srl_study_task.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doStudyTaskRequest(dialog);
-            }
-        });
+        srl_study_task.setOnRefreshListener(relayout -> getMvpPresenter().doStudyTaskRequest(dialog));
     }
 
     @Override
@@ -74,14 +69,11 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
                     study_task_net_error.setVisibility(View.GONE);
                     adapter = new StudyTaskAdapter(this, R.layout.item_study_task, beans);
                     rv_study_task.setAdapter(adapter);
-                    adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                            StudyTaskForm form = new StudyTaskForm();
-                            form.taskId = beans.get(position).getId();
-                            form.taskState = beans.get(position).getTaskState();
-                            goTo(TaskBriefActivity.class, form);
-                        }
+                    adapter.setOnItemClickListener((view, holder, position) -> {
+                        StudyTaskForm form = new StudyTaskForm();
+                        form.taskId = beans.get(position).getId();
+                        form.taskState = beans.get(position).getTaskState();
+                        goTo(TaskBriefActivity.class, form);
                     });
                 } else {
                     srl_study_task.setVisibility(View.GONE);
@@ -105,11 +97,6 @@ public class StudyTaskActivity extends AbstractMvpActivity<StudyTaskView, StudyT
         srl_study_task.setVisibility(View.GONE);
         study_task_empty_data.setVisibility(View.GONE);
         study_task_net_error.setVisibility(View.VISIBLE);
-        study_task_net_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getMvpPresenter().doStudyTaskRequest(dialog);
-            }
-        });
+        study_task_net_error.setOnClickListener(view -> getMvpPresenter().doStudyTaskRequest(dialog));
     }
 }

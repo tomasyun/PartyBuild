@@ -49,16 +49,8 @@ public class OnlineSurveyActivity extends AbstractMvpActivity<OnlineSurveyView, 
         new AlertDialog(this).builder()
                 .setTitle("退出调查")
                 .setMsg("调查中途退出，本次调查会作废，您确定退出?")
-                .setPositiveButton("确定", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        OnlineSurveyActivity.this.finish();
-                    }
-                }).setNegativeButton("取消", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                .setPositiveButton("确定", positive -> OnlineSurveyActivity.this.finish()).setNegativeButton("取消", negative -> {
 
-            }
         }).show();
     }
 
@@ -68,16 +60,8 @@ public class OnlineSurveyActivity extends AbstractMvpActivity<OnlineSurveyView, 
             new AlertDialog(this).builder()
                     .setTitle("退出调查")
                     .setMsg("调查中途退出，本次调查会作废，您确定退出?")
-                    .setPositiveButton("确定", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            OnlineSurveyActivity.this.finish();
-                        }
-                    }).setNegativeButton("取消", new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+                    .setPositiveButton("确定", positive -> OnlineSurveyActivity.this.finish()).setNegativeButton("取消", negative -> {
 
-                }
             }).show();
         }
         return false;

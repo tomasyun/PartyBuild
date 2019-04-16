@@ -1,5 +1,6 @@
 package www.dico.cn.partybuild.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -50,6 +51,7 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
     private String examStartTime;
     private String examCost;
     private ExamResultForm form;
+    @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -58,21 +60,18 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
                 case 0:
                     if (tv_residue_time_online_exam != null) {
                         helper = new CountDownButtonHelper(tv_residue_time_online_exam, "00分:00秒", during * 60, 1, 0);
-                        helper.setOnFinishListener(new CountDownButtonHelper.OnFinishListener() {
-                            @Override
-                            public void finish() {
-                                ExamAnswerBean answerBean = new ExamAnswerBean();
-                                ExamAnswerBean.ExamRecordBean recordBean = new ExamAnswerBean.ExamRecordBean();
-                                recordBean.setExamRuleId(form.examId);
-                                recordBean.setExamTime(DateTimeUtils.getNow());
-                                examCost = DateTimeUtils.getMinutes(examStartTime, DateTimeUtils.getNow());
-                                recordBean.setExamCost(examCost);
-                                answerBean.setExamRecord(recordBean);
-                                answerBean.setTestAnswers(answers);
-                                answerBean.setLimitScore(form.limitScore);
-                                String requestParams = new Gson().toJson(answerBean);
-                                getMvpPresenter().doSaveExamAnswer(dialog, requestParams);
-                            }
+                        helper.setOnFinishListener(() -> {
+                            ExamAnswerBean answerBean = new ExamAnswerBean();
+                            ExamAnswerBean.ExamRecordBean recordBean = new ExamAnswerBean.ExamRecordBean();
+                            recordBean.setExamRuleId(form.examId);
+                            recordBean.setExamTime(DateTimeUtils.getNow());
+                            examCost = DateTimeUtils.getMinutes(examStartTime, DateTimeUtils.getNow());
+                            recordBean.setExamCost(examCost);
+                            answerBean.setExamRecord(recordBean);
+                            answerBean.setTestAnswers(answers);
+                            answerBean.setLimitScore(form.limitScore);
+                            String requestParams = new Gson().toJson(answerBean);
+                            getMvpPresenter().doSaveExamAnswer(dialog, requestParams);
                         });
                         helper.start();
                     }
@@ -96,19 +95,13 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
         new AlertDialog(this).builder()
                 .setTitle("退出考试")
                 .setMsg("考试中途退出，会记零分，您确定退出?")
-                .setPositiveButton("确定", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(OnlineExamActivity.this);
-                        manager.sendBroadcast(new Intent("cn.diconet.www").putExtra("skip", "3"));
-                        OnlineExamActivity.this.finish();
-                    }
-                }).setNegativeButton("取消", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                .setPositiveButton("确定", positive -> {
+                    LocalBroadcastManager manager = LocalBroadcastManager.getInstance(OnlineExamActivity.this);
+                    manager.sendBroadcast(new Intent("cn.diconet.www").putExtra("skip", "3"));
+                    OnlineExamActivity.this.finish();
+                }).setNegativeButton("取消", negative -> {
 
-            }
-        }).show();
+                }).show();
     }
 
     @Override
@@ -161,19 +154,13 @@ public class OnlineExamActivity extends AbstractMvpActivity<OnlineExamView, Onli
             new AlertDialog(this).builder()
                     .setTitle("退出考试")
                     .setMsg("考试中途退出，会记零分，您确定退出?")
-                    .setPositiveButton("确定", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            LocalBroadcastManager manager = LocalBroadcastManager.getInstance(OnlineExamActivity.this);
-                            manager.sendBroadcast(new Intent("cn.diconet.www").putExtra("skip", "3"));
-                            OnlineExamActivity.this.finish();
-                        }
-                    }).setNegativeButton("取消", new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+                    .setPositiveButton("确定", view -> {
+                        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(OnlineExamActivity.this);
+                        manager.sendBroadcast(new Intent("cn.diconet.www").putExtra("skip", "3"));
+                        OnlineExamActivity.this.finish();
+                    }).setNegativeButton("取消", view -> {
 
-                }
-            }).show();
+                    }).show();
         }
         return false;
     }

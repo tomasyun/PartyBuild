@@ -43,12 +43,7 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
         setContentView(R.layout.activity_orgact);
         ButterKnife.bind(this);
         rv_org_act.setLayoutManager(new LinearLayoutManager(this));
-        srl_org_act.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doOrgActRequest(dialog);
-            }
-        });
+        srl_org_act.setOnRefreshListener(relayout -> getMvpPresenter().doOrgActRequest(dialog));
     }
 
     @Override
@@ -73,14 +68,11 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
                 org_act_net_error.setVisibility(View.GONE);
                 adapter = new OrgActAdapter(this, R.layout.item_meeting, list);
                 rv_org_act.setAdapter(adapter);
-                adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        OrgActForm form = new OrgActForm();
-                        form.orgActId = list.get(position).getId();
-                        form.state = list.get(position).getState();
-                        goTo(OrgActBriefActivity.class, form);
-                    }
+                adapter.setOnItemClickListener((view, holder, position) -> {
+                    OrgActForm form = new OrgActForm();
+                    form.orgActId = list.get(position).getId();
+                    form.state = list.get(position).getState();
+                    goTo(OrgActBriefActivity.class, form);
                 });
             } else {
                 //空白
@@ -104,11 +96,6 @@ public class OrgActActivity extends AbstractMvpActivity<OrgActView, OrgActPresen
         srl_org_act.setVisibility(View.GONE);
         org_act_empty_data.setVisibility(View.GONE);
         org_act_net_error.setVisibility(View.VISIBLE);
-        org_act_net_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getMvpPresenter().doOrgActRequest(dialog);
-            }
-        });
+        org_act_net_error.setOnClickListener(view -> getMvpPresenter().doOrgActRequest(dialog));
     }
 }

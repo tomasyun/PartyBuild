@@ -158,7 +158,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                             public void onClick(View view) {//文件预览
                                 File docFile = new File(downPath + File.separator + fileName, fileName);
                                 if (docFile.exists()) {
-                                    DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, downPath, fileName);
+                                    DisplayFileActivity.openDisplayFileActivity(InfodetailsActivity.this, downPath, fileName);
                                 } else {
                                     LoadingDialog.Builder builder = new LoadingDialog.Builder(InfodetailsActivity.this)
                                             .setCancelable(true)
@@ -204,7 +204,7 @@ public class InfodetailsActivity extends AbstractMvpActivity<InfodetailsView, In
                                                     if (suffix.toLowerCase().equals("png") || suffix.toLowerCase().equals("jpg")||suffix.toLowerCase().equals("jpeg")||suffix.toLowerCase().equals("bmp"))
                                                         DisplayImgFileActivity.openDisplayImgFileActivity(InfodetailsActivity.this, path);
                                                     else
-                                                        DisplayFileActivity.openDispalyFileActivity(InfodetailsActivity.this, path, fileName);
+                                                        DisplayFileActivity.openDisplayFileActivity(InfodetailsActivity.this, path, fileName);
                                                 }
 
                                                 @Override

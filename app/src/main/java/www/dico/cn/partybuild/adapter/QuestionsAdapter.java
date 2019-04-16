@@ -1,5 +1,6 @@
 package www.dico.cn.partybuild.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.SpannableString;
@@ -46,6 +47,7 @@ public class QuestionsAdapter extends ViewPagerCommonAdapter<QuestionBean.DataBe
         this.callBackInterface = callBackInterface;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void convert(final ViewPagerCommonViewHolder holder, final QuestionBean.DataBean.QuestionListBean item, final int position) {
         LinearLayout rg_ls = holder.getView(R.id.rg_ls);//选项父容器
@@ -79,12 +81,9 @@ public class QuestionsAdapter extends ViewPagerCommonAdapter<QuestionBean.DataBe
 
                 }
                 rg_ls.addView(group);
-                group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                        RadioButton radioBtn = radioGroup.findViewById(checkedId);
-                        radioAnswer = radioBtn.getText().toString().trim().substring(0, 1);
-                    }
+                group.setOnCheckedChangeListener((radioGroup, checkedId) -> {
+                    RadioButton radioBtn = radioGroup.findViewById(checkedId);
+                    radioAnswer = radioBtn.getText().toString().trim().substring(0, 1);
                 });
             }
         }
@@ -119,64 +118,61 @@ public class QuestionsAdapter extends ViewPagerCommonAdapter<QuestionBean.DataBe
             holder.setText(R.id.tv_next_question, "交卷");
         else
             holder.setText(R.id.tv_next_question, "下一题");
-        holder.setOnClickListener(R.id.tv_next_question, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String content = ((TextView) holder.getView(R.id.tv_next_question)).getText().toString().trim();
-                switch (content) {
-                    case "下一题":
-                        if (item.getQuestionOptionsList().size() > 0) {
-                            if (item.getType().equals("单选题")) {
-                                if (radioAnswer.equals("")) {
-                                    Toast.makeText(AppManager.getManager().curActivity(), "请选择", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    callBackInterface.nextStep(item.getId(), String.valueOf(position + 1), radioAnswer);
-                                }
-                            } else if (item.getType().equals("多选题")) {
-                                String str = "";
-                                for (CheckBox checkBox : list) {
-                                    if (checkBox.isChecked()) {
-                                        str += checkBox.getText().toString().trim().substring(0, 1);
-                                    }
-                                }
-                                if (str.equals("")) {
-                                    Toast.makeText(AppConfig.getContext(), "请选择", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    char[] c = str.toCharArray();//将字符串转换成char数组
-                                    Arrays.sort(c);//对数组进行排序
-                                    String sortAnswer = new String(c);
-                                    callBackInterface.nextStep(item.getId(), String.valueOf(position + 1), sortAnswer);
+        holder.setOnClickListener(R.id.tv_next_question, view -> {
+            String content = ((TextView) holder.getView(R.id.tv_next_question)).getText().toString().trim();
+            switch (content) {
+                case "下一题":
+                    if (item.getQuestionOptionsList().size() > 0) {
+                        if (item.getType().equals("单选题")) {
+                            if (radioAnswer.equals("")) {
+                                Toast.makeText(AppManager.getManager().curActivity(), "请选择", Toast.LENGTH_SHORT).show();
+                            } else {
+                                callBackInterface.nextStep(item.getId(), String.valueOf(position + 1), radioAnswer);
+                            }
+                        } else if (item.getType().equals("多选题")) {
+                            String str = "";
+                            for (CheckBox checkBox : list) {
+                                if (checkBox.isChecked()) {
+                                    str += checkBox.getText().toString().trim().substring(0, 1);
                                 }
                             }
-                        }
-                        break;
-                    case "交卷":
-                        if (datas.size() > 0) {
-                            if (item.getType().equals("单选题")) {
-                                if (radioAnswer.equals("")) {
-                                    Toast.makeText(AppManager.getManager().curActivity(), "请选择", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    callBackInterface.submit(item.getId(), String.valueOf(position + 1), radioAnswer);
-                                }
-                            } else if (item.getType().equals("多选题")) {
-                                String str = "";
-                                for (CheckBox checkBox : list) {
-                                    if (checkBox.isChecked()) {
-                                        str += checkBox.getText().toString().trim().substring(0, 1);
-                                    }
-                                }
-                                if (str.equals("")) {
-                                    Toast.makeText(AppManager.getManager().curActivity(), "请选择", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    char[] c = str.toCharArray();//将字符串转换成char数组
-                                    Arrays.sort(c);//对数组进行排序
-                                    String sortAnswer = new String(c);
-                                    callBackInterface.submit(item.getId(), String.valueOf(position + 1), sortAnswer);
-                                }
+                            if (str.equals("")) {
+                                Toast.makeText(AppConfig.getContext(), "请选择", Toast.LENGTH_SHORT).show();
+                            } else {
+                                char[] c = str.toCharArray();//将字符串转换成char数组
+                                Arrays.sort(c);//对数组进行排序
+                                String sortAnswer = new String(c);
+                                callBackInterface.nextStep(item.getId(), String.valueOf(position + 1), sortAnswer);
                             }
                         }
-                        break;
-                }
+                    }
+                    break;
+                case "交卷":
+                    if (datas.size() > 0) {
+                        if (item.getType().equals("单选题")) {
+                            if (radioAnswer.equals("")) {
+                                Toast.makeText(AppManager.getManager().curActivity(), "请选择", Toast.LENGTH_SHORT).show();
+                            } else {
+                                callBackInterface.submit(item.getId(), String.valueOf(position + 1), radioAnswer);
+                            }
+                        } else if (item.getType().equals("多选题")) {
+                            String str = "";
+                            for (CheckBox checkBox : list) {
+                                if (checkBox.isChecked()) {
+                                    str += checkBox.getText().toString().trim().substring(0, 1);
+                                }
+                            }
+                            if (str.equals("")) {
+                                Toast.makeText(AppManager.getManager().curActivity(), "请选择", Toast.LENGTH_SHORT).show();
+                            } else {
+                                char[] c = str.toCharArray();//将字符串转换成char数组
+                                Arrays.sort(c);//对数组进行排序
+                                String sortAnswer = new String(c);
+                                callBackInterface.submit(item.getId(), String.valueOf(position + 1), sortAnswer);
+                            }
+                        }
+                    }
+                    break;
             }
         });
     }

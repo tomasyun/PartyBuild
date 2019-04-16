@@ -2,7 +2,6 @@ package www.dico.cn.partybuild;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,10 +30,9 @@ public class UpdateManager {
         // 版本的更新信息
 //        String version_info = "更新内容\n" + "    1. 底部导航\n" + "    2. 增加视频学习资料\n" + "    ";
         int mVersion_code = DeviceUtils.getVersionCode(mContext);// 当前的版本号
-        int nVersion_code = 0;
         String versionCode = AppConfig.nVersionCode;
         if (!versionCode.equals("")) {
-            nVersion_code = Integer.parseInt(versionCode);
+            int nVersion_code = Integer.parseInt(versionCode);
             if (mVersion_code < nVersion_code) {
 //             显示提示对话
                 showNoticeDialog(AppConfig.content);
@@ -61,27 +59,16 @@ public class UpdateManager {
         TextView tv_version_info = view.findViewById(R.id.tv_version_info);
         tv_version_info.setText(version_info);
         TextView tv_update_present = view.findViewById(R.id.tv_update_present);
-        tv_update_present.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-                mContext.startService(new Intent(mContext, DownLoadService.class));
-            }
+        tv_update_present.setOnClickListener(view12 -> {
+            dialog.dismiss();
+            mContext.startService(new Intent(mContext, DownLoadService.class));
         });
         TextView tv_update_delay = view.findViewById(R.id.tv_update_delay);
-        tv_update_delay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                WindowManager.LayoutParams lp = mContext.getWindow().getAttributes();
-                lp.alpha = 1f;
-                mContext.getWindow().setAttributes(lp);
-            }
+        tv_update_delay.setOnClickListener(view1 -> dialog.dismiss());
+        dialog.setOnDismissListener(dialogInterface -> {
+            WindowManager.LayoutParams lp = mContext.getWindow().getAttributes();
+            lp.alpha = 1f;
+            mContext.getWindow().setAttributes(lp);
         });
         dialog.show();
     }

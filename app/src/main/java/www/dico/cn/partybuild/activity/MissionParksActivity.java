@@ -15,7 +15,7 @@ public class MissionParksActivity extends BaseActivity {
         setContentView(R.layout.activity_missionparks);
     }
 
-    public void goBackmissionParks(View view) {
+    public void goBackMissionParks(View view) {
         this.finish();
     }
 

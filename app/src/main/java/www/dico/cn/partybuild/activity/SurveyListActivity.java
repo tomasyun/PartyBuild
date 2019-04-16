@@ -43,12 +43,7 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
         setContentView(R.layout.activity_surveylist);
         ButterKnife.bind(this);
         rv_question_survey.setLayoutManager(new LinearLayoutManager(this));
-        srl_question_survey.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doQuestionSurveyRequest(dialog);
-            }
-        });
+        srl_question_survey.setOnRefreshListener(relayout -> getMvpPresenter().doQuestionSurveyRequest(dialog));
     }
 
     @Override
@@ -97,12 +92,7 @@ public class SurveyListActivity extends AbstractMvpActivity<SurveyListView, Surv
         srl_question_survey.setVisibility(View.GONE);
         survey_empty_data.setVisibility(View.GONE);
         survey_net_error.setVisibility(View.VISIBLE);
-        survey_net_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getMvpPresenter().doQuestionSurveyRequest(dialog);
-            }
-        });
+        survey_net_error.setOnClickListener(view -> getMvpPresenter().doQuestionSurveyRequest(dialog));
     }
 
     @Override

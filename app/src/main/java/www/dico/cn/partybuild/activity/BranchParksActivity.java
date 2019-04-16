@@ -209,12 +209,7 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
         srl_branch_parks.setVisibility(View.GONE);
         branch_parks_empty_data.setVisibility(View.GONE);
         branch_parks_net_error.setVisibility(View.VISIBLE);
-        branch_parks_net_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createRequest(position, start);
-            }
-        });
+        branch_parks_net_error.setOnClickListener(view -> createRequest(position, start));
     }
 
     public void createRequest(int position, int start) {

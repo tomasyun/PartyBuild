@@ -63,69 +63,45 @@ public class PersonalFragment extends Fragment {
             rel_mailbox_personal.setVisibility(View.VISIBLE);
             divide.setVisibility(View.VISIBLE);
         }
-        lin_credit_personal.setOnClickListener(new View.OnClickListener() {
-            //积分明细
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CreditInfoActivity.class);
-                startActivity(intent);
-            }
+        //积分明细
+        lin_credit_personal.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(), CreditInfoActivity.class);
+            startActivity(intent);
         });
-        lin_rank_personal.setOnClickListener(new View.OnClickListener() {
-            //积分排名
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CreditRankActivity.class);
-                startActivity(intent);
-            }
+        //积分排名
+        lin_rank_personal.setOnClickListener(view12 -> {
+            Intent intent = new Intent(getActivity(), CreditRankActivity.class);
+            startActivity(intent);
         });
-        rel_baseinfo_personal.setOnClickListener(new View.OnClickListener() {
-            //基本信息
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), BaseInfoActivity.class);
-                startActivity(intent);
-            }
+        //基本信息
+        rel_baseinfo_personal.setOnClickListener(view13 -> {
+            Intent intent = new Intent(getActivity(), BaseInfoActivity.class);
+            startActivity(intent);
         });
-        rel_collect_personal.setOnClickListener(new View.OnClickListener() {
-            //收藏
-            @Override
-            public void onClick(View view) {
+        //收藏
+        rel_collect_personal.setOnClickListener(view14 -> {
 //                Intent intent = new Intent(getActivity(), CollectActivity.class);
 //                startActivity(intent);
-                Toast.makeText(getActivity(), "暂未开通", Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(getActivity(), "暂未开通", Toast.LENGTH_SHORT).show();
         });
-        rel_feedback_personal.setOnClickListener(new View.OnClickListener() {
-            //意见反馈
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), FeedbackActivity.class);
-                startActivity(intent);
-            }
+        //意见反馈
+        rel_feedback_personal.setOnClickListener(view15 -> {
+            Intent intent = new Intent(getActivity(), FeedbackActivity.class);
+            startActivity(intent);
         });
-        iv_setting_personal.setOnClickListener(new View.OnClickListener() {
-            //设置
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SettingActivity.class);
-                startActivity(intent);
-            }
+        //设置
+        iv_setting_personal.setOnClickListener(view16 -> {
+            Intent intent = new Intent(getActivity(), SettingActivity.class);
+            startActivity(intent);
         });
-        iv_notice_personal.setOnClickListener(new View.OnClickListener() {
-            //通知消息
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), NoticeActivity.class);
-                startActivity(intent);
-            }
+        //通知消息
+        iv_notice_personal.setOnClickListener(view17 -> {
+            Intent intent = new Intent(getActivity(), NoticeActivity.class);
+            startActivity(intent);
         });
-        rel_mailbox_personal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MailboxListActivity.class);
-                startActivity(intent);
-            }
+        rel_mailbox_personal.setOnClickListener(view18 -> {
+            Intent intent = new Intent(getActivity(), MailboxListActivity.class);
+            startActivity(intent);
         });
         return view;
     }

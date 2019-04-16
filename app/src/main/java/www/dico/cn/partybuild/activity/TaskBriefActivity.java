@@ -113,14 +113,11 @@ public class TaskBriefActivity extends AbstractMvpActivity<TaskBriefView, TaskBr
                         courseView.setText("\u3000" + beans.get(i).getTitle());
                         lin_course_task_brief.addView(courseView);
                         final int position = i;
-                        courseView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                CourseForm form = new CourseForm();
-                                form.courseId = beans.get(position).getCourseId();
-                                form.taskId = TaskBriefActivity.this.form.taskId;
-                                goTo(CourseInfoActivity.class, form);
-                            }
+                        courseView.setOnClickListener(view -> {
+                            CourseForm form = new CourseForm();
+                            form.courseId = beans.get(position).getCourseId();
+                            form.taskId = TaskBriefActivity.this.form.taskId;
+                            goTo(CourseInfoActivity.class, form);
                         });
                     }
                 } else {

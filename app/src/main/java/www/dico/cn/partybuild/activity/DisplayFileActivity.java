@@ -30,7 +30,7 @@ public class DisplayFileActivity extends AppCompatActivity {
     private String filePath = "";
     private String fileName = "";
 
-    public static void openDispalyFileActivity(Context context, String filePath, String fileName) {
+    public static void openDisplayFileActivity(Context context, String filePath, String fileName) {
         Intent intent = new Intent(context, DisplayFileActivity.class);
         intent.putExtra("filepath", filePath);
         intent.putExtra("filename", fileName);

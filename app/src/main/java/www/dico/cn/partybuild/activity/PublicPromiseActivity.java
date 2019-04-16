@@ -50,26 +50,23 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
         ButterKnife.bind(this);
         rv_public_promise.setLayoutManager(new LinearLayoutManager(this));
         rg_integrity_build.check(R.id.rbt_master_public_promise);
-        rg_integrity_build.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rbt_master_public_promise://党委承诺
-                        position = 0;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                    case R.id.rbt_branch_public_promise://支部承诺
-                        position = 1;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                    case R.id.rbt_member_public_promise://党员承诺
-                        position = 2;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                }
+        rg_integrity_build.setOnCheckedChangeListener((radioGroup, checkedId) -> {
+            switch (checkedId) {
+                case R.id.rbt_master_public_promise://党委承诺
+                    position = 0;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
+                case R.id.rbt_branch_public_promise://支部承诺
+                    position = 1;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
+                case R.id.rbt_member_public_promise://党员承诺
+                    position = 2;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
             }
         });
         srl_public_promise.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
@@ -112,14 +109,11 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                         public_promise_net_error.setVisibility(View.GONE);
                         adapter = new InfoAdapter(this, R.layout.item_info, list);
                         rv_public_promise.setAdapter(adapter);
-                        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfodetailForm form = new InfodetailForm();
-                                form.id = list.get(position).getId();
-                                form.type = 1;
-                                goTo(InfodetailsActivity.class, form);
-                            }
+                        adapter.setOnItemClickListener((view, holder, position) -> {
+                            InfodetailForm form = new InfodetailForm();
+                            form.id = list.get(position).getId();
+                            form.type = 1;
+                            goTo(InfodetailsActivity.class, form);
                         });
                     } else {
                         srl_public_promise.setVisibility(View.GONE);
@@ -131,14 +125,11 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
                     if (null != list && list.size() > 0) {
                         this.list.addAll(list);
                         adapter.notifyDataSetChanged();
-                        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfodetailForm form = new InfodetailForm();
-                                form.id = PublicPromiseActivity.this.list.get(position).getId();
-                                form.type = 1;
-                                goTo(InfodetailsActivity.class, form);
-                            }
+                        adapter.setOnItemClickListener((view, holder, position) -> {
+                            InfodetailForm form = new InfodetailForm();
+                            form.id = PublicPromiseActivity.this.list.get(position).getId();
+                            form.type = 1;
+                            goTo(InfodetailsActivity.class, form);
                         });
                     } else {
 
@@ -162,12 +153,7 @@ public class PublicPromiseActivity extends AbstractMvpActivity<PublicPromiseView
         srl_public_promise.setVisibility(View.GONE);
         public_promise_empty_data.setVisibility(View.GONE);
         public_promise_net_error.setVisibility(View.VISIBLE);
-        public_promise_net_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createRequest(position, start);
-            }
-        });
+        public_promise_net_error.setOnClickListener(view -> createRequest(position, start));
     }
 
     public void createRequest(int position, int start) {

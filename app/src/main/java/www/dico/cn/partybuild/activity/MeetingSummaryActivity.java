@@ -58,14 +58,11 @@ public class MeetingSummaryActivity extends AbstractMvpActivity<MeetingSummaryVi
         ButterKnife.bind(this);
         QbSdk.initX5Environment(this, null);
         form = getParam();
-        tv_title_meet_summary.post(new Runnable() {
-            @Override
-            public void run() {
-                if (tv_title_meet_summary.getLineCount() == 1) {
-                    tv_title_meet_summary.setGravity(Gravity.CENTER);
-                } else {
-                    tv_title_meet_summary.setGravity(Gravity.LEFT);
-                }
+        tv_title_meet_summary.post(() -> {
+            if (tv_title_meet_summary.getLineCount() == 1) {
+                tv_title_meet_summary.setGravity(Gravity.CENTER);
+            } else {
+                tv_title_meet_summary.setGravity(Gravity.LEFT);
             }
         });
     }
@@ -77,7 +74,7 @@ public class MeetingSummaryActivity extends AbstractMvpActivity<MeetingSummaryVi
             getMvpPresenter().doMeetingSummaryRequest(dialog, form.id);
     }
 
-    public void goBackMeetdetail(View view) {
+    public void goBackMeetingDetail(View view) {
         this.finish();
     }
 
@@ -118,74 +115,71 @@ public class MeetingSummaryActivity extends AbstractMvpActivity<MeetingSummaryVi
                     TextView tv_attachment_meet_info = rel_attachment_meet_summary.findViewById(R.id.tv_attachment_meet_info);
                     if (null != fileName) {
                         tv_attachment_meet_info.setText(fileName);
-                        rel_attachment_meet_summary.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {//文件预览
-                                File docFile = new File(downPath + File.separator + fileName, fileName);
-                                if (docFile.exists()) {
-                                    DisplayFileActivity.openDispalyFileActivity(MeetingSummaryActivity.this, downPath, fileName);
-                                } else {
-                                    LoadingDialog.Builder builder = new LoadingDialog.Builder(MeetingSummaryActivity.this)
-                                            .setCancelable(true)
-                                            .setCancelOutside(true)
-                                            .setMessage("加载中..")
-                                            .setShowMessage(true);
-                                    final Dialog dialog = builder.create();
-                                    EasyHttp.downLoad(url)
-                                            .savePath(downPath)
-                                            .saveName(fileName)
-                                            .execute(new DownloadProgressCallBack<String>() {
-                                                @Override
-                                                public void update(long bytesRead, long contentLength, boolean done) {
-                                                    int progress = (int) (bytesRead * 100 / contentLength);
-                                                    HttpLog.e(progress + "% ");
-                                                }
+                        rel_attachment_meet_summary.setOnClickListener(view -> {//文件预览
+                            File docFile = new File(downPath + File.separator + fileName, fileName);
+                            if (docFile.exists()) {
+                                DisplayFileActivity.openDisplayFileActivity(MeetingSummaryActivity.this, downPath, fileName);
+                            } else {
+                                LoadingDialog.Builder builder = new LoadingDialog.Builder(MeetingSummaryActivity.this)
+                                        .setCancelable(true)
+                                        .setCancelOutside(true)
+                                        .setMessage("加载中..")
+                                        .setShowMessage(true);
+                                final Dialog dialog = builder.create();
+                                EasyHttp.downLoad(url)
+                                        .savePath(downPath)
+                                        .saveName(fileName)
+                                        .execute(new DownloadProgressCallBack<String>() {
+                                            @Override
+                                            public void update(long bytesRead, long contentLength, boolean done) {
+                                                int progress = (int) (bytesRead * 100 / contentLength);
+                                                HttpLog.e(progress + "% ");
+                                            }
 
-                                                @Override
-                                                public void onStart() {
+                                            @Override
+                                            public void onStart() {
+                                                if (dialog.isShowing()) {
+
+                                                }
+                                                if (dialog != null) {
+                                                    if (!dialog.isShowing()) {
+                                                        dialog.show();
+                                                    }
+                                                }
+                                                HttpLog.i("======" + Thread.currentThread().getName());
+                                            }
+
+                                            @Override
+                                            public void onComplete(String path) {
+                                                HttpLog.e("文件保存路径：" + path);
+                                                if (!dialog.isShowing()) {
+
+                                                }
+                                                if (dialog != null) {
                                                     if (dialog.isShowing()) {
-
+                                                        dialog.dismiss();
                                                     }
-                                                    if (dialog != null) {
-                                                        if (!dialog.isShowing()) {
-                                                            dialog.show();
-                                                        }
-                                                    }
-                                                    HttpLog.i("======" + Thread.currentThread().getName());
                                                 }
+                                                String suffix = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
+                                                if (suffix.toLowerCase().equals("png") || suffix.toLowerCase().equals("jpg") || suffix.toLowerCase().equals("jpeg") || suffix.toLowerCase().equals("bmp"))
+                                                    DisplayImgFileActivity.openDisplayImgFileActivity(MeetingSummaryActivity.this, path);
+                                                else
+                                                    DisplayFileActivity.openDisplayFileActivity(MeetingSummaryActivity.this, path, fileName);
+                                            }
 
-                                                @Override
-                                                public void onComplete(String path) {
-                                                    HttpLog.e("文件保存路径：" + path);
-                                                    if (!dialog.isShowing()) {
+                                            @Override
+                                            public void onError(ApiException e) {
+                                                if (!dialog.isShowing()) {
 
-                                                    }
-                                                    if (dialog != null) {
-                                                        if (dialog.isShowing()) {
-                                                            dialog.dismiss();
-                                                        }
-                                                    }
-                                                    String suffix = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
-                                                    if (suffix.toLowerCase().equals("png") || suffix.toLowerCase().equals("jpg") || suffix.toLowerCase().equals("jpeg") || suffix.toLowerCase().equals("bmp"))
-                                                        DisplayImgFileActivity.openDisplayImgFileActivity(MeetingSummaryActivity.this, path);
-                                                    else
-                                                        DisplayFileActivity.openDispalyFileActivity(MeetingSummaryActivity.this, path, fileName);
                                                 }
-
-                                                @Override
-                                                public void onError(ApiException e) {
-                                                    if (!dialog.isShowing()) {
-
+                                                if (dialog != null) {
+                                                    if (dialog.isShowing()) {
+                                                        dialog.dismiss();
                                                     }
-                                                    if (dialog != null) {
-                                                        if (dialog.isShowing()) {
-                                                            dialog.dismiss();
-                                                        }
-                                                    }
-                                                    Toast.makeText(MeetingSummaryActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                                 }
-                                            });
-                                }
+                                                Toast.makeText(MeetingSummaryActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                            }
+                                        });
                             }
                         });
                     }

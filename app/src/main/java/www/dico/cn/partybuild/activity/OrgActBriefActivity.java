@@ -58,18 +58,15 @@ public class OrgActBriefActivity extends AbstractMvpActivity<OrgActBriefView, Or
         form = getParam();
         iv_orgact_brief_participants.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_arrow_right));
         tfl_orgact_brief_participants.setVisibility(View.GONE);
-        rel_orgact_brief_participants.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isHide) {
-                    tfl_orgact_brief_participants.setVisibility(View.VISIBLE);
-                    iv_orgact_brief_participants.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_arrow_down));
-                    isHide = false;
-                } else {
-                    tfl_orgact_brief_participants.setVisibility(View.GONE);
-                    iv_orgact_brief_participants.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_arrow_right));
-                    isHide = true;
-                }
+        rel_orgact_brief_participants.setOnClickListener(view -> {
+            if (isHide) {
+                tfl_orgact_brief_participants.setVisibility(View.VISIBLE);
+                iv_orgact_brief_participants.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_arrow_down));
+                isHide = false;
+            } else {
+                tfl_orgact_brief_participants.setVisibility(View.GONE);
+                iv_orgact_brief_participants.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_arrow_right));
+                isHide = true;
             }
         });
     }

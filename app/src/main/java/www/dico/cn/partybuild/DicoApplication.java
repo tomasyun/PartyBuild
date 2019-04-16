@@ -5,7 +5,6 @@ import android.app.Application;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
-import www.dico.cn.partybuild.interceptor.CustomSignInterceptor;
 import www.yuntdev.com.library.EasyHttp;
 import www.yuntdev.com.library.cache.converter.SerializableDiskConverter;
 import www.yuntdev.com.library.model.HttpHeaders;
@@ -45,8 +44,7 @@ public class DicoApplication extends Application {
 //                .addConverterFactory(GsonConverterFactory.create(new Gson()))//本框架没有采用Retrofit的Gson转化，所以不用配置
 //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addCommonHeaders(headers)//设置全局公共头
-                .addCommonParams(params)//设置全局公共参数
-                .addInterceptor(new CustomSignInterceptor());//添加参数签名拦截器
+                .addCommonParams(params);//设置全局公共参数
         //.addInterceptor(new HeTInterceptor());//处理自己业务的拦截器
     }
 

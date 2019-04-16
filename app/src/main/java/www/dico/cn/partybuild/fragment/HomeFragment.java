@@ -47,8 +47,6 @@ import www.dico.cn.partybuild.presenter.HomePresenter;
 import www.dico.cn.partybuild.utils.GlideUtils;
 import www.dico.cn.partybuild.widget.CustomTextView;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
-import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
-import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshListener;
 
 //首页
 @CreatePresenter(HomePresenter.class)
