@@ -159,7 +159,7 @@ public class CustomTextView extends TextView implements View.OnClickListener {
 
         private SavedState(Parcel in) {
             super(in);
-            boolean[] b = null;
+            boolean[] b = in.createBooleanArray();
             in.readBooleanArray(b);
             if (b != null && b.length > 0)
                 isStarting = b[0];

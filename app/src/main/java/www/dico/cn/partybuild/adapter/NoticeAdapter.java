@@ -1,16 +1,12 @@
 package www.dico.cn.partybuild.adapter;
 
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.text.Html;
-import android.view.View;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
-import cn.carbs.android.expandabletextview.library.ExpandableTextView;
 import www.dico.cn.partybuild.AppConfig;
 import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.R;
@@ -23,6 +19,7 @@ import www.yuntdev.com.baseadapterlibrary.base.ViewHolder;
 
 public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
     public SkipNoticeInfoInterface infoInterface;
+
     public void setInfoInterface(SkipNoticeInfoInterface infoInterface) {
         this.infoInterface = infoInterface;
     }
@@ -31,11 +28,10 @@ public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
         super(context, layoutId, datas);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void convert(ViewHolder holder, NoticeBean.DataBean noticeBean, int position) {
         if (null != noticeBean.getAvatar() && !noticeBean.getAvatar().equals(""))
-            GlideUtils.loadCircleImage(AppManager.getManager().curActivity(), AppConfig.urlFormat(noticeBean.getAvatar()), (ImageView) holder.getView(R.id.iv_avatar_notice_item));
+            GlideUtils.loadCircleImage(AppManager.getManager().curActivity(), AppConfig.urlFormat(noticeBean.getAvatar()), holder.getView(R.id.iv_avatar_notice_item));
         holder.setText(R.id.tv_name_notice_item, noticeBean.getName());
         String publishDate = noticeBean.getPublishDate();
         publishDate = (null == publishDate || publishDate.equals("")) ? DateTimeUtils.getNow() : noticeBean.getPublishDate();
@@ -53,12 +49,8 @@ public class NoticeAdapter extends CommonAdapter<NoticeBean.DataBean> {
         }
         TextView tv_content_notice_item = holder.getView(R.id.tv_content_notice_item);
         tv_content_notice_item.setText(Html.fromHtml(StringUtils.trimStyle(noticeBean.getContent())));
-        tv_content_notice_item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                infoInterface.skip(position);
-            }
-        });
+        LinearLayout notice_item_root = holder.getView(R.id.notice_item_root);
+        notice_item_root.setOnClickListener(view -> infoInterface.skip(position));
     }
 
     public interface SkipNoticeInfoInterface {

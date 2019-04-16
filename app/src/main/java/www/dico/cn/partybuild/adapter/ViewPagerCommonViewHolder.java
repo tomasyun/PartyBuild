@@ -30,9 +30,7 @@ public class ViewPagerCommonViewHolder {
      * @return
      */
     public static ViewPagerCommonViewHolder get(Context context, ViewGroup parent, int layoutId, int position) {
-
         return new ViewPagerCommonViewHolder(context, parent, layoutId, position);
-
     }
 
     /**

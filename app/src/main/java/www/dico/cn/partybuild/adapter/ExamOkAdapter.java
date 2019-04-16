@@ -22,7 +22,6 @@ public class ExamOkAdapter extends CommonAdapter<ExamsBean.DataBean> {
         super(context, layoutId, datas);
     }
 
-//    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void convert(ViewHolder holder, ExamsBean.DataBean bean, int position) {
         holder.setText(R.id.tv_title_exam_ok_item, bean.getTitle());
