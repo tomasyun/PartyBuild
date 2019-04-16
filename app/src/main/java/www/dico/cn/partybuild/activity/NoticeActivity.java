@@ -20,14 +20,13 @@ import www.dico.cn.partybuild.modleview.NoticeView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.NoticePresenter;
-import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshLoadmoreListener;
 
 //通知
 @CreatePresenter(NoticePresenter.class)
-public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresenter> implements NoticeView,NoticeAdapter.SkipNoticeInfoInterface {
+public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresenter> implements NoticeView {
     @BindView(R.id.rv_notice)
     RecyclerView rv_notice;
     @BindView(R.id.notice_empty_data)
@@ -79,8 +78,8 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
                     notice_empty_data.setVisibility(View.GONE);
                     notice_net_error.setVisibility(View.GONE);
                     adapter = new NoticeAdapter(this, R.layout.item_notice, noticeList);
-                    adapter.setInfoInterface(this);
                     rv_notice.setAdapter(adapter);
+                    onItemClickListener(adapter, noticeList);
                 } else {
                     //空白页面
                     srl_notice.setVisibility(View.GONE);
@@ -92,6 +91,7 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
                 if (list != null && list.size() > 0) {
                     this.noticeList.addAll(list);
                     adapter.notifyDataSetChanged();
+                    onItemClickListener(adapter, noticeList);
                 } else {
 
                 }
@@ -99,6 +99,15 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
         } else {
             showToast("服务器异常");
         }
+    }
+
+    public void onItemClickListener(NoticeAdapter adapter, List<NoticeBean.DataBean> list) {
+        adapter.setOnItemClickListener((view, holder, position) -> {
+            NoticeForm form = new NoticeForm();
+            form.id = list.get(position).getId();
+            form.isReply = list.get(position).getIsReply();
+            goTo(NoticeInfoActivity.class, form);
+        });
     }
 
     @Override
@@ -113,26 +122,6 @@ public class NoticeActivity extends AbstractMvpActivity<NoticeView, NoticePresen
         srl_notice.setVisibility(View.GONE);
         notice_empty_data.setVisibility(View.GONE);
         notice_net_error.setVisibility(View.VISIBLE);
-        notice_net_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getMvpPresenter().noticeRequest(dialog, "", "1", "0", start, 10);
-            }
-        });
-    }
-
-    @Override
-    public void skip(int position) {
-        if(start==0){
-            NoticeForm form = new NoticeForm();
-            form.id = noticeList.get(position).getId();
-            form.isReply = noticeList.get(position).getIsReply();
-            goTo(NoticeInfoActivity.class, form);
-        }else {
-            NoticeForm form = new NoticeForm();
-            form.id = NoticeActivity.this.noticeList.get(position).getId();
-            form.isReply = NoticeActivity.this.noticeList.get(position).getIsReply();
-            goTo(NoticeInfoActivity.class, form);
-        }
+        notice_net_error.setOnClickListener(view -> getMvpPresenter().noticeRequest(dialog, "", "1", "0", start, 10));
     }
 }

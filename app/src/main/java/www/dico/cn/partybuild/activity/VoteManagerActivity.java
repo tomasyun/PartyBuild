@@ -41,12 +41,7 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
         setContentView(R.layout.activity_votemanager);
         ButterKnife.bind(this);
         rv_vote.setLayoutManager(new LinearLayoutManager(this));
-        srl_vote.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().doVoteManagerRequest(dialog);
-            }
-        });
+        srl_vote.setOnRefreshListener(relayout -> getMvpPresenter().doVoteManagerRequest(dialog));
     }
 
     @Override
@@ -70,14 +65,11 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
                 vote_net_error.setVisibility(View.GONE);
                 adapter = new VoteListAdapter(this, R.layout.item_vote, bean.getData());
                 rv_vote.setAdapter(adapter);
-                adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                        VoteForm form = new VoteForm();
-                        form.voteId = bean.getData().get(position).getId();
-                        form.isVoter = bean.getData().get(position).getIsVoter();
-                        goTo(VoteDetailActivity.class, form);
-                    }
+                adapter.setOnItemClickListener((view, holder, position) -> {
+                    VoteForm form = new VoteForm();
+                    form.voteId = bean.getData().get(position).getId();
+                    form.isVoter = bean.getData().get(position).getIsVoter();
+                    goTo(VoteDetailActivity.class, form);
                 });
             } else {
                 srl_vote.setVisibility(View.GONE);
@@ -100,11 +92,6 @@ public class VoteManagerActivity extends AbstractMvpActivity<VoteManagerView, Vo
         srl_vote.setVisibility(View.GONE);
         vote_empty_data.setVisibility(View.GONE);
         vote_net_error.setVisibility(View.VISIBLE);
-        vote_net_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getMvpPresenter().doVoteManagerRequest(dialog);
-            }
-        });
+        vote_net_error.setOnClickListener(view -> getMvpPresenter().doVoteManagerRequest(dialog));
     }
 }

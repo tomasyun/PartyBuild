@@ -25,13 +25,12 @@ import www.dico.cn.partybuild.modleview.CommonView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.CommonPresenter;
-import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshLoadmoreListener;
 
 @CreatePresenter(CommonPresenter.class)
-public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresenter> implements CommonView, NoticeAdapter.SkipNoticeInfoInterface {
+public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresenter> implements CommonView {
     @BindView(R.id.tv_title_common)
     TextView tv_title_common;
     @BindView(R.id.srl_common)
@@ -181,14 +180,11 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                         common_net_error.setVisibility(View.GONE);
                         adapter = new InfoAdapter(this, R.layout.item_info, list);
                         rv_common.setAdapter(adapter);
-                        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfodetailForm form = new InfodetailForm();
-                                form.id = list.get(position).getId();
-                                form.type = 1;
-                                goTo(InfodetailsActivity.class, form);
-                            }
+                        adapter.setOnItemClickListener((view, holder, position) -> {
+                            InfodetailForm form = new InfodetailForm();
+                            form.id = list.get(position).getId();
+                            form.type = 1;
+                            goTo(InfodetailsActivity.class, form);
                         });
                     } else {
                         srl_common.setVisibility(View.GONE);
@@ -200,14 +196,11 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                     if (null != list && list.size() > 0) {
                         this.list.addAll(list);
                         adapter.notifyDataSetChanged();
-                        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfodetailForm form = new InfodetailForm();
-                                form.id = CommonActivity.this.list.get(position).getId();
-                                form.type = 1;
-                                goTo(InfodetailsActivity.class, form);
-                            }
+                        adapter.setOnItemClickListener((view, holder, position) -> {
+                            InfodetailForm form = new InfodetailForm();
+                            form.id = CommonActivity.this.list.get(position).getId();
+                            form.type = 1;
+                            goTo(InfodetailsActivity.class, form);
                         });
                     } else {
 
@@ -231,12 +224,9 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
         srl_common.setVisibility(View.GONE);
         common_empty_data.setVisibility(View.GONE);
         common_net_error.setVisibility(View.VISIBLE);
-        common_net_error.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                start = 0;
-                createData(start, form.skip);
-            }
+        common_net_error.setOnClickListener(view -> {
+            start = 0;
+            createData(start, form.skip);
         });
     }
 
@@ -253,8 +243,8 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                     common_empty_data.setVisibility(View.GONE);
                     common_net_error.setVisibility(View.GONE);
                     noticeAdapter = new NoticeAdapter(this, R.layout.item_notice, noticeList);
-                    noticeAdapter.setInfoInterface(this);
                     rv_common.setAdapter(noticeAdapter);
+                    onItemClickListener(noticeAdapter,noticeList);
                 } else {
                     //空白页面
                     srl_common.setVisibility(View.GONE);
@@ -266,6 +256,7 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
                 if (list != null && list.size() > 0) {
                     this.noticeList.addAll(list);
                     noticeAdapter.notifyDataSetChanged();
+                    onItemClickListener(noticeAdapter,noticeList);
                 } else {
 
                 }
@@ -273,6 +264,15 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
         } else {
             showToast("服务器异常");
         }
+    }
+
+    public void onItemClickListener(NoticeAdapter adapter, List<NoticeBean.DataBean> list) {
+        adapter.setOnItemClickListener((view, holder, position) -> {
+            NoticeForm form = new NoticeForm();
+            form.id = list.get(position).getId();
+            form.isReply = list.get(position).getIsReply();
+            goTo(NoticeInfoActivity.class, form);
+        });
     }
 
     @Override
@@ -378,21 +378,6 @@ public class CommonActivity extends AbstractMvpActivity<CommonView, CommonPresen
             case 29://第六分工会
                 getMvpPresenter().doCommonArticleRequest(dialog, "0", "23", "0", start, 10);
                 break;
-        }
-    }
-
-    @Override
-    public void skip(int position) {
-        if (start == 0) {
-            NoticeForm form = new NoticeForm();
-            form.id = noticeList.get(position).getId();
-            form.isReply = noticeList.get(position).getIsReply();
-            goTo(NoticeInfoActivity.class, form);
-        } else {
-            NoticeForm form = new NoticeForm();
-            form.id = CommonActivity.this.noticeList.get(position).getId();
-            form.isReply = CommonActivity.this.noticeList.get(position).getIsReply();
-            goTo(NoticeInfoActivity.class, form);
         }
     }
 }

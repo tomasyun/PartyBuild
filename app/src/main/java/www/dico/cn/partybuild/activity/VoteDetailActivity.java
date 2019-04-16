@@ -123,11 +123,8 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
             layout1.addView(votesText);
             lin_options_vote.addView(layout1);
 
-            image.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            image.setOnClickListener(view -> {
 
-                }
             });
         }
     }
@@ -142,10 +139,10 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                 tv_limit_date_vote_detail.setText(bean.getData().getLimitDate());
                 voteType = bean.getData().getVoteType();
                 switch (voteType) {
-                    case "0":
+                    case "1":
                         tv_type_vote_detail.setText("单选");
                         break;
-                    case "1":
+                    case "0":
                         tv_type_vote_detail.setText("多选");
                         break;
                 }
@@ -176,7 +173,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                 if (null != beans && beans.size() > 0) {
                     lin_options_vote.setVisibility(View.VISIBLE);
                     lin_options_vote.removeAllViews();
-                    final Boolean[] isSelecteds = new Boolean[beans.size()];
+                    final Boolean[] isSelects = new Boolean[beans.size()];
                     final ImageView[] imageViews = new ImageView[beans.size()];
                     for (int i = 0; i < beans.size(); i++) {
                         LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -199,7 +196,7 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                         } else {
                             image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_vote_ok));
                         }
-                        isSelecteds[i] = false;
+                        isSelects[i] = false;
                         imageViews[i] = image;
                         TextView optionText = new TextView(this);
                         optionText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -230,45 +227,39 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
                             image.setClickable(true);
                             final int position = i;
                             switch (voteType) {
-                                case "0"://单选
-                                    image.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            for (int i = 0; i < isSelecteds.length; i++) {
-                                                if (isSelecteds[i]) {
-                                                    isSelecteds[i] = !isSelecteds[i];
-                                                    imageViews[i].setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
-                                                    options.clear();
+                                case "0"://多选
+                                    image.setOnClickListener(view -> {
+                                        if (isSelects[position]) {
+                                            image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
+                                            isSelects[position] = !isSelects[position];
+                                            for (int i12 = 0; i12 < options.size(); i12++) {
+                                                if (options.get(i12).equals(optionId)) {
+                                                    options.remove(i12);
                                                 }
                                             }
-                                            if (isSelecteds[position]) {
-                                                image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
-                                                isSelecteds[position] = !isSelecteds[position];
-                                            } else {
-                                                image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
-                                                isSelecteds[position] = !isSelecteds[position];
-                                                options.add(optionId);
-                                            }
+                                        } else {
+                                            image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
+                                            isSelects[position] = !isSelects[position];
+                                            options.add(optionId);
                                         }
                                     });
                                     break;
-                                case "1"://多选
-                                    image.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            if (isSelecteds[position]) {
-                                                image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
-                                                isSelecteds[position] = !isSelecteds[position];
-                                                for (int i = 0; i < options.size(); i++) {
-                                                    if (options.get(i).equals(optionId)) {
-                                                        options.remove(i);
-                                                    }
-                                                }
-                                            } else {
-                                                image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
-                                                isSelecteds[position] = !isSelecteds[position];
-                                                options.add(optionId);
+                                case "1"://单选
+                                    image.setOnClickListener(view -> {
+                                        for (int i1 = 0; i1 < isSelects.length; i1++) {
+                                            if (isSelects[i1]) {
+                                                isSelects[i1] = !isSelects[i1];
+                                                imageViews[i1].setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
+                                                options.clear();
                                             }
+                                        }
+                                        if (isSelects[position]) {
+                                            image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_on));
+                                            isSelects[position] = !isSelects[position];
+                                        } else {
+                                            image.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_cb_ok));
+                                            isSelects[position] = !isSelects[position];
+                                            options.add(optionId);
                                         }
                                     });
                                     break;
@@ -300,14 +291,6 @@ public class VoteDetailActivity extends AbstractMvpActivity<VoteDetailView, Vote
             form.skip = 3;
             goTo(SuccessTipsActivity.class, form);
             this.finish();
-//            showToast(protocol.msg);
-//            tv_submit_vote_detail.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_corner20_light_red_bg));
-//            tv_submit_vote_detail.setTextColor(Color.parseColor("#febfb5"));
-//            tv_submit_vote_detail.setText("已投票");
-//            tv_submit_vote_detail.setEnabled(false);
-//            tv_submit_vote_detail.setClickable(false);
-//            form.isVoter = "1";
-//            getMvpPresenter().doVoteDetailRequest(dialog, form.voteId);
         } else {
             showToast("服务器异常");
         }

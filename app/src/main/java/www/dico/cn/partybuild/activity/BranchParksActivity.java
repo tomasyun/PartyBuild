@@ -24,13 +24,12 @@ import www.dico.cn.partybuild.modleview.BranchParksView;
 import www.dico.cn.partybuild.mvp.factory.CreatePresenter;
 import www.dico.cn.partybuild.mvp.view.AbstractMvpActivity;
 import www.dico.cn.partybuild.presenter.BranchParksPresenter;
-import www.yuntdev.com.baseadapterlibrary.MultiItemTypeAdapter;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.SmartRefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.api.RefreshLayout;
 import www.yuntdev.com.refreshlayoutlibrary.refreshlayout.listener.OnRefreshLoadmoreListener;
 
 @CreatePresenter(BranchParksPresenter.class)
-public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, BranchParksPresenter> implements BranchParksView, NoticeAdapter.SkipNoticeInfoInterface {
+public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, BranchParksPresenter> implements BranchParksView {
     @BindView(R.id.rg_branch_parks)
     RadioGroup rg_branch_parks;
     @BindView(R.id.srl_branch_parks)
@@ -55,31 +54,28 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
         ButterKnife.bind(this);
         rv_branch_parks.setLayoutManager(new LinearLayoutManager(this));
         rg_branch_parks.check(R.id.rbt_notice_branch_parks);
-        rg_branch_parks.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rbt_notice_branch_parks://通知公告
-                        position = 0;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                    case R.id.rbt_activity_branch_parks://支部活动
-                        position = 1;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                    case R.id.rbt_develop_branch_parks://发展党员
-                        position = 2;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                    case R.id.rbt_logbook_branch_parks://各种台账
-                        position = 3;
-                        start = 0;
-                        createRequest(position, start);
-                        break;
-                }
+        rg_branch_parks.setOnCheckedChangeListener((radioGroup, checkedId) -> {
+            switch (checkedId) {
+                case R.id.rbt_notice_branch_parks://通知公告
+                    position = 0;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
+                case R.id.rbt_activity_branch_parks://支部活动
+                    position = 1;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
+                case R.id.rbt_develop_branch_parks://发展党员
+                    position = 2;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
+                case R.id.rbt_logbook_branch_parks://各种台账
+                    position = 3;
+                    start = 0;
+                    createRequest(position, start);
+                    break;
             }
         });
         srl_branch_parks.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
@@ -117,14 +113,11 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                         branch_parks_net_error.setVisibility(View.GONE);
                         adapter = new InfoAdapter(this, R.layout.item_info, list);
                         rv_branch_parks.setAdapter(adapter);
-                        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfodetailForm form = new InfodetailForm();
-                                form.id = list.get(position).getId();
-                                form.type = 1;
-                                goTo(InfodetailsActivity.class, form);
-                            }
+                        adapter.setOnItemClickListener((view, holder, position) -> {
+                            InfodetailForm form = new InfodetailForm();
+                            form.id = list.get(position).getId();
+                            form.type = 1;
+                            goTo(InfodetailsActivity.class, form);
                         });
                     } else {
                         srl_branch_parks.setVisibility(View.GONE);
@@ -136,14 +129,11 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                     if (null != list && list.size() > 0) {
                         this.list.addAll(list);
                         adapter.notifyDataSetChanged();
-                        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                                InfodetailForm form = new InfodetailForm();
-                                form.id = BranchParksActivity.this.list.get(position).getId();
-                                form.type = 1;
-                                goTo(InfodetailsActivity.class, form);
-                            }
+                        adapter.setOnItemClickListener((view, holder, position) -> {
+                            InfodetailForm form = new InfodetailForm();
+                            form.id = BranchParksActivity.this.list.get(position).getId();
+                            form.type = 1;
+                            goTo(InfodetailsActivity.class, form);
                         });
                     } else {
 
@@ -175,8 +165,8 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                     branch_parks_empty_data.setVisibility(View.GONE);
                     branch_parks_net_error.setVisibility(View.GONE);
                     noticeAdapter = new NoticeAdapter(this, R.layout.item_notice, noticeList);
-                    noticeAdapter.setInfoInterface(this);
                     rv_branch_parks.setAdapter(noticeAdapter);
+                    onItemClickListener(noticeAdapter, noticeList);
                 } else {
                     //空白页面
                     srl_branch_parks.setVisibility(View.GONE);
@@ -188,6 +178,7 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
                 if (list != null && list.size() > 0) {
                     this.noticeList.addAll(list);
                     noticeAdapter.notifyDataSetChanged();
+                    onItemClickListener(noticeAdapter, noticeList);
                 } else {
 
                 }
@@ -195,6 +186,15 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
         } else {
             showToast("服务器异常");
         }
+    }
+
+    public void onItemClickListener(NoticeAdapter adapter, List<NoticeBean.DataBean> list) {
+        adapter.setOnItemClickListener((view, holder, position) -> {
+            NoticeForm form = new NoticeForm();
+            form.id = list.get(position).getId();
+            form.isReply = list.get(position).getIsReply();
+            goTo(NoticeInfoActivity.class, form);
+        });
     }
 
     @Override
@@ -231,21 +231,6 @@ public class BranchParksActivity extends AbstractMvpActivity<BranchParksView, Br
             case 3:
                 getMvpPresenter().doBranchParksRequest(dialog, "15", "34", "0", start, 10);
                 break;
-        }
-    }
-
-    @Override
-    public void skip(int position) {
-        if (start == 0) {
-            NoticeForm form = new NoticeForm();
-            form.id = noticeList.get(position).getId();
-            form.isReply = noticeList.get(position).getIsReply();
-            goTo(NoticeInfoActivity.class, form);
-        } else {
-            NoticeForm form = new NoticeForm();
-            form.id = BranchParksActivity.this.noticeList.get(position).getId();
-            form.isReply = BranchParksActivity.this.noticeList.get(position).getIsReply();
-            goTo(NoticeInfoActivity.class, form);
         }
     }
 }
