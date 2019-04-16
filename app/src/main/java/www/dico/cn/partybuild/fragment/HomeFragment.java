@@ -83,12 +83,7 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
         View view = inflater.inflate(R.layout.fragment_home, null);
         ButterKnife.bind(this, view);
 
-        srl_home.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                getMvpPresenter().homeDataRequest(dialog);
-            }
-        });
+        srl_home.setOnRefreshListener(relayout -> getMvpPresenter().homeDataRequest(dialog));
 
         SpannableString content = new SpannableString("公示公告");
         content.setSpan(new ForegroundColorSpan(Color.parseColor("#0099EE")), 0, content.length() - 2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
@@ -149,14 +144,11 @@ public class HomeFragment extends AbstractFragment<HomeView, HomePresenter> impl
                 if (urls.size() > 1)
                     xbanner.setAutoPlayAble(urls.size() > 1);
                 xbanner.setData(urls, titles);
-                xbanner.loadImage(new XBanner.XBannerAdapter() {
-                    @Override
-                    public void loadBanner(XBanner banner, Object model, View view, int position) {
-                        if (((AdvertiseImgM) model).getPoster() != null && !((AdvertiseImgM) model).getPoster().equals("")) {
-                            ImageView image = (ImageView) view;
-                            image.setScaleType(ImageView.ScaleType.MATRIX);
-                            GlideUtils.loadImageSetUpError(getActivity(), AppConfig.urlFormat(((AdvertiseImgM) model).getPoster()), image, R.mipmap.img_dico);
-                        }
+                xbanner.loadImage((banner, model, view, position) -> {
+                    if (((AdvertiseImgM) model).getPoster() != null && !((AdvertiseImgM) model).getPoster().equals("")) {
+                        ImageView image = (ImageView) view;
+                        image.setScaleType(ImageView.ScaleType.MATRIX);
+                        GlideUtils.loadImageSetUpError(getActivity(), AppConfig.urlFormat(((AdvertiseImgM) model).getPoster()), image, R.mipmap.img_dico);
                     }
                 });
                 xbanner.setOnItemClickListener((banner, model, position) -> {
