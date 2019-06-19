@@ -16,9 +16,9 @@ import com.leo618.mpermission.MPermission;
 import java.util.List;
 
 import www.dico.cn.partybuild.AppConfig;
-import www.dico.cn.partybuild.AppManager;
 import www.dico.cn.partybuild.MainActivity;
 import www.dico.cn.partybuild.R;
+import www.dico.cn.partybuild.presenter.LoginPresenter;
 
 //启动页
 public class SplashActivity extends BaseActivity implements MPermission.PermissionCallbacks {
@@ -31,6 +31,7 @@ public class SplashActivity extends BaseActivity implements MPermission.Permissi
             switch (msg.what) {
                 case 0:
                     if (AppConfig.getSpUtils().getInt("isLoginOk") == 1) {
+                        new LoginPresenter().clickRequest(dialog, AppConfig.getSpUtils().getString("username"), AppConfig.getSpUtils().getString("password"));
                         startActivity(new Intent().setClass(SplashActivity.this, MainActivity.class));
                         finish();
                     } else {

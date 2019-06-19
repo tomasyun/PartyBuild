@@ -29,7 +29,7 @@ public class AppConfig {
         AppConfig.context = context;
         spUtils = new SPUtils("dico", context);
         spUtils.put("isLoginOk", spUtils.getInt("isLoginOk"));//1.登录成功  0.登录失败
-//        spUtils.put("isKeep",false);//true  记住密码  false 忘记密码
+        spUtils.put("isKeep",false);//true  记住密码  false 忘记密码
         spUtils.put("username", spUtils.getString("username"));
         spUtils.put("password", spUtils.getString("password"));
 

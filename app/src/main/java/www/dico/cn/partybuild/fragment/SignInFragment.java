@@ -325,6 +325,12 @@ public class SignInFragment extends AbstractFragment<SignInView, SignInPresenter
                 TextView tv_empty = sign_in_empty_data.findViewById(R.id.tv_empty);
                 tv_empty.setText("暂无签到");
             }
+        }else {
+            srl_sign_in.setVisibility(View.GONE);
+            sign_in_empty_data.setVisibility(View.VISIBLE);
+            sign_in_net_error.setVisibility(View.GONE);
+            TextView tv_empty = sign_in_empty_data.findViewById(R.id.tv_empty);
+            tv_empty.setText("暂无签到");
         }
     }
 

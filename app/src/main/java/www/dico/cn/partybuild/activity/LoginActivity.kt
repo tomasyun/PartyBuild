@@ -19,44 +19,39 @@ import www.dico.cn.partybuild.utils.SPUtils
 //登录
 @CreatePresenter(LoginPresenter::class)
 class LoginActivity : AbstractMvpActivity<LoginView, LoginPresenter>(), LoginView {
-    private var login_name = ""
+    private var username = ""
     private val sp: SPUtils = AppConfig.getSpUtils()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         cb_keep_pwd.isChecked = false
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        if (sp.getString("username") != null && sp.getString("password") != null) {
+        if (sp.getBoolean("isKeep")) {
             et_name_login.text = Editable.Factory.getInstance().newEditable(sp.getString("username"))
             et_password_login.text = Editable.Factory.getInstance().newEditable(sp.getString("password"))
         }
     }
 
     fun login(view: View) {
-        login_name = et_name_login!!.text.toString().trim { it <= ' ' }
+        username = et_name_login!!.text.toString().trim { it <= ' ' }
         val password = et_password_login!!.text.toString().trim { it <= ' ' }
-        if (TextUtils.isEmpty(login_name)) {
+        if (TextUtils.isEmpty(username)) {
             showToast("用户名不能为空")
         } else if (TextUtils.isEmpty(password)) {
             showToast("密码不能为空")
         } else {
             if (cb_keep_pwd.isChecked) {
-                sp.put("username", login_name)
-                sp.put("password", password)
+                sp.put("isKeep", true)
             } else {
-                sp.put("username", "")
-                sp.put("password", "")
+                sp.put("isKeep", false)
             }
+            sp.put("username", username)
+            sp.put("password", password)
             mvpPresenter.clickRequest(dialog, et_name_login!!.text.toString().trim { it <= ' ' }, et_password_login!!.text.toString().trim { it <= ' ' })
         }
     }
 
     override fun resultSuccess(result: String) {
-        val bean = Gson().fromJson<LoginBean>(result, LoginBean::class.java!!)
+        val bean = Gson().fromJson<LoginBean>(result, LoginBean::class.java)
         if (bean.code == "0000") {
             if (null != bean.data) {
                 var name: String? = bean.data.name
